@@ -2207,3 +2207,57 @@ SQLステートメントでSigmaデータセットから個々の列を参照す
 ```sql
 SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME
 
+
+#### 3-23. SQLからデータセットを作成する (Create a dataset from SQL)
+
+データセットを作成する方法の一つは、ウェアハウス内のデータに対してSQLを記述することです。SQLベースのデータセットは、SQLクエリを受け取り、他の人が追加分析の基盤として使用できる再利用可能なデータソースに変換します。データセットはデータベースに[マテリアライズする](https://help.sigmacomputing.com/docs/dataset-materialization-api)こともでき、クエリの高速化に役立ちます。データセットに加えられた変更は、下流の依存関係に伝播します。
+
+データセットの作成に関する詳細は、「[Create and manage datasets](https://help.sigmacomputing.com/docs/create-and-manage-datasets)」を参照してください。
+
+**要件 (Requirements)**
+
+この機能を使用するには、`Write SQL` および `Create, edit, and publish datasets` 権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/user-account-types)を割り当てられている必要があります。
+カスタムSQLを実行するには、接続全体に対する `Can use` アクセス権が必要です。「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。SQLエディタは、組織内の少なくとも一つの接続に対して接続レベルのアクセス権を持っている場合にのみ表示されます。
+既存のSigmaデータセットやワークブック要素をSQLで参照するには、接続で[書き込みアクセス](https://help.sigmacomputing.com/docs/set-up-write-access)が構成されている必要があります。
+
+**カスタムSQLを記述してデータセットを作成する (Create a dataset by writing custom SQL)**
+
+独自のSQLクエリをデータに対して記述してデータセットを作成するには：
+1.  **Sigmaホーム**を開きます。
+2.  ナビゲーションパネルで `+ Create New` をクリックし、`Dataset` を選択します。
+3.  `Select a Data Source` ページで、`SQL` オプションを選択します。
+4.  サイドパネルで `Select a Connection` をクリックし、クエリを実行したい接続を選択します。
+5.  クエリエディタに、カスタムSQLを入力します。Sigmaはガイドするためのオートコンプリート候補を提供します。
+6.  `Run` を選択してSQLクエリを実行します。キーボードショートカットも使用できます：WindowsではCTRL-Enter、MacではCMD-Returnです。
+7.  結果が期待通りであることを確認した後、`Get Started` を選択してデータセットを作成します。
+
+カスタムSQLの記述に関する詳細は、「[Write custom SQL](https://help.sigmacomputing.com/docs/write-custom-sql)」を参照してください。
+
+**SQLから作成したデータセットを修正する (Modify a dataset created from SQL)**
+
+データセットの作成に使用したSQLを編集するには、以下を実行します。
+1.  修正したいデータセットを開きます。
+2.  `Edit` をクリックし、`Worksheet` タブを選択します。
+3.  サイドパネルで、データソースパネルを開きます。
+4.  `Custom SQL` について、`More` > `Edit Source` を選択します。
+5.  開いたクエリエディタで、カスタムSQLを修正します。`Run` をクリックして、クエリが期待通りの結果を返すことを検証します。
+6.  `Done` をクリックしてクエリを保存します。
+7.  `Publish` をクリックしてデータセットを更新します。
+
+**既存のSigmaデータセットを参照する (Reference existing Sigma datasets)**
+
+データプラットフォームに作成された[ウェアハウスビュー](https://help.sigmacomputing.com/docs/dataset-warehouse-views)の完全修飾名を使用して、既存のSigmaデータセットをSQLで参照できます。もしデータセットにロケーションまたはデータセットウェアハウスビューが利用できない場合は、作成してください。
+
+完全修飾名は、データプラットフォーム内のデータセットのロケーションとウェアハウスビューの名前の組み合わせです。
+`SELECT * FROM <location>.<dataset_warehouse_view_name>`
+
+データセットの完全修飾名を特定するには、データセットを表示しているときに `More info` を選択します。
+
+`Location` フィールドは、データセットを含むデータプラットフォーム内のデータベースまたはカタログとスキーマを提供し、`Dataset` フィールドは参照できるビュー名を提供します。
+
+> 💡
+> 完全修飾名をクリップボードにコピーするには、`More` () をクリックし、`Copy path` を選択します。
+
+SQLステートメントでSigmaデータセットから個々の列を参照するには、列名を二重引用符で囲みます。例：
+```sql
+SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME
