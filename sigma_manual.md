@@ -270,11 +270,236 @@ SigmaのアウトバウンドIPアドレスは、あなたのSigma管理者ポ�
 
 **関連リソース (Related resources)**
 
+* Connect to Snowflake
+#### 2-3. Snowflakeへの接続 (Connect to Snowflake)
+
+SigmaはSnowflakeへの安全な接続をサポートしています。
+
+> 📘
+> Snowflake接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
+
+このドキュメントでは、あなたの組織をSigmaからSnowflakeウェアハウスに接続する方法を説明します。
+
+> 📘
+> まだSigma組織を作成していない場合は、Snowflake Partner Connectを使用して組織を作成し、数クリックでSnowflakeデータベースを接続することができます。Snowflake Partner Connectを使用するには、Snowflakeで `ACCOUNTADMIN` ロールを持っている必要があります。Snowflake Partner Connectでサインアップするには、Partner ConnectリストからSigmaを選択し、Connect to Sigmaモーダルで `Connect` をクリックします。
+>
+> SnowflakeとOktaを使用したOAuth構成のエンドツーエンドのウォークスルーについては、「[Open Authorization (OAuth) QuickStart](https://help.sigmacomputing.com/docs/oauth-quickstart)」を参照してください。
+
+**要件 (Requirements)**
+
+* あなたは `Admin` アカウントタイプを割り当てられている必要があります。
+* 必要なデータベースとスキーマに対する `USAGE` 権限、および必要なテーブルに対する `SELECT` 権限を持つロールが割り当てられたSnowflakeユーザーの資格情報を提供できる必要があります。
+
+> 🚩
+> Sigmaは、データベース、スキーマ、テーブル、ビューをインデックス化するために、24時間ごとにSnowflake接続にクエリを実行します。このプロセスは自動化されており、クラウドサービスレイヤーのSnowflakeメタデータから読み取ります。通常の使用では、このプロセスによるクレジット消費は0ですが、24時間以内に最小限の使用しかない場合には、クレジット消費が発生することがあります。Snowflakeドキュメントの「[Understanding overall cost](https://docs.snowflake.com/en/user-guide/cost-understanding-overall)」を参照してください。
+
+**SigmaでSnowflake接続を作成する (Create a Snowflake connection in Sigma)**
+
+Snowflake接続を作成するには、Sigmaで以下のステップを実行します。
+1.  接続を追加し、接続詳細を指定する
+2.  接続資格情報を指定する
+3.  認証方法を構成する：
+    * キーペア認証でSnowflakeに接続する
+    * OAuthでSnowflakeに接続する
+    * 基本認証でSnowflakeに接続する
+4.  書き込みアクセスを構成する
+5.  接続機能を構成する
+
+**1. 接続を追加し、接続詳細を指定する (Add a connection and specify connection details)**
+
+1.  画面右上のユーザーアイコンをクリックします。
+    * ユーザーアイコンは通常、あなたのイニシャルで構成されています。
+2.  ドロップダウンメニューで、`Add connection` を選択します。`Add new connection` ページが表示されます。
+3.  `Connection details` で、以下を指定します。
+    * **Name:** 新しい接続の `Name` を入力します。Sigmaはこの名前を接続リストに表示します。
+    * **Type:** `Snowflake` タイルを選択します。
+
+**2. 接続資格情報を指定する (Specify your connection credentials)**
+
+`Connection Credentials` セクションで、必須項目を入力します。
+
+* [任意] プロキシサーバーを使用してSnowflakeにアクセスする場合は、`Use Custom Host` トグルをオンにし、`Snowflake Custom Host` 名を入力します。
+* `Account` フィールドに、Snowflakeのアカウント名を入力します。アカウント名のフォーマット方法の詳細は、Snowflakeドキュメントの「[Using an account name as an identifier](https://docs.snowflake.com/en/user-guide/connecting.html#using-an-account-name-as-an-identifier)」を参照してください。
+* `Warehouse` フィールドに、Snowflakeにリストされているウェアハウス名を入力します。
+    > 📘
+    > ユーザー属性を使用してウェアハウスを設定するには、`Warehouse` フィールドの `Set by user attributes` をクリックします。「[Configure user attributes on a Snowflake connection](https://help.sigmacomputing.com/docs/user-attributes-snowflake)」を参照してください。
+* `Warehouse` フィールドをユーザー属性を使用して設定し、この接続で入力テーブルを使用する予定がある
+
+* #### 2-4. Snowflake接続でユーザー属性を構成する (Configure user attributes on a Snowflake connection)
+
+新規または既存のSnowflake接続でユーザー属性を設定することで、特定のユーザーが使用するSnowflakeのウェアハウスやロールを、そのユーザーの属性値に基づいて動的に割り当てることができます。
+
+このドキュメントでは、Snowflake接続で属性を使用する方法とその理由について説明します。Snowflake接続では、`Warehouse`と`Role`の2つの属性が利用可能です。
+
+接続で属性を構成した後、セキュアな埋め込みURLで外部ユーザーに属性を渡すこともできます。詳細は、「[Apply dynamic connection and role switching to embeds](https://help.sigmacomputing.com/docs/dynamic-connection-switching)」を参照してください。
+
+**ウェアハウス属性について (About the warehouse attribute)**
+
+`Warehouse`属性を使用すると、Sigma内のユーザーに割り当てられたユーザー属性の値に基づいて、使用されるSnowflakeウェアハウスを動的に変更できます。
+これは、クライアントごとに個別のウェアハウスを作成し、クライアントごとのコンピューティングコストを簡単に監視できるため、クライアントベースのセットアップで役立ちます。
+
+**ロール属性について (About the role attribute)**
+
+`Role`属性は、Sigmaで行レベルのセキュリティやセキュリティポリシーを手動で再作成する代わりに、Snowflakeで構成したロールを使用して行レベルのセキュリティを提供します。この機能はOAuthを使用する代わりの方法であり、ユーザー属性を使用してSigmaのSnowflake接続にSnowflakeロールを動的に展開することができます。この機能はOAuthとは併用できません。
+
+> 📘
+> 埋め込みユーザーの場合、ユーザーとチームに属性を設定できます。内部ユーザーの場合、チームに属性を設定できます。
+
+**要件 (Requirements)**
+
+* あなたは `Admin` アカウントタイプを割り当てられている必要があります。
+* また、この構成をサポートするために、Snowflakeでの権限が設定されていることを確認する必要があります。
+    * 特定のウェアハウスで使用されるSnowflakeロールには、そのウェアハウスに対する少なくとも `USAGE` 権限が付与されている必要があります。
+    * Snowflakeロールには、Sigmaに接続されている関連データベースとスキーマに対する少なくとも `USAGE` 権限も付与されている必要があります。
+    * Snowflakeロールは、接続に関連付けられているSnowflakeユーザーに付与されている必要があります。
+
+**ユーザー属性を構成する (Configure user attributes)**
+
+Snowflakeウェアハウス接続でユーザー属性を構成するためには、まずユーザー属性を作成し、それらをチームに割り当てる必要があります。ユースケースに応じて、`Warehouse`、`Role`、またはその両方のためのユーザー属性を作成できます。
+
+ユーザー属性を構成するには、以下を実行します。
+1.  Sigma管理者ポータルで、`User Attributes` に移動し、`Create Attribute` をクリックします。
+2.  `New Attribute` セクションで、`Name` フィールドに一意の名前を入力します。
+3.  `Description` フィールドに、属性の説明を入力します。（任意）
+4.  `Default Value` フィールドに、デフォルト値を入力します。チームに値が設定されていない場合、Sigmaはここで定義された値を使用します。（任意）
+5.  `Create` をクリックします。
+
+`Create` をクリックすると、属性は `User Attributes` の下に表示されます。
+より詳細な説明については、「[User Attributes](https://help.sigmacomputing.com/docs/user-attributes)」を参照してください。
+
+**ユーザー属性を割り当てる (Assign user attributes)**
+
+チームにユーザー属性を割り当てるには、以下を実行します。
+1.  `Teams Assigned` セクションで、`Assign Attribute` をクリックして、この属性にチームを割り当てます。
+2.  検索バーで、この属性を割り当てるチームを検索するか、検索バー内をクリックして組織のチームのリストを表示します。詳細は、「[Teams](https://help.sigmacomputing.com/docs/teams)」を参照してください。
+3.  `Assigned Value` フィールドに値を追加します。
+4.  `Assign` をクリックします。これで、あなたのチームは `Teams Assigned` の下にリストされます。
+5.  チームの優先順位を並べ替えるには、`Teams Assigned` セクションで、ドラッグハンドルの上にカーソルを置きます。`Priority` 列の下で、チームを目的の優先順位にドラッグ＆ドロップします。
+
+> 📘
+> ユーザーが複数のチームのメンバーである場合、`Priority` を使用して、そのチームのユーザーがどの割り当て値に従うかを決定します。
+
+**Snowflake接続でユーザー属性を設定する (Set user attributes on a Snowflake connection)**
+
+ウェアハウスやロールをユーザーに動的に割り当てるために使用するユーザー属性を構成した後、新規または既存の接続でユーザー属性を使用するように構成します。
+
+1.  管理者ポータルで、`Connections` に移動します。
+2.  `Create Connection` をクリックするか、既存のSnowflake接続を開きます。
+3.  サービスアカウントを使用する既存の接続でユーザー属性を構成している場合は、ステップ5に進みます。
+4.  `Snowflake` をクリックします。`Connect to Snowflake` ドキュメントの一般的な構成手順に従います。
+5.  `Warehouse` フィールドの `More Menu` をクリックして、以前に構成したウェアハウス属性を参照して選択します。
+6.  `Role` フィールドの `More Menu` をクリックして、以前に構成したロール属性を参照して選択します。OAuthアクセスは選択解除する必要があります。
+
+これで、あなたのSnowflake接続は、Snowflakeで設定されたロールとウェアハウスを動的に使用するように構成されました。
+
+**セキュアな埋め込みでの使用 (Use with secure embeds)**
+
+接続で属性を構成した後、セキュアな埋め込みURLで外部ユーザーに属性を渡すことができます。埋め込みでロールとウェアハウスの属性を使用するには、パラメータをURL（埋め込みパスURL）に追加する必要があります。
+
+> 📘
+> `Role`属性の場合、この構成はセキュアな埋め込みの期間中、行レベルのセキュリティを強制します。
+
+**セキュアな埋め込みURLにパラメータを追加する (Add parameters to a secure embed URL)**
+
+セキュアな埋め込みで属性を渡すためには、両方の属性のパラメータを埋め込みURLに追加する必要があります。
+埋め込みURLでは、属性は次のようにフォーマットされるべきです。
+
+#### 2-5. エクスポートウェアハウスを構成する (Configure an export warehouse)
+
+エクスポートウェアハウスとは、Sigmaのエクスポートを実行するために特別に作成された、Snowflake内の仮想ウェアハウスのことです。
+
+デフォルトでは、Sigmaはエクスポートクエリを接続のプライマリウェアハウスに送信しますが、すべてのスケジュールされた、直接の、オンデマンドのエクスポートを別のエクスポートウェアハウス経由で実行するように構成することができます。この慣行は、エクスポート操作を分離してパフォーマンスを最適化し、コンピューティングコストを削減します。
+
+このドキュメントでは、Sigmaでエクスポートウェアハウスを構成する方法を説明します。
+
+**システムとユーザーの要件 (System and user requirements)**
+
+Sigmaでエクスポートウェアハウスを構成する機能には、以下が必要です。
+* あなたのSigma組織には、既存の[Snowflake接続](https://help.sigmacomputing.com/docs/connect-to-snowflake)が必要です。
+* あなたは `Admin` アカウントタイプを割り当てられている必要があります。
+
+**前提条件 (Prerequisites)**
+
+Sigmaでエクスポートウェアハウスを構成する前に、あなた（または適切なSnowflake権限を持つ別のユーザー）は、Snowflake内でエクスポートクエリを実行するための専用の仮想ウェアハウスを別途作成しておく必要があります。このプロセスの詳細については、Snowflakeのドキュメント「[CREATE WAREHOUSE](https://docs.snowflake.com/en/sql-reference/sql/create-warehouse)」を参照してください。
+
+**エクスポートウェアハウスを構成する (Configure an export warehouse)**
+
+Snowflake接続を適宜構成することで、Sigmaが専用のエクスポートウェアハウスを使用できるようにします。
+
+1.  **「Administration」 > 「Connections」に移動します。**
+    * Sigmaヘッダーで、あなたのユーザーアバターをクリックしてユーザーメニューを開きます。
+    * 「Administration」を選択して、管理者ポータルを開きます。
+    * サイドパネルで、「Connections」を選択します。
+2.  **「Connections」ページで、エクスポートウェアハウスを追加したいSnowflake接続を選択します。**
+3.  **接続概要の「Connection Details」セクションに移動し、「Edit」をクリックします。**
+4.  **「Connection Features」セクションで、「Export Warehouse」フィールドを探し、エクスポートクエリ用に作成した仮想ウェアハウスの名前を入力します。**
+5.  **「Save」をクリックして、指定されたウェアハウス経由ですべてのスケジュールされた、直接の、オンデマンドのエクスポートを実行するようにします。**
+
+> 📘
+> エクスポートウェアハウスは、プライマリウェアハウスの接続キューサイズを継承します。エクスポートウェアハウスに異なるキューサイズを設定するには、サポートにお問い合わせください。
+>
+> #### 2-6. Snowflake接続またはユーザーの入力テーブルアクセスを復元する (Restore input table access for a Snowflake connection or user)
+
+管理者がSigmaで接続用に構成されたSnowflakeロールを変更すると、不十分なロール権限が入力テーブルへのアクセスを中断させ、ユーザーが新しい入力テーブルを作成したり、既存のものへの編集を保存したりできなくなることがあります。このエラーは、接続がOAuthを使用しており、ユーザーのロールがSnowflake内で再割り当てされた場合にも発生する可能性があります。
+
+このドキュメントでは、エラーの根本原因を特定し、接続またはユーザーの入力テーブルアクセスを復元するために必要な権限を付与する方法について説明します。
+
+**システムとユーザーの要件 (System and user requirements)**
+
+接続またはユーザーの入力テーブルアクセスを復元する機能には、以下が必要です。
+* あなたはSigmaで `Admin` アカウントタイプを割り当てられている必要があります。
+* あなたはSnowflakeでオブジェクトに対する権限を付与できる必要があります。
+
+**エラーの根本原因と解決策を特定する (Identify the error's root cause and resolution)**
+
+Snowflakeロールが入力テーブルデータと編集ログ（先行書き込みログ、WALとも呼ばれる）にアクセスするための権限を欠いている場合、影響を受けるユーザーはSigmaで新しい入力テーブルを作成したり、既存のものへの編集を保存したりできません。ワークブックには「SQL compilation error」メッセージが表示され、オブジェクトが存在しないか、承認されていないことを示します。そして、Sigmaは「Input table edits failed」というシステムメールを組織の全管理者とエラーに遭遇したユーザーに送信します。このエラーについて管理者に送信されるメールには、「ユーザーが不十分なロール権限のために入力テーブルへの編集を保存できませんでした」と記載されています。
+
+入力テーブルアクセスを復元するための解決策は、接続の認証方法と、そのロールが接続に適用されるか、接続にアクセスする特定のユーザーに適用されるかによって異なります。以下の表を使用してエラーの根本原因と解決策を特定し、その後、このドキュメントの「ロールと書き戻しスキーマを取得する」および「Snowflakeでロール権限を更新する」セクションを参照してください。
+
+| 接続認証 | エラーメッセージのオブジェクトプレフィックス¹ | 根本原因 | Snowflakeでの解決策 |
+| :--- | :--- | :--- | :--- |
+| 非OAuth<br>(基本またはキーペア) | `SIGDS` または `SIGDS_WAL` | 接続で使用されるロールが、入力テーブルデータと編集ログを含むテーブルにアクセスできない。 | 書き戻しスキーマ内で、接続で使用されるロールに以下の権限を付与する：<br>入力テーブルデータを含むテーブル（`SIGDS`プレフィックス）に対し、`ALL PRIVILEGES`を付与。<br>編集ログを含むテーブル（`SIGDS_WAL`プレフィックス）に対し、`INSERT`と`SELECT`を付与。 |
+| OAuth | `SIGDS_WAL` | 接続のサービスアカウントで使用されるロールが、編集ログを含むテーブルにアクセスできない。 | 書き戻しスキーマ内で、接続のサービスアカウントで使用されるロールに以下の権限を付与する：<br>編集ログを含むテーブル（`SIGDS_WAL`プレフィックス）に対し、`INSERT`と`SELECT`を付与。 |
+| OAuth | `SIGDS` | ユーザーに割り当てられたロールが、入力テーブルデータを含むテーブルにアクセスできない。 | 書き戻しスキーマ内で、ユーザーに割り当てられたロールに以下の権限を付与する：<br>入力テーブルデータを含むテーブル（`SIGDS`プレフィックス）に対し、`ALL PRIVILEGES`を付与。 |
+
+¹ Sigmaは（ユーザーがエラーに遭遇した際に）ワークブックにエラーメッセージを表示し、システムメールにもそれを含めます。エラーメッセージでは、`SIGDS`プレフィックスは入力テーブルに保存されたデータを含むテーブルを識別し、`SIGDS_WAL`プレフィックスは編集ログを含むテーブルを識別します。
+
+**ロールと書き戻しスキーマを取得する (Retrieve the role and write-back schema)**
+
+Snowflakeでロール権限を正確に更新するために、まずSigmaから関連する詳細情報を取得します。
+
+* **非OAuth接続 (Non-OAuth connection)**
+    エラーが非OAuth接続で発生した場合、接続で使用されるロールの名前と、書き戻しスキーマの名前を取得します。
+    1.  入力テーブル編集の失敗を報告するシステムメールを受け取った場合は、メール内の `View connection` をクリックして、Sigma管理者ポータルの接続概要に直接アクセスします。そうでない場合は、Sigmaで `Administration` > `Connections` に移動し、該当するSnowflake接続を選択します。
+    2.  接続概要の `Connection Credentials` セクションで、`Role` フィールドを参照して、権限付与が必要なSnowflakeロールの名前を取得します。
+    3.  `Write Access` セクションで、`Write schema` フィールドを参照して、入力テーブルデータと編集ログを含む書き戻しスキーマの名前を取得します。
+
+* **OAuth接続 (OAuth connection)**
+    エラーがOAuth接続で発生した場合、接続のサービスアカウントで使用されるロールの名前（根本原因がサービスアカウントのロールレベルにある場合のみ）と、書き戻しスキーマの名前を取得します。
+    1.  入力テーブル編集の失敗を報告するシステムメールを受け取った場合は、メール内の `View connection` をクリックして、Sigma管理者ポータルの接続概要に直接アクセスします。そうでない場合は、Sigmaで `Administration` > `Connections` に移動し、該当するSnowflake接続を選択します。
+    2.  権限付与が必要なSnowflakeロールの名前を取得します。
+        * エラーの根本原因がサービスアカウントのロールレベルにある場合、接続概要の `Connection Credentials` セクションに移動し、`Role` フィールドを参照します。
+        * エラーの根本原因がユーザーのロールレベルにある場合、システムメール内のユーザーのメールアドレスを参照し、Snowflakeで割り当てられているユーザーのデフォルトロールを特定します。
+    3.  `Write Access` セクションで、`Write destinations` フィールドを参照して、入力テーブルデータと編集ログを含む書き戻しスキーマの名前を取得します。
+    > 📘
+    > 接続が複数のデスティネーションに書き込む場合、システムメールのエラーメッセージを参照し、デスティネーションパスから特定の書き戻しスキーマを取得します。また、ワークブックにアクセスして入力テーブルを更新し、入力テーブルのクエリ詳細から該当する書き戻しスキーマの名前を取得することもできます。
+
+**Snowflakeでロール権限を更新する (Update role privileges in Snowflake)**
+
+前のセクションで取得したロールと書き戻しスキーマを使用して、このドキュメントの「入力テーブルエラーの根本原因と解決策を特定する」セクションで概説された適切な解決策を実装します。
+
+SQLまたはSnowsightを使用して、Snowflakeのテーブルに権限を付与できます。詳細はSnowflakeのドキュメント「[Grant privileges to the role](https://docs.snowflake.com/en/user-guide/security-access-control-configure#grant-privileges-to-the-role)」を参照してください。
+
+> 💡
+> テーブルに権限を付与する前に、そのロールが入力テーブルデータへのアクセスを必要とし、意図的に制限されていないことを確認してください。
+> Snowflakeで特定された書き戻しスキーマまたはテーブルが見つからない場合、そのオブジェクトはもはや存在しない可能性があります。スキーマまたは編集ログが意図せず削除された場合は、新しい接続を作成するか、編集ログテーブルを再作成する必要があります。詳細はサポートにお問い合わせください。
+* 
 * Connect to AlloyDB
 * Connect to BigQuery
 * Connect to Databricks
 * Connect to MySQL
 * Connect to PostgreSQL
 * Connect to Redshift
-* Connect to Snowflake
 * Connect to Starburst
+
+*
