@@ -2207,6 +2207,7 @@ SQLステートメントでSigmaデータセットから個々の列を参照す
 ```sql
 SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME
 
+
 #### 3-24. データセットのウェアハウスビューの作成と管理 (Create and manage dataset warehouse views)
 
 ウェアハウスビューは、あなたのデータプラットフォーム内の仮想テーブルであり、Sigmaやあなたのデータエコシステム内の他の任意のアプリケーションを使用してクエリを実行することができます。Sigmaでモデリングしたデータに基づいてウェアハウスビューを作成することで、クエリを簡素化し、関連性のある最新のデータセットをデータベースから直接取得できます。
