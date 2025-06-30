@@ -2205,7 +2205,7 @@ Sigmaのリンクの強力な点は、テーブル間のリンクを作成する
 
 SQLステートメントでSigmaデータセットから個々の列を参照するには、列名を二重引用符で囲みます。例：
 ```sql
-SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME
+　SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME
 
 
 #### 3-24. データセットのウェアハウスビューの作成と管理 (Create and manage dataset warehouse views)
