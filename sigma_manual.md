@@ -2204,60 +2204,50 @@ Sigmaのリンクの強力な点は、テーブル間のリンクを作成する
 > 完全修飾名をクリップボードにコピーするには、`More` () をクリックし、`Copy path` を選択します。
 
 SQLステートメントでSigmaデータセットから個々の列を参照するには、列名を二重引用符で囲みます。例：
-```sql
-SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME
+```sql SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME```
 
 
-#### 3-23. SQLからデータセットを作成する (Create a dataset from SQL)
+#### 3-24. データセットのウェアハウスビューの作成と管理 (Create and manage dataset warehouse views)
 
-データセットを作成する方法の一つは、ウェアハウス内のデータに対してSQLを記述することです。SQLベースのデータセットは、SQLクエリを受け取り、他の人が追加分析の基盤として使用できる再利用可能なデータソースに変換します。データセットはデータベースに[マテリアライズする](https://help.sigmacomputing.com/docs/dataset-materialization-api)こともでき、クエリの高速化に役立ちます。データセットに加えられた変更は、下流の依存関係に伝播します。
+ウェアハウスビューは、あなたのデータプラットフォーム内の仮想テーブルであり、Sigmaやあなたのデータエコシステム内の他の任意のアプリケーションを使用してクエリを実行することができます。Sigmaでモデリングしたデータに基づいてウェアハウスビューを作成することで、クエリを簡素化し、関連性のある最新のデータセットをデータベースから直接取得できます。
 
-データセットの作成に関する詳細は、「[Create and manage datasets](https://help.sigmacomputing.com/docs/create-and-manage-datasets)」を参照してください。
+このドキュメントでは、データセットのウェアハウスビューと、それらをどのように活用するかについて説明します。ワークブックやデータモデル用のウェアハウスビューの作成に関する詳細は、「[Create and manage warehouse views](https://help.sigmacomputing.com/docs/warehouse-views)」を参照してください。
 
-**要件 (Requirements)**
+**システム要件 (System requirements)**
 
-この機能を使用するには、`Write SQL` および `Create, edit, and publish datasets` 権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/user-account-types)を割り当てられている必要があります。
-カスタムSQLを実行するには、接続全体に対する `Can use` アクセス権が必要です。「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。SQLエディタは、組織内の少なくとも一つの接続に対して接続レベルのアクセス権を持っている場合にのみ表示されます。
-既存のSigmaデータセットやワークブック要素をSQLで参照するには、接続で[書き込みアクセス](https://help.sigmacomputing.com/docs/set-up-write-access)が構成されている必要があります。
+データセットのウェアハウスビューを利用するには、あなたの組織の接続で[書き込みアクセス](https://help.sigmacomputing.com/docs/set-up-write-access)が有効になっている必要があります。
 
-**カスタムSQLを記述してデータセットを作成する (Create a dataset by writing custom SQL)**
+> 📘
+> この機能は、すべてのデータプラットフォーム接続でサポートされているわけではありません。あなたの接続がサポートしているかを確認するには、「[Supported data platforms and feature compatibility](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
 
-独自のSQLクエリをデータに対して記述してデータセットを作成するには：
-1.  **Sigmaホーム**を開きます。
-2.  ナビゲーションパネルで `+ Create New` をクリックし、`Dataset` を選択します。
-3.  `Select a Data Source` ページで、`SQL` オプションを選択します。
-4.  サイドパネルで `Select a Connection` をクリックし、クエリを実行したい接続を選択します。
-5.  クエリエディタに、カスタムSQLを入力します。Sigmaはガイドするためのオートコンプリート候補を提供します。
-6.  `Run` を選択してSQLクエリを実行します。キーボードショートカットも使用できます：WindowsではCTRL-Enter、MacではCMD-Returnです。
-7.  結果が期待通りであることを確認した後、`Get Started` を選択してデータセットを作成します。
+**データセットのウェアハウスビューについて (About dataset warehouse views)**
 
-カスタムSQLの記述に関する詳細は、「[Write custom SQL](https://help.sigmacomputing.com/docs/write-custom-sql)」を参照してください。
+サポートされている接続で書き込みアクセスが有効になっている場合、Sigmaはその接続のデータを使用する任意のデータセットに対して、自動的にウェアハウスビューを作成します。データセットをデータベーステーブルとして保存する代わりに、ウェアハウスビューは、データセットによって定義された特定のクエリロジックを表現するSQLステートメントを保存します。
 
-**SQLから作成したデータセットを修正する (Modify a dataset created from SQL)**
+Sigmaがウェアハウスビューを作成すると、データプラットフォームとSigmaの間にライブリンクが確立されます。ビューはデータセットを信頼できる唯一の情報源（source of truth）として参照し、データの最新バージョンを反映するように自動的に更新されます。
 
-データセットの作成に使用したSQLを編集するには、以下を実行します。
-1.  修正したいデータセットを開きます。
-2.  `Edit` をクリックし、`Worksheet` タブを選択します。
-3.  サイドパネルで、データソースパネルを開きます。
-4.  `Custom SQL` について、`More` > `Edit Source` を選択します。
-5.  開いたクエリエディタで、カスタムSQLを修正します。`Run` をクリックして、クエリが期待通りの結果を返すことを検証します。
-6.  `Done` をクリックしてクエリを保存します。
-7.  `Publish` をクリックしてデータセットを更新します。
+**データセットのウェアハウスビュー vs. マテリアライゼーション (Dataset warehouse views vs. materializations)**
 
-**既存のSigmaデータセットを参照する (Reference existing Sigma datasets)**
+どのデータセットに対しても、Sigmaは最大2つのビューを作成できます。
+* データセットの生成したSQLにアクセスできる**ウェアハウスビュー**。
+* Sigmaが生成した[マテリアライゼーション](https://help.sigmacomputing.com/docs/dataset-materialization-api)にアクセスできる**マテリアライズドビュー**（データセットにマテリアライゼーションが構成され、スケジュールされている場合）。
 
-データプラットフォームに作成された[ウェアハウスビュー](https://help.sigmacomputing.com/docs/dataset-warehouse-views)の完全修飾名を使用して、既存のSigmaデータセットをSQLで参照できます。もしデータセットにロケーションまたはデータセットウェアハウスビューが利用できない場合は、作成してください。
+Sigmaは、データセットの変更が公開されるたびにウェアハウスビューを保存します。したがって、ウェアハウスビューにクエリを実行すると、データソースからライブデータを取得します。しかし、マテリアライズドビューにクエリを実行すると、最後にスケジュールされたマテリアライズドテーブルからデータを取得するため、取得したデータがライブデータと異なる場合があります。
 
-完全修飾名は、データプラットフォーム内のデータセットのロケーションとウェアハウスビューの名前の組み合わせです。
-`SELECT * FROM <location>.<dataset_warehouse_view_name>`
+**データセットのウェアハウスビューにクエリを実行する (Query a dataset warehouse view)**
 
-データセットの完全修飾名を特定するには、データセットを表示しているときに `More info` を選択します。
+SQLクエリでデータセットのウェアハウスビューを参照するには、ビューのパスを使用します。
+1.  Sigmaでデータセットを開きます。
+2.  情報アイコンをクリックして、データセットの詳細を表示します。
+3.  `Warehouse views` セクションで、`Dataset` フィールドの `More` をクリックし、`Copy path` を選択します。このパスを使用して、SigmaまたはSQLをサポートするあなたのデータエコシステム内の任意のアプリケーションから、データセットのモデリングされたデータにアクセスします。
 
-`Location` フィールドは、データセットを含むデータプラットフォーム内のデータベースまたはカタログとスキーマを提供し、`Dataset` フィールドは参照できるビュー名を提供します。
+**制限事項 (Limitations)**
 
-> 💡
-> 完全修飾名をクリップボードにコピーするには、`More` () をクリックし、`Copy path` を選択します。
+* データセットでパラメータが使用されている場合、ウェアハウスビューはパラメータのデフォルト値のみを反映します。
+* SQLデータセットが非修飾SQL（SQLパスが明示的に定義されていない）を使用している場合、ビューはそのデータセットおよびそれを参照するどのデータセットに対してもエラーを表示します。
 
-SQLステートメントでSigmaデータセットから個々の列を参照するには、列名を二重引用符で囲みます。例：
-```sql
-SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME
+**不十分なデータベース権限 (Insufficient database grants)**
+
+接続で書き込みアクセスが有効になっているにもかかわらず、ウェアハウスビューの詳細に `Insufficient permissions` という警告が表示される場合は、あなたのデータプラットフォームでの権限が不十分である可能性があります。関連するすべてのアクセス権が付与されていることを確認するには、「[Set up write access](https://help.sigmacomputing.com/docs/set-up-write-access)」で概説されている指示とコマンドを参照してください。
+
+例えば、Snowflakeでは、デスティネーションデータベースに対する `USAGE` 権限が必要ですが、Sigmaが使用する書き戻しスキーマに対しては、`USAGE`, `CREATE TABLE`, `CREATE VIEW`, `CREATE STAGE` という権限も付与されている必要があります。
