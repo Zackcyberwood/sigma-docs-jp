@@ -2997,3 +2997,431 @@ Sigmaでは、列レベルのセキュリティはチームの割り当て、ユ
     7.  データセットからワークブックを作成し、全てのデータセット列を持つテーブルを追加し、そのワークブックをTeam AとTeam Bの両方と共有します。
     Team Aのメンバーがワークブックを開くと、Sigmaは `Domain` 列の全てのデータを表示します。
     Team Bのメンバーがワークブックを開くと、Sigmaは `Domain` 列の名前を難読化し、代わりに `Restricted` と表示します。列の各行について、データが制限されているため、ユーザーは「No access」と表示されます。
+
+
+##### 第4章：データ分析 (Analyze)
+
+#### 4-1-1. ワークブックの概要 (Workbooks overview)
+
+あなたがスプレッドシートに精通したアナリストであれ、ビジネスインテリジェンス（BI）ツールに慣れている方であれ、SigmaはスプレッドシートとBIツールの長所を一つの場所、つまり**ワークブック**に統合します。
+* スプレッドシートのように、ワークブックはページを持ち、テーブルやピボットテーブルでデータを表示できます。
+* BIツールのように、ワークブックはチャート、グラフ、インタラクティブなフィルターやコントロール、テーブル、テキスト、画像を含むダッシュボードのようなレイアウトを提供します。
+
+ワークブックでは、データ探索や分析、複雑なビジュアライゼーションの構築、エクスポート用の詳細なレポートの準備などが可能です。ワークブックはまた、あなたの製品や組織のために[データアプリを構築](https://help.sigmacomputing.com/docs/intro-to-app-like-functionality)したり、[埋め込み分析を設計](https://help.sigmacomputing.com/docs/intro-to-embedded-analytics)したりするためのインターフェースも提供します。
+
+このドキュメントでは、ワークブックの概念的な概要と、さらなるリソースへのリンクを提供します。
+
+**ワークブックについて (About workbooks)**
+
+ワークブックを作成することで、探索的分析を開始したり、エンタープライズグレードの分析を構築したり、データアプリを開発したりできます。Sigmaのほとんどすべてのことは、ワークブック内で行われます。
+* [テーブルやピボットテーブル](https://help.sigmacomputing.com/docs/intro-to-tables)でデータを分析する。
+* [チャートやマップ](https://help.sigmacomputing.com/docs/intro-to-charts)でデータを可視化する。
+* 様々な宛先に[レポートをフォーマットしてエクスポート](https://help.sigmacomputing.com/docs/send-and-schedule-exports)する。
+* 分析や開発について[同僚と共同作業](https://help.sigmacomputing.com/docs/collaborate-with-live-edit-in-workbooks)する。
+* アクションでインタラクティビティを構築する。
+* [テーマ](https://help.sigmacomputing.com/docs/custom-themes)、[コンテナ](https://help.sigmacomputing.com/docs/design-workbook-layouts)、[モーダル](https://help.sigmacomputing.com/docs/create-and-manage-modals)、その他の要素で[レイアウトやデザインをカスタマイズ](https://help.sigmacomputing.com/docs/design-workbook-layouts)する。
+* その他多数…
+
+**ワークブックの中身 (What's in a workbook)**
+
+ワークブックには一つ以上のページが含まれます。モーダルやその他のアプリのような機能も、ワークブックのページのように表示されます。
+各ワークブックのページやモーダルには、要素を配置できるキャンバスがあります。ページキャンバス上に要素を配置できます。要素のタイプには以下が含まれます。
+* **データ要素 (Data elements):** テーブル、チャート、ピボットテーブルなど。「[Create a data element](https://help.sigmacomputing.com/docs/create-a-data-element)」を参照。
+* **入力要素 (Input elements):** 空の、またはリンクされた入力テーブルなど。「[Intro to input tables](https://help.sigmacomputing.com/docs/input-tables-overview)」を参照。
+* **コントロール要素 (Control elements):** フィルターや入力など。「[Intro to control elements](https://help.sigmacomputing.com/docs/intro-to-control-elements)」を参照。
+* **UI要素 (UI elements):** テキスト、画像、ボタン、埋め込み、区切り線など。「[Intro to UI elements](https://help.sigmacomputing.com/docs/intro-to-ui-elements)」を参照。
+* **レイアウト要素 (Layout elements):** コンテナ、タブ付きコンテナ、モーダルなど。「[Design workbook layouts](https://help.sigmacomputing.com/docs/design-workbook-layouts)」を参照。
+
+ワークブックの使用とナビゲーションに関する詳細は、「[Navigate a workbook](https://help.sigmacomputing.com/docs/navigate-a-workbook)」を参照してください。
+
+**ワークブックのライフサイクル (The lifecycle of a workbook)**
+
+最初にワークブックを作成すると、「探索（exploration）」が開きます。探索とは、保存されていないワークブックのことで、現時点を超えて必要ないかもしれないアドホックなデータ探索や探索的データ分析（EDA）のワークフローをサポートします。探索を使用することで、一度きりのドキュメントでフォルダやワークスペースが散らかるのを避けるのに役立ちます。探索には `Recents` ページの `Explorations` タブからアクセスできます。詳細は、「[Ad hoc data explorations](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)」を参照してください。
+
+分析や実験を続けるには、探索をワークブックとして保存します。ワークブックを保存すると、ドラフトで編集や変更を行ったり、ダッシュボードやレポートのように公開されたバージョンのワークブックを閲覧したりできます。詳細は、「[Create a workbook](https://help.sigmacomputing.com/docs/create-a-workbook)」および「[Workbook lifecycle: explore, draft, and publish](https://help.sigmacomputing.com/docs/workbook-lifecycle)」を参照してください。
+
+保存後、他の人がアクセスできるフォルダやワークスペースに保存しない限り、あなただけがワークブックにアクセスできます。ワークブックの共有に関する詳細は、「[Share a workbook](https://help.sigmacomputing.com/docs/share-a-workbook)」を参照してください。
+
+ワークブックが作成された後、異なるユーザーが異なる方法でそれと対話できます。
+* 埋め込み分析ソリューションのユーザーには、最新の公開バージョンに依存するのではなく、タグ付けされた安定版のワークブックへのアクセスを許可したい場合があります。「[Add version tags to workbooks and data models](https://help.sigmacomputing.com/docs/add-version-tags)」を参照してください。
+* ワークブックを作成する権限がないユーザーでも、ビューを作成することで既存のワークブックをカスタマイズできる場合があります。「[Create and interact with custom views](https://help.sigmacomputing.com/docs/create-and-interact-with-custom-views)」を参照してください。ワークブックの特定の設定を保存するには、ビューを保存して他の人と共有できます。「[Create and share saved views](https://help.sigmacomputing.com/docs/create-and-share-saved-views)」を参照してください。
+* アクセス権が少ないユーザーは、あなたが構築したダッシュボードやレポートを閲覧またはフィルタリングすることしかできないか、[データアプリ](https://help.sigmacomputing.com/docs/intro-to-app-like-functionality)のフォームにデータを入力することしかできない場合があります。
+詳細は、「[Workbook modes: view, explore, and edit](https://help.sigmacomputing.com/docs/workbook-modes-overview)」を参照してください。
+
+**ワークブックで使用されるデータ (Data used in workbooks)**
+
+ワークブックは、Sigmaに接続された[サポートされているデータプラットフォーム](https://help.sigmacomputing.com/docs/connect-to-data-sources)のテーブル、Sigmaで作成されたデータモデルのテーブル、または[CSV形式のファイル](https://help.sigmacomputing.com/docs/upload-csv-data)や[入力テーブル](https://help.sigmacomputing.com/docs/input-tables-overview)に追加された情報など、Sigmaに追加されてデータプラットフォームに保存されたデータといった、複数のソースからのデータを使用できます。データプラットフォームへの接続に関する詳細は、「[Connect to data sources](https://help.sigmacomputing.com/docs/connect-to-data-sources)」を参照してください。
+
+あなたのデータは常にライブであり、大規模にアクセス可能で、削除されたり破損したりすることはありません。
+
+Sigmaがあなたのデータプラットフォームに接続された後、データベースやデータカタログのテーブルから直接ワークブックを作成したり、Sigmaでデータをモデリングしたりできます。ワークブックのソースとしてデータモデルやデータセットを使用することは、一貫性を確保するのに役立ちます。詳細は、「[Get started with data modeling](https://help.sigmacomputing.com/docs/get-started-with-data-modeling)」および「[Data modeling tutorial](https://help.sigmacomputing.com/docs/tutorial-data-modeling-with-datasets)」を参照してください。
+
+ユーザーが共有されたデータセット、データモデル、またはワークブックにアクセスすると、ドキュメント所有者のソースデータへのアクセス権がSigma内で評価され、接続設定で指定された資格情報を使用してデータプラットフォームへのクエリが実行されます。
+OAuthをサポートする接続の場合、クエリは代わりに異なる方法で実行されることがあります。
+* 接続がサービスアカウントなしでOAuthを使用するように構成されている場合、ドキュメントからのクエリは、データプラットフォーム用に構成されたユーザー個人のOAuth資格情報で実行されます。
+* 接続がサービスアカウントありでOAuthを使用するように構成されている場合、管理者は個々のワークブックを代わりにサービスアカウントの資格情報を使用するように構成できます。「[Run a workbook with service account credentials](https://help.sigmacomputing.com/docs/run-a-workbook-with-service-account-credentials)」を参照してください。
+
+ワークブックやデータモデルでどのクエリが実行されているかの詳細については、「[Examine workbook and data model queries](https://help.sigmacomputing.com/docs/examine-workbook-queries)」を参照してください。データセットについては、「[Examine dataset queries](https://help.sigmacomputing.com/docs/examine-dataset-queries)」を参照してください。
+
+**レガシーワークシートユーザー向けの情報 (Information for legacy worksheet users)**
+
+以前にSigmaのワークシートやダッシュボードを使用していた場合、単一のダッシュボードのビジュアライゼーションをソースとするために複数のワークシートを作成するプロセスに慣れているかもしれません。ワークブックは、あなたのレポート消費者に表示される場所で直接分析を構築できるようにすることで、このワークフローを緩和します。
+
+#### 4-1-2. ワークブックのモード概要 (Workbook modes overview)
+
+Sigmaは、ワークブック内での異なるレベルのインタラクション、カスタマイズ、および分析を提供する3つのワークブックモード（**表示**、**探索**、**編集**）を備えています。各モードは、あなたの目的と権限に応じて特定のタスクを実行するのに役立つように設計されています。
+
+---
+
+### ワークブックモードの目的
+
+| | 表示モード (View mode) | 探索モード (Explore mode) | 編集モード (Edit mode) |
+| :--- | :--- | :--- | :--- |
+| **目的** | ワークブックの公開バージョン（「Published」とラベル付けされたバージョンおよび全てのタグ付きバージョン）を閲覧できます。 | 保存または共有されたワークブックのバージョンに影響を与えることなく、公開されたワークブックのコンテンツをカスタマイズし、あなた自身のカスタムビューでアドホック分析を実行するための隔離された環境を提供します。 | 個人または共同での分析を編集・保存できる、フルスコープの分析機能を備えたドラフト環境を提供します。 |
+| **ユースケース** | 追加の分析を行わずに、準備されたデータやインサイトを閲覧する必要がある場合に推奨されます。 | 特定のビジネス上の質問に対する迅速な回答が必要だが、変更が公開バージョンに影響を与えたくない場合に推奨されます。 | 将来の使用や共有のためにレポートを構築し、公開する必要がある場合に推奨されます。 |
+| **必要なアカウントタイプの権限** | `View workbooks` または `Basic explore` | `Full explore` | `Create, edit, and publish workbooks` |
+| **必要なワークブックのアクセス権** | `Can view`, `Can explore`, `Can edit`, または `Owner` | `Can explore`, `Can edit`, または `Owner` | `Can edit` または `Owner` |
+
+---
+
+### ワークブックのアクセシビリティ比較
+
+以下の表は、あなたに付与された、またはワークスペースやフォルダのアクセスから継承されたワークブックのアクセス権に基づいて、各モードで何ができるかを比較したものです。
+
+| アクション | 表示モード<br>(Can view) | 表示モード<br>(Can explore / Can edit) | 探索モード<br>(Can explore / Can edit) | 編集モード<br>(Can edit) |
+| :--- | :---: | :---: | :---: | :---: |
+| コントロールの値を更新する | ✅ | ✅ | ✅ | ✅ |
+| 既存のフィルターを修正する | ✅ | ✅ | ✅ | ✅ |
+| 列データをソートする | ✅ | ✅ | ✅ | ✅ |
+| 列の詳細を表示する | ✅ | ✅ | ✅ | ✅ |
+| グループ化された行を展開/折りたたむ | ✅ | ✅ | ✅ | ✅ |
+| **集計済み**の基盤データを表示する | ✅ | ✅ | ✅ | ✅ |
+| データをリフレッシュする | | ✅ | ✅ | ✅ |
+| 保存済みビューを作成する | | ✅ | ✅ | ✅ |
+| コメントを表示・追加する¹ | | ✅ | ✅ | ✅ |
+| 新しいフィルターを作成する | | | ✅ | ✅ |
+| **非集計**の基盤データを表示・ドリルする | | | ✅ | ✅ |
+| ドリルパスを使用する（"Drill anywhere"）| | | ✅ | ✅ |
+| 列のフォーマット、並べ替え、名前変更、非表示、固定、削除 | | | ✅ | ✅ |
+| 入力テーブルの値を入力する² | | | ✅ | ✅ |
+| 個々の要素をPNGにダウンロードする | | | ✅ | ✅ |
+| 個々の要素をCSV, Excel, JSON, Google Sheets, PDFにダウンロードする³ | | | ✅ | ✅ |
+| エクスポートを送信またはスケジュールする⁴ | | | ✅ | ✅ |
+| データポイントの値をコピーする | | | ✅ | ✅ |
+| ページを作成、編集、削除する | | | | ✅ |
+| 要素を作成、編集、削除する<br>(編集にはプロパティ、フォーマット、アクション、列等を含む) | | | | ✅ |
+| 既存の要素を複製、移動する | | | | ✅ |
+| 要素をコピー/ペーストする | | | | ✅ |
+| 要素のデータソースを表示・変更する | | | | ✅ |
+| 列を追加・修正する | | | | ✅ |
+| カスタムSQLロジックを表示する | | | | ✅ |
+| レイアウトとワークブック設定を編集する | | | | ✅ |
+| リネージ（系譜）を表示する | | | | ✅ |
+| 非表示のページを表示する | | | | ✅ |
+| ワークブックの編集を公開する | | | | ✅ |
+
+¹ `Can comment on workbooks` 権限が有効になっているアカウントタイプが必要です。
+² 入力テーブル要素の `data entry permission` がワークブックの公開バージョンに設定されている必要があります。
+³ CSV, Excel, JSON, PDFへのダウンロードには `Download or Send Now` 権限が有効なアカウントタイプが必要です。Google Sheetsへのダウンロードには `Export to Google Sheet` 権限も必要です。
+⁴ エクスポートの送信（`Send now`機能を使用）には `Download or Send Now` 権限が有効なアカウントタイプが必要です。エクスポートのスケジュール設定には `Schedule export` 権限が必要です。
+
+##### 4-1-3. ワークブックの操作 (Navigate a workbook)
+
+このドキュメントでは、ワークブックを操作し、使用する方法について説明します。ワークブックの構成とライフサイクル管理の詳細については、「ワークブックの概要」を参照してください。
+
+#### **ユーザー要件 (User requirements)**
+
+`Can view`、`Can explore`、または `Can edit` の権限を持つユーザーは、公開された状態のワークブックを閲覧および操作できますが、個々の権限によって異なるオプションが表示されます。
+
+ワークブックを編集するには `Can edit` 権限が必要です。
+
+ワークブックの権限によっては、以下のオプションの一部が利用できない場合があります。個々のユーザー権限の詳細については、「ワークブックのモード概要」を参照してください。
+
+---
+
+#### **公開済みバージョンのワークブックを操作する (Navigate the published version of a workbook)**
+
+公開済みのワークブックを操作することで、既存のデータとインサイトを閲覧できます。個々のユーザー権限によっては、新しいフィルターの変更または追加、データの更新、独自のカスタムビューおよび保存済みビューの作成も可能です。
+
+公開済みのワークブックでは、以下のオプションが利用可能です。権限によっては一部利用できない場合があります。
+
+* **a. ホーム (Home):** 「ホーム」に移動して、組織内の他のドキュメントの表示、管理ポータルへのアクセス、ユーザープロファイルなどを確認します。ホームページの操作の詳細については、「Sigmaの基本操作」を参照してください。
+
+* **b. ドキュメントメニュー (Document menu):** 保存済みビューの作成または管理、バージョンタグの追加、ワークブックの共有、コメントの追加、エクスポートのスケジュール設定など、主要なワークブックアクションを実行するための一元化されたメニューです。
+
+* **c. 編集ボタン (Edit button):** (「Can edit」アクセス権を持つユーザーのみに表示) ワークブックに変更を加える場合に選択します。
+
+* **d. このビューをカスタマイズ (Customize this view) ボタン:** (「Full explore」権限および/または「Can edit」アクセス権を持つユーザーのみに表示) ワークブックの公開バージョンに影響を与えることなく、要素を操作して変更を加えることで、ワークブックの独自のビューを作成します。「カスタムビューの作成と操作」を参照してください。
+
+* **e. 共有 (Share) ボタン:** (「Can edit」アクセス権を持つユーザーのみに表示) ワークブックを他のメンバーまたはチームと共有します。「ワークブックを共有する」を参照してください。
+
+* **f. データ更新 (Refresh data) ボタン:** ワークブック内のすべてのデータソースを更新します。より高度なオプションについては、「ワークブックの更新オプションの管理」を参照してください。
+
+* **g. その他のオプション (More options) ボタン:** クエリの一時停止、クエリ履歴へのアクセス、データ更新設定の変更などのオプションを表示するために選択します。「ワークブックのクエリの調査」および「ワークブックの更新オプションの管理」を参照してください。
+
+* **h. ページタブ (Page tabs):** ワークブック内のすべてのページ間を移動します。各ページタブのキャレットから、コピーおよびエクスポートオプションにアクセスします。「ワークブックのページをコピーする」を参照してください。
+
+* **i. ヘルプ (Help) メニュー:** サポートライブチャット、ドキュメント、コミュニティ投稿、クイックスタート、関数インデックスなどのヘルプリソースにアクセスします。
+
+---
+
+#### **編集中にワークブックを操作する (Navigate a workbook while editing)**
+
+新しいワークブックを作成したり、既存のワークブックを変更したり、変更を公開したりするには、ワークブックを編集する必要があります。ワークブックを編集するには `Can edit` 権限が必要です。
+
+ワークブックの編集中は、公開済みバージョンで利用可能なすべてのオプションに加えて、以下の追加オプションが利用可能です。
+<img width="1803" alt="21e909698b4fbd7722baa409a162a0837eca48b4fc4c95f05ceeeb3772cb0e96-publishedlayour" src="https://github.com/user-attachments/assets/204ff0de-5e5c-4f2c-8952-8f5f90cc8c7a" />
+
+* **a. ツールバー (Toolbar):** 数値およびテキストの書式設定オプションにアクセスします。選択した要素に応じて、異なるオプションが表示されます。
+
+* **b. 公開 (Publish) ボタン:** 変更を公開します。
+
+* **c. 公開メニュー (Publish menu):** 異なるアクセスレベルでワークブックをプレビューしたり、ワークブックのモバイルプレビューとデスクトッププレビューを切り替えたりします。
+
+* **d. 数式バー (Formula bar):** 列に必要な計算を実行するための数式を入力します。サポートされている関数については、関数インデックスを参照してください。
+
+* **e. パネルの表示/非表示 (Show/Hide panels) ボタン:** ワークブックをより明確に表示するために、エディターやバージョン履歴パネルなどのサイドパネルを表示または非表示にします。
+
+* **f. サイドパネル (Side panels):** ワークブックページで行っている操作に応じて、異なるタブが利用可能です。
+    * **要素を選択した場合:** 要素のタイプに応じて、異なるタブが表示されます。たとえば、データ要素を選択すると、「プロパティ」、「フォーマット」、「アクション」タブが表示されます。テキスト要素を選択すると、「フォーマット」タブが表示されます。
+    * **ワークブックの背景を選択した場合:** 「設定」および「アクション」タブが表示されます。
+    * **バージョン履歴を表示している場合:** 「バージョン履歴」パネルが表示されます。
+
+* **g. ページ概要 (Page overview) ボタン:** ワークブック内のすべてのページを表示し、その名前を選択することで特定のワークブック要素に移動します。
+
+* **h. ページの追加 (Add page) ボタン:** ワークブックに新しいページを追加するために選択します。
+
+* **i. 要素の追加バー (Add element bar):** ワークブック要素を追加および表示します。利用可能なデータ要素、UI要素、およびコントロール要素の詳細については、「要素の種類の概要」を参照してください。
+
+* **j. リネージ (Lineage) ボタン:** ワークブック内のすべてのデータ要素間の関連性と系統を表示するために選択します。詳細については、「ワークブックのデータリネージの表示」を参照してください。
+
+##### 4-4. ワークブックでのライブ編集による共同作業 (Collaborate with Live Edit in workbooks)
+
+あなたのチームは、すべての編集者が一つのライブドラフトを共有し、リアルタイムでワークブックのドラフトで共同作業できます。「ライブ編集」機能を使用すると、他の人がドラフトした変更が公開される前に、それらを表示し、貢献することができます。
+
+#### **要件 (Requirements)**
+
+ワークブックへの `Can edit` [アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)を持つユーザーのみが貢献できます。
+
+#### **ワークブックを編集する (Edit a workbook)**
+
+ワークブックを編集するには、「[ワークブックの編集、ドラフト、公開](https://help.sigmacomputing.com/docs/workbook-lifecycle)」を参照してください。
+
+#### **他の共同作業者を表示する (View other collaborators)**
+
+ヘッダーには、現在編集モードにいるすべてのユーザーのリストが表示されます。
+
+> 💡
+> ユーザーのアイコンをクリックすると、彼らが選択している要素（もし選択していれば）に移動します。
+![5017da6-multipleeditors](https://github.com/user-attachments/assets/eccbff54-a1a1-4177-b3bb-2e744f62fd9d)
+
+Sigmaは、要素を選択したユーザーの名前を、選択された要素のバウンディングボックスの左上隅に自動的に表示します。
+
+#### **共同作業中に公開する (Publish while collaborating)**
+
+Sigmaは、ドラフトに加えたすべての変更を自動的に保存し、他のすべての同時編集者にその変更を表示します。
+
+編集者が `Publish` をクリックすると、Sigmaは他のすべての編集者によってドラフトされた変更を含む、すべてのドラフトされた変更を公開します。
+
+#### 4-1-5. 要素タイプの概要 (Intro to Element Types)
+
+ワークブックは通常、単一ページおよび/または複数ページに分散された要素のコレクションを含みます。
+
+要素には3つのタイプがあります：**データ要素**、**UI要素**、および**コントロール要素**です。それぞれが独自の機能を持ち、それらが集合的に、あなたのデータを表示し、操作し、追加のコンテキストを提供することを可能にします。
+
+ワークブックの編集者は要素を定義し、閲覧者のインタラクションのために個別に構成することができます。
+
+**データ要素 (Data Elements)**
+
+データ要素には、データソースから直接構築されたテーブル、ピボットテーブル、およびビジュアライゼーションが含まれます。ワークブックは、複数のデータソースから派生した様々なデータ要素を含むことができます。詳細は、「データ要素の概要」を参照してください。
+![741f849-1](https://github.com/user-attachments/assets/c254ec04-96cf-467c-a15b-528f633377cb)
+**UI要素 (UI Elements)**
+
+UI要素には、コンテキストおよび/またはワークブックのスタイリングを追加するために使用されるボタン、区切り線、画像、スペーサー、埋め込み、およびテキストが含まれます。詳細は、「UI要素の概要」を参照してください。
+![4a6bb19-2](https://github.com/user-attachments/assets/062134de-6d3e-4cfb-8f11-ae9f08309573)
+
+**コントロール要素 (Control Elements)**
+
+コントロール要素には、ワークブック内のデータ要素を操作するために使用されるデータフィルターとパラメータが含まれます。詳細は、「コントロール要素の概要」を参照してください。
+<img width="1007" alt="e773c5b-3" src="https://github.com/user-attachments/assets/42a09fda-9b55-4972-9a24-ca4e71b41128" />
+
+
+#### 4-2-1. ワークブックを作成する (Create a workbook)
+
+ワークブックは、アドホックなデータ探索と複雑な長期レポーティングの両方をサポートするように設計されたSigmaドキュメントタイプです。ワークブックを作成すると、[データ、UI、コントロール要素の追加](https://help.sigmacomputing.com/docs/intro-to-element-types)、[ワークブックレイアウトのカスタマイズ](https://help.sigmacomputing.com/docs/design-workbook-layouts)、[チャートの追加](https://help.sigmacomputing.com/docs/build-a-chart)、[データアプリの構築](https://help.sigmacomputing.com/docs/intro-to-app-like-functionality)、[埋め込み分析の追加](https://help.sigmacomputing.com/docs/intro-to-embedded-analytics)などが可能になります。
+
+公開されていないワークブックは「探索（explorations）」と呼ばれます。
+
+このドキュメントでは、新しいワークブックまたは探索を作成する方法について説明します。ワークブックの概念的な概要については、「[Workbooks overview](https://help.sigmacomputing.com/docs/workbooks-overview)」を参照してください。ワークブックの使用とナビゲーションに関する詳細は、「[Navigate a workbook](https://help.sigmacomputing.com/docs/navigate-a-workbook)」を参照してください。
+
+#### **ユーザー要件 (User requirements)**
+
+ワークブックまたは探索を作成するには、`Create, edit, and publish workbooks` 権限が必要です。「[Account type and license overview](https://help.sigmacomputing.com/docs/account-type-and-license-overview)」を参照してください。
+
+#### **ワークブックまたは探索を作成する (Create a workbook or exploration)**
+
+いくつかの場所からワークブックまたは探索を作成できます。
+
+> 📘
+> 探索は、作成後30日間、Sigmaのホームページからアクセスできます。「[Recent](https://help.sigmacomputing.com/docs/get-around-in-sigma#recents)」 > 「[Explorations](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)」を参照してください。
+
+* **Sigmaホームページから作成する**
+    1.  `+ Create New` を選択し、`Workbook` を選択します。新しい探索が表示されます。
+    2.  変更を加えた後、`Publish` を選択して探索をワークブックとして保存します。
+
+* **データソースから作成する**
+    データソース（データプラットフォームのテーブルなど）からワークブックを作成できます。
+    1.  データソースから、`Explore` を選択します。新しい探索が表示されます。
+    2.  変更を加えた後、`Publish` を選択して探索をワークブックとして保存します。
+
+* **既存のワークブックから作成する**
+    既存のワークブックのコピーを作成できます。
+    1.  目的のワークブックから、ドキュメントメニューを選択します。
+    2.  `File` > `Save as a new workbook` を選択します。
+    3.  ワークブックの名前を入力し、`Save` を選択します。
+    4.  変更を加えた後、`Publish` を選択して探索をワークブックとして保存します。
+
+* **テンプレートから作成する**
+    テンプレートを使用すると、迅速で一貫性のあるレポーティングのために、特定のワークブック構造を再利用および共有できます。「[Create workbooks from templates](https://help.sigmacomputing.com/docs/get-started-with-workbook-templates)」を参照してください。
+
+#### 4-2-2. アドホックなデータ探索 (Ad hoc data explorations)
+
+探索（Explorations）は、アドホックなデータ分析をサポートする、公開されていない[ワークブック](https://help.sigmacomputing.com/docs/workbooks-overview)です。
+
+このドキュメントでは、新しい探索を作成し、既存のものに戻って分析を続けたり、他の組織ユーザーと共有したり、ワークブックとして保存したりする方法を説明します。
+
+> 📘
+> Sigmaはあなたの探索を `Recent` ページに保存します。保存された探索は削除できません。
+
+#### **ユーザー要件 (User requirements)**
+
+新しい探索を作成するには、`Create, edit, and publish workbooks` 権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+
+#### **新しい探索を作成する (Create a new exploration)**
+
+新しいワークブックを作成するのと同じ方法で探索を作成します。詳細は、「[ワークブックまたは探索を作成する](https://help.sigmacomputing.com/docs/create-a-workbook#create-a-workbook-or-exploration)」を参照してください。
+
+#### **保存された探索を再度開く (Reopen a saved exploration)**
+
+保存された探索を再度開いて、アドホックなデータ分析を続けます。
+
+1.  あなたの**ホーム**ページに移動します。
+2.  ナビゲーションメニューで、`Recent` を選択します。
+3.  `Recent` ページで、`Explorations` タブを選択して、過去の探索のリストを表示します。
+4.  特定の探索を開くには、`Created on` の日付をクリックします。
+
+#### **探索を共有する (Share an exploration)**
+
+他の組織ユーザーがあなたのアドホックなデータ分析に貢献できるように、探索を共有します。
+
+1.  [新しい探索を作成する](https://help.sigmacomputing.com/docs/create-a-workbook#create-a-workbook-or-exploration)か、[保存されたものを再度開きます](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations#reopen-a-saved-exploration)。
+2.  探索のヘッダーで、キャレット()をクリックして探索メニューを開き、`Share` を選択します。
+3.  `Share workbook` モーダルで、`Allow access by link` トグルをオンの位置にクリックします。
+4.  提供されたURLをコピーし、任意の組織ユーザーと共有します。
+
+#### **探索をワークブックとして保存する (Save an exploration as a workbook)**
+
+探索をワークブックとして保存し、特定のフォルダに公開します。
+
+1.  [新しい探索を作成する](https://help.sigmacomputing.com/docs/create-a-workbook#create-a-workbook-or-exploration)か、[保存されたものを再度開きます](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations#reopen-a-saved-exploration)。
+2.  探索のヘッダーで、`Save As` をクリックします。また、キャレット()をクリックして探索メニューを開き、`Save` を選択することもできます。
+3.  `Save as` モーダルで、ワークブックを公開します。
+    * `Name` フィールドに、ワークブックの名前を入力します。
+    * `Destination` セクションで、ワークブックを公開したいフォルダを選択します。
+    * `Save` をクリックします。
+
+#### 4-2-3. 組織のプラグインを使用する (Use your organization's plugins)
+
+Sigmaでは、ワークブックにプラグイン要素を追加して、Sigmaの標準展開では提供されないカスタム機能をサポートすることができます。あなたは、あなたの組織に登録されているプラグインにのみアクセスできます。プラグインは、既存の製品に追加機能をもたらすために構築されたサードパーティのアプリケーションです。例えば、あなたの組織のソフトウェア開発者が、Sigmaではサポートされていないチャートタイプでデータを表示できるプラグインを作成することがあります。
+
+#### **要件 (Requirements)**
+
+プラグインを通じてワークブック要素を追加または編集するには：
+* あなたは`Creator`または`Admin`であるか、適切な権限を持つ[カスタムアカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)である必要があります。
+* 関連するワークブックに対する`Can Edit`[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)を持っている必要があります。
+
+#### **プラグインを通じてワークブックに要素を追加する (Add an element to a workbook through a plugin)**
+
+プラグインベースの要素は、データソースとして[データ要素](https://help.sigmacomputing.com/docs/create-a-data-element)のみを受け付けます。ソースとなるデータ要素は、プラグインと同じワークブック内にある必要があります。
+
+* **始める前に:** このアクションは編集モードでのみ利用可能です。編集を開始するには、ページの右上隅にある `Edit` をクリックします。「[Workbook lifecycle](https://help.sigmacomputing.com/docs/workbook-lifecycle)」を参照してください。
+
+1.  ワークブックの `ADD NEW` パネルを開きます。
+2.  `PLUGINS` を選択します。![f9e0a7f-1](https://github.com/user-attachments/assets/34f27cd1-3079-47b6-b9d5-c9796a165663)
+
+
+3.  リストからプラグインタイプを選択します。![d3f4274-2](https://github.com/user-attachments/assets/97215572-2ac3-4a23-a552-84d2fad9a1c1)
+ 新しい空のプラグインベースの要素がページに表示されます。![bbd4ee0-3](https://github.com/user-attachments/assets/b3d4a472-f9e1-4e03-88d3-0ec07f5bd75b)
+
+4.  エディタパネルを使用して、要素の値を構成します。
+    * 個々のプラグインが、各要素の構成オプションを定義します。
+
+プラグインは、データソースの最初の25,000行にしかアクセスできません。したがって、データの[グループ化と集計](https://help.sigmacomputing.com/docs/create-and-manage-tables#group-data)を行って、総行数を減らしてください。データソースに既にグルーピングが含まれている場合、エディタパネルは集計レベルを選択するように促します。   
+
+#### 4-2-4. ワークブックのドラフトと公開 (Draft and publish a workbook)
+
+ワークブックを編集すると、ドラフトが作成されます。変更を、ワークブックへの表示アクセス権や探索アクセス権を持つユーザーに見えるようにするには、ドラフトを公開します。また、ドラフトを破棄して、以前に公開されたバージョンに戻ることも選択できます。
+
+複数のユーザーが同時にワークブックを編集する場合、編集内容は自動的に共有されたライブドラフトに保存されます。複数の編集者がこの単一のドラフトでリアルタイムに共同作業できます。「[Collaborate with Live Edit in workbooks](https://help.sigmacomputing.com/docs/collaborate-with-live-edit-in-workbooks)」を参照してください。
+
+このドキュメントでは、ドラフトを編集し、ワークブックを公開する方法について説明します。
+
+#### **要件 (Requirement)**
+
+新しいワークブックのバージョンをドラフトし、公開するには、個々のワークブックに対する`Can edit`[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)を持っている必要があります。
+
+#### **既存のワークブックを編集する (Edit an existing workbook)**
+
+既存のワークブックを表示モードから編集を開始するには、ワークブックヘッダーの `Edit` をクリックします。
+![bf5fc6ce02960fc2cd3349e597101b22597a3255a6c154ca49a98bd23119ca66-clickedit_header](https://github.com/user-attachments/assets/e3ed98cf-1477-49c6-a94c-2ffe9b6cf454)
+
+カスタムビューから既存のワークブックの編集を開始するには、ドキュメントメニューをクリックし、次に `Edit` > `Edit workbook` をクリックします。
+![ea37e0ac80b571143af58622cc3a1973c52d482a7a842f9b9c1e5b20ac198a88-edit-from-custom-view](https://github.com/user-attachments/assets/581f824a-0273-4fa3-82a6-a7720ddb4a4f)
+
+ワークブックが編集モードに入ると、ワークブックのヘッダーが変更されます。
+* `Edit` ボタンが `Publish` メニューに変わります。
+* ドキュメントメニューに `Draft` が追加されます。
+* ヘッダーには、現在編集モードにいる他のすべてのユーザーのイニシャルが表示されます。「[Collaborate with Live Edit in workbooks](https://help.sigmacomputing.com/docs/collaborate-with-live-edit-in-workbooks)」を参照してください。
+![e45e3f3d0837afe527b90edf54a58ab2acdcfe556fbf12b11704df2380501618-editmode-header](https://github.com/user-attachments/assets/c334ee9d-78b6-4775-b64d-cde542ad33bc)
+
+さらに、ワークブックが編集モードに入ると：
+* エディタパネルがページの右側に表示されます。
+* `Add element bar` がキャンバスの下部に表示されます。
+* フッターに追加のオプションが表示されます。
+
+#### **編集モードでの変更 (Making changes in edit mode)**
+
+ドラフトに加えた変更は、すべての編集者が共有するライブドラフトに自動的に保存されます。
+編集者が `Publish` をクリックすると、Sigmaはライブドラフト上で他の編集者によって行われた変更を含む、すべてのドラフトされた変更を公開します。
+
+#### **ドラフトされた変更をプレビューする (Preview drafted changes)**
+
+公開前に、探索モードと表示モードの両方で、すべてのドラフトされた変更をプレビューできます。これは、ワークブックへの表示アクセス権または探索アクセス権を持つユーザーにワークブックがどのように見えるかを確認したい場合に役立ちます。
+
+ドラフトされた変更をプレビューするには：
+1.  キャレットをクリックして `Publish` メニューを開きます。
+2.  `Preview with` の下で、`View access` または `Explore access` のいずれかを選択します。![e4a61181ae8c22271793328436260066c80e4517a15849c462af0aaee39906c0-preview-with-explore](https://github.com/user-attachments/assets/8b073fca-f5a7-4dd5-a508-e27446c31ace)
+
+3.  プレビューが終了したら、`Exit preview` をクリックします。
+
+#### **ドラフトされた変更を公開する (Publish drafted changes)**
+
+編集内容を公開するには、ワークブックヘッダーにある `Publish` ボタンをクリックします。
+
+このアクションは、ライブドラフトを使用して他の編集者によって行われた変更を含む、ワークブックへのすべてのドラフトされた変更を公開します。
+
+#### **ドラフトされた変更を破棄する (Discard drafted changes)**
+
+ドラフトされた変更を破棄するには、キャレットをクリックして `Publish` メニューを開き、次に `Discard draft` をクリックします。
+![425a499069dbf1dd267baf2fd2e98f6bda0c7591ab76eafbdfe0bf215761cf85-click-publish](https://github.com/user-attachments/assets/8148c19d-22c2-4fc0-a2dc-d488e4f476ee)
+
+> 🚧
+> いずれかの編集者がドラフトを破棄すると、Sigmaはどの編集者によって行われた未公開の編集もすべて破棄します。
+
+#### **最新の公開バージョンに戻る (Return to the latest published version)**
+
+ワークブックの最新の公開バージョンに戻るには、キャレットをクリックして `Publish` メニューを開き、次に `Go to published version` をクリックします。
+![3a00de808cd3a355d3c599ff30335dcf113581d15a26e114291a7cd14d0990b9-go-to-published](https://github.com/user-attachments/assets/d36a2617-6d0a-46cb-8a5b-2bb8ea1a6fce)
+
+Sigmaはあなたのドラフトされた変更を破棄しません。公開バージョンの `Edit` ボタンをクリックすることで、いつでも共有ドラフトに戻ることができます。
+詳細は、「[Workbook version history](https://help.sigmacomputing.com/docs/document-versions-and-version-history)」を参照してください。
