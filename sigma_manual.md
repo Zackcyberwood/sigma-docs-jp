@@ -1,4 +1,4 @@
-# Sigma日本語ドキュメント 構成案
+![6548f3d62f2bf56e028d80d33d25cff17dc6240d89c119c06d5f1822132bb083-element-bar-charts](https://github.com/user-attachments/assets/1a2776f2-21c1-43d1-8bcb-f79fe8cae9a4)# Sigma日本語ドキュメント 構成案
 
 ---
 
@@ -3425,3 +3425,703 @@ Sigmaでは、ワークブックにプラグイン要素を追加して、Sigma�
 
 Sigmaはあなたのドラフトされた変更を破棄しません。公開バージョンの `Edit` ボタンをクリックすることで、いつでも共有ドラフトに戻ることができます。
 詳細は、「[Workbook version history](https://help.sigmacomputing.com/docs/document-versions-and-version-history)」を参照してください。
+
+### 4-2-5. ワークブックのページをコピーする (Copy workbook pages)
+
+あるワークブックから別のワークブックへページをコピーしたり、同じワークブック内のあるページを別のページにコピーしたりすることができます。
+
+#### **要件 (Requirements)**
+
+* ワークブック間でコピー＆ペーストする場合、両方のワークブックは同じ組織に属している必要があります。
+* ワークブック間でコピー＆ペーストする場合、両方のワークブックは同じレイアウトスタイルを使用している必要があります。古いレイアウトから新しいグリッドレイアウトへページをコピーすることはできません。新しいグリッドレイアウトの詳細については、「[Create and manage workbook layouts](https://help.sigmacomputing.com/docs/design-workbook-layouts)」を参照してください。
+* 一つまたは複数のワークブックについて、あなたのアカウントタイプはProまたはAdminであるか、`Edit Workbook` または `Explore Workbook` 権限が有効になっているカスタム[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)である必要があります。
+* 一つまたは複数のワークブックに対して、あなたがワークブックの所有者であるか、`Can edit` または `Can explore` の[ワークブック権限](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+#### **ワークブックページをコピー＆ペーストする際のヒント (Tips for copy and pasting workbook pages)**
+
+* Sigmaはページ全体に加え、ページ上の要素の依存ソースもコピーします。たとえそのソースがページ上にない場合でもです。ページ上にないソースについては、Sigmaは「ページ名 - Dependencies」という命名規則で2番目のページを作成します。
+* コピー操作を行うユーザーが、ページ上の要素のソースデータへのアクセス権を持っていない場合、Sigmaはそれをコピー＆ペーストしますが、ユーザーにはデータが表示されず、貼り付けられた要素には権限エラーメッセージが表示されることがあります。
+* リンクされた入力テーブルは、ワークブックページのコピー＆ペースト時にはサポートされていません。Sigmaは、空の入力テーブルと、すべてのデータ、UI、およびコントロール要素をコピーできます。
+* もしページ上の要素だけをコピーする必要がある場合は、その操作を検討してください。「[Copy and paste elements](https://help.sigmacomputing.com/docs/copy-and-paste-elements)」を参照してください。
+
+#### **ページをコピー＆ペーストする (Copy and paste a page)**
+
+1.  ページメニューから、`Copy page` を選択します。Sigmaがページをコピーします。
+2.  (任意) コピー確認メッセージの外側をクリックするか、数秒待って消えるのを待ちます。
+3.  コピーしたページを貼り付けます。
+    * **同じワークブックにコピーする場合、** `cmd/ctrl-v` を押すか、右クリックして `Paste` を選択します。<img width="182" alt="be30309-2" src="https://github.com/user-attachments/assets/cd6f7e8f-0929-4343-a440-98067d6a48e1" />
+
+        * Sigmaは新しいページをワークブックに貼り付け、ページ名に「Copy」を追記します。<img width="204" alt="7b0048a-3" src="https://github.com/user-attachments/assets/9f884920-fef2-44f0-808d-553228bfaaed" />
+
+
+    * **別のワークブックにコピーする場合、** そのワークブックに移動して編集モードに入ります。`cmd/ctrl-v` を押すか、右クリックして `Paste` を選択します。
+        * Sigmaは新しいページをワークブックに貼り付け、ページ名に「Copy」を追記します。
+
+        * 依存関係がある場合、Sigmaはそれらを別のページに貼り付け、ページ名に「Dependencies」を追記します。
+4.  新しい、コピーされたページを好きなように編集します。
+
+### 4-2-6. ワークブックの要素をコピー＆ペーストする (Copy and paste workbook elements)
+
+Sigmaのコピー＆ペースト機能を使用すると、様々な場所に要素を複製できます。要素を元のワークブック内でコピー＆ペーストすることも、あるワークブックから要素をコピーして別のワークブックに貼り付けることもできます。
+
+#### **ユーザー要件 (User requirements)**
+
+要素をコピー＆ペーストする機能には、以下が必要です。
+* `Explore workbooks` または `Create, edit, and publish workbooks` 権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたがワークブックの所有者であるか、`Can explore` または `Can edit` の[ワークブック権限](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+#### **要素をコピー＆ペーストする (Copy and paste an element)**
+
+要素をコピーし、それを空のスペースに、または宛先ワークブックの既存の要素の真下に貼り付けます。子要素をコピーした場合、そのリネージ（系譜）もコピー＆ペーストされます。
+
+> 🚩
+> リンクされた入力テーブルは、現在コピー＆ペースト機能をサポートしていません。しかし、空の入力テーブルと、すべてのデータ、UI、およびコントロール要素はコピーできます。
+
+##### **要素をコピーする (Copy the element)**
+
+1.  任意のモードでワークブックを開き、コピーしたい要素を選択するか、カーソルを合わせます。
+2.  要素のツールバーで、`More` をクリックして要素メニューを開き、`Copy element` を選択します。元の要素と、そのリネージ内の適用可能なすべての親要素がコピーされます。![copy-paste_copy-element](https://github.com/user-attachments/assets/c4cbc6ca-6a08-44fd-ba23-fc7a3dc6c7c7)
+
+
+##### **空のスペースに要素を貼り付ける (Paste the element in an empty space)**
+
+1.  宛先のワークブックを `Explore` または `Edit` モードで開き、キャンバス上の空のスペースを見つけます。
+2.  空のスペースを右クリックしてアクションメニューを開き、`Paste element` を選択します。![copy-paste_paste-element](https://github.com/user-attachments/assets/b0fbcf50-452a-42a0-adc4-c4832699fc70)
+ 元の要素のレプリカが空のスペースに追加されます。![copy-paste_paste-element_outcome](https://github.com/user-attachments/assets/523d51e2-fcbc-4a98-9ecc-8d976753e6ce)
+
+
+##### **既存の要素の下に要素を貼り付ける (Paste the element below an existing element)**
+
+1.  宛先のワークブックを `Explore` または `Edit` モードで開き、既存の要素を選択するか、カーソルを合わせます。
+2.  要素のツールバーで、`More` をクリックして要素メニューを開き、`Paste element below` を選択します。![copy-paste_paste-element-below](https://github.com/user-attachments/assets/5489a4c4-22d1-4600-b01d-5463c79f54db)
+元の要素のレプリカが既存の要素の下に追加されます。
+![copy-paste_paste-element-below_outcome](https://github.com/user-attachments/assets/e79d6f25-42e6-4235-b7d0-ca190c264516)
+
+#### **よくある質問 (Frequently asked questions)**
+
+##### **`Copy/Paste element` アクションと `Duplicate` アクションはどのように違いますか？それぞれいつ使用すべきですか？**
+
+| | 複製 (Duplicate) | 要素のコピー/ペースト (Copy/Paste element) |
+| :--- | :--- | :--- |
+| **アクションタイプ** | 単一ワークブックのアクション | ワークブック間のアクション |
+| **コピーされる内容** | 元の要素のみ | 元の要素 + リネージ |
+| **宛先** | 現在のワークブック/ページ | 任意のワークブック/ページ |
+| **リネージの関連付け** | 元の要素と複製は同じリネージを参照 | 元の要素とレプリカは別のリネージを参照 |
+
+要素メニューで `Duplicate` を選択すると、Sigmaは同じワークブックの同じページにある元の要素の真下に即座に複製を追加します。元の要素が子要素の場合、複製はそのリネージを共有します。言い換えれば、元の要素とその複製はワークブック内の同じ親要素を参照します。親要素に適用された変更は、元の要素とその複製に反映されます。この機能は、元の要素を含む同じワークブック内に複製を作成する必要がある場合に推奨されます。
+
+要素メニューで `Copy element` を選択すると、Sigmaは要素をブラウザにコピーします。その後、`Paste element` を選択して、コピーされた要素のレプリカを組織全体の任意のワークブックやページに追加できます。元の要素が子要素の場合、そのリネージも宛先のワークブックページにコピー＆ペーストされます。この場合、元の要素とそのレプリカは関連付けが解除され、同じリネージを共有しません（それらは別々の親要素を参照します）。この機能は、元の要素を別のワークブックに複製する必要がある場合に推奨されます。
+
+##### **子要素をコピーしたが、その親要素がワークブックの別のページに存在する場合、Sigmaは宛先で親要素を複製しますか？**
+はい。親要素が元のワークブックのどこにあっても、要素の完全なリネージがコピーされます。ただし、宛先のワークブックでは、子要素と親要素は同じページに貼り付けられます。
+
+##### **ある要素をコピーして、別の組織のワークブックに貼り付けることはできますか？**
+いいえ。要素は、同じSigma組織で作成されたワークブック間でのみコピー＆ペーストできます。
+
+##### **コントロール要素は、要素と一緒にコピー＆ペーストされますか？**
+はい。元の要素とそのリネージに影響を与えるほとんどのコントロール要素は、宛先のワークブックページにコピー＆ペーストされます。例外は、パラメータコントロールがカスタムSQLソースを持つ要素に影響を与える場合に発生します。詳細については、カスタムSQL要素のコピー＆ペーストに関する次の質問を参照してください。
+
+##### **カスタムSQL要素をコピー＆ペーストできますか？**
+はい。カスタムSQLソースを持つ要素は、それが元の要素であれ、そのリネージの一部であれ、コピー＆ペーストできます。関連するパラメータコントロールはカスタムSQL要素と一緒に複製されませんが、別々にコピー＆ペーストできます。宛先のワークブックでは、カスタムSQL要素は、コピーされたコントロール要素または同じコントロールIDを持つ既存のパラメータコントロールに自動的に再マッピングされます。
+
+##### **異なるワークブック間で要素をコピー＆ペーストした場合、権限はどのように適用されますか？誰が要素のデータを閲覧できますか？**
+要素のデータを閲覧できるかどうかは、ユーザーのデータソースへのアクセス権に依存します。特定の要素のデータソース（ソースデータセットまたは接続テーブル）へのアクセス権がないユーザーとワークブックを共有した場合、そのユーザーは共有されたワークブック内でのみその要素のデータを閲覧できます。もしそのユーザーが要素をコピーして別のワークブックに貼り付けた場合、レプリカは宛先のワークブックページにデータをロードせず、Sigmaはそのユーザーにアクセス権がないことを通知します。
+
+##### **要素のフィルターは、コピー＆ペーストされたときに引き継がれますか？**
+はい。元の要素にコピー時に既にフィルターが適用されている場合、それらのフィルターは宛先のワークブックページのレプリカにも適用されます。これは、元の要素のリネージの一部としてコピー＆ペーストされる親要素にも適用されます。
+
+##### **ワークブックのページ全体をコピー＆ペーストできますか？**
+はい。詳細は「[ワークブックのページをコピー＆ペーストする](https://help.sigmacomputing.com/docs/copy-workbook-pages)」を参照してください。
+
+### 4-2-7. ワークブックのレイアウトをデザインする (Design workbook layouts)
+
+ワークブックの開始状態は、要素やコンテナを追加・配置したり、テーマや色の設定を管理したりできる、空白のキャンバスです。
+
+ワークブックのレイアウトをカスタマイズする方法は複数あります。例えば：
+* ページを追加して、分析をコンセプトごとにグループ化する
+* 要素を追加して、データ、インタラクティビティ、フィルタリングを追加する
+* テーマやフォントなどのワークブック設定を変更して、会社のブランディングに合わせる
+* ページ上の要素のサイズを変更・配置して、よりクリーンなワークブックを作成する
+* 不要なスペースを削除したり、パディングを追加したりするなど、ベストプラクティスを念頭に置いて最適なレイアウトをデザインする
+
+また、要素をグループ化するためにコンテナを追加したり（「[Organize workbook layouts with containers](https://help.sigmacomputing.com/docs/organize-workbook-layouts-with-containers)」を参照）、アプリのような体験を作成するためにモーダルを追加したりすることもできます（「[Add a modal to a workbook](https://help.sigmacomputing.com/docs/create-and-manage-modals)」を参照）。
+
+#### **ユーザー要件 (User requirements)**
+
+レイアウトを変更するには、個々のワークブックに対する`Can edit`の[ワークブックアクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+
+#### **ワークブックにページを追加する (Add pages to a workbook)**
+
+ワークブックは複数のページを含むことができます。これらのページを使用して、分析を異なるコンセプトやコーホートにグループ化したり、「ダッシュボード」として機能させたりすることができます。ページを追加するには、ワークブックを編集中であることを確認し、`+ Add page` を選択します。
+
+#### **ワークブックのページに要素を追加する (Add elements to a workbook page)**
+
+要素を使用して、データ、UI機能、またはコントロールをワークブックのページに追加します。様々な要素の追加と構成に関する詳細は、「[Create a data element](https://help.sigmacomputing.com/docs/create-a-data-element)」、「[Create and manage a control element](https://help.sigmacomputing.com/docs/create-and-manage-control-elements)」、または「[Create a UI element](https://help.sigmacomputing.com/docs/intro-to-ui-elements)」を参照してください。
+
+ワークブックに最初の要素を追加すると、スナップ式のグリッドが表示され、要素を好みに合わせて配置できます。
+
+#### **異なるデバイスレイアウトのプレビューと編集 (Previewing and editing different device layouts)**
+
+ワークブックは、モバイルとデスクトップの両方のレイアウトをサポートしています。ワークブックのデバイスビューを切り替えるには、編集中に `Publish` メニューを選択し、`Desktop` または `Mobile` を選択します。Sigmaのワークブックはレスポンシブフレームワーク上に構築されているため、小さな画面で表示すると、ワークブックのレイアウトは自動的にモバイルフレンドリーなレイアウトに適応します。
+
+#### **ワークブックのページ上で要素を配置する (Arrange elements on a workbook page)**
+
+ワークブックのページ上で要素のサイズを変更したり、再配置したりするには、複数の方法があります。
+* **要素のサイズを変更する:** 要素をクリックし、ドラッグハンドルを引いてサイズを変更します。
+* **要素を移動する:** 要素を選択してドラッグし、移動します。
+* **一度に複数の要素を選択する:** `⌘ Command` + `Click` (Mac) または `Ctrl` + `Click` (Windows)で複数の要素を選択するか、選択したい要素の上でカーソルをクリック＆ドラッグします。その後、要素をグループとして移動できます。
+* **要素の位置とサイズを交換する:** ある要素を別の要素の上にドラッグ＆ドロップして、それらの位置とサイズを交換します。![58aee0d5fb1a19d0c920ecc14c4706353bc0b23a6d1a1ff3dcb8d4e825c92dae-swap_gif](https://github.com/user-attachments/assets/a1fad53d-fa3b-4b1c-a08f-ce170d84ff44)
+
+* **要素間に要素を挿入する:** ある要素を他の2つの要素の間にドラッグ＆ドロップします。
+
+#### **ワークブックページの空白とパディングを編集する (Editing whitespace and padding on a workbook page)**
+
+不要なスペースを削除したり、要素をより近づけたり、追加のパディングを加えたりすることで、より最適なレイアウトをデザインできます。
+
+よりクリーンなワークブックのために、ワークブックページの空白を追加、削除、または分割するには：
+* **要素間の垂直スペースを追加または削除する:** ワークブックの左端にカーソルを合わせ、リサイザーハンドルが表示されるまで待ちます。ハンドルを上下にドラッグして、2つの要素間の垂直スペースを増減させます。
+* **空きスペースを削除する:** 2つの要素間の空きスペースにカーソルを合わせ、`Trim space` ボタンが表示されるまで待ちます。それを選択して、間のスペースを削除します。
+* **要素間でスペースを分割する:** 別の要素をドラッグ＆ドロップして、ある要素が使用しているスペースを共有または分割できます。下にある要素が占めるスペースは、両方の要素を収容するのに十分な大きさでなければなりません。![3a57f8ffa7b8d85e584def8be532eb91beca028b37f6c8b390d1eb43aaac2f42-split_example](https://github.com/user-attachments/assets/21bfe5ea-7e12-4688-ba77-0df664b0aa25)
+
+
+また、ページ上の空白を増やすために要素にパディングを追加することもできます。「[Customize element background and styles (Beta)](https://help.sigmacomputing.com/docs/customize-element-background-and-styles-beta#add-padding-to-an-element)」の「Add padding to an element」を参照してください。
+
+#### **ワークブック設定を変更する (Change workbook settings)**
+
+テーマ、色、フォントなどのグローバルなワークブック設定を管理します。編集中に、ワークブックの背景のどこかをクリックして `Settings` タブを開き、`Workbook Settings` を選択します。詳細は、「[Workbook settings overview](https://help.sigmacomputing.com/docs/workbook-settings-overview)」を参照してください。
+
+### 4-3-1. データ要素を作成する (Create a data element)
+
+[ワークブック](https://help.sigmacomputing.com/docs/workbooks-overview)は多くの[要素タイプ](https://help.sigmacomputing.com/docs/intro-to-element-types)をサポートしています。データ要素は、データソースから直接構築される要素で、[テーブル](https://help.sigmacomputing.com/docs/create-and-manage-tables)、[ピボットテーブル](https://help.sigmacomputing.com/docs/create-and-manage-pivot-tables)、および[チャート](https://help.sigmacomputing.com/docs/build-a-chart)が含まれます。
+
+各タイプのデータ要素はデータを異なる方法で表示しますが、基盤となるデータは常に表形式で列ベースです。可視化またはピボット化されたデータの構造を理解するには、そのデータ要素の基盤となるデータを表示します。「[View underlying data](https://help.sigmacomputing.com/docs/view-underlying-data)」を参照してください。
+
+#### **データ要素のデータソース (Data sources for data elements)**
+
+ワークブックを作成する際、様々なデータソースから要素を追加できます。いつでも新しいソースを追加でき、ワークブックごと、またはワークブックのページごとに単一のソースに制限されることはありません。
+
+利用可能なデータソースには、接続されたクラウドデータウェアハウス（CDW）のテーブル、Sigmaのデータモデルまたはデータセット、アップロードしたCSV形式のファイル、SQLコマンド、他のワークブックのデータ要素などが含まれます。
+
+いくつかの異なるソースからデータ要素を作成できます。
+* 新しいソース。
+* ワークブックで既に使用中のソース。
+* 既存のデータ要素。別の要素から要素を作成するには、「[Create a data element from an existing element on the canvas](#create-a-data-element-from-an-existing-element-on-the-canvas)」を参照してください。
+
+#### **上流の変更の影響 (Effects of upstream changes)**
+
+データソースに加えられた変更は、そのデータソースに依存する子要素に影響を与える可能性があります。例えば、棒グラフ要素がデータソースとしてテーブル要素に依存している場合、テーブル要素から列を削除すると、その列は棒グラフ要素からアクセスできなくなります。列を非表示にすると、その列はデフォルトでは利用できなくなり、棒グラフにはソース列としてのみアクセス可能になります。
+
+ワークブックを構築し、データ要素を作成する際には、データソースの再利用性を考慮してください。
+* ワークブック間で再利用するために、データ要素をデータモデルに変換する。
+* ソーステーブルに計算列やフィルターを作成する。
+* 予期しないデータの変更をトラブルシューティングする際に、要素のリネージを確認する。
+
+#### **要件 (Requirements)**
+
+データ要素を作成するには、個々のワークブックに対する`Can edit`または`Can explore`の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+ワークブックは`Edit`モードまたは`Explore`モードである必要があります。「[Workbook modes overview](https://help.sigmacomputing.com/docs/workbook-modes-overview)」を参照してください。
+CSVのアップロードやカスタムSQLの記述には、`Upload CSV`または`Write SQL`権限が有効になっているアカウントタイプを割り当てられている必要があります。「[Account types](https://help.sigmacomputing.com/docs/account-type-and-license-overview)」を参照してください。
+
+#### **ワークブックのページにデータ要素を追加する (Add a data element to a workbook page)**
+
+ワークブックのページにデータ要素を追加するには、以下を実行します。
+
+1.  カスタマイズまたは編集のためにワークブックを開きます。
+2.  `Add element`バーで、追加するものを選択します。テーブルまたはピボットテーブルを追加するには、`Data`を選択し、関連するオプションを選択します。チャートを追加するには、`Charts`を選択し、追加したいチャートを選択します。![6548f3d62f2bf56e028d80d33d25cff17dc6240d89c119c06d5f1822132bb083-element-bar-charts](https://github.com/user-attachments/assets/926712ca-999c-47c8-b835-e6b8742d129d)
+
+3.  データソースを選択します。データソースをすぐに追加するか、プレビューして特定の列を選択して追加することができます。
+    * データモデル、データベースまたはカタログのテーブル、データセット、または他のワークブック要素をデータソースとして使用するには、検索を実行するか、現在のワークブックから`Elements`を参照するか、`Tables and Datasets`からテーブル、データモデル、またはデータセットを選択します。
+        > 💡
+        > 利用可能なデータソースにカーソルを合わせ、`Preview`を選択してデータソースの列と値を表示します。ワークブックで既に使用中のソースや、アクセス権のある他のワークブックで使用中のソースは、異なるアイコンで表示されます。リネージアイコン()にカーソルを合わせると、現在のワークブックで使用中のソースを特定できます。
+    * データソースをプレビューする場合、データソース内の異なる列を選択または選択解除し、その後`Add`を選択してデータソースを追加できます。
+    * CSV形式のファイルをアップロードするには、`CSV`を選択します。
+    * データプラットフォームからデータを取得するためにカスタムSQLを記述するには、`SQL`を選択します。「[Write custom SQL](https://help.sigmacomputing.com/docs/write-custom-sql)」を参照してください。
+    * データソースを組み合わせるには、`Join`または`Union`を選択します。「[Join data in workbooks](https://help.sigmacomputing.com/docs/join-data-in-workbooks)」を参照してください。
+    * 既存のデータソースを転置するには、`Transpose`を選択します。「[Transpose a table](https://help.sigmacomputing.com/docs/transpose-a-table)」を参照してください。![90a6e3737967ff9d7b37c7b35a3d928aa62fb03ae773b312f7b13fc94174e1f9-source-picker](https://github.com/user-attachments/assets/982885ca-c810-4004-8f9a-dc2aba2ba85d)
+
+5.  要素のデータソースを選択すると、新しい要素がページに表示され、その要素のエディタパネルが開きます。
+
+#### **キャンバス上の既存の要素からデータ要素を作成する (Create a data element from an existing element on the canvas)**
+
+ワークブックページのテーブル、ピボットテーブル、または入力テーブルから子データ要素を作成できます。例えば、テーブル要素からチャートを作成します。
+
+1.  データソースとして使用したい要素にカーソルを合わせます。
+2.  `Create child element`を選択して、選択した要素に基づいて子要素を作成します。
+3.  要素タイプ（`Chart`, `Table`, `Pivot table`, `Linked input table`）を選択します。
+4.  新しい要素がページに表示され、その要素のエディタパネルが開きます。
+
+#### **要素のデータソースを特定・編集する (Identify and edit an element's data source)**
+
+データ要素のデータソースを特定し、変更を加えるには、要素を選択し、エディタパネルの`Properties`タブを確認します。
+
+1.  カスタマイズまたは編集のためにワークブックを開きます。
+    > 💡
+    > エディタパネルが表示されていない場合は、`Show panels` ()をクリックします。
+2.  ワークブックキャンバスで要素を選択し、エディタパネルの`Properties`タブを選択します。
+3.  データソースは`Data source`の下に表示されます。
+4.  選択した要素のデータソースを表示、変更、または変換するには、データソース名の隣にある下矢印()を選択します。「[Change the data source for a workbook or element](https://help.sigmacomputing.com/docs/change-the-data-source-for-a-workbook-or-element)」を参照してください。
+
+#### **データソースのグルーピングレベルを変更する (Change the grouping level of a data source)**
+
+グループ化されたテーブルがデータ要素のデータソースとして使用される場合、デフォルトではテーブルのすべてのソース列がデータソースとして使用されます。特定のグルーピングレベルの列のみを使用するなど、テーブルで利用可能な列を変更するには、データソースの粒度を変更します。
+
+1.  テーブルを選択し、エディタパネルの`Properties`タブを選択します。
+2.  `Data source`で、ソーステーブルと`Source grouping`オプションを確認します。![4baa4ca6ff00a9bf2c2b4ff1fa358a53906f2198677fe69a0bc409b9ed4eea94-change-groupings](https://github.com/user-attachments/assets/e5592c7d-4b81-43b0-8e9d-10cfecb3b6d0)
+
+3.  列名を開いて利用可能な粒度オプションを確認し、含めたい列を選択します。下位レベルのグルーピングオプションには、上位レベルのグルーピングオプションからの列が含まれます。すべての列を表示したい場合は、`All source columns`を選択します。![41b8041f63eb1869e65ef605b02c3ce4e4267acfa6a7fdd2d6aeea4a4126ea0d-change-groupings-open](https://github.com/user-attachments/assets/2156c026-7559-4673-87f6-a6eb45153b85)
+要素は、利用可能なソース列を反映して更新されます。
+
+### 4-3-2. ワークブックまたはデータモデルで関連する列を使用する (Use related columns in a workbook or data model)
+
+ワークブックまたはデータモデル内のデータ要素のデータソースが、一つ以上のリレーションシップを持つデータモデルテーブルである場合、関連するテーブルからデータ要素に列を追加できます。作成するすべての子要素も、関連する列にアクセスできます。
+
+> 💡
+> まずプライマリソース要素から子テーブルを作成すれば、同じデータモデル内で作成されたリレーションシップを使用できます。
+
+#### **要件 (Requirements)**
+
+* データソースは、一つ以上のリレーションシップが定義されたデータモデル内のテーブル要素である必要があります。
+* あなたはワークブックまたはデータモデルの所有者であるか、そのドキュメントに対する `Can explore` または `Can edit` の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+#### **データ要素に関連する列を追加する (Add a related column to a data element)**
+
+ワークブックまたはデータモデル内のデータ要素のデータソースに一つ以上のリレーションシップが定義されている場合、関連する列をデータ要素に追加できます。
+
+1.  ワークブックをカスタマイズするか、ワークブックまたはデータモデルを編集用に開きます。
+2.  データ要素を選択します。
+3.  エディタパネルで、列の `+` (Add columns...) を選択します。
+4.  メニューで、`Add source columns...` を選択して `Source columns` リストを開きます。![910f668d28a67aa902675f0aa4737b87b63ffedcd92163fad0d59e67033d1bce-dm-rel-src-column](https://github.com/user-attachments/assets/17892a0e-d4cd-4835-8bfa-0ddb26fc351e)
+
+5.  `Source columns` リストで、データモデルのリレーションシップを通じてリンクされたテーブルから利用可能な列を確認します。直接関連するテーブルの列だけでなく、継承されたリレーションシップからの列も表示できます。
+6.  列のチェックボックスを選択して、データ要素に追加します。
+7.  関連する列は、`Column Name (Relationship Name)` というタイトルでデータ要素に表示されます。
+
+#### **数式で関連する列を使用する (Use a related column in a formula)**
+
+ワークブック内のデータ要素のデータソースに一つ以上のリレーションシップが定義されている場合、そのデータ要素の計算列の数式で関連する列を使用することもできます。
+
+> 📘
+> 数式で使用する前に、関連する列をデータ要素に追加する必要はありません。
+
+1.  ワークブックを探索するか、編集用に開きます。
+2.  データ要素を選択します。例えば、あるレンタルバイクのドッキングステーションから別のステーションへのバイクトリップのテーブル `TRIP` などです。
+3.  要素内、またはエディタパネルで、`+` (Add column...) を選択します。
+4.  数式バーに、関連する列を参照する数式を入力します。入力中に、関連する列がオートコンプリート候補のリストに表示されます。![1d44a0ada1842a8cc8e9dec051b29abdf5ba111b054e0f8af7f41704a9eed352-dm-formula-auto](https://github.com/user-attachments/assets/d494265f-623b-42ed-9a0a-72406eb65949)
+例えば、出発ステーションでのドッキングステーションの利用可能性を評価するには、以下の数式を記述することがあります。
+    ```
+    If([TRIP/Start Station Details/Dock Count] > 15, "high availability", [TRIP/Start Station Details/Dock Count] = 15, "medium availability", [TRIP/Start Station Details/Dock Count] < 15, "low availability")
+    ```
+結果のテーブルには、`Start Station Dock Availability` という名前の計算列が含まれます。<img width="1164" alt="77a045d38b587c5fc1cbe87d3091c90854da8a75273a77a3bd02aee757d629a0-Screenshot_2025-03-26_at_5 45 43_PM" src="https://github.com/user-attachments/assets/41cc196a-5f48-498e-8537-b3f0dc8e3e09" />
+
+### 4-3-3. ワークブックでリンクされた列を使用する (Use linked columns in workbooks)
+
+[データセットにリンク](https://help.sigmacomputing.com/docs/dataset-links)がある場合、ワークブックでデータを分析・探索する際に、リンクされた列を使用できます。
+
+#### **ユーザー要件 (User requirements)**
+
+ワークブックでリンクされた列を使用するには、あなたがワークブックの所有者であるか、`Can explore` または `Can edit` のワークブック権限を付与されている必要があります。
+
+#### **ワークブックでリンクされた列を使用する (Use linked columns in workbooks)**
+
+リンクは、Sigma内で2つのデータソース間に作成される、列ベースのリレーションシップです。これにより、あるデータソースが別のデータソースと共有する列に基づいて、一方のデータソースからデータにアクセスできます。
+
+クラウドデータウェアハウス（CDW）のテーブルは、他のCDWテーブルにリンクできます。Sigmaのデータセットは、他のデータセットにリンクできます。そして、CDWテーブルはデータセットにリンクできます。一つのデータソースは、複数の他のデータソースへのリンクを持つことができます。
+<img width="1587" alt="20a1aa7-1" src="https://github.com/user-attachments/assets/1b4a7a64-e35f-49af-92ef-95fbd898bc76" />
+
+##### **ワークブックでのリンクのアクセシビリティ (Link accessibility in workbooks)**
+
+リンクは、リンクされた列を含むデータソースから直接作成された[データ要素](https://help.sigmacomputing.com/docs/create-a-data-element)を通じてのみ、ワークブックでアクセスできます。CDWまたはデータセットの親からリンクを継承したデータ要素の子要素は、それらのリンクを引き続き継承しません。
+
+これは、データ要素からリンクされた列にアクセスしたい場合、(1) リンクを含む元のデータソースからその要素を作成するか、あるいは (2) [必要な列を](https://help.sigmacomputing.com/docs/dataset-worksheet-columns#add-a-new-column)親要素に追加して、子が直接継承できるようにする必要があることを意味します。
+
+##### **テーブル要素でリンクから列を追加する (Add columns from a link in a table element)**
+
+テーブル内のリンクされた列は、セル値の薄い青色の背景で識別できます。
+1.  リンクされた列のセルをクリックして、リンクのポップアップを開きます。
+2.  テーブルに表示したい任意の列の横にあるチェックボックスをオンにします。
+![4f8e124-2](https://github.com/user-attachments/assets/9e43ead9-594d-4650-9bed-b9e22e4e1305)
+
+##### **ビジュアライゼーションまたはピボットテーブルでリンクから列を追加する (Add columns from a link in a visualization or pivot table)**
+
+ビジュアライゼーションとピボットテーブル内のリンクされた列は、要素が[最大化](https://help.sigmacomputing.com/docs/maximize-an-element)されている場合にのみアクセス可能です。そこから、基盤となるデータテーブルを通じてリンクにアクセスできます。テーブル要素と同様に、リンクされた列はセル値の青い背景で識別できます。
+1.  要素を最大化します。
+2.  基盤となるデータテーブルで、リンクされた列の任意のセルをクリックします。
+3.  これにより、リンクのポップアップが開きます。
+テーブルに表示したい任意の列の横にあるチェックボックスをオンにします。
+![6a93b12-3](https://github.com/user-attachments/assets/7f16ba7a-8e4e-47f3-a3b5-e3897dbcd139)
+
+### 4-3-4. ルックアップで列を追加する (Add columns through Lookup)
+
+[ルックアップ](https://help.sigmacomputing.com/docs/lookup)とは、2つのデータ要素間で関連する列を接続し、ある要素から別の要素へデータを注入することを可能にするアクションです。2つの要素は、共通の値を共有する一対の列（各要素から一つずつ）によって結合されます。私たちはこれらの結合列を**結合キー**と呼びます。
+
+ルックアップから作成される列は、`Lookup`関数を使用して追加できます。しかし、明示的に数式を記述することなく、新しいルックアップ列を追加することもできます。この2番目のオプションについて、以下に説明します。
+
+#### **要件 (Requirements)**
+
+この機能を使用するには、個々のワークブックに対する`Can Edit`または`Can Explore`の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+
+#### **ルックアップで列を追加する (Add a Column via Lookup)**
+
+* **前提条件:**
+    * 少なくとも2つのデータ要素（結合先と結合元）が必要です。
+    * 両方の要素は同じワークブック内に存在する必要があります。
+    * 両方の要素は同じ接続からソースされている必要があります。
+    * 結合先の要素は、結合元の要素の子であってはなりません。
+
+* **ルックアップ経由で列を追加する**
+    * **始める前に:** このアクションは編集モードでのみ利用可能です。編集を開始するには、ページの右上隅にある `Edit` をクリックします。
+
+    1.  列を追加したいデータ要素を選択します。
+    2.  任意の列名の隣にあるキャレットアイコンをクリックして、そのメニューを開きます。
+    3.  `Add column via lookup` を選択します。
+    4.  これにより、`Add Lookup` モーダルが開きます。
+        * 最初のセクション「**Which column would you like to add?**」では、以下を選択するよう促されます。
+            * ソース要素
+            * 新しい列で使用する、ソース要素からの列
+            * [任意] 列に適用する集計値
+        * 2番目のセクション「**Map two elements**」では、一つ以上の結合キーのセットを定義するよう促されます。
+    5.  `Select element` の下で、ソース要素を選択します。
+        * 要素は、そのワークブックのページごとに整理されています。
+    6.  `Column to add` の下で、新しい列で使用したい列を選択します。
+    7.  [任意] `aggregate` の下で、列の値に適用する集計関数を選択します。
+        * *注：内部的には、集計はルックアップをロールアップに変換します。*
+    8.  `Map two elements` の下で、結合キーとして使用する各データ要素から列を選択します。
+    9.  [任意] 追加の結合キーのペアを追加するには、`+ add another mapping` をクリックし、ステップ7を繰り返します。
+ 
+### 4-3-5. 期間比較分析の作成と編集 (Create and edit period-over-period analysis)
+
+Sigmaの期間比較分析構築のためのガイド付きワークフローは、時間経過に伴うパフォーマンスを評価するための迅速で便利な方法を提供します。複雑なカスタム数式を入力することなく動的な期間比較を生成し、その結果を簡単に視覚化して、トレンド、パターン、異常を特定できます。
+
+このドキュメントでは、データ要素（テーブル、ピボットテーブル、およびビジュアライゼーション）で組み込みの期間比較機能を使用する方法について説明します。
+
+#### **ユーザー要件 (User requirements)**
+
+Sigmaの組み込み期間比較機能を使用するには、以下が必要です。
+* `Edit Workbook`および/または`Explore Workbook`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたがワークブックの所有者であるか、`Can explore`または`Can edit`の[ワークブック権限](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+#### **主要な用語 (Key terms)**
+
+このドキュメントでは、以下の用語が使用されます。
+
+* **現在の期間 (Current period)**
+    比較の開始点として使用される参照期間。
+* **比較期間 (Comparison period)**
+    比較の終点として使用されるルックバック期間。
+* **期間の値 (Period value)**
+    現在の期間のメトリック値。
+* **比較値 (Comparison value)**
+    比較期間のメトリック値、または現在と比較期間を比較するために使用される値（比較値のタイプによる）。
+* **比較値のタイプ (Comparison value type)**
+    生成される比較のタイプ（差、%差、または値）。
+
+#### **期間比較を構築する (Build a period-over-period comparison)**
+
+Sigmaのガイド付きワークフローで期間比較分析をすぐに始めましょう。あなたの入力は、必要に応じて補強、編集、視覚化できる比較グルーピングを生成します。
+
+1.  ワークブックを`Explore`または`Edit`モードで開き、更新したいデータ要素を選択します。ビジュアライゼーションで作業している場合は、要素を[最大化](https://help.sigmacomputing.com/docs/maximize-an-element)して基盤となるデータテーブルを表示および編集します。
+2.  テーブルで、既存の列ヘッダーのキャレット()をクリックして列メニューを開きます。
+3.  `Add column via`にカーソルを合わせ、`Period over period comparison`を選択します。![pop_add-column-via-period-over-period-comparison](https://github.com/user-attachments/assets/ba5d5fd4-4844-45df-9308-4e234f961713)
+
+4.  `Add comparison`モーダルで、比較を構成し、`Done`をクリックします。
+    * **Compare field:** 比較したいメトリックまたは変数を含む列を選択します。
+    * **Aggregate:** 期間の値と比較値を計算するための集計方法を選択します。
+    * **Using date column:** 現在および比較期間の集計に使用する[日付列](https://help.sigmacomputing.com/docs/supported-data-types-and-formats#date)を選択します。
+    * **Comparison time frame:** ルックバックと日付の粒度を決定するための比較期間を選択します。
+    * **Output:** 一つ以上の比較値のタイプを選択します。
+        * **Difference (差):**
+            期間比較の差を生の数値として。
+        * **% difference (%差):**
+            期間比較の差をパーセントとして。
+        * **Value (値):**
+            比較期間の合計メトリック値を生の数値として。
+![pop_add-comparison](https://github.com/user-attachments/assets/01b77df3-8472-4810-b887-b58c2d0ef680)
+
+テーブル要素では、Sigmaは現在の期間、期間の値、および比較値を含む期間比較のグルーピングを作成します（以下のスクリーンショットで示されています）。
+ピボットテーブルとビジュアライゼーションでは、Sigmaは切り捨てられた日付（選択された比較期間に基づく）と比較値を含む基盤となるデータ列を作成します。その後、新しい列を使用して要素のプロパティを構成できます。
+
+> 📘
+> データ要素のタイプに関わらず、`Output`フィールドで複数の比較値タイプを選択すると、Sigmaはそれぞれに対して個別の列を生成します。
+![pop_add-comparison_results](https://github.com/user-attachments/assets/2d97c64b-ee13-4dda-909e-5899b70c5bae)
+
+> 💡
+> KPIチャートで期間比較を視覚化しましょう。詳細は、「[Build a KPI chart](https://help.sigmacomputing.com/docs/build-a-kpi-chart)」を参照してください。
+
+#### **比較値を追加する (Add a comparison value)**
+
+既存の期間比較グルーピングに比較値を追加します。
+
+1.  テーブルで、比較したい期間の値を含む列を探し、列ヘッダーのキャレット()をクリックして列メニューを開きます。
+2.  `Add column via`にカーソルを合わせ、`Comparison time frame`セクションでオプションを選択します。
+    > 📘
+    > 利用可能なオプションは、既存の比較の日付の粒度に依存します。例えば、期間の値が月ごとに集計されている場合、他の月次期間とのみ比較できます。この場合、`Comparison time frame`のオプションには`Last month`、`Same month last quarter`、`Same month last year`が含まれます。`Last year`や`Same week last quarter`のような他の比較は、比例した期間比較を提供しないため利用できません。
+
+Sigmaは同じグルーピングに新しい比較値の列を追加します。
+![pop_add-column-via-comparison-time-frame](https://github.com/user-attachments/assets/82955489-7a5c-4cc5-97ab-2a43a62c9e0e)
+
+#### **既存の比較を編集する (Edit an existing comparison)**
+
+既存の比較の期間、値のタイプ、および集計方法を迅速に変更します。
+
+> 💡
+> Sigmaは`DateLookback`関数を使用して比較値を計算します。比較期間、比較値のタイプ、および集計方法以外の変更を行うには、列のSigmaが生成した数式を編集してください。
+
+1.  テーブルで、変更したい比較値を含む列を探し、列ヘッダーのキャレット()をクリックして列メニューを開きます。
+2.  比較期間、比較値のタイプ、または集計方法を編集します。
+    * 比較期間または比較値のタイプを変更するには、`Edit comparison`にカーソルを合わせ、異なる`Comparison time frame`または`Output`オプションを選択します。![pop_edit-comparison](https://github.com/user-attachments/assets/67b1d3c4-2b44-46f9-92fe-6ddabf87f522)![pop_edit-comparison_results](https://github.com/user-attachments/assets/7a02c168-0fe7-47b1-a90f-6a037af830bc)
+
+
+    * 集計方法を変更するには、`Set aggregate`にカーソルを合わせ、異なるオプションを選択します。![pop_set-aggregate]![pop_set-aggregate_results](https://github.com/user-attachments/assets/6e19707d-2ddc-429a-ab0b-cf4a5427cb19)
+(https://github.com/user-attachments/assets/de7873ac-b12e-4c28-b84f-fd8d27383d2f)
+
+
+### 4-3-6. 列をフォルダに整理する (ベータ版) (Organize columns into folders (Beta))
+
+> 🚩
+> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このページは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+
+データモデルやワークブックのデータ要素で作業する際、列をフォルダに整理し、関連するグループに列をネストさせることができます。
+
+列をフォルダに整理すると、以下のことができます。
+* 好きなだけ列のフォルダを作成する。
+* 他のフォルダ内にフォルダをネストする。
+* 列のフォルダをテーブルのグルーピングやチャートの軸に追加する。
+* フォルダとその列を削除または複製する。
+
+データセットやウェアハウステーブルの列に対してフォルダを作成することはできません。
+
+フォルダは子要素や下流の要素で利用可能です。データモデルのテーブルで列のフォルダを作成すると、そのテーブルをデータソースとして使用するデータ要素にはそのフォルダが表示されます。
+
+> 📘
+> 子要素が作成された後に作成されたフォルダは自動的には表示されませんが、`+` (Add columns...) を選択し、次に `Add source columns…` を選択してソース列リストを開くことで追加できます。
+
+#### **要件 (Requirements)**
+
+ワークブックまたはデータモデルに対する`Can edit`または`Can explore`のアクセス権が必要です。
+
+#### **新しいフォルダに列を追加する (Add columns to a new folder)**
+
+列メニューから、または列のリストから、新しいフォルダに列を追加できます。
+
+1.  編集のためにドキュメントを開くか、ワークブックのカスタマイズを開始します。
+2.  データ要素を選択します。
+3.  一つ以上の列を選択し、下矢印 を選択して列メニューを開き、`Move to new folder` を選択します。
+4.  新しいフォルダが表示されます。列リストの異なる部分で列を選択した場合、フォルダとその列は、最初に選択した列と同じ場所に表示されます。
+    > 💡
+    > `+` > `Add folder` をクリックして空のフォルダを追加し、その後で列をフォルダにドラッグ＆ドロップすることもできます。
+
+#### **既存のフォルダに列やフォルダを追加する (Add columns or folders to an existing folder)**
+
+既存のフォルダに追加する列やフォルダを選択できます。
+
+1.  編集のためにドキュメントを開くか、ワークブックのカスタマイズを開始します。
+2.  データ要素を選択し、エディタパネルで列のリストを探します。
+3.  既存のフォルダに追加したい列やフォルダを選択し、選択した列やフォルダをフォルダにドラッグ＆ドロップします。
+
+#### **フォルダから列を削除する (Remove columns from a folder)**
+
+フォルダから列を削除するには：
+1.  フォルダを開き、各列をフォルダの外にドラッグ＆ドロップします。
+2.  下矢印 を選択してフォルダメニューを開き、`Delete folder` を選択します。
+    > 🚧
+    > 列を移動せずにフォルダを削除すると、その列もデータ要素から削除されます。削除された列を再度追加するには、`+` (Add columns...) を選択し、次に `Add source columns...` を選択してソース列リストを開きます。
+
+#### **列フォルダを管理する (Manage a column folder)**
+
+列のリストでフォルダを右クリックすると、以下のタスクを実行できます。
+* **フォルダの名前を変更する**
+    > 💡
+    > フォルダ名をダブルクリックして名前を変更することもできます。
+* **フォルダと、それに含まれるすべての列およびフォルダを削除する。** 削除された列をデータ要素に再度追加するには、`+` (Add columns...) を選択し、次に `Add source
+
+### 4-4-1. テーブルの作成と管理 (Create and manage tables)
+
+テーブルは、Sigmaでデータと対話するための基本的な方法です。接続されたデータウェアハウス、Sigmaのデータモデルからテーブルを追加したり、CSV形式のファイルをアップロードしたりできます。
+
+従来の表計算ツールに慣れている方は、セル単位でデータや数式を扱うことに慣れているかもしれません。Sigmaのテーブルは非常にスプレッドシートに似ていますが、データはセルレベルではなく列レベルで管理されます。その結果、計算や書式設定の変更は、列内のすべてのセルに適用されます。
+
+列レベルでデータを管理することで、一貫性と正確性が保証され、大規模なデータセット全体でよくあるエラーを防ぐのに役立ちます。
+
+Sigmaでは、[テーブル内の列をグループ化する](https://help.sigmacomputing.com/docs/create-and-manage-tables#group-columns-in-a-table)こともでき、複雑なピボットテーブルを作成することなく、異なるレベルで簡単に集計を実行できます。
+
+#### **テーブルを作成する (Create a table)**
+
+テーブルを作成するには、データ要素を作成する手順に従ってください。「[Create a data element](https://help.sigmacomputing.com/docs/create-a-data-element)」を参照してください。
+
+テーブルを作成した後、列を追加して分析を拡張できます。
+* [テーブルに計算列を追加する](#add-a-calculated-column-to-a-table)
+* [テーブルにデータソース列を追加する](#add-a-data-source-column-to-a-table)
+* [ルックアップで列を追加する](https://help.sigmacomputing.com/docs/add-columns-through-lookup)
+* [期間比較分析で列を追加する](https://help.sigmacomputing.com/docs/create-and-edit-period-over-period-analysis)
+* [JSONまたはバリアントデータから列を抽出する](https://help.sigmacomputing.com/docs/extract-columns-from-json-or-variant-data)
+
+#### **テーブルに計算列を追加する (Add a calculated column to a table)**
+
+Sigmaの任意の[関数](https://help.sigmacomputing.com/docs/function-index)を使用して、テーブルに計算列を追加できます。`Profit`と`Sales`列に基づいて`Profit Margin`列を作成するなどの基本的な計算や、`If`を使用した条件付き評価や`Coalesce`を使用したデータクリーニングなどのより複雑なタスクを実行できます。
+
+すべての計算は、数式バーを使用して列レベルで実行されます。データ要素内の列を選択し、数式バーを確認することで、列の計算に使用された数式を表示できます。列を選択しない場合、数式バーは空になります。
+
+##### **前提条件 (Prerequisites)**
+列を追加するには、ドキュメントに対する`Can edit`または`Can explore`の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+このアクションはエディタパネルを使用します。まだ行っていない場合は、ドキュメントをカスタマイズまたは編集中にエディタパネルを開いてください。
+
+##### **計算列を追加する (Add a calculated column)**
+テーブルに列を追加するには、以下を実行します。
+1.  テーブルを選択し、エディタパネルで列のリストを探します。
+2.  `Columns`ヘッダーの隣にある`+ Add column...`をクリックします。
+3.  `Add new column`を選択して、テーブルに新しい計算列を追加し、フォーカスを数式バーに移します。
+4.  数式バーに数式を入力します。入力中に、候補の関数名と列名が表示されます。
+5.  数式の記述が完了したら、キーボードの`Enter`または`Return`を押すか、数式バーの隣にあるチェックマークをクリックして数式を保存します。
+6.  列は数式の結果で更新されます。
+7.  (任意) デフォルトの列名をダブルクリックするか、列メニュー()を開いて列の名前を変更します。
+
+#### **テーブルにデータソース列を追加する (Add a data source column to a table)**
+
+ワークブックにテーブルを追加する際、データソースのすべての列が含まれていない場合があります。テーブルにデータソース列を追加したり、ソーステーブルの粒度を変更してより多くの列を追加したりできます。
+
+> 💡
+> データソースを追加する際、デフォルトでは含まれている列のみがテーブルに追加されます。アンダースコアで始まる名前の列（_column_name）など、一部の列は追加可能ですが、デフォルトでは含まれません。
+
+##### **前提条件 (Prerequisites)**
+列を追加するには、ワークブックに対する`Can edit`または`Can explore`の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+このアクションはエディタパネルを使用します。まだ行っていない場合は、ドキュメントをカスタマイズまたは編集中にエディタパネルを開いてください。
+
+##### **データソース列を追加する (Add a data source column)**
+1.  テーブルを選択し、エディタパネルで列のリストを探します。
+2.  `Columns`ヘッダーの隣にある`+ Add column...`をクリックします。
+3.  `Add source columns...`を選択して、テーブルのデータソースから列を選択します。
+4.  データソースから利用可能な列の完全なリストを確認し、列名の隣にあるチェックボックスを選択してテーブルに追加します。
+    > 📘
+    > `Unavailable source columns`のリストが表示される場合、あなたのテーブルはグループ化されたソーステーブルに基づいており、グループ化された列のみが含まれている可能性があります。「[Change the granularity of a grouped element data source](https://help.sigmacomputing.com/docs/create-a-data-element#change-the-grouping-level-of-a-data-source)」を参照してください。
+
+#### **テーブル内の列をグループ化する (Group columns in a table)**
+
+テーブル内の列をグループ化して、列内の共通の値に基づいてデータの行を比較します。テーブル内の任意の列を使用してグルーピングを定義でき、複数のグルーピングを定義できます。
+
+グルーピングとは、グループ化した列内の同じ個別値を共有するすべての行のグループを作成し、それらのグループに基づいて集計計算を作成できるデータテーブル内の構造です。
+
+テーブルでグルーピングを使用する詳細な例については、「[Example: Group website analytics by host name and calculate statistics](#example-group-website-analytics-by-host-name-and-calculate-statistics)」を参照してください。
+
+##### **前提条件 (Prerequisites)**
+列をグループ化するには、ワークブックに対する`Can edit`または`Can explore`の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+このアクションはエディタパネルを使用します。まだ行っていない場合は、ドキュメントをカスタマイズまたは編集中にエディタパネルを開いてください。
+
+##### **テーブルにグルーピングを追加する (Add groupings to a table)**
+テーブル内の列をグループ化するには、以下を実行します。
+1.  テーブルを選択し、エディタパネルで列のリストを探します。
+2.  `Groupings`ヘッダーの隣にある`+ Add grouping...`を選択し、グループ化したい列を選択します。
+
+##### **グルーピングに計算を追加する (Add calculations to a grouping)**
+列の各値ではなく、グループの各値に対して集計を計算するには、グルーピングに計算を追加します。
+1.  テーブルを選択し、エディタパネルで列のリストを探します。
+2.  グルーピングについて、`Calculations`ヘッダーの隣にある`+ Add calculation...`を選択し、グループに対して集計したい列を選択します。
+    * 例えば、グループ内の各`Host Name`に対する`Unique Users`など、一部の計算はグループレベルでのみ関連性があります。
+
+##### **テーブル内のグループを管理する (Manage groups in a table)**
+テーブルにグルーピングを作成した後、以下のことができます。
+* グループ列のヘッダーまたは値の隣にある`+`または`-`を選択して、グループ化されたデータを展開または折りたたみます。
+* 列メニューを開いて`Remove from grouping`を選択することで、グルーピングから列または計算を削除します。
+* グルーピング全体を削除するには、`Group by`の隣にある`More` > `Remove grouping`を選択します。
+* 折りたたまれた列を非表示にします。「[Hide and show table components](https://help.sigmacomputing.com/docs/format-and-customize-a-table#hide-and-show-table-components)」を参照してください。
+
+#### **テーブル内の列をグループ化する (Group columns in a table)**
+
+テーブル内の列をグループ化して、列内の共通の値に基づいてデータの行を比較します。テーブル内の任意の列を使用してグルーピングを定義でき、複数のグルーピングを定義できます。
+
+グルーピングとは、グループ化した列内の同じ個別値を共有するすべての行のグループを作成し、それらのグループに基づいて集計計算を作成できるデータテーブル内の構造です。
+
+テーブルでグルーピングを使用する詳細な例については、「[Example: Group website analytics by host name and calculate statistics](#example-group-website-analytics-by-host-name-and-calculate-statistics)」を参照してください。
+
+##### **前提条件 (Prerequisites)**
+列をグループ化するには、ワークブックに対する`Can edit`または`Can explore`の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+このアクションはエディタパネルを使用します。まだ行っていない場合は、ドキュメントをカスタマイズまたは編集中にエディタパネルを開いてください。
+
+##### **テーブルにグルーピングを追加する (Add groupings to a table)**
+テーブル内の列をグループ化するには、以下を実行します。
+1.  テーブルを選択し、エディタパネルで列のリストを探します。
+2.  `Groupings`ヘッダーの隣にある`+ Add grouping...`を選択し、グループ化したい列を選択します。
+
+##### **グルーピングに計算を追加する (Add calculations to a grouping)**
+列の各値ではなく、グループの各値に対して集計を計算するには、グルーピングに計算を追加します。
+1.  テーブルを選択し、エディタパネルで列のリストを探します。
+2.  グルーピングについて、`Calculations`ヘッダーの隣にある`+ Add calculation...`を選択し、グループに対して集計したい列を選択します。
+    * 例えば、グループ内の各`Host Name`に対する`Unique Users`など、一部の計算はグループレベルでのみ関連性があります。
+
+##### **テーブル内のグループを管理する (Manage groups in a table)**
+テーブルにグルーピングを作成した後、以下のことができます。
+* グループ列のヘッダーまたは値の隣にある`+`または`-`を選択して、グループ化されたデータを展開または折りたたみます。
+* 列メニューを開いて`Remove from grouping`を選択することで、グルーピングから列または計算を削除します。
+* グルーピング全体を削除するには、`Group by`の隣にある`More` > `Remove grouping`を選択します。
+* 折りたたまれた列を非表示にします。「[Hide and show table components](https://help.sigmacomputing.com/docs/format-and-customize-a-table#hide-and-show-table-components)」を参照してください。
+
+##### **グループ化されたテーブルに合計を表示する (Show totals in a grouped table)**
+デフォルトでは、グループ化されたテーブルでは合計は非表示になっています。グループ化されたテーブルで合計を表示または非表示にするには（例えば、グルーピングの小計を表示するなど）、以下を実行します。
+1.  グルーピング内の列について、下矢印()を選択して列メニューを開きます。
+2.  `<Column Name> totals`を選択します。
+3.  表示または非表示にする合計を選択します。
+    * 1つのグルーピングレベルを持つテーブルの場合、`Show grand total`を選択します。
+    * 1つ以上のグルーピングレベルを持つテーブルの場合、`Show grand total`または`Show subtotal`の一方または両方を選択します。
+    > 📘
+    > グルーピングの小計を表示するには、上位レベルのグルーピングの最初のグループ化列の列メニューを開きます。
+また、グループ化されたテーブルの**すべて**の合計を表示または非表示にすることもできます（例えば、すべてのグルーピングレベルの合計を表示するなど）。すべての合計を表示するには、テーブルセルを右クリックしてコンテキストメニューを開き、`Show all totals`を選択してテーブルのすべてのグルーピングレベルの合計を表示します。いずれかの合計が表示されている場合は、まず`Hide all totals`を選択し、次に`Show all totals`を選択してすべてを表示します。
+
+##### **例：ウェブサイト分析をホスト名でグループ化し、統計を計算する (Example: Group website analytics by host name and calculate statistics)**
+例えば、ホスト名でグループ化されたウェブサイト分析を表示するためにテーブルを使用したい場合があります。この例では、ホスト名のグルーピングを作成し、そのグルーピング内に計算列を追加して、総ページビューと総ユニークユーザーを計算します。
+> 📘
+> この例では、Sigmaサンプルデータベースの`Events`テーブルを使用します。テーブルへのフルパスは`APPLICATIONS.GOOGLE_ANALYTICS.EVENTS`です。
+
+1.  `Events`テーブルをデータソースとしてテーブルを作成します。
+    1.  `Add element`バーで、`Data`を選択し、次に`Table`を選択します。
+    2.  `Select source`で、Sigmaサンプルデータベースの`APPLICATIONS.GOOGLE_ANALYTICS.EVENTS`テーブルを検索または参照します。
+    3.  データソースを選択して、データが入力されたテーブルをワークブックに追加します。!
+![4c665843caf925b207ece88ed952cb376e5a14e4dd5171d85559b1839d884d62-group-events-start](https://github.com/user-attachments/assets/396063dc-a75d-4924-802f-2c9c145b0070)
+
+2.  `Groupings`の隣で、`+ Add grouping...`を選択し、`Host Name`を選択します。![76a4104c94711bcde148f8fd4f47f57bc779a1f30a842c3b08e1a65ee3842e68-group-add-column](https://github.com/user-attachments/assets/c970389d-29bd-4878-baee-c48ff8862702)
+
+3.  グルーピング内で、`Calculations`の隣にある`+ Add calculation...`を選択し、`User Pseudo Id`を選択します。
+ `Count of User Pseudo Id`として計算列が作成されます。ユニークユーザーのみを見るように列を更新するには、集計を`CountDistinct`に変更します。
+    a.  エディタパネルで、計算列名にカーソルを合わせ、下矢印()をクリックして列メニューを開きます。
+    b.  `Set aggregate > CountDistinct`を選択します。
+    c.  列は`CountDistinct of User Pseudo Id`に更新されます。
+    d.  列名をダブルクリックして`Total Unique Users`に名前を変更します。![32c7bac2de9573341acbbd26bbf5a9186c59d5c0c4584456b1dce766fb2dd923-group-events-2-calc](https://github.com/user-attachments/assets/0d4beb43-d2ad-411f-b45b-5cd29b96c16e)
+
+5.  グルーピング内で、`Calculations`の隣にある`+ Add calculation...`を選択し、`Event Name`を選択します。
+6.  `Count of Event Name`として計算列が作成されます。ページビューのみに焦点を当てるように列を修正するには、`CountIf`関数を使用して数式バーに新しい数式を入力します。
+    a.  `Count of Event Name`列を選択します。
+    b.  数式バーで、数式を`Count([Event Name])`から以下に変更します。
+        `CountIf([Event Name] = "page_view")`
+    c.  キーボードのenterまたはreturnを押すか、チェックマークをクリックして数式を保存し、列を更新します。
+    d.  列名は`CountIf of Calc`に更新されます。
+    e.  列名をダブルクリックして`Total Page Views`に名前を変更します。
+7.  テーブルで、`Host Name`列の隣にある`-`を選択して、テーブル内のグループ化されていない行を折りたたみ、グループ化されたデータのみを表示します。![a7bb01d11d1e461de50ac4d87f06a879fbe64eb64e14176c864a3632cffdc4d8-group-events-collapse-3](https://github.com/user-attachments/assets/0b002c61-a450-47a7-9306-1317c01ecb3d)
+
+8.  テーブルを読みやすくするために、総ページビューで列をソートできます。`Total Page Views`列について、下矢印()をクリックして列メニューを開き、`Sort descending`()を選択します。
+これで、各ホスト名の総ページビューとユニークユーザーが、総ページビューでソートされたテーブルができました。テーブルをフォーマットすることで、折りたたまれた列を非表示にするなどの書式変更ができます。「[Format and customize tables](https://help.sigmacomputing.com/docs/format-and-customize-a-table)」を参照してください。
+テーブルを修正し、追加の列でグループ化できます。例えば、各ホスト名のトラフィックソース別のトップセッション開始を知りたい場合は、これらのステップを繰り返して`Traffic Source`列で2番目のグルーピングを追加し、`CountIf([Event Name] = "session_start")`でグルーピング内に計算を作成します。![2e1535ebcf679ed5ba8a760184cc7c46dbeffade67cd6b13426eb2b439136a33-group-events-grouping2](https://github.com/user-attachments/assets/e4462abd-809e-4386-969f-dc67c7059baf)
+
+テーブルの分析をさらに絞り込むには、`Total Sessions Started`列を降順でソートし、次に`Top N filter`を使用して列をフィルタリングし、各ホスト名のトラフィックソース別のトップ10セッション開始のみを表示します。テーブルのフィルタリングに関する詳細は、「[Data element filters](https://help.sigmacomputing.com/docs/data-element-filters)」を参照してください。![22fdee2d6c1da02bee7d6ef8500758b18caa477a8d0ca623208131e18196c068-group-events-grouping-2-sort](https://github.com/user-attachments/assets/6185de45-9bc7-4740-abcf-7abf109a276a)
+
+
+#### **テーブルにサマリー統計を追加する (Add summary statistics to a table)**
+
+どのテーブルでも、各列のサマリー統計を表示できます。**サマリー**は、テーブルの最高集計レベルで計算される単一値の列集計です。
+テーブルにサマリーを追加するには、ドキュメントを編集中またはカスタマイズ中である必要があります。
+
+テーブルのサマリー統計を表示するには、以下を実行します。
+1.  キャンバスでテーブルを選択し、`Show summaries`()を選択します。
+2.  `+ Add summary...`を選択します。
+3.  列オプションを選択します。
+    * `New summary`を選択して、カスタム数式でカスタムサマリーを計算します。
+    * `Row count`を選択して、総行数をカウントします。
+    * 既存の集計列を選択して、その列のサマリーを作成します。サマリーに使用されるデフォルトの[集計](https://help.sigmacomputing.com/docs/aggregate-functions)は列のデータ型に依存しますが、変更できます。
+
+他の列と同様に、サマリー統計を名前で列から参照できます。例えば、`Min([Event Date])`という数式を持つ`Earliest Date`というサマリー統計に対して、そのサマリーを参照する数式で`Days Since Start`という列を計算することができます。
+`DateDiff("day", [Earliest Date], [Event Date])`
+
+#### **テーブルの列をソートする (Sort table columns)**
+
+テーブルを列の値でソートできます。1つの列で昇順、1つの列で降順、または1つ以上の列でカスタムソート順でソートできます。
+* テーブルを1つの列で昇順にソートするには、右クリックまたは下矢印()をクリックして列メニューを開き、`Sort ascending`()を選択します。
+* テーブルを1つの列で降順にソートするには、右クリックまたは下矢印()をクリックして列メニューを開き、`Sort descending`()を選択します。
+* テーブルのソート順をカスタマイズするには、「[Customize the sort order of data elements](https://help.sigmacomputing.com/docs/customize-the-sort-order)」を参照してください。
