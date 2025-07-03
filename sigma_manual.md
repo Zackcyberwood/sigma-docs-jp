@@ -4125,3 +4125,330 @@ Sigmaの任意の[関数](https://help.sigmacomputing.com/docs/function-index)�
 * テーブルを1つの列で昇順にソートするには、右クリックまたは下矢印()をクリックして列メニューを開き、`Sort ascending`()を選択します。
 * テーブルを1つの列で降順にソートするには、右クリックまたは下矢印()をクリックして列メニューを開き、`Sort descending`()を選択します。
 * テーブルのソート順をカスタマイズするには、「[Customize the sort order of data elements](https://help.sigmacomputing.com/docs/customize-the-sort-order)」を参照してください。
+
+### 4-4-2. 表の書式設定とカスタマイズ (Format and customize a table)
+
+Sigma では、表形式データの表示を効率的かつ効果的にデザインし、フォーマットすることができます。Sigma には、すぐに使える美しさと読みやすさを実現するプリセットの表示スタイルが用意されているほか、スタイルコンポーネントを個別にカスタマイズして、よりパーソナライズされた表デザインを実現することもできます。
+
+テーブル、ピボットテーブル、入力テーブルの書式を設定およびカスタマイズし、ワークブック開発のさまざまなレベルで書式設定を適用できます。
+* 管理者は、組織全体のワークブックテーマでデフォルトの表スタイルを定義できます。「[ワークブックテーマの作成と管理](https://help.sigmacomputing.com/docs/workbook-themes)」をご覧ください。
+* ワークブック内のすべてのテーブル（ピボットテーブルと入力テーブルを含む）にテーブルスタイルを指定します。「[ワークブック設定の概要](https://help.sigmacomputing.com/docs/workbook-settings-overview)」の「テーブルスタイルの設定」を参照してください。
+* 1つの表要素に表スタイルを適用します。このページの「[個々の要素のテーブルスタイルをカスタマイズする](#customize-the-table-style-for-an-individual-element)」をご覧ください。
+* 特定の列、合計行、または合計列のデータを書式設定します。このページの「[列と合計データの書式設定](#format-column-and-totals-data)」を参照してください。
+* 条件に基づいて列のデータを書式設定します。このページの「[条件付き書式の適用](#apply-conditional-formatting-to-table-columns-and-cells)」を参照してください。
+
+#### **ユーザー要件 (User requirements)**
+* **始める前に：** このアクションはエディターパネルを使用します。まだ開いていない場合は、`Explore`または`Edit`モードからエディターパネルを開いてください。「[Workbook modes](https://help.sigmacomputing.com/docs/workbook-modes-overview)」を参照してください。
+* `Full explore`または`Create, edit, and publish workbooks`権限が有効になっているアカウント タイプが割り当てられている必要があります。
+* ワークブックの所有者であるか、ワークブックを参照または編集できる `Can explore`または`Can edit`の権限が付与されている必要があります。
+
+#### **個々の要素のテーブルスタイルをカスタマイズする (Customize the table style for an individual element)**
+個々のテーブル、ピボットテーブル、または入力テーブル要素にカスタムテーブルスタイルを適用します。カスタムテーブルスタイルは、[ワークブックレベルで設定された](https://help.sigmacomputing.com/docs/workbook-settings-overview#set-the-table-style)スタイルよりも優先されます。
+
+1.  ワークブックのカスタマイズを開始するか、ワークブックを開いて編集します。
+2.  変更するテーブル、ピボット テーブル、または入力テーブル要素を選択します。
+3.  サイド パネルで**書式**を選択し、 **表スタイル**ヘッダーをクリックしてセクションを展開します。
+4.  テーブル スタイルのプリセットを選択するか、必要に応じてテーブル スタイルのコンポーネントをカスタマイズします。
+    詳細は、「[カスタマイズ可能なテーブルスタイルオプション](#customizable-table-style-options)」を参照してください。
+
+##### **利用可能なテーブルスタイルのプリセット (Available table style presets)**
+Sigmaには、ワークブックのすべての表スタイルオプションを自動的に設定する2つのプリセットが含まれています。プリセットは、ワンクリックソリューションとして、またはカスタム表デザインの出発点として使用できます。
+* **スプレッドシート (Spreadsheet)**
+    スプレッドシートプリセット（デフォルト）は、継続的な分析と共同作業のために設計されています。読みやすさを確保し、ツールヒントや画像などの追加コンテキストを含めるのに最適です。
+* **プレゼンテーション (Presentation)**
+    プレゼンテーションプリセットは、表形式での表示向けに設計されています。企業ブランディングに合わせ、ワークブックに視覚的な魅力を加えるのに最適です。
+
+##### **カスタマイズ可能なテーブルスタイルオプション (Customizable table style options)**
+テーブル、ピボット テーブル、入力テーブル要素を使用して、ブランド化と美的要件を満たすように次のテーブル スタイル コンポーネントをカスタマイズできます。
+* セル間隔 (Cell spacing)
+* グリッド線 (Grid lines)
+* バンディング (Banding)
+* ヘッダー形式 (Header format)
+* サブヘッダーの形式 (Subheader format)
+* セル形式 (Cell format)
+
+* **セル間隔 (Cell spacing)**
+    セル間隔設定では、表のセル内のテキストの周囲のパディングを調整できます。「極小(Extra small)」、「小(Small)」、「中(Medium)」、「大(Large)」の4つのオプションから選択できます。
+
+* **グリッド線 (Grid lines)**
+    グリッド線の設定では、セルの境界線の表示を管理できます。「グリッドなし(No grid)」、「垂直グリッド(Vertical grid)」、「水平グリッド(Horizontal grid)」、「すべてグリッド(All grid)」の4つのオプションから選択できます。
+
+* **バンディング (Banding)**
+    「バンドを表示(Show banding)」設定では、データ行の背景色を交互に変更できます。バンド表示の行の背景色は、デフォルトのヘッダーの背景色と一致します。
+
+* **ヘッダー形式 (Header format)**
+    「ヘッダー」タブには、表のヘッダーの書式設定に必要な設定とツールが含まれています。フォントの種類、サイズ、太さ、色、テキストの折り返し、テキストの配置、背景色、区切り線の色などをカスタマイズできます。
+
+* **サブヘッダー形式（ピボットテーブルのみ）(Subheader format (pivot tables only))**
+    「サブヘッダー」タブには、サブヘッダーの行と列の書式設定を行うための設定とツールが含まれています。行ヘッダーと列ヘッダーの両方について、フォントの種類、サイズ、太さ、色、テキストの折り返し、テキストの配置、背景色の設定をカスタマイズできます。
+
+* **セル形式 (Cell format)**
+    「セル」タブには、データセルの書式設定に必要な設定とツールが含まれています。フォントの種類、サイズ、太さ、色、テキストの折り返し、テキストの配置、背景色の設定をカスタマイズできます。
+    > 📘
+    > ピボットテーブルでは、セルスタイルはデフォルトで値セルと合計セルの両方に適用されます。ピボットテーブルの合計セルに異なるスタイルを適用するには、 「[列と合計データの書式設定](#format-column-and-totals-data)」および「[ピボットテーブルの合計の書式設定](https://help.sigmacomputing.com/docs/format-pivot-table-totals)」をご覧ください。
+
+#### **表内の列の位置を書式設定する (Format column location in a table)**
+テーブル内の列の表示と操作を管理するには、テーブルまたはピボット テーブル内の列の位置を書式設定できます。
+列を右クリックするか、下矢印 () を選択して列をカスタマイズします。
+* 「**列まで固定 (Freeze up to column)**」を選択すると、選択した列とその左側にあるすべての列の位置が固定されます。右にスクロールしても、固定された列は表示されたままです。固定された列の位置を解除するには、「**列の固定を解除 (Unfreeze columns)**」を選択します。
+* 「**列を非表示 (Hide column)**」を選択すると、表の表示時に列が非表示になります。非表示の列は数式で参照できます。非表示の列を含む表から作成された子要素には非表示の列は含まれませんが、列を追加することは可能です。
+
+ピボット テーブルでは、合計列を含む値列の固定がサポートされていますが、ピボット行列やピボット列として設定された列の固定はサポートされていません。
+> 📘
+> グループ化されたテーブル内の合計行の位置を変更することはできません。
+
+#### **テーブルコンポーネントの表示と非表示 (Hide and show table components)**
+テーブルにさまざまなテーブル コンポーネントを表示するかどうかを管理するには、テーブル コンポーネントをフォーマットします。
+1.  ワークブックのカスタマイズを開始するか、ワークブックを開いて編集します。
+2.  変更するテーブルまたは入力テーブル要素を選択します。
+3.  サイドパネルで、**フォーマット**を選択します。
+4.  **テーブル コンポーネント**ヘッダーをクリックしてセクションを展開し、設定を調整します。
+
+| オプション | 詳細 |
+| :--- | :--- |
+| **表を表示 (Show table)** | 要素内の表の列と行を表示するかどうか。オンにすると、サマリーバーとタイトル（表示されている場合）のみが表示されます。|
+| **折りたたまれた列を表示 (Show collapsed columns)** | 表の場合、グループ化が折りたたまれているときに、グループ化されていない列を表示するかどうかを指定します。グループ化されていない表は、このオプションの影響を受けません。複数のグループ化がある表については、「[表内のグループの管理](https://help.sigmacomputing.com/docs/create-and-manage-tables#manage-groups-in-a-table)」を参照してください。|
+| **概要バーを表示 (Show summary bar)** | サマリー バーをテーブルまたは入力テーブルに表示するかどうか。|
+
+#### **列と合計データの書式設定 (Format column and totals data)**
+列は、その[データ型](https://help.sigmacomputing.com/docs/supported-data-types-and-formats)に応じて自動的に書式設定されます。書式を変更することで、列のデータを別の形式で表示できます。
+グループ化された表またはピボットテーブルに合計が含まれている場合、ツールバーを使用して、合計行または合計列を表の列とは別に書式設定できます。合計行と合計列の両方に書式設定を適用した場合、行の書式設定が優先されます。ピボットテーブルの合計の書式設定に関するその他のオプションについては、「[ピボットテーブルの合計の書式設定](https://help.sigmacomputing.com/docs/format-pivot-table-totals)」をご覧ください。
+
+* **数値の書式を変更する (Change number formatting)**
+    列または合計セルを選択し、ツールバーのオプションを選択して数値の書式を変更します。
+    * 通貨としてフォーマット
+    * パーセント形式で表示
+    * 小数点以下の桁数を減らしたり増やしたりします。
+    * 数値データを別の形式で表示します。詳細については、「[サポートされているデータ型と形式](https://help.sigmacomputing.com/docs/supported-data-types-and-formats)」をご覧ください。
+
+* **列データの外観を変更する (Change column data appearance)**
+    書式設定ツールバーを使用して、特定の列のデータの外観を変更できます。表内のすべてのデータの外観を変更するには、「[セルの書式](#cell-format)」を設定します。これらの書式設定オプションは列ヘッダーには影響しません。
+    列または合計セルを選択した後、ツールバーのオプションを選択してデータの外観を変更します。
+    * データの配置を選択します。
+    * テキストの色を選択します。
+    * 背景色を選択します。列または合計セルを選択し、ツールバーの「背景色」をクリックします。
+    * ()列内のテキストを折り返します。
+    > 📘
+    > [条件付き書式](https://help.sigmacomputing.com/docs/conditional-formatting)は、ツールバーから適用された書式よりも優先されます。
+
+#### **表の列とセルに条件付き書式を適用する (Apply conditional formatting to table columns and cells)**
+ルールまたは条件に基づいて表の列とセルを書式設定するには、条件付き書式を適用します。
+> 📘
+> 条件付き書式は、[ツールバーの列書式設定オプション](https://help.sigmacomputing.com/docs/format-and-customize-a-table#change-column-data-appearance)よりも優先されます。
+
+条件付き書式を使用すると、書式設定ルールに基づいて、1つまたは複数の列に特定の書式を適用できます。デフォルトの書式設定ルールを選択するか、[論理関数](https://help.sigmacomputing.com/docs/logical-functions)や[テキスト関数](https://help.sigmacomputing.com/docs/text-functions)などのカスタム数式を指定します。
+* 斜体、太字、下線、テキストの色などのテキスト書式を適用します。
+* 背景色を設定します。
+* 数値または日付の値をフォーマットします。
+* 背景色またはテキスト色にカラースケールを適用します。
+* データ値の上にデータ バーを表示するか、データ値を非表示にしてデータ バーのみを表示します。
+
+表全体に書式を適用するには、「[カスタマイズ可能な表スタイル オプション](#customizable-table-style-options)」を参照してください。
+1.  クリックしてテーブルを選択します。
+2.  列の列メニュー、またはサイド パネルの**書式**セクションから、 **条件付き書式**を選択します。
+3.  列メニューから条件付き書式を開いた場合、「条件付き書式」パネルにはその列のデフォルトのルールが表示されます。それ以外の場合は、「+ ルールを追加」をクリックします。
+4.  （オプション）「**適用先**」で、条件付き書式を適用する列を選択します。「すべての列」を選択することもできます。
+5.  書式設定には、**単色**、**カラースケール**、**データ バー**のオプションから選択します。
+6.  **書式設定ルール**では、条件付き書式ルールを定義します。あらかじめ用意されたルールを選択するか、カスタム数式を定義します。
+7.  ルールを作成し、書式を定義すると、該当する列とセルに書式が適用されます。
+8.  (オプション) [ + ルールの追加]をクリックして、条件付き書式ルールをさらに追加します。
+    > 💡
+    > 表に合計が含まれている場合は、小計の行と列、または総計の行と列にのみ条件付き書式を適用できます。
+### 4-4-3. 列にハイパーリンクと画像を追加する (Add hyperlinks and images to columns)
+
+テーブルまたはピボットテーブルにURLが含まれている場合、それらのURLを使用して、別のテーブル列のデータにハイパーリンクを設定したり、リンクされた画像を表示したりできます。列メニューを使用して、任意のテーブルまたはピボットテーブルの列にハイパーリンクを追加できます。
+
+#### **要件 (Requirements)**
+
+個々のワークブックに対する`Can Explore`または`Can Edit`の[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+
+#### **列にハイパーリンクを追加する (Add a hyperlink to a column)**
+
+列内のデータに、別の列にあるURLを参照するか、数式でURLを構築してハイパーリンクを設定できます。データにハイパーリンクを設定するには、ワークブックが`Explore`または`Edit`モードである必要があります。
+
+##### **数式でハイパーリンクを追加する (Add a hyperlink with a formula)**
+
+一つ以上の列のデータからURLまたはリンクを構築し、そのテキストをクリック可能なハイパーリンクに変換できます。
+例えば、店舗IDに基づいて店舗の場所のURLを構築し、その構築したURLを`Store Name`列のハイパーリンクとして使用します。
+
+1.  テーブルまたはピボットテーブル要素を選択します。
+2.  列にカーソルを合わせ、キャレット()をクリックして列メニューを開きます。
+3.  列メニューで、`Transform` > `Set link...`を選択します。
+4.  `Set Link for Column`モーダルが開きます。
+5.  `Link source`で、`Custom formula`を選択します。
+6.  `Create URL with formula`で、`Concat`関数を使用して数式を定義します。
+    * 例えば、文字列と列でターゲットURLを構成します。
+      `Concat("https://www.example.com/?location-id=", [Store Id])`
+7.  `Enter`または`Return`を押すか、チェックマークをクリックして数式を適用します。`URL Column`で出力をプレビューします。
+8.  `Set Link`をクリックします。
+
+##### **既存のURL列からハイパーリンクを追加する (Add a hyperlink from an existing URL column)**
+
+テーブルまたはピボットテーブルにURLを含む列がある場合、その列をソースとして使用して、別の列の値にハイパーリンクを追加できます。URL列には、自動的にハイパーリンクされるURLのテキスト、またはURLを構築する数式を含めることができます。
+
+例えば、`Page Title`列のデータに`Page Link`列のURLでハイパーリンクを設定するには、以下を実行します。
+1.  列にカーソルを合わせ、キャレット()をクリックして列メニューを開きます。例えば、`Page Title`列の列メニューを開きます。
+2.  列メニューで、`Transform` > `Set link...`を選択します。
+3.  `Set Link for Column`モーダルが開きます。
+4.  `Link source`で、`Another column`を選択します。
+5.  `Select column`で、URLを含む列を選択します。例えば、`Page Link`列を選択します。
+6.  `URL Column`で出力をプレビューします。
+7.  `Set Link`をクリックします。
+
+#### **列からハイパーリンクを削除する (Remove a hyperlink from a column)**
+
+列からハイパーリンクを削除（列のリンクを解除）するには、以下を実行します。
+1.  ハイパーリンクされたデータを持つ列について、キャレット()をクリックして列メニューを開きます。
+2.  列メニューで、`Transform` > `Set link...`を選択します。
+3.  `Remove`をクリックしてリンクを削除します。
+
+#### **URLを含む列を作成する (Create a column with URLs)**
+
+列に完全なURLを表示する、URLを含む列を作成するには、以下を実行します。
+> 📘
+> クリック可能なハイパーリンク付きのテキストを表示するには、「[Add a hyperlink to a column](#add-a-hyperlink-to-a-column)」を参照してください。
+
+1.  URLを追加する列を選択または作成します。
+2.  数式バーと`Concat`関数を使用して、URLを構築する数式を記述します。
+    * 例えば：
+      `Concat("https://www.example.com/?location-id=", [Store Id])`
+    * または、画像URLを作成する例として：
+      `Concat("https://example.com/image/", [Product Id])`
+3.  キーボードの`Enter`または`Return`を押すか、数式バーの隣にあるチェックマークをクリックして、数式を保存します。
+
+画像へのURLを構築した場合、テーブルに画像を表示するように設定できます。「[Display linked images in a table column](#display-linked-images-in-a-table-or-pivot-table)」を参照してください。
+
+#### **テーブルまたはピボットテーブルにリンクされた画像を表示する (Display linked images in a table or pivot table)**
+
+テーブルまたはピボットテーブルに、小売製品のサムネイル画像など、画像へのリンクを含む列がある場合、その列を変換して、画像リンクを画像として表示できます。ピボットテーブルの行、列、または値の列に画像を表示できます。
+
+* **前提条件:**
+    * データ内に画像へのリンクを持つ列が必要です。
+    * このアクションは編集モードでのみ利用可能です。編集を開始するには、ページの右上隅にある`Edit`をクリックします。
+
+データ列のリンクから画像を表示するには：
+1.  列にカーソルを合わせ、キャレット()をクリックして列メニューを開きます。
+2.  `Transform > Set image...`を選択します。
+3.  `Set image options`モーダルで、`Display as image`トグルをオンにします。
+4.  画像のサイジング、高さ、幅、および画像のアスペクト比を維持するかどうかを指定します。
+5.  `Save`を選択します。
+6.  画像がテーブルセルに表示されます。
+
+### 4-4-4. JSONまたはバリアントデータから列を抽出する (Extract columns from JSON or variant data)
+
+JSONデータ型は、本質的に階層的なデータを保存します。[列メニューを使用する](https://help.sigmacomputing.com/docs/extract-columns-from-json-or-variant-data#extract-json-data-from-a-column)か、[ドット記法を使用する数式を記述する](https://help.sigmacomputing.com/docs/extract-columns-from-json-or-variant-data#use-dot-notation-to-extract-values-from-json-columns)ことにより、JSONを含むテーブル列から完全な構造化および半構造化データを抽出できます。
+
+#### **要件 (Requirements)**
+
+JSONまたはバリアントデータから列を抽出する機能には、以下が必要です。
+* `Basic explore`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたがワークブックの所有者であるか、`Can explore`または`Can edit`の[ワークブック権限](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+#### **列からJSONデータを抽出する (Extract JSON data from a column)**
+
+任意のデータ要素で、一つの列からJSONデータを別々の列に抽出できます。JSONまたはVariantのデータ型を持つ列には、列メニューに`Extract columns...`オプションがあります。データが半構造化されており、`Extract columns`オプションが表示されない場合は、[データ型を変換](https://help.sigmacomputing.com/docs/extract-columns-from-json-or-variant-data#convert-the-data-type-of-a-column)できます。列の抽出は上流の要素で行うのがベストプラクティスです。
+
+> 🚧
+> 抽出される列のリストは、テーブルの最初の1,000行から取得されます。それ以降の行にあるキーと値のペアは抽出されません。
+
+一つの列からJSONデータを抽出し、JSONデータのキーに一致する別々の列を作成するには：
+1.  ワークブック内の列に移動します。この例では、`EXAMPLES.PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA`サンプルデータの`Cust Json`列を使用します。
+2.  列について、キャレット()をクリックして列メニューを開きます。
+3.  `Extract columns`を選択します。
+4.  `Extract Fields`モーダルが開きます。
+5.  モーダルで、独自の列に抽出したいJSONキーを選択します。選択した各JSONキーに対して一つの列が作成されます。
+6.  `Confirm`をクリックして、選択したキーと値のペアを抽出し、対応する列を作成します。
+7.  その後、新しい列をデータ探索や分析で使用できます。
+
+#### **列のデータ型を変換する (Convert the data type of a column)**
+
+列からJSONまたは半構造化データを抽出したいが、列メニューに`Extract columns`オプションが表示されない場合は、列のデータ型をJSONまたはVariantに変換します。
+* `Json`または`Variant`の型関数を使用して列の数式を修正します。
+* 列メニューを開き、`Transform` > `Convert to JSON`を選択します。
+
+#### **ドット記法を使用してJSON列から値を抽出する (Use dot notation to extract values from JSON columns)**
+
+ドット記法を使用した数式を記述することで、JSON列内のJSON配列やオブジェクトから値を抽出することもできます。
+
+##### **JSONデータから値を抽出する (Extract values from JSON data)**
+JSONデータ型の列から値を抽出するには、ドット記法を使用し、JSONキーを参照するために定数値を指定する数式を記述します。構文は以下の通りです。
+`[ColumnName].fieldName.subFieldName...`
+ここで、
+* `Column name`はプライマリオブジェクトの名前です。
+* `fieldName`はプライマリオブジェクトのフィールドの一つです。
+* `subFieldName`はセカンダリフィールドのフィールドの一つです。
+* ...などと続きます。
+
+例えば、`Order JSON`という列に以下のJSON構造がある場合：
+```json
+{
+  "order": { "orderId": 6 },
+  "product": { "productId": 49, "productName": "Pumpkin Muffin Mix" },
+  "user": { "firstName": "Sally", "lastName": "Sigma", "userId": 1 }
+}
+ドット記法を使用した数式でproductNameを新しい列に抽出し、データ型をJSONからテキストに変換するために構文をText関数でラップすることができます。
+Text([Order JSON].product.productName)
+
+抽出するキーの値がJSONオブジェクトである場合、以下のような数式でJSONオブジェクトを持つ列を作成できます。
+[OrderJSON].product
+新しい列には、以下のような値を持つJSONデータが含まれます。
+
+JSON
+
+{ "productId": 49, "productName": "Pumpkin Muffin Mix" }
+JSON配列から値を抽出する (Extract values from JSON arrays)
+数式内で配列の値のインデックスを参照することにより、ドット記法を使用してJSON配列から値を抽出することもできます。
+[ColumnName].fieldName[i]
+[ColumnName].fieldName.subFieldName[i]...
+ここで i は配列のインデックスで、0から始まります。
+
+例えば、Cart Detailsという列に以下のJSON構造がある場合：
+
+JSON
+
+{
+    "cart": [
+        "apples",
+        "yogurt",
+        "steak"
+    ],
+    "orderId": 1
+}
+ドット記法を使用してcart配列内のアイテムを取得できます。例えば、cart配列のインデックス0に対応するアイテムをテキストデータとして返す数式を記述します。
+Text([Cart Details].cart[0])
+出力は、作成した新しい列に表示されます。
+
+JSON配列内のJSONオブジェクトから値を抽出する (Extract values from JSON objects in JSON arrays)
+ドット記法を組み合わせてJSON配列とJSONオブジェクトから値を取得し、より複雑なJSON構造から値を抽出できます。
+
+例えば、Weather Reportという名前の列に以下のようなJSONがある場合：
+
+JSON
+
+{
+  "city": {
+    "coord": { "lat": 43.000351, "lon": -75.499901 },
+    "country": "US",
+    "id": 5128638,
+    "name": "New York"
+  },
+  "weather": [
+    {
+      "description": "broken clouds",
+      "icon": "04d",
+      "id": 803,
+      "main": "Clouds"
+    }
+  ],
+  "main": {
+    "humidity": 60,
+    "pressure": 1018,
+    "temp": 293.68,
+    "temp_max": 294.26,
+    "temp_min": 293.15
+  },
+  "time": 1473614247
+}
+以下のような数式を使用して、天気の詳細を列に抽出できます。
+Text([Weather Report].weather[0].description)
+これにより、broken clouds のような列の値が出力されます。
