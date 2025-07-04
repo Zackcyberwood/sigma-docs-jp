@@ -4869,21 +4869,7 @@ SigmaでSQLを扱いやすくするためのいくつかのショートカット
 ##### **ユーザー属性に基づいて出力を変更する**
 組織でユーザー属性が定義されている場合、属性を参照して、現在のユーザーのユーザー属性の値に基づいてSQLクエリから返される結果を制限できます。
 例えば、Plugs Electronicsのサンプルデータについて、`store_region`ユーザー属性に基づいて現在のユーザーがアクセスできる店舗地域の結果のみを返します。
-```sql
-SELECT
-  *
-FROM
-  EXAMPLES.PLUGS_ELECTRONICS.PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA
-WHERE 
-  {{system::CurrentUserAttributeText::store_region}} = STORE_REGION
-
-別の例として、割り当てられた`organization_name`ユーザー属性の値に基づいて、現在のユーザーが表示を許可されている`customer_name`でフィルタリングされた結果を返します。
-```sql
-SELECT 
-  * FROM 
-  test.orders 
-WHERE 
-  customer_name = {{system::CurrentUserAttributeText::organization_name}}
+# 変更の必要あり
 
 関数構文の詳細については、「CurrentUserAttributeText」を参照してください。ユーザー属性と割り当ての詳細については、「User Attributes」を参照してください。
 
