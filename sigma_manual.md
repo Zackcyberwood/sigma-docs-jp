@@ -1,4 +1,4 @@
-![6548f3d62f2bf56e028d80d33d25cff17dc6240d89c119c06d5f1822132bb083-element-bar-charts](https://github.com/user-attachments/assets/1a2776f2-21c1-43d1-8bcb-f79fe8cae9a4)# Sigma日本語ドキュメント 構成案
+# Sigma日本語ドキュメント 構成案
 
 ---
 
@@ -4452,3 +4452,1956 @@ JSON
 以下のような数式を使用して、天気の詳細を列に抽出できます。
 Text([Weather Report].weather[0].description)
 これにより、broken clouds のような列の値が出力されます。
+
+### 4-4-5. ピボットテーブル (Pivot tables)
+
+#### 4-4-5-1. ピボットテーブルを操作する (Working with pivot tables)
+
+Sigmaでは、ピボットテーブルを作成して、特定のやり方でデータをグループ化し、要約することができます。ピボットテーブルを使用して、データを2つの次元で表示し、グループに基づいてデータを自動的に要約し、様々な階層でデータを表示します。
+
+テーブル内の列をグループ化して、特定のグループのデータを集計するなど、ピボットテーブルの一部の機能に近いことを行うこともできます。「[Create and manage tables](https://help.sigmacomputing.com/docs/create-and-manage-tables)」を参照してください。
+
+##### **要件 (Requirements)**
+データ要素を作成または編集するには、個々のワークブックに対する`Can edit`アクセス権が必要です。
+一部の探索的アクションは、`Can explore`アクセスでもサポートされています。
+詳細は、「[Folder and document permissions](https://help.sigmacomputing.com/docs/folder-and-document-permissions)」を参照してください。
+
+##### **ピボットテーブルを作成する (Create a pivot table)**
+既存のデータ要素から、または`Add element`バーで`Data` > `Pivot table`を選択してピボットテーブルを作成できます。詳細は、「[Create a data element](https://help.sigmacomputing.com/docs/create-a-data-element)」を参照してください。
+
+ピボット行および/またはピボット列として使用するデータソース列を定義するまで、ピボットテーブルはデータを表示しません。エディタパネルの`Properties`タブで、以下のプロパティを構成します。
+* **Pivot rows (ピボット行):** テーブルから一つ以上の列を選択し、ピボットテーブルの行として表示します。例えば、製品タイプごとの総コストを要約するには、製品タイプ列をピボット行として追加します。
+* **Pivot columns (ピボット列):** [任意] 一つ以上のピボット行を定義した場合。各行の値を分割するために一つ以上の列を選択します。例えば、各店舗地域ごとの各製品タイプの総コストを要約するには、店舗地域列をピボット列として追加します。
+* **Values (値):** 各ピボット行と列の値を表示するために一つ以上の列を選択します。`Values`に追加された列はデフォルトで集計され、使用される集計のタイプは元の列のデータ型に依存します。例えば、コスト列を値として追加し、デフォルトの集計である`Sum`のままにするか、丸めて調整します。「[Change the aggregation of values](#change-the-aggregation-of-values)」を参照してください。
+
+##### **ピボットテーブルの書式設定とカスタマイズオプション (Pivot table formatting and customization options)**
+多くの方法でピボットテーブルの書式設定と表示をカスタマイズできます。ピボットテーブルで合計を表示または非表示にするには、「[Pivot table totals and subtotals](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals)」を参照してください。
+* **始める前に:** このタスクは要素の編集を必要とします。ワークブックをカスタマイズまたは編集することで要素を編集できます。
+
+1.  エディタパネルで、`Format`タブを選択します。
+2.  書式カテゴリをクリックして、その設定を表示・編集します。
+
+ピボットテーブルで利用可能な書式カテゴリは以下の通りです。
+* **Element Style:** 「[Customize element background and styles](https://help.sigmacomputing.com/docs/customize-element-background-and-styles-beta)」を参照してください。
+* **Title:** 「[Customize element title](https://help.sigmacomputing.com/docs/customize-element-title)」を参照してください。
+* **Table style:** 「[Format and customize a table](https://help.sigmacomputing.com/docs/format-and-customize-a-table)」を参照してください。
+* **Totals:** 「[Format pivot table totals](https://help.sigmacomputing.com/docs/format-pivot-table-totals)」を参照してください。
+* **Format:** 「[Specify empty cell display value](#empty-cell-display-value)」および「[Repeat row labels](#repeat-row-labels)」を参照してください。
+
+また、ピボットテーブルの列を書式設定することもできます。「[Format pivot table columns](#format-pivot-table-columns)」を参照してください。
+
+##### **空のセルの表示値を指定する (Empty cell display value)**
+ピボットテーブルに空の値がある場合、空のセルを埋める値を指定できます。
+1.  ワークブックをカスタマイズまたは編集用に開きます。
+2.  ピボットテーブル要素を選択し、エディタパネルで`Format`タブを選択します。
+3.  `Format`をクリックします。
+4.  `Empty cell display value`に、値を入力します。
+
+##### **行ラベルを繰り返す (Repeat row labels)**
+複数のピボット行が定義されており、ピボット行のグルーピングを別々の列として表示することを選択した場合、行ラベルを繰り返すことができます。
+1.  ワークブックをカスタマイズまたは編集用に開きます。
+2.  ピボットテーブル要素を選択し、エディタパネルで`Format`タブを選択します。
+3.  `Format`をクリックします。
+4.  `Repeat row labels`で、チェックボックスを選択します。
+
+| 選択したオプション | 例 |
+| :--- | :--- |
+| Default | (画像) |
+| Repeat row labels | (画像) |
+
+##### **ピボットテーブルの列を書式設定する (Format pivot table columns)**
+以下の列書式設定オプションが利用可能です。
+* Alignment (配置)
+* Font color (フォントの色)
+* Background color (背景色)
+* Conditional formatting (条件付き書式)
+
+* **基本的な視覚的列書式設定を適用する**
+    列の値の配置、フォントの色、または背景色を変更するには：
+    1.  書式設定したい列またはセルを選択します。
+    2.  背景色を設定するには、数式バーの`Background color`を選択します。
+    3.  フォントの色を設定するには、数式バーの`Text color`を選択します。
+    4.  データの配置を設定するには、数式バーの`Alignment`を選択します。
+
+* **条件付き書式を適用する**
+    ピボットテーブルの列、行、値に条件付き書式を適用できます。条件付き書式を使用して、値ごとに異なる背景色を表示したり、背景またはフォントのスケールでデータの不一致をハイライトしたり、データバーを表示して外れ値を迅速に視覚化したりします。
+    > 📘
+    > 条件付き書式は、ツールバーの列書式設定オプションよりも優先されます。
+    1.  ワークブックをカスタマイズまたは編集用に開きます。
+    2.  ピボットテーブル要素を選択し、エディタパネルで`Format`タブを選択します。
+    3.  `Conditional formatting`をクリックします。
+    4.  `+ Add rule`をクリックします。
+    5.  ルールをカスタマイズします。
+        * 書式を適用する列を選択します。
+        * 単色、カラースケール、またはセルにデータバーを追加するかを選択します。
+        * 書式を値、小計、または総計に適用するためのチェックボックスを選択します。
+
+##### **ピボットテーブルでデータ表示を変更する (Change data presentation in a pivot table)**
+ピボットテーブルのほとんどの複雑なデータ変換はフラット化されたソーステーブルで行うべきですが、いくつかの方法でピボットテーブルのデータ表示を操作できます。
+* [値の集計を変更する](#change-the-aggregation-of-values)
+* [ピボットテーブルに計算列を追加する](#add-a-calculated-column-to-a-pivot-table)
+* [ピボットの列と行を交換する](#swap-pivot-columns-and-rows)
+* [複数のピボット行を別々の列として表示する](#display-multiple-pivot-rows-as-separate-columns)
+* [列をソートする](https://help.sigmacomputing.com/docs/customize-the-sort-order)
+> 📘
+> これらのタスクは要素の編集を必要とします。ワークブックをカスタマイズまたは編集することで要素を編集できます。
+
+* **値の集計を変更する (Change the aggregation of values)**
+    データ列をピボットテーブルの`Values`フィールドに追加すると、値はデータ型に応じて自動的に[集計](https://help.sigmacomputing.com/docs/aggregate-functions)されます。数値列は`Sum`で集計され、テキストと日付の列は`Count`で集計されます。
+    列の集計を変更するには：
+    1.  エディタパネルで、列にカーソルを合わせ、下矢印()をクリックします。
+    2.  列メニューが開きます。
+    3.  `Set aggregate`サブメニューから、新しい集計を選択します。例えば、`Sum`, `Avg`, `Median`, `Percentile`, `Min`, `Max`, `First`, `Last`, `Count`, `CountDistinct`、または合計に対するパーセンテージなどのより高度な計算を選択します。
+
+* **ピボットテーブルに計算列を追加する (Add a calculated column to a pivot table)**
+    合計に対するパーセンテージや期間比較分析など、ピボット全体で繰り返される計算を実行するために、ピボットテーブルに計算列を追加します。
+    1.  ピボットテーブル要素を選択します。
+    2.  `Values`セクションで、`+` > `Add new column`を選択します。
+    3.  `Calc`というタイトルの新しい列が表示され、フォーカスが数式バーに移動します。
+    4.  計算列の数式を入力し、キーボードのEnterを押すか、チェックマークを選択して保存します。列は数式の後に自動的に名前が変更されます。
+    計算列でピボットテーブルの合計を使用するガイダンスについては、「[Pivot table totals and subtotals](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals)」を参照してください。
+
+* **ピボットの列と行を交換する (Swap pivot columns and rows)**
+    ピボットテーブルのレイアウトを変更し、行と列を交換できます。
+    1.  ピボットテーブル要素を選択します。
+    2.  エディタパネルで、`Pivot rows`ヘッダーの隣にある`Swap rows with columns`をクリックします。
+    3.  ピボットテーブルの行と列が交換されます。
+
+* **複数のピボット行を別々の列として表示する (Display multiple pivot rows as separate columns)**
+    複数のピボット行がある場合、データを1つの列に結合して表示するか、別々の列として表示するかを選択できます。
+    2番目のデータ列をピボット行として追加した後、`Display as separate columns`を選択します。表示を元に戻すには、`Display as a single column`を選択します。
+
+| 選択したオプション | 例 |
+| :--- | :--- |
+| Display as a single column | (画像) |
+| Display as separate columns | (画像) |
+
+* **グループ化された行と列を折りたたむ (Collapse grouped rows and columns)**
+    ピボットテーブルに`Pivot rows`または`Pivot columns`として少なくとも2つのデータ列が追加されている場合、行と列を展開および折りたたむことができます。そのためには、ピボットテーブルの行、列、またはセルヘッダーの値の隣にある`+`または`-`をクリックします。
+
+* **ピボットテーブルで値の階層を定義する (Define values hierarchy in a pivot table)**
+    ピボットテーブルに複数の値がある場合、表示したいデータの要約を反映するように、データ列、値、および行の階層とグルーピングを定義できます。
+    ピボットテーブルの値の階層を構造化するには：
+    1.  ピボットテーブル要素を選択します。
+    2.  `Values`として少なくとも2つの列を追加します。
+    3.  `Pivot columns`の下に`Values`というラベルの付いたボックスが表示されます。
+    4.  デフォルトの階層を変更するには、`Values`ボックスを`Pivot columns`の下の別の位置または`Pivot rows`にドラッグ＆ドロップします。
+        データの表示は、値の場所に基づいて変化します。
+
+| 値の場所 | 例 |
+| :--- | :--- |
+| Default, below pivot columns. | (画像) |
+| Above pivot columns. | (画像) |
+| Below pivot rows. | (画像) |
+| Above pivot rows. | (画像) |
+
+* **ピボットテーブルを最大化してフラット化されたテーブルを表示する (Maximize a pivot table to view the flattened table)**
+    ワークブックを表示、カスタマイズ、または編集中、すべての[データ要素](https://help.sigmacomputing.com/docs/create-a-data-element)はデフォルトで最小化され、キャンバスに複数の要素を表示します。任意のデータ要素を最大化して、その詳細に焦点を当て、基盤となるデータを探索できます。
+    要素を選択して`Maximize element`を選択するか、キーボードのスペースバーを押すと、基盤となるデータが表示されます。
+    ピボットテーブルを最大化すると、ワークブックページの全幅に拡大され、基盤となるフラット化されたデータテーブルが表示されます。このビューを使用して、ピボットテーブルのグルーピングレベルを探索できます。要素と基盤となるデータは本質的にリンクしているため、一方に加えられた変更は自動的にもう一方に反映されます。
+    > 📘
+    > ドキュメントをカスタマイズまたは編集中にのみ、データ要素の基盤となるデータを変更できます。
+    詳細は、「[View underlying data](https://help.sigmacomputing.com/docs/view-underlying-data)」を参照してください。
+
+#### 4-4-5-2. ピボットテーブルの合計と小計 (Pivot table totals and subtotals)
+
+グループ化されたテーブルとピボットテーブルは、合計と小計を計算します。ピボットテーブルに値の合計やカウントなどの集計値が含まれている場合、合計はデフォルトで表示されます。
+
+グループ化されたテーブルまたはピボットテーブルで、合計と小計を非表示にしたり、管理したり、カスタマイズしたり、追加の計算を実行したりできます。
+* 合計を非表示にするには、「[ピボットテーブルで合計を表示・非表示にする](#show-and-hide-totals-in-a-pivot-table)」または「[グループ化されたテーブルで合計を表示する](https://help.sigmacomputing.com/docs/create-and-manage-tables#show-totals-in-a-grouped-table)」を参照してください。
+* 合計の計算に使用される数式をカスタマイズするには、「[合計と小計をカスタマイズする](#customize-totals-and-subtotals)」を参照してください。
+* 合計をハイライトしたり、フォントの色を変更するなど、合計をフォーマットするには、「[ピボットテーブルの合計をフォーマットする](https://help.sigmacomputing.com/docs/format-pivot-table-totals)」を参照してください。
+
+テーブルの詳細については、「[テーブルの作成と管理](https://help.sigmacomputing.com/docs/create-and-manage-tables)」を参照してください。
+ピボットテーブルの詳細については、「[ピボットテーブルを操作する](https://help.sigmacomputing.com/docs/working-with-pivot-tables)」を参照してください。
+
+##### **定義と主要な概念 (Definitions and key concepts)**
+ピボットテーブルに値が含まれている場合、またはテーブルのグルーピングに計算が含まれている場合に、総計が計算されます。ピボットテーブルに値が含まれ、ピボット行またはピボット列として複数の列が追加されている場合、またはテーブルに計算を含む複数のグルーピングがある場合に、小計が計算されます。
+
+デフォルトでは、合計はピボットテーブルまたはテーブルグルーピングの対応する値と同じ数式を使用して計算されますが、より高いレベルのデータのグルーピングに適用されます。合計の計算に使用される数式を変更したい場合は、「[合計と小計をカスタマイズする](#customize-totals-and-subtotals)」を参照してください。
+
+総計の計算はテーブルまたはピボットテーブル全体に対して実行され、小計の計算はデータの各グルーピングに対して実行されます。
+* **総計 (Grand total):** ピボット行、ピボット列、またはグルーピング計算の**すべて**の値の集計計算。例のスクリーンショットでは、総計はピンクでハイライトされています。
+* **小計 (Subtotal):** ピボット行、ピボット列の**グループ**、または特定のテーブルグルーピングの値の集計計算。例のスクリーンショットでは、小計は黄色でハイライトされています。
+
+グループ化されたテーブルでは、各グルーピングの総計のみが数式で使用できます。ピボットテーブルでは、存在するピボット行、列、または値の数に応じて、`Subtotal`や`PercentOfTotal`などの関数で、他の計算済み合計を数式で使用できる場合があります。
+* **行合計 (Row Total):** 行の総計。ピボット行全体の値を集計します。複数のピボット行がある場合、これはグルーピングの最下位レベルの行の総計です。
+* **親行合計 (Parent Row Total):** 親行の総計。グルーピング内の列合計の集計に相当します。ピボットテーブルの各行グループの小計として機能します。
+* **列合計 (Column Total):** 列の総計。ピボット列の値を集計します。
+* **親列合計 (Parent Column Total):** 親列の総計。グルーピング内の行合計の集計に相当します。ピボットテーブルの各列グループの小計として機能します。
+
+スクリーンショットでは、`East`と`West`の各行は、地域内のすべての州の合計を計算する親行合計を示しています。これら2つの親行合計は小計であり、合計されてピボットテーブルの総計が計算されます。月レベルの`Total`列にも列の小計があります。
+
+計算列でピボットテーブルの合計を使用する例については、以下のチュートリアルを参照してください。
+* [チュートリアル：ピボットテーブルの小計のパーセンテージを計算する](#tutorial-calculate-a-percentage-for-subtotals-in-a-pivot-table)
+* [チュートリアル：行の小計のパーセンテージを計算する](#tutorial-calculate-a-percentage-for-row-subtotals)
+
+##### **ピボットテーブルで合計を表示・非表示にする (Show and hide totals in a pivot table)**
+特定のピボット行と列について、ピボットテーブルの合計を表示または非表示にすることを選択できます。ピボットテーブルでは、合計はデフォルトで表示されます。合計の表示は、ピボットテーブルが行を単一の列として表示するか、別々の列として表示するかによって異なります。
+
+> 💡
+> 合計は、ピボットテーブルに合計やカウントなどの集計値が含まれている場合に利用できます。
+
+* **総計を非表示にする (Hide grand totals)**
+    ピボットテーブルのすべての総計を非表示または削除するには、以下を実行します。
+    1.  ワークブックのカスタマイズを開始するか、編集用に開きます。
+    2.  変更したいピボットテーブルを選択します。
+    3.  サイドパネルで`Format`を選択し、`Totals`ヘッダーをクリックしてセクションを展開します。
+    4.  `Grand Totals`で、トグルをオフにします。
+
+* **親行合計を非表示にする (Hide parent row totals)**
+    行レベルの総計のみを非表示または削除するには、以下を実行します。
+    1.  ピボットテーブルまたはエディタパネルで、列名の隣にある下矢印()を選択します。
+    2.  ドロップダウンメニューで`Show totals`を選択し、チェックマークが消えるようにします。
+
+##### **小計を非表示にする (Hide subtotals)**
+ピボットテーブルの小計を非表示または削除するには、以下を実行します。
+1.  エディタパネルで、`Element format`を選択します。
+2.  `Totals`を選択して、合計の書式設定セクションを開きます。
+3.  `Subtotals`で、トグルをオフにします。
+
+##### **合計と小計をカスタマイズする (Customize totals and subtotals)**
+グループ化されたテーブルとピボットテーブルの合計と小計の計算に使用される数式をカスタマイズすることで、より柔軟なレポートを構築します。異なる集計を設定するか、カスタム数式を記述してカスタム合計またはカスタム小計を設定します。集計数式をカスタマイズしなくても、合計と小計に使用される[ラベルをカスタマイズする](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals#customize-total-labels)こともできます。
+
+* **小計の集計を変更する (Change aggregate of a subtotal)**
+    ピボットテーブルまたはグループ化されたテーブルの小計の集計を変更するには（例えば、`Sum()`から`Avg()`へ）、以下を実行します。
+    1.  調整したい合計が表示されていることを確認します。
+    2.  合計を持つピボットテーブルまたはグループ化されたテーブルを選択します。
+    3.  小計または合計について、合計の行または列を探して選択します。
+    4.  以下のいずれかを実行します。
+        * 合計の行または列の任意のセルを右クリックしてコンテキストメニューを開きます。
+        * 関連するピボット行、列、または上位レベルのテーブルグルーピング列について、下矢印()をクリックして列メニューを開きます。
+    5.  `totals`を選択し、`Set aggregate`を選択して関連する集計関数を選択します。デフォルトは`Auto`（`Sum`）です。
+
+* **小計または総計のカスタム数式を記述する (Write a custom formula for a subtotal or grand total)**
+    小計または総計を計算するためにカスタム数式を記述するには、以下を実行します。
+    1.  カスタマイズしたい合計の行または列を探します。
+    2.  合計の行または列で、セルを選択して数式バーに数式を表示させます。
+    3.  数式バーで数式を更新します。
+
+* **合計ラベルをカスタマイズする (Customize total labels)**
+    テーブルまたはピボットテーブルの小計または総計のラベルをカスタマイズできます。
+    1.  名前を変更したい合計ラベルをテーブルまたはピボットテーブルで探します。
+    2.  ラベルをダブルクリックして編集可能にし、新しいラベルを入力します。
+    3.  キーボードのenterを押すか、セルの外側をクリックして新しいラベルを保存します。
+    > 💡
+    > 合計または小計のデフォルトラベルに戻すには、既存のラベルを削除します。
+
+##### **合計と小計をカスタマイズする際の制限事項 (Limitations when customizing totals and subtotals)**
+名前が変更された小計と総計のラベルは、下流では更新されません。合計にカスタム数式を持つピボットテーブルまたはグループ化されたテーブルから作成された子テーブルは、元の列名を表示します。合計または小計の値を参照するサマリーメトリクスなどの数式は、代わりに元の列名を参照する必要があります。
+カスタム小計数式の後、交差する合計が意味をなさない場合、小計が交差するセルは空白になることがあります。
+
+##### **チュートリアル：ピボットテーブルの小計のパーセンテージを計算する**
+この例では、特定の地域で販売された総ユニット数のパーセンテージを計算します。
+1.  ピボット行に`Store Region`と`Store State`、集計値に`Sum of Quantity`を持つピボットテーブルから始めます。
+2.  ピボットテーブルに新しい列を追加します。
+3.  新しい列の数式バーに、`[Sum of Quantity (Row Total)] / [Sum of Quantity (Parent Row Total)]`と入力します。
+4.  数式を保存し、計算列をパーセンテージとしてフォーマットします。
+
+##### **チュートリアル：行の小計のパーセンテージを計算する**
+このチュートリアルでは、地域と販売四半期ごとに分類された州の総小売売上高のパーセンテージを計算します。
+1.  ピボット行に`Store Region`と`Store State`、ピボット列に`Quarter of Date`に切り捨てられた`Date`、集計値に`Sum of Quantity`を持つピボットテーブルから始めます。
+2.  ピボットテーブルに新しい列を追加します。
+3.  新しい列の数式バーに、`[Sum of Quantity] / [Sum of Quantity (Parent Row Total)]`と入力します。
+4.  数式を保存し、計算列をパーセンテージとしてフォーマットします。
+
+#### 4-4-5-3. ピボットテーブルの合計の書式設定 (Format pivot table totals)
+
+[テーブルスタイル](https://help.sigmacomputing.com/docs/format-and-customize-a-table#customize-the-table-style-for-an-individual-element)を適用してテーブルまたはピボットテーブルのすべてのセルをカスタマイズすることに加えて、ピボットテーブルの合計をピボットテーブル内の他の値とは別に書式設定できます。
+* このドキュメントで説明されているように、ピボットテーブルの小計と総計にユニークな書式を適用します。
+* ツールバーを使用して、合計行と合計列の数値形式と外観を変更します。「[列と合計データの書式設定](https://help.sigmacomputing.com/docs/format-and-customize-a-table#format-column-and-totals-data)」を参照してください。
+* 小計と総計に条件付き書式を適用します。「[条件付き書式の適用](https://help.sigmacomputing.com/docs/format-and-customize-a-table#apply-conditional-formatting-to-table-columns-and-cells)」を参照してください。
+
+小計と総計を表示または非表示にするには、「[ピボットテーブルの合計と小計](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals)」を参照してください。
+
+このドキュメントでは、ピボットテーブルの合計の書式設定オプションについて説明し、小計と総計を含む行と列の表示をカスタマイズする方法を解説します。
+
+##### **ユーザー要件 (User requirements)**
+
+ピボットテーブルの合計を書式設定する機能には、以下が必要です。
+* `Explore workbooks`または`Create, edit, and publish workbooks`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたがワークブックの所有者であるか、`Can explore`または`Can edit`の[ワークブック権限](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+##### **ピボットテーブルの合計の書式設定オプション (Pivot table totals format options)**
+
+* **小計 (Subtotals)**
+    `Subtotals`ツールを使用すると、小計の行と列のフォントの太さ、フォントの色、および背景色をカスタマイズできます。
+
+* **総計 (Grand totals)**
+    `Grand totals`ツールを使用すると、総計の行と列のフォントの太さ、フォントの色、および背景色をカスタマイズできます。
+
+* **位置 (Position)**
+    `Position`設定を使用すると、総計を最初または最後の列と行に移動できます。
+
+##### **ピボットテーブルの合計を書式設定する (Format pivot table totals)**
+1.  ワークブックを`Explore`または`Edit`モードで開きます。
+2.  書式設定したいピボットテーブルを選択します。
+3.  サイドナビゲーションで`Element format`を選択し、`Totals`ヘッダーをクリックしてセクションを展開します。
+4.  `Subtotals`および`Grand totals`ツールを使用して、フォントの太さ、フォントの色、背景色をカスタマイズし、`Position`ドロップダウンでオプションを選択して総計の行と列の位置を制御します。
+
+#### 4-4-5-4. 階層 (ベータ版) (Hierarchies (Beta))
+
+> 🚩
+> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このページは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+
+階層（ヒエラルキー）を使用して、列をカテゴリ別にグループ化し、データの粒度の順序を定義します。
+
+一般的な階層の例：
+* **製品:** タイプ、ファミリー、名前
+* **場所:** 大陸、国、地域、州、市
+* **時間:** 年、月、週、日
+* **分類学:** 界、門、綱、目、科、属、種
+
+> 📘
+> 階層はテーブル、ピボットテーブル、およびビジュアライゼーション要素で定義できますが、適用できるのはピボットテーブルのみです。
+
+##### **階層を作成する (Create a hierarchy)**
+以下のステップは、階層を作成する方法を説明します。
+
+1.  ワークブックを`Edit`モードで開きます。
+2.  階層を作成したい要素を選択します。階層はテーブルまたはピボットテーブルで作成できますが、使用できるのはピボットテーブルのみであることに注意してください。
+3.  `Columns`メニューで、`+`アイコンをクリックし、`Manage hierarchies`を選択します。
+4.  `Manage hierarchies`モーダルで、`+ New hierarchy`をクリックし、階層のプロパティを定義します。
+    * `Hierarchy name`フィールドに、階層を識別するための名前を入力します。
+    * `Columns in hierarchy`セクションで、`Add column`をクリックして階層に列を追加します。
+5.  階層に列を追加すると、この列はワークブックの`Columns`メニューで階層アイコンでラベル付けされます。アイコンにカーソルを合わせると、階層の詳細が表示されます。
+6.  追加の階層を作成するには、`Manage hierarchies`モーダルで`+ New hierarchy`をクリックし、ステップ4を繰り返します。
+
+##### **階層を管理する (Manage a hierarchy)**
+階層の名前の変更、列の並べ替え、新しい列の追加、既存の列の削除、または階層全体の削除ができます。
+
+1.  `Manage hierarchies`モーダルで、更新したい階層を選択します。
+2.  階層の名前を変更するには、`Hierarchy name`フィールドを編集します。
+3.  列を並べ替えるには、`Columns in hierarchy`セクションに移動し、必要に応じて列名をドラッグ＆ドロップします。
+4.  新しい列を追加するには、`Columns in hierarchy`セクションに移動し、`Add column`をクリックします。
+5.  階層から列を削除するには、`Columns in hierarchy`セクションで列名を探し、`Remove column`をクリックします。
+6.  階層を削除するには、左パネルで階層名を探し、`Delete hierarchy`をクリックします。
+
+##### **階層の継承 (Hierarchy inheritance)**
+子要素は、親要素で定義されたすべての階層を継承します。継承された階層は子要素から削除または変更することはできませんが、完全な編集権限を持つ新しい階層を追加することはできます。
+`Manage hierarchies`モーダルで階層が選択されると、Sigmaはそれが親要素から継承されたものであるかどうかを示します。
+
+##### **階層を使用する (Using hierarchies)**
+以下のステップは、定義された階層をピボットテーブルで使用する方法を説明します。
+1.  階層を持つピボット行を作成するには、`Pivot Rows`プロパティに移動し、`Add new column`をクリックします。
+2.  `Add new column`メニューで、定義された階層を選択します。
+3.  階層をピボット値に適用するには、`Values`プロパティに移動し、`Add new column`をクリックします。
+4.  `Add new column`メニューで、定義された階層を選択します。
+5.  結果のピボットテーブルは、構成された階層を示します。
+
+##### **制限事項 (Limitations)**
+* 階層はピボットテーブルでのみ使用できます。
+* 階層は単一のワークブック内に存在し、データセットや他のワークブックには渡されません。
+* 階層を更新しても、Sigmaは現在それを使用しているピボットテーブルにそれらの変更を適用しません。
+
+### 4-4-5-7. テーブルの転置 (ベータ版) (Transpose a table (Beta))
+
+> 🚩
+> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このページは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+
+Sigmaは、テーブルを行から列へ、または列から行へ転置することをサポートしています。データを転置することは、個々のユースケースに応じてデータをピボットまたはアンピボットできるため、データ分析に役立ちます。
+
+例えば、下のテーブルは駐車場の入出庫の記録を示しており、各行が各車の入庫日と出庫日を示しています。
+すべての日付値が単一の行になるようにデータを整形するには、行から列への転置を実行でき、その結果、テーブルは次のように変換されます。
+
+これは、特定のチャートタイプに合わせてデータを再形成したい場合（例えば、折れ線グラフには単一の列に方向付けられた日付値が必要な場合など）に特に役立ちます。
+
+このドキュメントでは、データを[行から列へ](https://help.sigmacomputing.com/docs/transpose-a-table#transpose-row-to-columns)、または[列から行へ](https://help.sigmacomputing.com/docs/transpose-a-table#transpose-columns-to-rows)転置する方法を説明し、それぞれの例を含んでいます。
+
+#### **システムとユーザーの要件 (System and user requirements)**
+ワークブックの所有者であるか、ワークブックに対する`Can explore`または`Can edit`のアクセス権を付与されている必要があります。
+
+#### **制限事項 (Limitations)**
+* 入力テーブルの転置はサポートされていません。
+* 計算列の転置はサポートされておらず、既存のフィルタリング、ソート、またはグルーピングは転置された出力に反映されません。これは、転置がワークブック内の要素ではなく、データプラットフォームのデータに対して実行されるためです。
+* 行を列に転置する場合、単一の列から転置できるユニークな行の値は200個に制限され、最大200列になります。列を行に転置する場合、制限はありません。
+
+#### **行を列に転置する (Transpose row to columns)**
+テーブルの行を列に転置して、特定の列の値をテーブルの列ヘッダーとして使用できます。例えば、`Store Region`列の行を転置して、`Store Region`列の値（East, Midwest, Southなど）を列ヘッダーとして使用し、それらの地域の値の集計値を表示します。
+
+行を列に転置するには：
+1.  目的のテーブルから、`More`を選択します。
+2.  `Element source`から、`Transpose`を選択します。
+3.  `Transpose Table`モーダルで、`Row to column`を選択します。
+4.  目的の`Column to transpose`を選択します。転置されると、この列のデータは、各ユニークな値が新しい列になるように再配置されます。
+    > ❗️
+    > 選択した列に200を超えるユニークな値がある場合、転置されたテーブルで200を超える列が生成されるため、エラーが表示されます。
+5.  `Value column`を選択します。これは、`Aggregate`で選択した計算に使用される列です。
+6.  希望する`Aggregate`メソッドを選択します。表示される集計メソッドは、選択された`Value column`のデータ型によって異なります。
+7.  目的の`Output columns`の隣にあるチェックボックスを選択します。これらは転置された出力に含めたい列であり、転置における他の計算には影響しません。転置されたテーブルのプレビューは`Output preview`で利用できます。
+    * 列を選択した順序が、テーブルに左から右へと表示される順序になります。
+8.  元のソーステーブルの残りのソース列は、転置をグループ化するために使用されます。
+9.  `Submit`を選択します。
+
+##### **例：勝敗数のカウント (Example: Counting games won and lost)**
+例えば、チームがホームでプレイした野球の試合のテーブルがあり、各試合ごとに1行のデータと、対戦相手、結果、試合後のディビジョンランクの列があるとします。
+チームが各ディビジョンランクで勝ったまたは負けた総試合数を計算したい場合、ディビジョンランクでテーブルを転置できます。
+
+このカウントを取得するには：
+1.  `Row to column`転置を選択します。
+2.  `L`（敗戦）と`W`（勝利）を転置されたテーブルの列ヘッダーとして設定するには、`Win Loss`を`Column to transpose`として選択します。
+3.  特定の対戦相手に対する勝利数または敗戦数を計算するには、`Opponent`を`Value Column`として選択します。
+4.  nullでなく空でもない値の数を計算するには、`Aggregate`に`Count`を選択します。
+5.  `Division Rank`, `L`, `W`を`Output columns`として選択します。テーブルの出力は、残りの唯一のソース列であるため、自動的に`Division Rank`でグループ化されます。
+6.  [任意] `Start Time`のような別の列で追加的にグループ化したい場合：`Output columns`で`Start Time`を選択します。
+7.  [任意] 出力を理解しやすくするために、`Start Time`列を昇順でソートすることもできます。
+
+##### **列を行に転置する (Transpose columns to rows)**
+1.  目的のテーブルから、`More`を選択します。
+2.  `Element source`から、`Transpose`を選択します。
+3.  `Transpose Table`モーダルで、`Column to row`を選択します。
+4.  マージしたい`Columns to merge`を選択します。
+5.  マージされた列の`Column label for merged columns`を入力します。このラベルは、マージされた列の以前のヘッダー値を含む新しい列の列ヘッダーです。
+6.  値の`Column label for values`を入力します。これは、マージされた列の値を含む新しい列の列ヘッダーです。
+7.  目的の`Output columns`の隣にあるチェックボックスを選択します。
+8.  `Submit`を選択します。
+
+### 4-6-1. カスタムSQLを記述する (Write custom SQL)
+
+SQLエディタを使用してデータプラットフォームを探索する際、SQLクエリをプレビューし、SQLから直接ワークブック、データモデル、データセットを作成できます。
+
+このドキュメントでは、以下の方法について説明します。
+* [SQLからワークブックを作成する](#create-a-workbook-from-sql)
+* [SQLワークブック要素を作成する](#create-a-sql-workbook-element)
+* [既存のSigmaワークブック要素を参照する](#reference-existing-sigma-workbook-elements)
+* 以下を含む[ショートカット](https://help.sigmacomputing.com/docs/write-custom-sql#shortcuts)を使用する：
+    * SQLベースのワークブックデータ要素内で、並列表示のインラインSQLエディタに切り替える。
+    * SQLクエリを自動フォーマットする。
+    * SQLクエリ内で検索と置換を使用する。
+
+#### **要件 (Requirements)**
+* この機能を使用するには、`Write SQL`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* カスタムSQLを実行するには、接続全体に対する`Can use`[アクセス権](https://help.sigmacomputing.com/docs/data-permissions)が付与されている必要があります。「[Manage access to data and connections](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
+* SQLエディタは、組織内の少なくとも一つの接続に対して接続レベルのアクセス権を持っている場合にのみ表示されます。
+
+#### **SQLからワークブックを作成する (Create a workbook from SQL)**
+SQLクエリからワークブックを作成するには、以下を実行します。
+1.  **Sigmaホーム**を開きます。
+2.  ナビゲーションパネルで`+ Create New`をクリックし、`Write SQL`を選択してSQLエディタを開きます。
+3.  サイドパネルで`Select a Connection`をクリックし、クエリを実行したい接続を選択します。
+4.  クエリエディタに、SQLクエリを入力します。Sigmaはガイドするためのオートコンプリート候補を提供します。
+    > 💡
+    > SQL内でワークブックのコントロールを参照するには、コントロールIDを中括弧で囲みます。「[Reference workbook controls](https://help.sigmacomputing.com/docs/reference-workbook-control-values-in-sql-statements)」を参照してください。
+5.  SQLクエリを実行するには、`Run`をクリックするか、キーボードショートカット `⌘` + `return` (Mac) または `ctrl` + `enter` (PC) を使用します。
+6.  未公開のワークブック（探索）をワークブックとして保存するには、`Save As`をクリックします。
+    > 💡
+    > SQLクエリをデータモデルに変換するには、要素メニューを開くために`More`を選択し、次に`Advanced options` > `Create data model`を選択します。
+
+#### **SQLワークブック要素を作成する (Create a SQL workbook element)**
+既存のワークブックにSQL要素を追加して既存の分析を補完するには、以下を実行します。
+1.  編集用にワークブックを開きます。
+2.  要素追加バーで、追加したい要素のタイプを選択し、次に特定の要素タイプを選択します：`Data` > `Table`, `Data` > `Pivot Table`または`Chart`およびサポートされている任意のチャートタイプ。
+3.  `Select source`モーダルで、下部にある`SQL`オプションを選択します。
+4.  クエリを実行したい接続を選択します。
+5.  ワークブックに要素が表示され、接続にクエリを実行するためのSELECTステートメントを入力するよう促されます。
+6.  クエリエディタに、カスタムSQLを入力します。Sigmaはガイドするためのオートコンプリート候補を提供します。
+    > 💡
+    > SQL内でワークブックのコントロールを参照するには、コントロールIDを中括弧で囲みます。「[Reference workbook controls](https://help.sigmacomputing.com/docs/reference-workbook-control-values-in-sql-statements)」を参照してください。
+
+#### **既存のSigmaワークブック要素を参照する (Reference existing Sigma workbook elements)**
+> 🚩
+> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このページは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+
+SQLクエリで他のカスタムSQL要素を含む、ワークブック内の他のデータ要素を参照するには、`sigma_element()`構文を使用します。
+例えば、ワークブック内の`Fiscal Year Forecast`というタイトルのデータ要素にクエリを実行し、その要素の`Revenue`列の値に基づいてフィルタリングするには、以下のようなSQLステートメントを記述します。
+```sql
+SELECT * FROM sigma_element('Fiscal Year Forecast')
+   WHERE "Revenue" > 100000
+
+##### **構文と使用上の注意 (Syntax and usage notes)**
+同じワークブック内のデータ要素を参照するには、以下の構文を使用します。
+`sigma_element('Element title')`
+
+この構文を使用する際は、以下の使用上の注意を考慮してください。
+* SQLステートメントで正確な要素タイトルを使用する必要があります。
+* 参照する要素タイトルは文字列でなければなりません。
+* 列名は識別子でなければなりません。例えば、列名にスペースが含まれており、SnowflakeでSQLを実行する場合、SQLステートメントで参照する際に列名を二重引用符で囲みます。BigQueryでSQLを実行する場合は、列名をバッククォート(`)で囲みます。
+
+##### **制限事項 (Limitations)**
+* この構文はデータモデルでは使用できません。
+* AzureSQL接続でこの構文を使用することはまだサポートされていません。
+
+#### **ショートカット (Shortcuts)**
+SigmaでSQLを扱いやすくするためのいくつかのショートカットが存在します。
+
+* **要素メニューでSQLエディタを切り替える**
+    ワークブックが公開されると、SQL要素は結果のみを表示します。ワークブックを編集または探索する際、SQLエディタを切り替えて、結果を生成するSQLクエリを表示できます。`Toggle SQL Editor`をクリックして、データ要素とSQLクエリエディタを切り替えます。
+* **SQL要素を最大化する**
+    ワークブックキャンバスでSQL要素を最大化し、長く複雑なSQLクエリを書きやすくするには、スペースバーを押すか、`Maximize element`をクリックして要素をフルスクリーンモードに展開します。
+* **SQLをフォーマットする**
+    長いSQLテキストブロックを素早くフォーマットするには、`Format SQL`をクリックします。
+* **検索と置換**
+    SQLクエリ内で検索し、任意で検索語のインスタンスを置換するには、`Search SQL`をクリックするか、キーボードショートカット `⌘ + F` を使用します。
+* **リネージビューからカスタムSQLにアクセスする**
+    ワークブックまたはデータモデルのリネージビューからカスタムSQLを表示および編集します。クエリ全体をクリップボードにコピーするか、`Edit SQL`をクリックして要素のインラインSQLエディタに移動します。
+    リネージの操作に関する詳細は、「View workbook and data model data lineage」を参照してください。
+* **クエリ履歴を表示する**
+    SQLエディタを使用する際、現在の接続に対して最近実行されたクエリの履歴にアクセスできます。
+    この履歴にアクセスするには、サイドパネルの`DB`タブをクリックし、`History`タブを選択します。
+    特定のワークブックまたはデータモデルのすべての要素のクエリ履歴を表示するには、「Examine workbook queries」を参照してください。
+* **テーブルプレビューを表示する**
+    クエリを記述する際、サイドパネルを使用してデータプラットフォーム内のテーブルを探索できます。特定のテーブルに移動し、`Preview`を選択してテーブルの列と行のプレビューを開き、そのテーブルを既存のSQLクエリに追加するかどうかを決定するのに役立てることができます。
+    特定のテーブルについて、`More`を選択し、`Place name in SQL`または`Place select statement in SQL`を選択して、SQLクエリで新しいテーブルを簡単に参照します。
+
+#### **例 (Examples)**
+より高度なカスタムSQLのケースについては、これらの例を参照してください。
+
+##### **ユーザー属性に基づいて出力を変更する**
+組織でユーザー属性が定義されている場合、属性を参照して、現在のユーザーのユーザー属性の値に基づいてSQLクエリから返される結果を制限できます。
+例えば、Plugs Electronicsのサンプルデータについて、`store_region`ユーザー属性に基づいて現在のユーザーがアクセスできる店舗地域の結果のみを返します。
+```sql
+SELECT
+  *
+FROM
+  EXAMPLES.PLUGS_ELECTRONICS.PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA
+WHERE 
+  {{system::CurrentUserAttributeText::store_region}} = STORE_REGION
+
+別の例として、割り当てられた`organization_name`ユーザー属性の値に基づいて、現在のユーザーが表示を許可されている`customer_name`でフィルタリングされた結果を返します。
+```sql
+SELECT 
+  * FROM 
+  test.orders 
+WHERE 
+  customer_name = {{system::CurrentUserAttributeText::organization_name}}
+
+関数構文の詳細については、「CurrentUserAttributeText」を参照してください。ユーザー属性と割り当ての詳細については、「User Attributes」を参照してください。
+
+##### **特定の日付範囲コントロールの出力を返す**
+日付列が日付範囲コントロールで指定された値と一致する場合にのみ行を返す例については、「Reference workbook control values in SQL statements」のサンプルSQLを参照してください。
+
+##### **複数選択コントロールの値に応じて行を返す**
+複数選択リストコントロールの値に応じて行を返す例については、「Reference workbook control values in SQL statements」のサンプルSQLを参照してください。
+
+##### **スキーマテキストセレクタに基づいて行を返す**
+有効な選択（接続されたCDW内のスキーマ）を持つ`schema-param`という単一選択またはテキストコントロールがあり、指定されたスキーマに`STATIONS`テーブルが存在する場合、以下のサンプルSQLは指定されたスキーマの`STATIONS`列からすべての列を返します。
+
+```sql
+SELECT *
+FROM {{#raw schema-param}}.STATIONS
+
+> 🚩
+> `#raw`構成値を使用すると、行レベルのセキュリティがバイパスされ、セキュリティの脆弱性が生じる可能性があります。
+> このパラメータを使用してテーブル、スキーマ、またはデータベース名を交換する場合、SQLで参照される列名は同一でなければなりません。
+
+### 4-7-2. SQLステートメントでワークブックのコントロール値を参照する (Reference workbook control values in SQL statements)
+
+Sigmaで[SQLステートメントを記述する](https://help.sigmacomputing.com/docs/write-custom-sql)際、コントロールIDを中括弧で囲むことで、SQLステートメント内でコントロールの値を参照できます。
+`{{my-control-id}}`
+
+コントロールIDは、コントロールの`Settings`タブで見つけることができます。コントロールIDの詳細については、「[Reference control values in a formula](https://help.sigmacomputing.com/docs/reference-control-values-as-parameters)」を参照してください。
+
+正確な構文は、コントロールの出力タイプによって異なります。
+* **単一の値 (Single value)** (ほとんどのコントロールタイプ)
+* **最小/最大値 (Min/max values)** (数値範囲または範囲スライダー)
+* **開始/終了値 (Start/end values)** (日付範囲コントロール)
+* **複数の値 (Multiple values)** (複数選択リストコントロール)
+
+#### **制限と警告 (Limitations and warnings)**
+* コントロールの値を変更した結果、異なるスキーマを持つテーブルにクエリを実行するステートメントになると、クエリは期待とは異なる列を生成し、エラーを引き起こします。
+* `#raw`構成値を使用すると、ワークブックまたはワークシートで行レベルのセキュリティがバイパスされ、セキュリティの脆弱性が生じる可能性があります。
+
+#### **SQLで単一値コントロールの出力を参照する (Reference single value control output in SQL)**
+SQLステートメントで、特定のコントロールで選択または指定された値（出力）を参照できます。単一の値を出力するコントロールの場合、構文は以下の通りです。
+
+* **サポートされるコントロールタイプ**
+    Single select list, Text input, Text area, Number input, Date, Segmented, Drilldown, Slider, Checkbox, Switch, Top N
+
+* **構文 (Syntax)**
+    数式でコントロール値を参照するには、コントロールIDを二重中括弧で囲み、以下の構文を使用します。
+    `{{New-Control-ID}}`
+
+#### **SQLで数値範囲または範囲スライダーコントロールの値を参照する (Reference number range or range slider control values in SQL)**
+SQLステートメントで、特定のコントロールで選択または指定された値を参照できます。数値の範囲を出力するコントロールの場合、構文は以下の通りです。
+
+* **サポートされるコントロールタイプ**
+    Number range, Range slider
+
+* **構文 (Syntax)**
+    最小値を取得するには、以下の構文を使用します。
+    `{{Range-Control-ID}}:min`
+    最大値を取得するには、以下の構文を使用します。
+    `{{Range-Control-ID}}:max`
+
+* **例 (Example)**
+    コントロールIDが `slider-control-ID` のスライダーコントロールで選択された最小値と最大値の間の特定の数量を販売した製品について `PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA` をフィルタリングするには、以下のサンプルSQLを使用します。
+    ```sql
+    SELECT *
+    from EXAMPLES.PLUGS_ELECTRONICS.PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA
+    where QUANTITY between {{slider-control-ID}}:min and {{slider-control-ID}}:max
+    ```
+
+#### **SQLで日付範囲コントロールの値を参照する (Reference date range control values in SQL)**
+SQLステートメントで、特定のコントロールで選択または指定された値を参照できます。日付の範囲を出力するコントロールの場合、構文は以下の通りです。
+
+* **サポートされるコントロールタイプ**
+    Date range
+
+* **構文 (Syntax)**
+    特定のデータプラットフォームがコントロールをどのように解釈するかによって、正確な構文は接続ごとに異なる場合があります。
+    例えば、カスタムSQLで日付範囲コントロールの開始日を抽出する場合：
+    * **Snowflake**では、コントロールは`VARIANT`データ型なので、以下の構文を使用できます。
+      `to_timestamp({{Date-Range-Control}}:start)`
+    * **BigQuery**または**Databricks**では、コントロールは`STRUCT`データ型なので、以下の構文を使用できます。
+      `{{Date-Range-Control}}.start`
+    * **Amazon Redshift**では、コントロールは`SUPER`データ型なので、以下の構文を使用できます。
+      `select date_range.start start from (select {{Date-Range-Control}} date_range)`
+    * **PostgreSQL**では、コントロールは`JSONB`データ型なので、以下の構文を使用できます。
+      `({{Date-Range-Control}}->>‘start’)::timestamptz`
+
+    範囲の終了日を参照するには、`start`の代わりに`end`を参照します。
+
+* **特定の日付範囲コントロールの出力を返す**
+    Snowflakeで、日付列が日付範囲コントロールで指定された値と一致する場合にのみ行を返すには、以下のサンプルSQLを参照してください。
+    ```sql
+    SELECT * FROM table
+    WHERE
+    CASE WHEN date({{Date-Range-Control}}:start) IS NULL
+    THEN DATE <= date({{Date-Range-Control}}:end)
+    WHEN date({{Date-Range-Control}}:end) IS NULL
+    THEN DATE >= date({{Date-Range-Control}}:start)
+    ELSE DATE BETWEEN date({{Date-Range-Control}}:start) AND date({{Date-Range-Control}}:end)
+    END
+    ```
+    このSQLは、`DATE`列が`Date-Range-Control`で指定された値と一致するすべての行を返します。
+
+#### **SQLで複数選択リストから複数の値を参照する (Reference multiple values from a multi-select list in SQL)**
+SQLステートメントで、特定のコントロールで選択または指定された値を参照できます。複数選択リストの値は、配列として出力されます。例：
+`('apples','bananas','oranges')`
+
+コントロール値が単一引用符付きで出力される場合、コントロールIDの前にキーワード `#raw` を付けることで、これらの引用符を削除できます。
+`{{#raw my-control-id}}`
+> 🚧
+> `#raw`構成値を使用すると、ワークブックまたはワークシートで行レベルのセキュリティがバイパスされ、セキュリティの脆弱性が生じる可能性があります。
+
+* **サポートされるコントロールタイプ**
+    List values, Legend
+
+* **構文 (Syntax)**
+    特定のクラウドデータウェアハウス（CDW）が配列データ型をどのように解釈するかによって、正確な構文は接続ごとに異なる場合があります。
+    * **Snowflake**については、公式Snowflakeドキュメントの`Semi-structured data types`内の`Array`を参照してください。
+    * **Databricks**については、公式Databricksドキュメントの`ARRAY type`を参照してください。
+    * **BigQuery**については、公式Google Cloud BigQueryドキュメントの`Work with arrays`を参照してください。
+    * **Amazon Redshift**については、公式Amazon Redshiftデータベース開発者ガイドの`SUPER type`を参照してください。
+
+    例：
+    ```sql
+    select
+      *
+    FROM
+      APPLICATIONS.GOOGLE_ANALYTICS.EVENTS
+    WHERE
+      TRAFFIC_SOURCE IN {{TRAFFIC_SOURCE}}
+    limit
+      10
+    ```
+    より詳細な例については、「[Return rows depending on the value of a multi-select control](#return-rows-depending-on-the-value-of-a-multi-select-control)」を参照してください。
+
+* **複数選択コントロールの値に応じて行を返す**
+    `City`という複数選択コントロールがあり、Snowflake接続でこのSQLを実行する場合、以下のサンプルクエリは`CITY`列の値が`City`コントロールの選択リストに含まれるすべての行を返します。`City`コントロールで都市が選択されていない場合、すべての行が返されます。
+    ```sql
+    SELECT * FROM EXAMPLES.BIKES.STATIONS  WHERE  
+    CASE WHEN  
+    LEN(ARRAY_TO_STRING(ARRAY_CONSTRUCT{{City}},',') ) = 0  
+    THEN True  
+    ELSE CITY in {{City}} END
+    ```
+    さらなる例については、Sigmaコミュニティの記事「[Injecting multi-select parameters in Custom SQL](https://community.sigmacomputing.com/c/technical-deep-dives/injecting-multi-select-parameters-in-custom-sql-287)」を参照してください。
+### 4-7-3. dbt Semantic Layer連携のクエリ (ベータ版) (Query a dbt Semantic Layer integration (Beta))
+
+> 🚩
+> このドキュメントはプライベートベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このドキュメントは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+> この機能の限定テストグループへの参加に興味がある場合は、[サポートに連絡](https://help.sigmacomputing.com/hc/en-us/requests/new)するか、アカウントエグゼクティブにお問い合わせください。
+
+Sigmaは[dbt Semantic Layer](https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-semantic-layer)連携をサポートしており、事前定義されたdbtメトリクスをSigmaワークブックで活用して、アドホック分析、定期レポート、組織のダッシュボードを作成できます。このドキュメントでは、Sigmaでdbt Semantic Layerにクエリを実行する方法と、そのクエリフローの進行について説明します。
+
+#### **システムとユーザー要件 (System and user requirements)**
+
+* **Sigmaにて:**
+    * この機能を使用するには、[カスタムSQLを記述する権限](https://help.sigmacomputing.com/docs/account-type-and-license-overview)が有効になっているアカウントタイプを割り当てられている必要があります。
+    * 接続全体に対する`Can use`の[データ権限](https://help.sigmacomputing.com/docs/data-permissions)を持っている必要があります。「[データ権限の管理](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
+    * 接続で[書き込みアクセスが構成されている](https://help.sigmacomputing.com/docs/set-up-write-access)必要があります。
+    * [dbt Semantic Layer連携が構成されている](https://help.sigmacomputing.com/docs/configure-a-dbt-semantic-layer-integration)必要があります。
+* **dbtにて:**
+    * dbtでセマンティックモデルとメトリクスが作成されている必要があります。dbtドキュメントの「[dbt Semantic Layer](https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-semantic-layer)」を参照してください。
+
+#### **Sigmaとdbt Semantic Layer間のクエリフロー (Query flow between Sigma and dbt Semantic Layer)**
+SigmaでSemantic Layerクエリを入力すると、Sigmaはクエリを中間表現にコンパイルし、クエリパラメータをdbt Semantic Layer [JDBC API](https://docs.getdbt.com/docs/use-dbt-semantic-layer/jdbc)に送信します。dbtは適切な方言でSQLステートメントをSigmaに返します。次に、Sigmaは接続されたデータベースに対してそのSQLを実行し、他のデータプラットフォームからのテーブルと同様のテーブルを出力します。これらのテーブルは、Sigmaの他のデータテーブルと同様に使用できます。ワークブックやデータモデルで再利用したり、データセットを作成して結合したり、ビジュアライゼーションを構築したりすることができます。
+
+Semantic Layerクエリが実行されるたびに、Sigmaは最新の定義を要求するため、Semantic Layerに加えられた変更はSigmaに反映されます。
+
+#### **dbt Semantic Layer連携にクエリを実行する (Query the dbt Semantic Layer Integration)**
+Semantic Layerにクエリを実行するには、以下を実行します。
+1.  ワークブックを`Explore`または`Edit`モードで開きます。
+2.  `Add element`を選択し、次に`Table`、そして`Custom SQL`を選択します。
+3.  クエリを入力します。クエリ構文については、dbtのドキュメント「[Querying the API for metric metadata](https://docs.getdbt.com/docs/use-dbt-semantic-layer/query-sl)」を参照してください。
+4.  `Run`を選択します。
+
+Semantic Layerクエリが実行されるたびに、Sigmaは最新の定義を要求するため、Semantic Layerに加えられた変更はSigmaに反映されます。新しいクエリが実行されない限り、Semantic Layerに加えられた変更は反映されません。
+
+#### **Semantic Layerメトリクスを参照する (Reference Semantic Layer metrics)**
+dbt内のメトリック名を括弧内に入れて、`{semantic_layer.metrics()}`というテンプレート構文を使用することで、セマンティックレイヤーのメトリクスを参照できます。さらなる構文ガイダンスについては、dbtのドキュメント「[Querying the API for metric metadata](https://docs.getdbt.com/docs/use-dbt-semantic-layer/query-sl)」を参照してください。
+
+##### **例1：Sigmaワークブックでdbtメトリクスを表示し、グループ化する**
+既存のdbtメトリクスをSigmaワークブックで表示し、複数のディメンションでグループ化できます。クエリ例は次のようになります。
+```sql
+SELECT * FROM
+{{ semantic_layer.query(
+    metrics = ['new_customers', 'transactions', 'revenue_usd'],
+    group_by = [Dimension('metric_time').grain('month'), 'customer__customer_country']
+)}}
+
+### 4-7-4. Ask Sigmaで自然言語クエリを実行する (Ask natural language queries with Ask Sigma)
+
+Ask Sigmaは、データに関する質問をしたり、AIが生成した応答と対話したりできる自然言語クエリ（NLQ）インターフェースです。データから事実情報を抽出したり、チャートを生成する質問をしたりして、それをさらにワークブックで探索することができます。
+
+> 🚩
+> AI機能の使用は、以下の[免責事項](https://help.sigmacomputing.com/docs/ai-feature-disclaimer)の対象となります。
+
+#### **システムとユーザー要件 (System and user requirements)**
+Ask Sigmaを使用するには、以下が必要です。
+* あなたの組織でAIプロバイダーが構成されている必要があります。「[Configure an AI provider](https://help.sigmacomputing.com/docs/configure-an-ai-provider)」を参照してください。
+* `Use Ask Sigma`権限が有効になっているアカウントタイプを割り当てられている必要があります。詳細は「[Account type and license overview](https://help.sigmacomputing.com/docs/account-type-and-license-overview)」を参照してください。
+* Ask Sigmaからワークブックに分析を移動するには、`Create, edit, and publish workbooks`権限が有効になっているアカウントタイプを割り当てられている必要があります。詳細は「[Account type and license overview](https://help.sigmacomputing.com/docs/account-type-and-license-overview)」を参照してください。
+
+#### **制限事項 (Limitations)**
+* Ask SigmaはJoin（結合）を実行できません。Ask Sigmaはデータに関する質問に答えるために単一のデータソースを選択し、複数のテーブル、データモデル、またはメトリクスからのデータを組み合わせることはできません。
+* Ask Sigmaは、管理者がAIモデルで利用可能にしたデータプラットフォーム内のデータソースに基づいてのみ、データに関する質問に答えることができます。「[Select data sources to make available to Ask Sigma](https://help.sigmacomputing.com/docs/select-data-sources-to-make-available-to-ask-sigma-beta)」を参照してください。
+* データモデルのタグ付けされたバージョンは、Ask Sigmaでは利用できません。
+* Ask Sigmaを独自のポータルやサイトに埋め込みたい場合は、セキュアな埋め込みURLをJWTで署名する必要があります。「[Embed Ask Sigma (Beta)](https://help.sigmacomputing.com/docs/embed-ask-sigma)」を参照してください。
+
+#### **データソースを検索する (Search data sources)**
+Ask Sigmaは、管理者がAsk Sigmaで利用可能にすることを選択したデータソースにのみアクセスできます。あなたは、自分がアクセスできるデータソースを検索し、データカタログでどれが利用可能かを確認できます。
+
+利用可能なデータソースを検索するには：
+1.  Sigmaホームから、左のナビゲーションで`Ask Sigma`をクリックします。このオプションが表示されない場合は、上記の「[System and user requirements](#system-and-user-requirements)」を参照してください。
+2.  `All data sources`をクリックし、テーブル、データモデル要素、またはデータセットの名前の全部または一部を入力して、それがAsk Sigmaで利用可能かどうかを確認します。
+3.  Sigmaは、あなたが使用する権限を持つすべての一致するテーブル、データモデル要素、およびデータセットを返します。それぞれに、Ask Sigmaで利用可能かどうかのインジケータが表示されます。
+    > 📘
+    > あなたの管理者は、Ask Sigmaによってクエリされるソースを構成します。
+    > Sigmaの他の場所で適用されるすべてのデータ権限は、Ask Sigmaでも適用されます。例えば、管理者がデータソースに行レベルのセキュリティまたは列レベルのセキュリティを構成している場合、Ask Sigmaはそれらの制限を尊重します。データモデルの場合、その要素が利用可能なソースとして表示されるためには、公開バージョンへのアクセス権が必要です。
+    Ask Sigmaで利用可能にしたいソースが現在利用できない場合は、Sigmaの管理者に通知してください。Sigmaの管理者は、Ask Sigmaで利用可能にするデータソースを選択します。「[Select data sources to make available to ask Sigma (Beta)](https://help.sigmacomputing.com/docs/select-data-sources-to-make-available-to-ask-sigma-beta)」を参照してください。
+
+#### **Ask Sigmaで自然言語クエリを実行する (Ask natural language queries with Ask Sigma)**
+Ask Sigmaを使用してデータに関する質問をするには：
+1.  Sigmaホームから、左のナビゲーションで`Ask Sigma`をクリックします。
+2.  画面の左上にあるボックスに質問を入力します。
+3.  Ask Sigmaはあなたの質問を解釈し、あなたがアクセスできるデータソースを検索し、質問に答えるのに最適だと判断したソースを選択します。Ask Sigmaは、意味的関連性、データ有効性メタデータ、およびデータソースの使用状況を使用して、あなたが閲覧権限を持つデータソースの中から最適なデータソースを選択します。
+4.  Ask Sigmaは回答を提供し、回答を決定するために使用したステップバイステップの決定ロジックを表示します。
+5.  [任意] ステップをスクロールするか、サイドパネルで特定のステップを選択して決定ロジックを調査し、必要であればAsk Sigmaが行った選択を修正します。
+6.  [任意] 任意のステップで、`Open in workbook`をクリックして、分析のその時点から[探索（exploration）](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)を開始します。
+
+#### **関連チャートで探索を続ける (ベータ版) (Continue exploring with related charts (Beta))**
+> 🚩
+> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このドキュメントは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+
+最初の回答から、提供された分析の探索を続けることができます。Ask Sigmaは、関連データを分析する道筋を提供するために、主要な回答の下に関連チャートを提示します。
+
+あなたは以下のことができます。
+* 回答チャートまたは任意の関連チャートの`View underlying data`をクリックする。
+* 関連チャートをクリックして詳細ビューを表示し、さらに関連チャートを取得する。
+* 任意のステップ、回答、または関連チャートのチェックボックスをオンにし、`Open in workbook`をクリックして、[探索](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)でデータをさらに分析する。
+
+#### **Ask Sigmaのトラブルシューティング (Troubleshoot Ask Sigma)**
+失敗したAsk Sigmaクエリについて技術サポートに相談する必要がある場合は、Ask Sigmaの左下隅にある`Download debug`をクリックして、サポートチームに提供できるようにしてください。デバッグファイルには、あなたの質問のテキストとデータソースに関するメタデータが含まれており、Ask Sigmaがクエリを解決するために取ったステップのトラブルシューティングに役立ちます。
+
+### 5-1-1. ワークブックとデータモデルのデータリネージを表示する (View workbook and data model data lineage)
+
+データリネージ（系譜）とは、ワークブックまたはデータモデル内のデータ要素間の祖先と関係を指します。すべてのワークブックとデータモデルには**リネージグラフ**が含まれており、ドキュメント内の関係と依存関係を確認・操作することができます。
+
+データリネージのユースケースには、以下のようなものがあります。
+* データ要素への変更が子要素にどのように影響するかを判断する
+* 予期しないデータのソースを特定する
+* 未使用または冗長な要素を削除するために既存のワークブックをクリーンアップする
+* データおよび/または権限エラーのソースを診断する
+* マテリアライゼーションスケジュールの依存関係を特定する
+
+このドキュメントでは、ワークブックまたはデータモデルのデータリネージを表示し、操作する方法について説明します。
+
+#### **要件 (Requirements)**
+
+データリネージを表示するには、ワークブックまたはデータモデルに対する`Can Edit`[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)が必要です。
+
+#### **ワークブックまたはデータモデルのデータリネージを表示する (View data lineage for a workbook or data model)**
+
+1.  ドキュメントヘッダーの`Edit`をクリックして、編集用にドキュメントを開きます。
+2.  `(Lineage)`を選択して、ワークブックまたはデータモデルのデータリネージを開きます。
+    > 💡
+    > 特定の要素の要素ツールバーからリネージを開くこともできます。
+    > 1.  要素ツールバーで、`More`を選択します。
+    > 2.  メニューで、`View lineage`を選択します。
+    > ドキュメントのデータリネージが、その要素がハイライトされた状態で開きます。
+
+データリネージグラフでは、以下のいずれかを実行できます。
+* `+`および`-`オプションを使用してズームインおよびズームアウトする。
+* ブラウザウィンドウのビューにリネージグラフを合わせる。
+* `Show controls`チェックボックスを選択して、コントロール要素を表示または非表示にする。
+* カーソルで掴んでドラッグして、グラフ内を移動する。
+* クリックしてドラッグすることで、グラフ内の要素を再編成する。要素の位置に加えた変更は、データリネージを閉じるとリセットされます。
+* [特定の要素またはページにリネージビューをフォーカスする](#focus-your-lineage-view-on-a-specific-element-or-page)。
+* [データリネージから要素を開く](#open-an-element-from-data-lineage)。
+
+#### **特定の要素またはページにリネージビューをフォーカスする (Focus your lineage view on a specific element or page)**
+
+* **始める前に:** このアクションは編集モードでのみ利用可能です。編集を開始するには、ドキュメントヘッダーの`Edit`をクリックします。
+
+1.  `(Lineage)`を選択して、ワークブックまたはデータモデルのデータリネージを開きます。
+2.  グラフの上部で、要素を検索するか、ドロップダウンメニューを開いてワークブックまたはデータモデル内の特定のページを選択します。
+3.  メニューからページを選択すると、そのページの要素のみが表示されます。
+
+#### **データリネージから要素を開く (Open an element from data lineage)**
+
+* **始める前に:** このアクションは編集モードでのみ利用可能です。編集を開始するには、ドキュメントヘッダーの`Edit`をクリックします。
+
+1.  `(Lineage)`を選択して、ワークブックまたはデータモデルのデータリネージを開きます。
+2.  リネージグラフで要素を選択します。
+3.  要素の詳細で、`View element`を選択します。
+
+### 5-1-2. ワークブックまたは要素のデータソースを変更する (Change the data source for a workbook or element)
+
+ワークブック全体または特定のデータ要素で使用されるデータソースを変更することができます。
+
+例えば、実験や計算の作成中に本番データベースへの負荷を軽減するために、テストデータ接続からのデータソースでワークブックを構築することがあります。チームや組織とワークブックを公開・共有する準備ができたら、ワークブックで使用されているテストデータソースを本番データソースに置き換えることができます。
+
+また、バージョンタグに基づいて、ワークブックやデータモデルのデータソースを自動的に変更または交換することもできます。「[Swap the source of a tagged version](https://help.sigmacomputing.com/docs/add-version-tags#swap-the-source-of-a-tagged-version)」を参照してください。
+
+#### **要件 (Requirements)**
+* 変更したい接続に対する`Can use`[アクセス権](https://help.sigmacomputing.com/docs/data-permissions)が付与されている必要があります。
+* ワークブックに対する`Can edit`または`Can explore`のアクセス権が必要です。
+
+#### **ワークブックのデータソースを交換する (Swap the data source for a workbook)**
+ワークブック内のすべての要素のデータソースを交換するには（例えば、テストデータウェアハウス接続から本番データウェアハウス接続に変更するなど）、以下を実行します。
+
+1.  ワークブックを`Edit`または`Explore`モードで開きます。
+2.  ワークブックメニュー から、`Swap data sources…`を選択します。
+3.  `Swap Data Sources Overview`モーダルで、自動選択された`Matching Connection`を確認します。必要に応じて、選択された接続を更新します。
+4.  ワークブック内の各要素の`Matching Data Sources`を確認します。いずれかのデータソースに`No Match`がある場合は、`Match Manually`を選択して、一致するデータソースがない各要素に対して異なるデータソースを選択します。
+5.  手動マッチページで、要素によって使用されるデータソースを選択し、`Select Source`をクリックします。
+6.  新しいデータソースを検索または参照し、`Select`をクリックします。
+7.  マッチングが必要な次のデータソースを選択し、これらのステップを繰り返します。
+8.  一致しないすべてのデータソースが新しいデータソースにマッチングされた後、`Swap`を選択します。
+9.  手動でマッチングする必要があるデータソースがない場合は、`Swap Now`を選択します。
+
+ワークブックは新しいデータソースを使用するように更新されます。一致するデータソースがない要素はエラーを表示します。
+
+> 🚩
+> ワークブックに入力テーブルまたはカスタムSQL要素が含まれている場合、それらの要素のデータソースと接続は交換されません。代わりに、新しい接続をデータソースとして要素を再作成する必要があります。
+> * **入力テーブルの場合、** 新しい接続で入力テーブルを作成し、古い入力テーブルから新しいものへデータをコピー＆ペーストします。
+> * **カスタムSQL要素の場合、** 新しいSQL要素を作成し、新しいデータ接続に対して同等のSQLを記述します。
+
+#### **要素のデータソースを変更する (Change the data source for an element)**
+特定の要素に使用されるデータソースを変更することもできます。例えば、Snowflakeデータベースにビューを作成し、Sigmaのテーブル要素をSnowflake接続のベーステーブルの代わりにそのビューを使用するように更新したい場合、ソースを交換できます。
+
+> 🚩
+> 入力テーブルまたは接続されたデータウェアハウスを直接クエリするSQLを使用する要素のデータソースは変更できません。SQL要素のソースを変更すると、その要素はもはやSQLを使用しなくなります。
+
+##### **要素のデータソースを交換する (Swap the data source for an element)**
+`Edit`または`Explore`モードで要素を選択した後、データソースを変更できます。
+1.  ワークブックキャンバスから、`More` > `Element source` > `Change source`を選択します。または、エディタパネルの`Properties`タブで、データソースの名前を探し、 > `Change source`を選択します。
+2.  要素の新しいデータソースを検索または参照します。
+3.  [任意] データソースをプレビューして特定の列を選択し、`Add`をクリックします。
+4.  データソースを選択して、データソースの変更を完了します。
+
+データ要素は更新されます。要素に新しいデータソースに存在しない列を参照する計算列が含まれている場合、その計算列は「unknown column」と表示されます。
+
+##### **テーブル要素で使用されるテーブルを置き換える (Replace the table used by a table element)**
+テーブルまたはピボットテーブル要素で使用されるテーブルを別のテーブルに置き換えたい場合は、以下を実行します。
+1.  ワークブックキャンバスから、`More` > `Element source` > `Replace table`を選択します。または、エディタパネルの`Properties`タブで、データソースの名前を探し、 > `Replace table`を選択します。
+2.  要素の新しいテーブルを検索または参照します。
+3.  選択した列を確認し、任意で不要な列の隣にあるチェックボックスの選択を解除します。
+4.  `Add`をクリックします。
+
+データ要素は更新されます。テーブルに新しいテーブルに存在しない列を参照する計算列が含まれている場合、その計算列は「unknown column」と表示されます。
+
+### 5-1-3. ワークブックの更新オプションを管理する (Manage workbook refresh options)
+
+Sigmaは、個人がワークブックを開くか更新するたびに、ワークブックのデータを更新します。ユーザーの操作なしで画面に表示されるワークブックなど、設定されたスケジュールでワークブックのデータを更新したい場合は、カスタムの更新スケジュールを設定できます。
+
+データ要素は個別に更新することもできますが、自動スケジュールでは更新できません。
+
+> 🚩
+> Sigmaはデータを保存しません。すべての更新は、ウェアハウス内のデータに再度クエリを実行します。自動更新を設定すると、接続に負荷がかかり、多額のウェアハウスコストが発生する可能性があります。
+
+#### **要件 (Requirements)**
+
+更新スケジュールを設定するには、個々のワークブックに対する`Can Edit`[アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)と、`Set workbook data refresh`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+
+ワークブックがホストアプリケーションに埋め込まれている場合、カスタム更新スケジュールを埋め込みコンテンツに適用するには、セキュアな埋め込みがJSON Web Tokens (JWTs)で認証されている必要があります。「[Create an embed API with JSON Web Tokens (Beta)](https://help.sigmacomputing.com/docs/example-embed-api-and-url#create-an-embed-api-with-json-web-tokens)」を参照してください。
+
+#### **更新スケジュールを設定する (Set up a refresh schedule)**
+
+ワークブックの更新スケジュールを設定するには、以下を実行します。
+1.  ワークブックヘッダーの更新ボタンの右側にあるキャレット() `More options`をクリックします。
+2.  `Data refresh`を選択します。
+3.  `Data refresh settings`モーダルが開きます。
+4.  `Refresh schedule`で、`Enable`トグルをオンにします。
+5.  `Query data every`フィールドを調整して、ワークブックを更新する頻度を指定します。例えば、10分ごとなど。
+6.  [任意] 更新スケジュールを特定の時間枠に制限するには、`Between`フィールドに時間を入力します。Sigmaは、更新スケジュールが有効であるべきかを評価するために、ブラウザのタイムゾーンを使用します。
+7.  `Save`をクリックします。
+
+#### **個々のデータ要素を更新する (Refresh individual data elements)**
+
+個々のデータ要素のデータを手動で更新できます。
+1.  データ要素を選択します。
+2.  要素のツールバーで、`More`をクリックします。
+3.  `Refresh data`をクリックします。
+4.  要素内のデータが更新されます。
+
+### 5-1-4. ワークブックのローカライゼーションを管理する (Manage workbook localization)
+
+ローカライゼーションにより、ワークブックの編集者はカスタムワークブックのテキストを他の言語に翻訳できます。翻訳はワークブックのプレビューと埋め込みビューに適用されます。
+
+管理者は、Sigma組織内のすべてのワークブックに適用される組織レベルの翻訳を作成することもできます。管理者によって管理される組織レベルの翻訳ファイルの詳細については、「[組織の翻訳ファイルを管理する](https://help.sigmacomputing.com/docs/manage-organization-translation-files)」を参照してください。
+
+#### **要件 (Requirements)**
+ワークブックの翻訳を管理するには、`Can edit`の[ワークブック権限](https://help.sigmacomputing.com/docs/share-a-workbook)が付与されている必要があります。
+> 📘
+> ワークブックのプレビューまたは埋め込みビューのURLと有効なロケール定義を持つ任意のユーザーが、翻訳されたワークブックを閲覧できます。
+
+#### **サポートされている言語とロケール (Supported languages and locales)**
+Sigmaは以下の言語とロケールをサポートしています。
+| 言語 | ロケール |
+| :--- | :--- |
+| Chinese (Simplified) | zh-cn |
+| Chinese (Traditional) | zh-tw |
+| English (United States) | en |
+| English (Australia) | en-au |
+| English (Canada) | en-ca |
+| English (Ireland) | en-ie |
+| English (United Kingdom) | en-gb |
+| French | fr |
+| French (Canada) | fr-ca |
+| German | de |
+| Italian | it |
+| Japanese | ja |
+| Korean | ko-kr |
+| Polish | pl |
+| Portuguese | pt |
+| Portuguese (Brazil) | pt-br |
+| Russian | ru |
+| Spanish | es |
+| Spanish (Mexico) | es-mx |
+| Swedish | sv-se |
+| Thai | th |
+
+#### **ワークブックの翻訳を作成する (Create a workbook translation)**
+ワークブックの設定メニューからアクセスできる`Manage locales`パネルを使用して、ワークブックのロケールと翻訳を管理します。
+
+1.  ワークブックを`Edit`モードで開きます。
+2.  ワークブックの左サイドバーにある設定アイコン()をクリックして、ワークブックの設定パネルを開きます。
+3.  `Manage locales`をクリックします。
+4.  新しい言語を追加するには、`Available locales`の隣にあるプラスアイコン(+)をクリックします。
+5.  ドロップダウンメニューから言語を選択します。
+    > 📘
+    > このステップを完了してワークブックのロケールを作成すると、すべての標準Sigmaテキスト（メニューラベル、モーダルテキストなど）の翻訳が有効になります。ワークブックのカスタムテキストを翻訳するには、この手順の残りを完了してください。
+6.  ワークブック内のカスタムテキストの翻訳を追加するには、その他アイコン()をクリックし、jsonファイルをダウンロードします。
+
+| オプション | 内容 | いつ使うか |
+| :--- | :--- | :--- |
+| **Download** | このオプションは、組織レベルの翻訳ファイルが存在しない場合に表示されます。結果のjsonファイルには、ワークブック内のカスタム文字列のすべてのキーと値のペアが含まれます。 | 管理者が組織全体に適用される翻訳を定義していない場合に、カスタムテキストの翻訳を定義するためにこのオプションを選択します。 |
+| **Download untranslated strings** | 結果のjsonファイルには、組織レベルの翻訳ファイルのキーと一致しない、ワークブック内のカスタム文字列のキーと値のペアのみが含まれます。 | 組織レベルで定義されている値を上書きしたくない場合に、このオプションを選択します。 |
+| **Download all strings** | 結果のjsonファイルには、ワークブック内のカスタム文字列のすべてのキーと値のペアが含まれます。 | このワークブックのカスタム文字列に適用されるすべての翻訳を確認したい場合、または組織レベルの翻訳をこのワークブック用に異なる翻訳で上書きしたい場合に、このオプションを選択します。|
+
+7.  ダウンロードしたファイルを開きます。
+8.  `.json`ファイルには、キーと値のペアのリストが含まれています。
+9.  値を適切な翻訳に更新します。
+    > 🚩
+    > どのキーも編集しないでください。
+10. ファイルを編集して保存します。ファイル名は変更しないでください。
+11. Sigmaに戻ります。`Upload`をクリックし、更新した`.json`ファイルを選択します。
+12. プレビューアイコン()をクリックして、翻訳されたテキストでワークブックのプレビューを開きます。
+
+#### **ワークブックの翻訳を更新する (Update a workbook translation)**
+ワークブックにテキストの変更を公開するたびに、新しいまたは変更されたテキスト文字列の新しい翻訳を含むロケールの`.json`ファイルをダウンロードして再アップロードする必要があります。新しく追加された文字列は、jsonファイルの末尾に表示されます。
+管理者がその言語の組織全体の翻訳ファイルを作成している場合は、未翻訳の文字列のみをダウンロードするか、すべての文字列をダウンロードするかを選択する必要があります。（オプションについては上記の表を参照）
+
+#### **言語のカスタム翻訳を追加する (Add a custom translation for a language)**
+特定の言語に対して複数のユニークな翻訳を維持することができます。例えば、埋め込みダッシュボードの異なる消費者に対して、ワークブック内の文字列を異なる方法で翻訳できます。
+言語のカスタム翻訳を追加すると、カスタム翻訳ファイルがベース言語ファイルの代わりに使用されます。
+1.  ワークブックを`Edit`モードで開きます。
+2.  `Manage locales`パネルを開きます。
+3.  `Available locales`の隣にあるプラスアイコン(+)をクリックします。
+4.  ドロップダウンメニューで、`Add custom translations`を選択します。
+5.  カスタム翻訳ファイルの名前を入力します。
+    > 🚩
+    > 管理者が定義した組織レベルのカスタム翻訳セットをこの言語で継承したい場合は、ここで管理者が組織レベルの翻訳ファイルを作成した際に使用したのと同じ名前を使用する必要があります。管理者にファイルの名前を尋ねてください。
+6.  `Base language`を設定して、すべての標準Sigmaテキストに使用する言語を指定します。
+7.  `Add`をクリックします。
+8.  利用可能なロケールのリストで、追加したカスタム言語バリアントを見つけます。
+    > 📘
+    > 組織レベルの言語バリアントが存在し、カスタム言語バリアントファイルに同じ名前を使用した場合、組織レベルのファイルはグレーで表示されます。
+9.  ワークブック内のカスタムテキストの翻訳を追加するには、その他アイコン()をクリックし、jsonファイルをダウンロードします。（オプションについては上記の表を参照）
+10. ファイルを開き、値を翻訳に更新します。
+11. ファイルを保存し、Sigmaにアップロードします。
+12. プレビューアイコン()をクリックして、翻訳されたテキストでワークブックのプレビューを開きます。
+
+#### **翻訳ファイルでマークダウンと動的テキストを使用する (Use markdown and dynamic text in a translation file)**
+JSONの値にマークダウンと動的テキストを使用して、リッチテキストをサポートできます。
+値の一部として動的テキストを生成するには、以下の構文を使用します： `[={formula-id}]`
+他のリッチテキストにはマークダウン構文を使用します。
+
+#### **埋め込みまたはプレビューにロケールと翻訳を適用する (Apply locales and translations to embeds or previews)**
+埋め込みまたはプレビューにロケールを適用するには、埋め込みまたはワークブックプレビューのURLに `:lng=<your-locale>` を追加します。ロケールを適用すると、メニューラベルやモーダルテキストなどの標準Sigmaテキストが、ロケールに関連付けられた言語に翻訳されます。そのロケールに翻訳ファイルが定義されている場合、ロケールを適用すると、ワークブック内のカスタムテキストも定義された翻訳で翻訳されます。
+言語のカスタム翻訳バリアントを適用する場合は、`:lng_variant=<variant+name>` も追加します。名前の特殊文字にはURLエンコーディングを使用してください。
+
+* **埋め込みAPIコードの例:**
+    ```javascript
+    // 注：ローカライゼーションの値は大文字と小文字を区別します
+    searchParams += '&:lng=fr-ca';
+    ```
+* **カスタム翻訳バリアントの埋め込みAPIコードの例:**
+    ```javascript
+    // 注：ローカライゼーションの値は大文字と小文字を区別します
+    searchParams += '&:lng=it&:lng_variant=Custom+Italian';
+    ```
+* **埋め込みURLの例:**
+    `https://app.sigmacomputing.com/my-company/workbook/My-Workbook-2PG8oM9uFxNLyzxAukJfBrL?:embed=true&:lng=fr-ca`
+* **カスタム翻訳バリアントの埋め込みURLの例:**
+    `https://app.sigmacomputing.com/my-company/workbook/My-Workbook-2PG8oM9uFxNLyzxAukJfBrL?:embed=true&:lng=it&:lng_variant=Custom+Italian`
+> 💡
+> ロケールを適用するために翻訳ファイルは必須ではありません。
+> 翻訳ファイルが定義されていなくても、上記のパラメータを使用して埋め込みやプレビューにロケールを適用し、メニューラベルやモーダルテキストなどの標準Sigmaテキストを別の言語で表示することができます。
+
+#### **現在の制限事項 (Current limitations)**
+* 自動生成されたデータ要素名（例：Sum of Cost by Year of Date）は、Sigmaが生成する.jsonファイルには含まれません。翻訳を定義する前に、すべてのデータ要素を手動で命名してください。
+* 探索モードはサポートされていません。
+* 数値と日付のフォーマットはサポートされていません。
+
+### 5-1-5. ワークブックのページの可視性を管理する (Manage workbook page visibility)
+
+デフォルトでは、ワークブックのページは、ワークブックを閲覧、探索、または編集する権限を持つすべてのユーザーに表示されます。個々のページの可視性を変更して、特定のワークブックのコンテンツの閲覧を制限することができます。
+
+このドキュメントでは、Sigmaのページの可視性オプションについて説明し、特定のページの可視性をカスタマイズする方法を解説します。
+
+#### **ユーザー要件 (User requirements)**
+ワークブックのページの可視性を管理する機能には、以下が必要です。
+* `Create, edit, and publish workbooks`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたがワークブックの所有者であるか、`Can edit`の[ワークブック権限](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+#### **ページの可視性を理解する (Understanding page visibility)**
+ページの可視性はセキュリティ機能ではありません。データへのアクセスを制限する必要がある場合は、「[Dataset Row-Level Security](https://help.sigmacomputing.com/docs/set-up-row-level-security)」を参照してください。
+> 📘
+> ワークブック内の少なくとも1つのページには、ページの可視性制限が適用されていない状態である必要があります。
+> 🚧
+> ページの可視性設定は、`View`および`Explore`モードでのみ適用されます。ワークブックの所有者および特定のワークブックに対する`Can edit`権限を付与された任意のユーザーは、ページの可視性設定に関わらず、`Edit`モードですべてのページにアクセスできます。
+> 🚧
+> `Save As`権限を持つユーザーがワークブックのコピーを保存すると、元のワークブックのページの可視性設定に関わらず、コピーにはすべてのページが表示されます。
+
+##### **ページの可視性アイコン (Page visibility icons)**
+ページタブには、現在のページの可視性設定を示すアイコンが表示されます。
+
+| アイコン | 説明 |
+| :--- | :--- |
+| (アイコンなし) | ページがすべてのユーザーに表示されることを示します。|
+| (アイコン) | ページが選択されたユーザーまたはチームにのみ表示されることを示します。|
+| (アイコン) | ページがすべてのユーザーから非表示になっていることを示します。|
+
+##### **ワークブックのバージョンとセキュアな埋め込みでのページの可視性 (Page visibility in workbook versions and secure embeds)**
+* **タグ付きバージョン (Tagged versions)**
+    タグ付きのワークブックバージョンは、タグが適用されたときにワークブックに保存されたページの可視性設定を継承します。したがって、あるバージョンではユーザーがページにアクセスでき、別のバージョンでは同じユーザーから非表示にすることができます。
+* **セキュアな埋め込み (Secure embeds)**
+    セキュアな埋め込みでのページの可視性は、チーム設定によって決定されます。ページは、ユーザーの割り当てられたチームに表示されている場合（`Show page to all users`または`Only show to select users or teams`を介して）にのみ、埋め込みユーザーに表示されます。
+    > 🚧
+    > セキュアな埋め込みユーザーが埋め込まれたワークブックのコピーを保存すると、元のワークブックのページの可視性設定に関わらず、コピーにはすべてのページが表示されます。
+
+#### **ページを非表示または再表示する (Hide or unhide a page)**
+`Hide page`および`Unhide page`オプションを使用して、すべてのユーザーに対するページの可視性を迅速に更新します。
+1.  ワークブックを`Edit`モードで開きます。
+2.  カスタマイズしたいページのタブを探します。
+3.  タブのキャレット()をクリックしてページメニューを開き、利用可能なオプションを選択します。
+    * **Hide page:** `View`または`Explore`モードでワークブックにアクセスするすべてのユーザーからページを非表示にします。ページが現在すべてのユーザーに表示されている場合に利用可能です。
+    * **Unhide page:** 任意のモードでワークブックにアクセスするすべてのユーザーにページを表示します。ページが現在すべてまたは選択されたユーザーとチームから非表示になっている場合に利用可能です。
+
+#### **ページの可視性をカスタマイズする (Customize page visibility)**
+`Customize page visibility`オプションを使用して、すべてのユーザーまたは特定のユーザーとチームに対するページの可視性を更新します。
+1.  ワークブックを`Edit`モードで開きます。
+2.  カスタマイズしたいページのタブを探します。
+3.  タブのキャレット()をクリックしてページメニューを開き、`Customize page visibility`を選択します。
+4.  `Customize Page Visibility`モーダルで、ページの可視性を構成します。
+    a. `Page visibility setting`フィールドをクリックし、ドロップダウンからオプションを選択します。
+        * **Hide page from all users:** `View`または`Explore`モードでワークブックにアクセスするすべてのユーザーからページを非表示にします。
+        * **Show page to all users (default):** 任意のモードでワークブックにアクセスするすべてのユーザーにページを表示します。
+        * **Only show to select users or teams:** 選択されたユーザーとチームにのみページを表示します。`View`または`Explore`モードでワークブックにアクセスする残りのユーザーからはページを非表示にします。
+    b. ステップ4aで`Only show to select users or teams`を選択した場合は、`Select users`フィールドを使用して、該当するユーザーとチームを検索して選択します。
+5.  `Save`をクリックして、ページの可視性の変更を適用します。
+
+### 5-1-6. ドキュメントにショートカットを追加する (Add shortcuts to documents)
+
+複数の場所にドキュメントへのリンクを保存したい場合は、ショートカットを追加できます。
+
+ショートカットを使用して、特定のデータソースをソースピッカーで見つけやすくしたり、主要なワークブックやデータモデルへのアクセスを容易にするためにドキュメントを整理したりします。
+
+例えば、「Sales」ワークスペースにある「Quarterly Sales Targets」ワークブックへのショートカットを、個人の「My Documents」フォルダに追加して、そのワークブックに簡単にアクセスできるようにすることができます。
+
+別の例として、「Marketing」ワークスペースに「Google Analytics」データモデル（またはデータウェアハウステーブル）へのショートカットを追加できます。次にMarketingワークスペースの誰かがワークブックに新しい要素を追加しようとするとき、その標準的なデータモデルが簡単に見つかります。
+
+#### **サポートされているショートカットドキュメント (Supported shortcut documents)**
+以下のファイル、フォルダ、その他のオブジェクトへのリンクを、Sigmaのワークスペースまたはフォルダにショートカットとして保存できます。
+* ワークブック
+* フォルダ（「My Documents」を除く）
+* ワークスペース
+* データモデル（データモデル内の可視要素を含む）
+* データセット
+* データウェアハウスのテーブル、ビュー、スキーマ、カタログ、データベース
+
+ショートカットへのショートカットを追加することはできず、「My Documents」フォルダへのショートカットを別のフォルダやワークスペースに追加することもできません。
+
+#### **ショートカットの権限 (Shortcut permissions)**
+ドキュメントにショートカットを追加するには、あなたが所有者であるか、そのドキュメントに対する`Can Explore`または`Can Edit`の権限を持っている必要があります。
+
+ワークブック、フォルダ、ワークスペース、データモデル、またはデータセットへのショートカットを作成しても、そのファイルやフォルダへの権限は変更されません。フォルダやワークスペースへのアクセス権を持つ誰もがショートカットを閲覧できますが、ドキュメント（ワークスペース、ワークブック、フォルダ、データモデル、データセット）へのアクセス権を付与されたユーザーのみが、そのドキュメントを開くことができます。
+
+#### **ドキュメントにショートカットを追加する (Add a shortcut to a document)**
+サポートされているドキュメントへのショートカットを、別のフォルダまたはワークスペースに追加できます。バージョンタグが付いたワークブック、データモデル、またはデータセットにショートカットを追加することはできません。
+
+1.  ショートカットを追加したいドキュメントを含む親フォルダまたはワークスペースを開きます。例えば、「My Documents」フォルダ内のサブフォルダへのショートカットを追加するには、「My Documents」を開きます。
+2.  `More` > `Add shortcut…`を選択します。
+3.  ショートカットを追加したいフォルダまたはワークスペースを検索または参照し、`Add`をクリックします。
+4.  ドキュメントへのショートカットが、そのフォルダまたはワークスペースで利用可能になります。
+
+ワークブック、データモデル、またはデータセットを表示中にショートカットを追加することもできます。
+1.  ヘッダーで、ワークブック、データモデル、またはデータセットのタイトルの隣にある下矢印()を選択して、ドキュメントメニューを開きます。
+2.  `File` > `Add shortcut…`を選択します。
+3.  ショートカットを追加したいフォルダまたはワークスペースを検索または参照し、`Add`をクリックします。
+4.  ワークブックへのショートカットが、そのフォルダまたはワークスペースで利用可能になります。
+
+#### **データウェアハウスオブジェクトにショートカットを追加する (Add a shortcut to a data warehouse object)**
+データウェアハウス内のテーブル、ビュー、スキーマ、カタログ、またはデータベースにショートカットを追加するには：
+1.  Sigmaホームから、`Connections`を選択します。
+2.  接続を選択し、ショートカットを追加したいオブジェクトを検索または参照します。
+3.  オブジェクトにカーソルを合わせ、`More` > `Add shortcut…`を選択します。
+4.  ショートカットを追加したいフォルダまたはワークスペースを検索または参照し、`Add`をクリックします。
+5.  オブジェクトへのショートカットが、そのフォルダまたはワークスペースで利用可能になります。
+
+その後、データソースを追加する際に、そのショートカットを使用してデータベースオブジェクトをより簡単に見つけることができます。
+
+削除されたドキュメントへのショートカットがある場合、そのショートカットを削除するように促されます。ショートカットをクリックすると、もしアクセス権があれば、削除されたドキュメントを復元するように促されます。
+
+### 5-2-1. テンプレートからワークブックを作成する (Create workbooks from templates)
+
+テンプレートは、迅速かつ一貫性をもって新しいワークブックを構築できる、再利用可能なワークブック構造です。
+
+このドキュメントでは、既存のテンプレートにアクセスし、それらを使用して新しいワークブックを作成する方法について説明します。テンプレートに関する詳細は、「[テンプレートの作成と編集](https://help.sigmacomputing.com/docs/create-and-edit-templates)」および「[テンプレートの共有](https://help.sigmacomputing.com/docs/share-templates)」を参照してください。
+
+#### **要件 (Requirements)**
+
+既存のテンプレートにアクセスし、それを使用して新しいワークブックを作成する機能には、以下が必要です。
+* `Can create, edit, and publish workbooks`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたの組織のユーザーによって作成されたテンプレート（`Templates` > `Internal`内）にアクセスするには、あなたがテンプレートの所有者であるか、`Can use`または`Can edit`のテンプレート権限を付与されている必要があります。
+* Sigmaテンプレートやあなたの組織と共有されている他のテンプレート（`Templates` > `External`内）にアクセスするには、`Internal`メンバータイプを割り当てられている必要があります。ゲストユーザーは外部テンプレートにアクセスできません。
+
+#### **テンプレートからワークブックを作成する (Create a workbook from a template)**
+
+1.  ホームページの左側ナビゲーションパネルから`Templates`ギャラリーページを開きます。
+2.  探索したいテンプレートをクリックします。
+3.  テンプレート化されたワークブックが開きます。
+4.  テーブル、ビジュアライゼーション、コントロールなど、そのインタラクティブな要素のいずれかをクリックしてテンプレートを探索します。あなたの変更は、テンプレート自体には影響しません。
+5.  [任意] テンプレートから編集可能で公開可能なワークブックを作成するには、テンプレートのヘッダーで`Save As`をクリックします。
+
+#### **ワークブックテンプレートであなたのデータを使用する（ソースを交換する）(Use your data in a workbook template (swap sources))**
+
+* **前提条件:** 交換したいデータはSigmaで利用可能である必要があります。
+
+ワークブックテンプレートに独自のデータを注入するには：
+1.  ホームページの左側ナビゲーションパネルから`Templates`ギャラリーページを開きます。
+2.  使用したいテンプレートをクリックします。
+3.  テンプレート化されたワークブックが開きます。
+4.  ワークブックが[サンプルデータ](https://help.sigmacomputing.com/docs/sample-connection)上に構築されている場合、ページ上部にポップアップが表示されます。
+5.  `Swap now`をクリックします。
+6.  これにより、`Swap Data Sources`ページが開きます。
+7.  Sigmaは、テンプレートの期待されるデータとあなたのデータを自動的に照合しようと試みます。
+8.  しかし、これを上書きすることも、Sigmaが見つけられないソースを手動で選択する必要がある場合もあります。
+    * [任意] 一致したソースを置き換えるには、`REPLACE WITH`の下にあるソースの隣の編集()ボタンをクリックします。次に、モーダルから新しいソースを選択します。
+9.  テンプレートが追加のソースを必要とする場合は、左端のパネル`ALL SOURCES IN USE`から各ソースの一致を確認します。
+10. 準備ができたら、`Swap`をクリックします。
+11. ワークブックを探索して、あなたのデータが正しく表示されることを確認します。
+12. テンプレートから編集可能で公開可能なワークブックを作成するには、テンプレートのヘッダーで`Save As`をクリックします。
+
+ワークブックはソースの交換もサポートしています。ワークブックにデータを交換し始めるには、ワークブックを編集モードで開き、ヘッダーメニューを開いて`Swap data sources`をクリックします。
+
+### 5-2-2. ワークブックテンプレートの作成と編集 (Create and edit workbook templates)
+
+ワークブック[テンプレート](https://help.sigmacomputing.com/docs/get-started-with-workbook-templates)を使用すると、ユーザーは[ワークブック](https://help.sigmacomputing.com/docs/workbooks-overview)の構造をテンプレート化して共有し、迅速かつ一貫性のある再利用が可能になります。
+
+#### **要件 (Requirements)**
+
+テンプレートを作成および編集する機能には、以下が必要です。
+* 既存のワークブックから新しいテンプレートを作成するには、`Create, edit, and publish workbooks`権限を持つ[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられ、既存のワークブックに対する表示アクセス権を持っている必要があります。
+* 既存のテンプレートを編集するには、あなたがテンプレートの所有者であるか、`Can edit`のテンプレート権限を付与されている必要があります。
+
+#### **新しいテンプレートを作成する (Create a new template)**
+
+1.  テンプレートの基として使用したいワークブックを開きます。
+2.  ドキュメントメニューから、`File` > `Save as template`を選択します。
+3.  `Template Name`を入力します。
+4.  [任意] テンプレートを共有したい場合は、組織のメンバーまたはチームの名前を入力し、ドロップダウンから希望の権限を選択します。
+5.  `Save`をクリックします。新しいテンプレートにリダイレクトされます。
+
+#### **既存のテンプレートを編集する (Edit an existing template)**
+
+1.  ホームページから`Templates`を選択します。
+2.  編集したいテンプレートを見つけ、`More` > `Open`を選択します。
+3.  テンプレートのヘッダーで、`Edit`を選択します。
+4.  変更を加えます。
+5.  テンプレートのヘッダーで、`Publish`をクリックして変更を保存します。
+
+### 5-3. ワークブックのライフサイクル
+
+#### 5-3-1. ワークブックのライフサイクル：探索、ドラフト、公開 (Workbook lifecycle: explore, draft, and publish)
+
+ワークブックは、アドホックなデータ探索と複雑な長期レポーティングの両方をサポートします。共同作業が可能なインターフェースと、データ操作への視覚的なアプローチにより、組織内の誰もがライブデータとリアルタイムの共同作業にアクセスできるようになります。この記事では、データ探索から公開、バージョン履歴までの、ワークブックのライフサイクルの基本を紹介します。
+
+##### **アドホックなデータ探索 (Ad hoc data exploration)**
+新規の、保存されていないワークブックは「探索（explorations）」とも呼ばれます。探索は、将来の使用のために作業を保存することなく、データを探索して次に進みたい場合のアドホック分析に最適です。
+探索を公開済みワークブックとして保存するには、探索のヘッダーにある`Save as`をクリックします。
+「[Ad hoc data exploration](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)」を参照してください。
+
+##### **ワークブックのモード：編集、探索、表示 (Workbook modes: Edit, Explore, and View)**
+公開済みのワークブックは、編集、探索、表示の3つの異なるモードでアクセスできます。特定のワークブックでアクセスできるモードは、その個々のワークブックに対してあなたに付与された権限に依存します。「[Workbook modes overview](https://help.sigmacomputing.com/docs/workbook-modes-overview)」を参照してください。
+
+##### **ドラフトと公開 (Drafts and publishing)**
+ワークブックに加えられた編集は、共有されたライブドラフトとして自動的に保存されます。複数の編集者が単一のドラフトでリアルタイムに共同作業できます。すべてのアクティブな編集者は、現在編集モードにいる他のユーザーのリストと、それぞれが選択している要素を見ることができます。
+`Publish`をクリックすると、ライブドラフト上のすべての編集者によってドラフトされた変更を含む、ワークブックへのすべてのドラフトされた変更が公開されます。
+「[Edit, draft, and publish a workbook](https://help.sigmacomputing.com/docs/draft-and-publish-a-workbook)」を参照してください。
+
+##### **バージョン履歴 (Version history)**
+Sigmaは、公開されたワークブックのバージョンとそれに関連する変更の履歴を保存します。これをバージョン履歴と呼びます。バージョン履歴には、ワークブックヘッダーにあるバージョンメニューからアクセスします。
+「[Workbook versions and version history](https://help.sigmacomputing.com/docs/document-versions-and-version-history)」を参照してください。
+
+### 5-3-2. ドキュメントバッジの表示と管理 (View and manage document badges)
+
+ワークブックとデータモデルに認定バッジ（推奨、警告、非推奨）を設定して、ドキュメントのステータス、品質、信頼性を反映させます。
+
+例えば、以下のようにデータモデルのライフサイクルの段階を示すためにバッジを使用します。
+* **Endorsed (推奨):** データモデルは検証済みで信頼でき、品質基準を満たしています。
+* **Warning (警告):** データモデルは古い、不完全、またはレビュー中です。
+* **Deprecated (非推奨):** データモデルは廃止されたか、もはやメンテナンスされていません。
+
+このドキュメントでは、ワークブックとデータモデルでバッジを表示、設定、削除する方法について説明します。データセットとデータベーステーブルに認定バッジを追加する方法については、「[データセットの作成と管理](https://help.sigmacomputing.com/docs/create-and-manage-datasets)」および「[データカタログのレビューと管理](https://help.sigmacomputing.com/docs/review-and-manage-your-data-catalog)」を参照してください。
+
+#### **ユーザー要件 (User requirements)**
+バッジを設定または削除する機能には、以下が必要です。
+* `Manage all badges`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたがドキュメントの所有者であるか、任意の[ドキュメント権限](https://help.sigmacomputing.com/docs/folder-and-document-permissions)を付与されている必要があります。
+
+バッジは、ドキュメントへのアクセス権を付与された任意のユーザーに表示されます。
+
+#### **既存のバッジを表示する (View existing badges)**
+ホームページから、または個々のワークブックからバッジを表示できます。
+* **ホームページ:** ホームページから、`My documents`を選択します。最近アクセスしたドキュメントのうち、どのドキュメントにバッジが割り当てられているかを確認できます。
+* **ワークブック内:** バッジはドキュメントメニュー（ワークブックの名前の隣）に表示されます。
+
+#### **バッジを設定する (Set a badge)**
+1.  バッジを割り当てたいドキュメントを開きます。
+2.  ヘッダーで、ドキュメント名をクリックし、メニューから`File` > `Set badge`を選択します。
+3.  `Set badge`モーダルで、ドキュメントに適用するバッジを選択し、次にバッジに関するメモを追加します（任意）。
+4.  `Add`（現在バッジが設定されていない場合）または`Update`（既存のバッジを置き換える場合）をクリックしてバッジを設定します。
+
+#### **バッジを削除する (Delete a badge)**
+1.  削除したいバッジがあるドキュメントを開きます。
+2.  ヘッダーで、ドキュメント名をクリックし、メニューから`File` > `Set badge`を選択します。
+3.  `Set badge`モーダルで、`Delete`をクリックしてドキュメントからバッジを削除します。
+
+### 5-3-3. ワークブックのバージョンとバージョン履歴 (Workbook versions and version history)
+
+ワークブックにはバージョンがあります。デフォルトのバージョンは「Published」と「Draft」で、「タグ付きバージョン」と呼ばれる新しいカスタムバージョンを追加することもできます。バージョンタグ付けの詳細については、「[ワークブックとデータモデルにバージョンタグを追加する](https://help.sigmacomputing.com/docs/add-version-tags)」を参照してください。ワークブックの編集と公開の詳細については、「[ワークブックの編集、ドラフト、公開](https://help.sigmacomputing.com/docs/draft-and-publish-a-workbook)」を参照してください。
+
+ワークブックのバージョン履歴には、以前に公開されたすべてのワークブックのバージョンのリストと、保留中のドラフトの変更が含まれています。各公開バージョンには、編集履歴と呼ばれる変更の詳細なリストが含まれています。バージョンと編集履歴を使用して、ドラフトされた変更を確認したり、古い公開バージョンと比較または元に戻したり、チームの誰が特定の編集または一連の変更を行ったかを特定したり、特定のバージョンタグでタグ付けされたバージョンを特定したりできます。ワークブックのバージョン履歴の保持期間に制限はありません。
+
+#### **要件 (Requirements)**
+* 編集履歴や現在のドラフトへの編集を含むワークブックのバージョン履歴は、ワークブックに対する`Can Edit`権限を持つユーザーのみが利用できます。
+* ワークブックの古いバージョンや変更を復元できるのは、`Can Edit`権限を持つユーザーのみです。
+* 2022年12月13日より前に行われた変更については、編集履歴は利用できません。2022年12月13日以降、ライブ編集が有効になっているすべての組織では、編集履歴で編集が追跡されます。ライブ編集が有効になる前に行われた編集は、追跡されません。詳細は、「[ワークブックでのライブ編集による共同作業](https://help.sigmacomputing.com/docs/collaborate-with-live-edit-in-workbooks)」を参照してください。
+
+#### **ワークブックのバージョンについて (About workbook versions)**
+ワークブックを開くと、現在のバージョンがワークブックヘッダーに表示されます。
+* 公開済みのワークブックを表示している場合、バージョンは`PUBLISHED`です。
+* タグ付きバージョンを表示している場合、バージョンタグの名前が表示されます。
+* 編集のためにワークブックを開くと、バージョンは`DRAFT`です。
+
+ワークブックは、以下のいずれかのバージョンを持つことができます。
+* **Draft (ドラフト):** ワークブックを編集中は、ドラフトモードになり、変更はあなたと現在ワークブックを編集している他の人にのみ表示されます。
+* **Published (公開済み):** ワークブックへの表示または探索アクセス権を持つ他の人が変更を見られるようにするには、それを公開します。
+* **Tagged (タグ付き):** 特定のユーザーまたは特定の目的のためにワークブックの読み取り専用バージョンを利用可能にしたい場合は、特定のワークブックバージョンにタグを適用できます。例えば、「Development」や「Production」としてワークブックにタグを付けることができます。「[ワークブックとデータモデルにバージョンタグを追加する](https://help.sigmacomputing.com/docs/add-version-tags)」を参照してください。
+
+ワークブックのバージョンのライフサイクルに関する詳細は、「[ワークブックの編集、ドラフト、公開](https://help.sigmacomputing.com/docs/draft-and-publish-a-workbook)」を参照してください。
+
+#### **ワークブックのバージョン履歴を開く (Open version history for a workbook)**
+ワークブックに変更を加えると、その変更はバージョン履歴に表示されます。バージョンを公開すると、バージョン履歴が更新されます。
+バージョン履歴を表示するには、ワークブックに対する`Can Edit`権限が必要です。
+
+1.  ワークブックを開きます。
+2.  ドキュメント名の隣にあるキャレット()をクリックし、`Version history`を選択します。現在のバージョンの名前を選択し、`View version history`を選択することもできます。
+3.  バージョン履歴パネルが開き、最新バージョンとその変更が表示されます。以前に公開されたバージョンは以下にリストされ、現在公開されているバージョンに対応するバージョンには`Current`というラベルが付いています。
+4.  バージョンタイムスタンプの隣にあるシェブロンをクリックして特定のバージョンの詳細な編集履歴を確認するか、特定のバージョンまたは変更を選択してその時点でのワークブックを表示します。
+5.  ワークブックの最新バージョンに戻るには、`Go back to latest version`を選択します。
+6.  バージョン履歴パネルを閉じるには、`X`をクリックします。
+
+#### **ドラフトを以前の変更またはバージョンに復元する (Restore a draft to a previous change or version)**
+ワークブックを以前に公開されたバージョンに戻すか、ワークブックのバージョン履歴の特定の変更に戻すには、以前の変更またはバージョンをドラフトとして復元します。以前のバージョンを復元する前に行われた変更は、バージョン履歴に残ります。
+バージョン履歴の以前のバージョンまたは変更を復元するには、ワークブックに対する`Can Edit`権限が必要です。
+
+* **ドラフトを以前に公開されたバージョンに復元する**
+    ドラフトを以前に公開されたバージョンに復元するには、以下を実行します。
+    1.  ワークブックのバージョン履歴を開きます。
+    2.  復元したい以前に公開されたバージョンを探します。
+    3.  `More`をクリックし、`Restore version as draft`を選択します。
+    4.  変更は、リストされたバージョンのタイムスタンプとともに`Restored version from`としてバージョン履歴に表示されます。
+    5.  必要に応じて他の変更を行うか、`Publish`をクリックして変更を公開します。
+
+* **バージョン履歴の以前の変更に戻す**
+    ワークブックのドラフトを、バージョンまたはドラフトの編集履歴の特定の変更に復元できます。
+    > 🚧
+    > ワークブックに入力テーブルが含まれており、バージョン履歴の以前の変更にワークブックを復元した場合、入力テーブルの内容はその時点には復元されず、代わりに最新の変更が反映されます。
+    > 代わりに、特定の変更に最も近い公開バージョンを復元し、その後で特定の変更を復元することができます。
+    ドラフトを編集履歴の以前の変更に戻すには、以下を実行します。
+    1.  ワークブックのバージョン履歴を開きます。
+    2.  ドラフトを戻したい変更が含まれるバージョンを探します。
+    3.  必要に応じて、バージョンの編集履歴を展開し、その変更を探して選択します。
+    4.  ワークブックヘッダーで、`Restore version as draft`を選択します。
+    5.  変更は`Restored from autosaved draft`としてバージョン履歴に表示されます。
+    6.  必要に応じて他の変更を行うか、`Publish`をクリックして変更を公開します。
+
+#### **以前に公開されたバージョンを操作する (Work with previously published versions)**
+ワークブックのバージョン履歴を確認する際、以前に公開されたバージョンに対していくつかのアクションを実行できます。`More`を選択して、以下のいずれかを実行します。
+* **Restore version as draft:** バージョンをドラフトとして復元します。「[ドラフトを以前に公開されたバージョンに復元する](#restore-a-draft-to-a-previously-published-version)」を参照してください。
+* **Edit name and description:** バージョンの名前と説明を変更します。デフォルトでは、バージョンはタイムスタンプでリストされます。
+* **Save as new workbook:** バージョンを新しいワークブックとして保存します。
+* **Copy link:** 以前のワークブックバージョンへのリンクをコピーします。ワークブックへのアクセス権を持つユーザーのみがリンクを表示できます。
+* **Set a tag on the version:** バージョンにタグを設定します。「[ワークブックとデータモデルにバージョンタグを追加する](https://help.sigmacomputing.com/docs/add-version-tags)」を参照してください。
+
+### 5-3-4. ワークブックとデータモデルにバージョンタグを追加する (Add version tags to workbooks and data models)
+
+> 🚩
+> データモデルのバージョンタグ付けはパブリックベータ機能であり、迅速で反復的な変更の対象となります。そのため、最新の製品バージョンはこのドキュメントの内容と異なる場合があります。詳細は、「[Beta features](https://help.sigmacomputing.com/docs/beta-features)」を参照してください。
+> ワークブックのバージョンタグ付けは一般的に利用可能です。
+
+ワークブックまたはデータモデルのバージョンにタグを追加して、そのドキュメントバージョンの読み取り専用ビューを作成します。その後、タグ付きバージョンを別のチームと共有して彼ら専用にしたり、タグ付きバージョンのワークブックをアプリケーションに埋め込んだり、タグ付きバージョンを使用してバージョン管理を行う開発ライフサイクルを実装したりできます。
+
+ワークブックまたはデータモデルのバージョンにタグを付けると、タグ付きバージョンに影響を与えることなく、典型的なドラフトと公開のワークフローでソースドキュメントの反復作業を続けることができます。詳細は、「[Version tagging workflow](#version-tagging-workflow)」を参照してください。
+
+ワークブックまたはデータモデルの複数のバージョンにタグを付けることができますが、同じタグでドキュメントの複数のバージョンにタグを付けることはできません。
+
+管理者は、承認フローを必要とする保護されたタグの作成を含む、バージョンタグの作成と管理ができます。「[Create and manage version tags](https://help.sigmacomputing.com/docs/create-and-manage-version-tags)」を参照してください。
+
+#### **バージョンタグ付けのワークフロー (Version tagging workflow)**
+すべてのワークブックとデータモデルには、公開バージョンとドラフトがあります。ドキュメントに加えられたすべての変更は、[バージョン履歴](https://help.sigmacomputing.com/docs/document-versions-and-version-history)で表示できます。
+
+特定のドキュメントバージョンにタグを付けて、そのドキュメントバージョンのステータスについて何かを示すことができます。例えば、ワークブックのバージョンにタグを付けて、内容の正確性をレビューする必要があること、または本番環境で使用する準備ができていることを示します。
+
+データモデルにもタグを付け、同様のワークフローを使用して、テスト用または本番用に特定のデータモデルバージョンにタグを付けられます。
+
+タグ付きバージョンがレビューされている間、ドラフトの反復作業を続けることができます。ドラフトまたは公開バージョンに加えられた変更は、タグ付きバージョンには影響しません。詳細は、「[Make changes to a tagged workbook version](#make-changes-to-a-tagged-workbook-version)」を参照してください。
+
+##### **バージョンタグ付けがデータセットとデータモデルに与える影響 (How version tagging affects datasets and data models)**
+データセットをデータソースとして使用するワークブックバージョンにタグを付けると、使用中のデータセットバージョンのコピーが作成され、タグ付きワークブックバージョンで使用されます。タグ付きワークブックバージョンに関連付けられたデータセットは、元のデータセットに変更が加えられても更新されなくなり、ワークブックバージョンがタグ付けされたときに使用されていたデータセットのバージョンが事実上凍結されます。データソース自体は、バージョンタグによって何ら影響を受けません。
+
+データモデルをデータソースとして使用するワークブックは、動作が異なります。データモデルをデータソースとして使用するワークブックバージョンにタグを付けると、ワークブックバージョンはタグ付けされますが、データモデルバージョンはタグ付けされません。新しい列の追加や既存の列のデータ型の変更など、データモデルに加えられた将来の変更は、そのデータモデルに依存するワークブックのバージョンと同期されます。
+
+タグ付きバージョンのワークブックのデータソースとして使用されるデータモデルを「凍結」したい場合は、データモデルとワークブックの両方にタグを付け、タグ付きバージョンのワークブックのデータソースとしてタグ付きデータモデルを使用できます。「[Swap the source of a tagged workbook version](#swap-the-source-of-a-tagged-workbook-version)」を参照してください。
+
+##### **タグ付きワークブックバージョンの埋め込み (Embedding tagged workbook versions)**
+ワークブックを埋め込む場合、バージョンタグを使用して環境間でコンテンツをプロモートする管理ができます。例えば、「test」と「production」タグを使用して変更を管理し、本番で使用されるバージョンを保護します。その後、埋め込みでタグ付きバージョンへの直接リンクを使用できます。「[Link to a tagged version of a workbook](#link-to-a-tagged-version-of-a-workbook)」を参照してください。
+
+#### **バージョンタグ付けとマテリアライゼーション (Version tagging and materialization)**
+マテリアライズされたデータソースに依存するワークブックのバージョンにタグを付けると、タグ付きバージョンはマテリアライズされたデータソースを使用しない場合があります。
+
+| オブジェクト | マテリアライズされたバージョンは使用されるか？ | 詳細 |
+| :--- | :--- | :--- |
+| **データセット** | マテリアライズされたバージョンは使用されない | タグ付きバージョンのワークブックは、元のデータセットの代わりにデータセットのコピーを使用します。 |
+| **データモデル** | マテリアライズされたバージョンは使用される | タグ付きバージョンのワークブックはデータモデルを使用し、データモデルに加えられた変更と同期を保ち、マテリアライズされた結果を使用します。 |
+| **タグ付きデータモデル** | マテリアライズされたバージョンは使用されない | タグ付きバージョンのワークブックは、タグ付きバージョンのデータモデルを使用します。これは現時点ではマテリアライズできません。 |
+
+マテリアライゼーションの詳細については、「[Materialization](https://help.sigmacomputing.com/docs/about-materialization)」を参照してください。
+
+#### **ワークブックまたはデータモデルのバージョンにタグを付ける (Tag a workbook or data model version)**
+ワークブックまたはデータモデルのバージョンにタグを付けることができます。ドキュメントにタグを付けると、そのドキュメントの読み取り専用バージョンが作成され、それを他の人と共有したり埋め込んだりできます。
+> 🚧
+> データモデルのタグ付きバージョンは、Ask Sigmaでは利用できません。管理者がAsk Sigmaで利用可能なデータソースにデータモデルを含めることを選択した場合、そのデータモデルの公開バージョンのみが利用可能であり、公開バージョンにアクセスできるユーザーのみがそのデータモデルを参照するAsk Sigmaからの回答を受け取ることができます。
+
+##### **ユーザー要件 (User requirements)**
+ドキュメントバージョンにタグを付けるには、以下が真である必要があります。
+* ドキュメントに対する`Can Edit`権限が付与されている。
+* `Apply Tag`および`Create, edit, and publish workbooks`権限が有効になっているアカウントタイプが割り当てられている。
+一部のタグは保護されており、ドキュメントに設定するには追加の権限が必要です。保護されたタグを設定するには、Adminアカウントタイプを割り当てられているか、保護されたタグを設定するアクセス権が付与されている必要があります。アクセス権がない場合は、タグの追加を承認者にリクエストできます。
+
+##### **ドキュメントにタグを設定する (Set a tag on a document)**
+1.  ドキュメントを開き、タグを付けたいバージョンを探します。
+    * **ドキュメントの最新公開バージョンにタグを付けるには：** ドキュメント名の隣にある下矢印()をクリックし、`Versions` > `Tag this version`を選択します。
+    * **ドキュメントの特定のバージョンにタグを付けるには：** ドキュメント名の隣にある下矢印()をクリックし、`Versions` > `Version history`を選択し、タグを付けたいバージョンを探します。`More` > `Set tag on this version`をクリックします。
+2.  `Set tag on version`モーダルが表示されます。
+3.  `Choose tag`で、タグを選択します。適用する権限がない保護されたタグを選択した場合、タグの承認者にリクエストを送信するよう促されます。
+4.  [任意] `Swap sources of the tagged version`のチェックボックスを選択すると、タグ付きバージョンのドキュメントが異なるデータソースを使用するようになります。
+5.  [任意] `Set this tag as default`のチェックボックスを選択すると、タグ付きバージョンへのアクセス権しか持たないユーザーに対して、そのタグ付きバージョンがデフォルトで表示されるようになります。
+6.  [任意] `Allow user to use data sources when they "Save as"`のチェックボックスを選択すると、タグ付きバージョンのワークブックに`Can view`アクセス権を付与します。
+7.  `Set tag`をクリックします。
+> 🚩
+> ワークブックに入力テーブルが含まれている場合、タグ付きバージョンのワークブックには、ソースワークブックの入力テーブルとは別の空の入力テーブルのコピーが含まれます。ソースワークブックの入力テーブルに存在するデータをバージョンタグ付きバージョンに含めたい場合は、以下の手順が必要です：1.入力テーブルのデータ入力権限を、表示/探索モードで公開バージョンのみ編集可能に変更します。2.バージョンタグを適用します。3.空のテーブルに手動でデータをコピー＆ペーストします。
+
+#### **ドキュメントのデフォルトバージョンタグを設定する (Set a default version tag for a document)**
+タグをデフォルトとして設定できます。デフォルトタグは、公開バージョンへのアクセス権がないユーザーに対して、デフォルトで表示されるドキュメントのバージョンを決定します。
+> 📘
+> ユーザーがドキュメントの公開バージョンにアクセスできず、デフォルトのバージョンタグが設定されていない場合、ドキュメントはユーザーがアクセスできる最新作成のタグ付きバージョンをロードします。
+
+1.  ドキュメント名の隣にある下矢印()をクリックし、`Versions` > `Version history`を選択します。
+2.  デフォルトとして設定したいタグ付きバージョンを探し、`More`を選択します。
+3.  `Set tag as default`をクリックします。
+
+#### **ドキュメントバージョンからタグを削除する (Remove a tag from a document version)**
+タグを削除すると、バージョンはバージョン履歴から引き続きアクセス可能ですが、タグ付きバージョンへのアクセス権しか持たない人はドキュメントへのアクセスを失います。
+> 💡
+> 間違ったドキュメントバージョンにタグを付けた場合や、タグ付きバージョンへのアクセスのみを持つユーザーのアクセスを制限したい場合にタグを削除することがあります。タグ付きバージョンを更新したい場合は、「[Publish changes to a tagged workbook version](#make-changes-to-a-tagged-workbook-version)」を参照してください。
+
+1.  ドキュメント名の隣にある下矢印()をクリックし、`Versions` > `Version history`を選択します。
+2.  タグ付きバージョンを探し、`More` > `Remove this tag`を選択します。
+
+#### **タグ付きワークブックバージョンのソースを交換する (Swap the source of a tagged workbook version)**
+> 📘
+> ワークブックに複数のデータソースからの要素が含まれている場合、タグ付きワークブックバージョンのソースを交換することはできません。
+
+タグ付きワークブックバージョンのソースを交換するには、以下の手順に従います。手順は、ワークブックがデータソースとしてデータモデルを使用しているかどうかによって異なります。
+* [タグ付きワークブックバージョンで使用されるデータモデルソースを交換する](#swap-the-data-model-source-used-by-a-tagged-workbook-version)
+* [タグ付きワークブックバージョンで使用されるデータセットまたは接続ソースを交換する](#swap-the-dataset-or-connection-source-used-by-a-tagged-workbook-version)
+
+#### **タグ付きワークブックバージョンに変更を加える (Make changes to a tagged workbook version)**
+タグ付きバージョンのワークブックに変更を加えたい場合は、まずタグ付きバージョンをドラフトに戻し、変更を加え、変更を公開し、バージョンに再度タグを付ける必要があります。
+
+#### **タグ付きバージョンを別のタグに更新する (Update a tagged version to use another tag)**
+例えば、「staging」バージョンタグから「production」バージョンタグにタグ付きワークブックバージョンを昇格させたい場合は、以下を実行します。
+1.  表示したいタグ（例：「Staging」）を選択します。
+2.  タグ付きバージョンが開きます。ドキュメントメニューを開き、`Versions` > `Tag this version`を選択します。
+3.  `Set tag on version`モーダルで、関連オプションを選択し、`Set tag`を選択します。
+4.  次に、バージョンから「Staging」タグを削除します。
+
+#### **バージョンタグを使用してフォルダへのアクセスを制限する (Restrict access to a folder using a version tag)**
+バージョンタグを使用してドキュメントへのアクセスを管理する場合、ワークスペースまたはフォルダを設定してアクセスをより簡単に管理できます。
+ワークスペースまたはフォルダをユーザーまたはチームと共有し、それらのユーザーまたはチームに特定のタグへのアクセス権を付与できます。そうすると、そのワークスペースまたはフォルダ内のワークブックまたはデータモデルは、それらのユーザーまたはチームがアクセスできるようにするために、そのタグが適用されている必要があります。
+
+### 5-4. マテリアライゼーション
+
+#### 5-4-1-1. マテリアライゼーションについて (About materialization)
+
+> 🚩
+> データモデル内のデータ要素とデータセットのマテリアライゼーションは、一般的に利用可能です。
+> ワークブック内のデータ要素のマテリアライゼーションは、パブリックベータです。
+> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このドキュメントは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+
+マテリアライゼーションは、レポートの速度とパフォーマンスを向上させます。データモデル、ワークブック、およびデータセットに対してマテリアライゼーションを設定できます。
+
+##### **マテリアライゼーションについて (About materialization)**
+データ要素間の複雑な結合や、カーディナリティが高く複数のグルーピングレベルと計算列を持つデータセットなど、コストのかかる、または長時間実行されるクエリを使用するデータソースがある場合、マテリアライゼーションを設定することでクエリのパフォーマンスが向上し、コンピューティングコストの削減に役立ちます。
+
+マテリアライゼーションは、データセットまたはデータ要素のコピーをテーブルとして、または場合によっては動的テーブルとして、あなたのウェアハウスに書き戻します。マテリアライズされたデータは、Sigmaサービスによって管理されるスキーマ内のクラウドデータウェアハウスに、すべての書き戻しデータに使用されるのと同じデータベースまたはカタログとスキーマに保存されます。マテリアライズされたテーブルは、先頭に `t_mat` または `T_ID` が付くか、末尾に `_MAT` が付き、Sigmaの接続エクスプローラーには表示されません。
+
+##### **マテリアライゼーションが使用されるとき (When materialization is used)**
+マテリアライゼーションを使用する要素を表示または操作すると、Sigmaのクエリコンパイラは自動的かつ透過的に最新のマテリアライゼーションを使用します。あなたのクラウドデータウェアハウスはクエリを再計算しません。
+ワークブックページのコントロールがマテリアライズされた要素を対象としている場合、コントロールの値を変更するとライブデータにクエリが実行されます。代わりに、コントロールをワークブックまたはデータモデルの子要素を対象にしてください。「[マテリアライゼーションのベストプラクティス](#best-practices-for-materialization)」を参照してください。
+ワークブックまたはデータモデルのマテリアライズされたデータセットまたはマテリアライズされた要素を編集すると、マテリアライズされたデータは使用されず、正確な結果を保証するために基盤となるデータにクエリが実行されます。
+
+##### **データモデルとワークブックのマテリアライゼーションとデータセットのマテリアライゼーションの比較**
+ワークブックとデータモデルのマテリアライズされたデータ要素は、マテリアライズされたデータセットとはいくつかの違いがあります。
+* データセットを公開すると、変更がマテリアライゼーションの正確さに影響しない場合でも、マテリアライゼーションが実行されます。マテリアライズされた要素を持つワークブックまたはデータモデルを公開すると、公開された変更がマテリアライゼーションに影響する場合にのみ、マテリアライゼーションが実行されます。
+* データセットに複数のグルーピングレベルが含まれている場合、1つのグルーピングレベルしかマテリアライズできません。ワークブックまたはデータモデルのデータ要素に複数のグルーピングレベルが含まれている場合、各グルーピングレベルをマテリアライズできます。
+* ワークブックとデータモデルのデータ要素の未使用のマテリアライゼーションは、自動的に一時停止できます。未使用のデータセットのマテリアライゼーションは自動的に一時停止できません。
+
+Snowflake接続でマテリアライゼーションを使用する場合、ワークブックとデータモデルのマテリアライズされたデータ要素は一時テーブルを使用します。
+
+##### **動的テーブルによる増分マテリアライゼーション (Incremental materialization with dynamic tables)**
+デフォルトでは、マテリアライゼーションは毎回新しいテーブルを作成します。Snowflake接続でマテリアライゼーションを使用する場合、代わりにマテリアライゼーションに動的テーブルを使用するように接続を構成できます。多くの場合、動的テーブルは増分更新を可能にし、つまり、マテリアライゼーションが実行されると、変更されたデータのみが更新されます。
+
+マテリアライゼーションに動的テーブルを使用するには：
+1.  マテリアライゼーションに動的テーブルを使用するように接続を構成します。
+2.  マテリアライゼーションに使用される動的テーブルを構築するためにクエリされる可能性のあるデータベーステーブルで、変更追跡を有効にします。
+
+これらのステップを完了すると、マテリアライゼーションは動的テーブルを使用し、利用可能であれば増分リフレッシュを使用します。増分リフレッシュが利用できない場合は、完全なリフレッシュが実行されます。
+
+##### **スケジュールされたマテリアライゼーションのバイパス (Scheduled materialization bypass)**
+Snowflake接続でマテリアライゼーションを使用する場合、Sigmaはワークブックとデータモデルのマテリアライズされた要素のデータ更新を検出します。最後の成功したマテリアライゼーション以降、基盤となるデータが更新されていない場合、Sigmaは不要なコンピューティング時間とコストを削減するために、スケジュールされたマテリアライゼーションをバイパスします。
+マテリアライゼーションがスキップされると、Sigmaは `Skipped` ステータスを表示します。
+
+##### **マテリアライゼーションのベストプラクティス (Best practices for materialization)**
+* マテリアライゼーションをスケジュールする際は、データの更新時間を考慮してください。
+* データが使用されないと予想されるときにマテリアライゼーションが実行されるようにスケジュールし、ユーザーがデータにアクセスする前に完了させます。
+* 上流の要素をマテリアライズする場合、下流のマテリアライズされた要素のマテリアライゼーションスケジュールが、上流の要素のマテリアライゼーションの完了後に開始するようにしてください。
+* データ構造の変更が将来のマテリアライゼーションの失敗を引き起こさないように、データモデルまたはデータセットを設定する際には、[マテリアライゼーションの制限](#materialization-limitations)を考慮してください。
+* マテリアライズされたデータソースと要素の子要素にコントロールを対象として、信頼性の高いインタラクションと出力を確保します。
+* 長時間実行されるクエリのタイムアウト制限を考慮してください。
+
+##### **マテリアライゼーションの制限 (Materialization limitations)**
+一部のデータ構造はマテリアライズできません。[行レベルのセキュリティ](https://help.sigmacomputing.com/docs/set-up-row-level-security)を持つデータセットなど、一つ以上の[システム関数](https://help.sigmacomputing.com/docs/system-functions)を使用する列がデータに含まれている場合、マテリアライゼーションは実行に失敗します。
+マテリアライゼーションは実行時のデータの固定出力を反映するため、一部のデータ構造は予期しない結果を生むことがあります。
+* データセットが[パラメータ](https://help.sigmacomputing.com/docs/create-and-manage-dataset-parameters)を使用する場合、マテリアライゼーションはパラメータの初期値を使用して実行されます。パラメータへの将来の変更は影響しません。
+* ワークブックまたはデータモデルのデータ要素が一つ以上の[コントロール](https://help.sigmacomputing.com/docs/intro-to-control-elements)の対象となっている場合、マテリアライゼーションはコントロールの初期値を使用して実行されます。マテリアライゼーション後、コントロールを使用してマテリアライズされたデータ要素と対話すると、マテリアライズされたデータは使用されず、代わりにクエリが実行されて最新のデータが取得されます。代わりに、コントロールを子要素を対象にしてください。
+* ワークブックやデータモデルのデータ要素は、ルックアップ、[結合](https://help.sigmacomputing.com/docs/join-data-in-workbooks)、リレーションシップなどで他のデータ要素を参照していてもマテリアライズできますが、ソースデータ要素の一つがマテリアライズできない場合を除きます。
+* OAuth認証を使用してデータプラットフォームに接続している場合、ワークブックやデータモデルのデータ要素はマテリアライズできますが、データセットはマテリアライズできません。
+
+##### **マテリアライゼーションを設定する (Set up materialization)**
+データモデルやワークブックの要素、またはデータセットにマテリアライゼーションを設定するには：
+* [データモデルまたはワークブックのマテリアライゼーションをスケジュールする](https://help.sigmacomputing.com/docs/schedule-materialization-for-a-data-model-or-workbook)
+* [データセットのマテリアライゼーションをスケジュールする](https://help.sigmacomputing.com/docs/dataset-materialization-api)
+
+#### 5-4-1-2. データモデルまたはワークブックのマテリアライゼーションをスケジュールする (ベータ版)
+
+> 🚩
+> データモデル内のデータ要素のマテリアライゼーションは一般的に利用可能です。
+> ワークブック内のデータ要素のマテリアライゼーションはパブリックベータです。
+> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このドキュメントは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
+> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+
+マテリアライゼーションをスケジュールすることにより、ワークブックまたはデータモデル内のデータ要素をマテリアライズします。構成したマテリアライゼーションスケジュールは、下流の要素のデータの鮮度に影響します。制限事項やベストプラクティスを含む詳細については、「[マテリアライゼーションについて](https://help.sigmacomputing.com/docs/about-materialization)」を参照してください。データモデルがバージョンタグを使用している場合は、「[バージョンタグ付きデータモデルのマテリアライゼーションをスケジュールする](https://help.sigmacomputing.com/docs/schedule-materialization-for-a-version-tagged-data-model)」を参照してください。
+
+##### **要件 (Requirements)**
+* 接続で[書き込みアクセス](https://help.sigmacomputing.com/docs/set-up-write-access)が有効になっている必要があります。
+* データモデルでマテリアライゼーションをスケジュールするには、`Schedule materializations`および`Create, edit, and publish datasets`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+* ワークブックでマテリアライゼーションをスケジュールするには、`Schedule materializations`および`Create, edit, and publish workbooks`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+* ワークブックまたはデータモデルに対する`Can Edit`アクセス権が必要です。
+
+##### **データ要素のマテリアライゼーションスケジュールを作成する (Create a data element materialization schedule)**
+ワークブックまたはデータモデル内の特定のデータ要素をマテリアライズできます。
+> 📘
+> データ要素は1つのマテリアライゼーションスケジュールしか持てませんが、1つのスケジュールで複数の要素をマテリアライズするように作成できます。
+
+1.  編集のためにデータモデルまたはワークブックを開きます。
+2.  マテリアライズしたい要素を探し、`More`をクリックして要素メニューを開きます。
+3.  `Advanced options` > `Schedule materialization...`を選択します。
+4.  `Materialization schedules`モーダルで、データ要素をマテリアライズするスケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+        * `Daily`の場合、`Once a day`または`Multiple times`を選択します。
+        * `Weekly`の場合、マテリアライゼーションジョブを実行する曜日を選択し、`Once a day`または`Multiple times`を選択します。
+        * `Monthly`の場合、マテリアライゼーションジョブを実行する月の日と時刻を選択します。
+        * `Custom`の場合、cron構文を使用してスケジュールを指定します。
+    * `Multiple times`を選択した場合は、頻度を指定します。例えば、午前9時から午後6時までの間、毎時15分に2時間ごとなど。
+    * (任意) ドロップダウンメニューを使用して、デフォルトのスケジュールタイムゾーンを調整します。
+    > 📘
+    > 要素に複数のグルーピングレベルが含まれている場合、マテリアライズするグルーピングレベルを選択します。Sigmaは選択されたグルーピングレベルとその上位のすべてのレベルをマテリアライズします。グループ化された要素の最も粒度の細かいレベル（All source columns）をマテリアライズすることは、しばしば不要でコストがかかる可能性があります。
+5.  `Save schedules`をクリックします。
+マテリアライゼーションの実行は、ワークブックの最新の公開バージョンを使用して直ちに開始されます。
+> 🚩
+> データプラットフォームへの認証にOAuthを使用する場合、マテリアライゼーションジョブはマテリアライゼーションをスケジュールしたユーザーとして実行されます。代わりにサービスアカウントを使用してマテリアライゼーションを実行するには、ワークブックをサービスアカウントとして実行します。「[Run a workbook with service account credentials](https://help.sigmacomputing.com/docs/run-a-workbook-with-service-account-credentials)」を参照してください。
+
+##### **依存マテリアライゼーションスケジュールを設定する (Set up a dependent materialization schedule)**
+親要素と子要素の両方をマテリアライズする場合、子要素に対して依存マテリアライゼーションスケジュールを設定できます。依存マテリアライゼーションスケジュールでは、一つ以上の子要素のマテリアライゼーションは、親要素のマテリアライゼーションが正常に完了した後に実行されます。依存マテリアライゼーションは、子要素のデータが親要素で利用可能な最新のデータを反映することを保証するのに役立ちます。
+
+親要素は、同じワークブック、データモデル、またはデータモデルをまたいで、複数のレベル上流にある場合があります。親要素と子要素を特定するには、ワークブックまたはデータモデルの[データリネージ](https://help.sigmacomputing.com/docs/view-workbook-data-lineage)を確認してください。
+
+依存マテリアライゼーションスケジュールを設定するには、以下を実行します。
+1.  編集のためにデータモデルまたはワークブックを開きます。
+2.  マテリアライズしたい子要素を探し、`More`をクリックして要素メニューを開きます。
+3.  `Advanced options > Schedule materialization...`を選択します。
+4.  `Materialization schedules`モーダルが、選択した要素のドラフトスケジュールと共に開きます。
+5.  `Frequency`セクションの`Select a run time`で、オプションを選択します。
+    * 子要素を親要素のマテリアライゼーションが正常に終了した後にのみマテリアライズするには、`After selected parent schedule finishes`を選択し、ドロップダウンメニューで関連する親スケジュールを選択します。
+    * 親要素のマテリアライゼーションスケジュールとは別に、子要素を独自のスケジュールでマテリアライズするには、`Manual Time`を選択し、頻度を指定します。
+6.  [任意] 同じスケジュールで複数の要素をマテリアライズしたい場合は、`+ Add element`を選択し、別の要素を選択します。
+7.  `Save schedules`を選択します。
+保存後、依存スケジュールは親スケジュールと同じスケジュールの一部として表示されます。親スケジュールが一時停止または失敗した場合、依存スケジュールも一時停止または失敗します。
+> 📘
+> 親要素のマテリアライゼーションスケジュールが削除された場合、依存スケジュールは親要素に設定された頻度と一致するように更新されます。
+
+##### **マテリアライズされたデータ要素のステータスを確認する (Review the status of a materialized data element)**
+マテリアライゼーションのステータスはいくつかの場所で確認できます。
+* ワークブックまたはデータモデルでデータ要素を表示すると、要素メニューにマテリアライゼーションのステータスが表示されます。
+* データ要素のリネージを確認すると、マテリアライゼーションのステータスが表示されます。
+
+データ要素のマテリアライゼーション履歴を確認するには：
+1.  編集のためにデータモデルまたはワークブックを開きます。
+2.  マテリアライズしたい要素を探し、`More`をクリックして要素メニューを開きます。
+3.  `Advanced options > Schedule materialization...`を選択します。
+4.  `Materialization schedules`モーダルで、`History`を選択します。
+5.  ワークブックまたはデータモデル内のすべての要素のマテリアライゼーション履歴を確認します。
+
+##### **スケジュールされたマテリアライゼーションを実行する (Run a scheduled materialization for a data element)**
+スケジュールされたマテリアライゼーションを持つデータ要素を直ちにマテリアライズするには：
+1.  マテリアライズされたデータ要素を選択します。
+2.  メニューで、`View materialization info` ()を選択します。
+3.  表示されるメニューで、`Materialize now`をクリックします。
+マテリアライゼーションの実行は、ワークブックの最新の公開バージョンを使用して直ちに開始されます。
+
+##### **マテリアライゼーションスケジュールを管理する (Manage the materialization schedule for a data element)**
+マテリアライゼーションスケジュールを変更して、マテリアライズの頻度やどの要素がマテリアライズされるかを変更できます。また、スケジュールから一つ以上の要素を削除したり、スケジュール全体を削除したりすることもできます。要素またはスケジュール全体を削除すると、関連するテーブルは24時間以内にデータプラットフォームから削除されます。
+
+#### 5-4-1-3. データセットのマテリアライゼーションをスケジュールする (Schedule materialization for a dataset)
+
+マテリアライゼーションをスケジュールすることにより、データセットをマテリアライズします。構成したマテリアライゼーションスケジュールは、下流の要素のデータの鮮度に影響します。制限事項やベストプラクティスを含む詳細については、「[マテリアライゼーションについて](https://help.sigmacomputing.com/docs/about-materialization)」を参照してください。
+
+##### **要件 (Requirements)**
+* 接続で[書き込みアクセス](https://help.sigmacomputing.com/docs/set-up-write-access)が有効になっている必要があります。
+* データセットでマテリアライゼーションをスケジュールするには、`Schedule materializations`および`Create, edit, and publish datasets`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+* データセットに対する`Can Edit`アクセス権が必要です。
+
+##### **データセットのマテリアライゼーションスケジュールを作成する (Create a materialization schedule for a dataset)**
+データセットをマテリアライズするには：
+1.  マテリアライズしたいデータセットを開きます。
+2.  `Materialization`タブを選択し、`Create Schedule`をクリックします。
+3.  `Add Materialization Schedule`モーダルで、マテリアライズされたデータを更新するためのスケジュールを定義します。
+4.  `Save`をクリックします。
+データの最初のマテリアライゼーションは直ちに開始されます。
+
+##### **データセットのマテリアライゼーションのステータスを確認する (Review the status of a dataset materialization)**
+データセットがマテリアライズされている場合、データセットのヘッダーでマテリアライゼーションのステータスを確認できます。
+1.  データセットヘッダーで、情報アイコン()をクリックしてデータセット情報を開きます。
+2.  `Materialization`セクションで、ステータスを確認します。最終更新日や次回更新日などの詳細を表示するには、ステータスにカーソルを合わせます。
+
+Adminアカウントタイプを割り当てられたユーザーは、いつでも`Materialization`タブからマテリアライゼーションのステータスと履歴を表示できます。「[Manage materializations](https://help.sigmacomputing.com/docs/manage-materializations)」を参照してください。
+
+##### **データセットのマテリアライゼーションジョブを実行する (Run a materialization job for a dataset)**
+スケジュールされたマテリアライゼーションを手動で実行するには、以下を実行します。
+1.  データセットを開き、`Materialization`タブを選択します。
+2.  `Schedule`セクションで、`Run Now`をクリックします。
+
+##### **データセットのマテリアライゼーションスケジュールを修正する (Modify a dataset materialization schedule)**
+データセットのマテリアライゼーションスケジュールに変更を加えるには：
+1.  データセットを開き、`Materialization`タブを選択します。
+2.  `Schedule`セクションで、`More` > `Edit Schedule`をクリックします。
+3.  新しいスケジュールを定義します。
+4.  `Save`をクリックします。
+マテリアライゼーションスケジュールは直ちに変更されます。次のマテリアライゼーションは、次のスケジュールされた時刻に行われます。
+
+##### **データセットのマテリアライゼーションスケジュールを削除する (Delete a dataset materialization schedule)**
+データセットのマテリアライゼーションスケジュールを削除し、マテリアライズされたデータを接続されたデータプラットフォームから削除するには：
+1.  データセットを開き、`Materialization`タブを選択します。
+2.  `Schedule`セクションで、`More` > `Remove Schedule`をクリックします。
+3.  表示される確認画面で、`Remove`を選択します。
+Sigmaは自動的にウェアハウスからマテリアライズされたテーブルを削除します。テーブルが削除されるまで最大24時間かかることがあります。
+
+#### 5-4-1-4. バージョンタグ付きデータモデルのマテリアライゼーションをスケジュールする (Schedule materialization for a version-tagged data model)
+
+一つ以上のタグ付きバージョンを持つデータモデルがある場合、データモデルの各バージョンに対して[マテリアライゼーション](https://help.sigmacomputing.com/docs/about-materialization)スケジュールを設定できます。例えば、「testing」と「production」のタグ付きバージョンのデータモデルがある場合、各タグのデータ要素に対してマテリアライゼーションをスケジュールでき、これにより、そのタグ付きバージョンのデータモデルに依存する下流の要素のパフォーマンスを向上させることができます。
+
+バージョンタグ付きデータモデルの要素のマテリアライゼーションをスケジュールする際には、[マテリアライゼーションのベストプラクティス](https://help.sigmacomputing.com/docs/about-materialization#best-practices-for-materialization)が引き続き適用されます。マテリアライゼーションのスケジューリングに関する詳細は、「[データモデルまたはワークブックのマテリアライゼーションをスケジュールする](https://help.sigmacomputing.com/docs/schedule-materialization-for-a-data-model-or-workbook)」を参照してください。
+
+##### **要件 (Requirements)**
+* この機能を使用するには、[データをマテリアライズする権限](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を持つアカウントタイプを割り当てられている必要があります。
+* データ要素をマテリアライズするには、データソースの接続で書き込みアクセスが有効になっている必要があります。
+
+##### **タグ付きデータモデルのマテリアライゼーションをスケジュールする (Schedule materialization for a tagged data model)**
+少なくとも一つのタグ付きバージョンを持つデータモデルについて、タグ付きバージョンの一つ以上のデータ要素のマテリアライゼーションをスケジュールします。データモデルの異なるタグ付きバージョン間で同じデータ要素のマテリアライゼーションをスケジュールしたい場合は、各タグ付きバージョンに対してスケジュールを作成します。
+
+1.  データモデルを開きます。
+2.  ドキュメントヘッダーで、更新データボタンの隣にある`More options` > `Materialization schedule...`をクリックします。
+3.  `Materialization`モーダルで、`+ New schedule`をクリックします。マテリアライゼーションスケジュールがない場合は、`Add schedule`をクリックします。
+    > 💡
+    > 代わりに既存のスケジュールを複製するには、複製したいスケジュールを探し、`More` > `Duplicate schedule`を選択します。
+4.  `Version`で、 を選択してバージョンを修正し、ドロップダウンでスケジュールを適用するバージョンタグを選択します。
+5.  `Elements`で、スケジュールにデータ要素を追加します。公開バージョンまたはデータモデルの別のタグ付きバージョンでマテリアライズされているのと同じ要素をタグ付きバージョンでマテリアライズするには、`+ Add element`を選択し、`Copy elements from schedule of other versions`を選択します。
+6.  スケジュールの頻度を設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * `Daily`の場合、`Once a day`または`Multiple times`を選択します。
+    * `Weekly`の場合、マテリアライゼーションジョブを実行する曜日を選択し、`Once a day`または`Multiple times`を選択します。
+    * `Monthly`の場合、マテリアライゼーションジョブを実行する月の日と時刻を選択します。
+    * `Custom`の場合、cron構文を使用してスケジュールを指定します。
+    * `Multiple times`を選択した場合は、頻度を指定します。
+7.  (任意) ドロップダウンメニューを使用して、デフォルトのスケジュールタイムゾーンを調整します。
+8.  スケジュールを保存します。
+
+> 📘
+> タグをデータモデルの新しいバージョンに昇格させる（例えば、古いバージョンのデータモデルから最新の公開バージョンにタグを移動するなど）と、新しいマテリアライゼーションの実行が開始されます。新しくタグ付けされたバージョンのマテリアライゼーションが実行されている間は、以前にタグ付けされたバージョンのデータモデルのマテリアライズされたデータが使用されます。
+
+#### 5-4-2. パフォーマンス向上のためのベストプラクティス (Best practices for improved performance)
+
+このドキュメントでは、パフォーマンスに関連するいくつかのベストプラクティスを集めて、検討のために提供します。
+
+##### **データセットを使用してクエリ負荷を削減する (Use datasets to reduce query loads)**
+Sigmaはデータセットを使用して、データ定義を一元化し、ワークブックにソースデータを提供します。データセットの使用に関する詳細は、「[Data modeling In Sigma](https://help.sigmacomputing.com/docs/datasets)」および「[Data modeling tutorial](https://help.sigmacomputing.com/docs/tutorial-data-modeling-with-datasets)」を参照してください。
+
+データセットレベルでフィルターを使用することにより、ワークブックのクエリで返される不要なデータの量を削減します。フィルターは、制限しすぎることなく無関係なデータを削減します。最も関連性の高いデータのみを表示することで、インサイト発見のプロセスがはるかに速くなります。マテリアライゼーションと組み合わせると、クエリの実行も速くなります。
+
+* **データセットの時間範囲フィルター (Dataset time range filters)**
+    相対日付フィルターを使用して、Sigmaのクエリが特定の時間範囲のデータのみを返すようにします。詳細は、「[Add relative date filters](https://help.sigmacomputing.com/docs/dataset-filters#add-relative-date-filters)」および「[Dataset filters](https://help.sigmacomputing.com/docs/dataset-filters)」を参照してください。
+* **データセットパラメータ (Dataset parameters)**
+    データセットパラメータを作成し、ワークシートで使用して、データが必要なものだけにフィルタリングされるようにします。詳細は、「[Dataset parameters](https://help.sigmacomputing.com/docs/dataset-parameters)」を参照してください。
+
+##### **データセットとワークブック要素をマテリアライズしてコンピューティングコストを削減する (Materialize datasets and workbook elements to reduce compute costs)**
+マテリアライゼーションを使用すると、データセットとワークブック要素をテーブルとしてウェアハウスに書き戻すことができ、これによりコンピューティングコストを削減できます。マテリアライゼーションは、データウェアハウスがデータセットを要素または下流のSigma分析で使用する際に再計算を回避できるようにすることで、クエリのパフォーマンスを向上させます。詳細は、「[Materialization](https://help.sigmacomputing.com/docs/about-materialization)」を参照してください。
+
+##### **CDWでクエリキャッシュを使用する (Use a query cache in the CDW)**
+一部のクラウドデータウェアハウス（CDW）には、Sigmaが追加のコンピューティングコストを発生させることなくクエリ結果を取得するために使用できるクエリ結果キャッシュがあります。これにより、パフォーマンスが向上します。詳細は、「[Set a cache duration](https://help.sigmacomputing.com/docs/set-a-cache-duration)」を参照してください。
+
+##### **ワークブックのパフォーマンスを向上させるためのその他のヒント (More tips for improving workbook performance)**
+過剰な結合、繰り返されるロジック、未使用のデータ、フィルターの過負荷は、ワークブックを遅くする可能性があります。パフォーマンスのヒントについては、Sigmaコミュニティの「[How to improve workbook performance](https://community.sigmacomputing.com/dashboards-and-workbooks/how-to-improve-workbook-performance-224)」を参照してください。
+
+#### 5-4-3. ウェアハウスビューの作成と管理 (Create and manage warehouse views)
+
+ウェアハウスビューは、あなたのデータプラットフォームに保存される仮想テーブルです。テーブル、ピボットテーブル、入力テーブル、およびチャートからウェアハウスビューを作成し、Sigmaまたはあなたのデータエコシステム内の他の任意のアプリケーションを使用してそれらにクエリを実行できます。ウェアハウスビューはクエリを簡素化し、関連性のある最新のデータサブセットをデータプラットフォームから直接取得することを可能にします。
+
+このドキュメントでは、ワークブックとデータモデルでウェアハウスビューを作成および管理する方法について説明します。管理者ポータルの `Warehouse Views` ページに関する情報については、「[Review warehouse view details](https://help.sigmacomputing.com/docs/review-warehouse-view-details)」を参照してください。
+
+> 📘
+> この機能は、すべてのデータプラットフォーム接続でサポートされているわけではありません。あなたの接続がサポートしているかを確認するには、「[Supported data platforms and feature compatibility](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
+
+##### **システムとユーザー要件 (System and user requirements)**
+ウェアハウスビューを作成および管理する機能には、以下が必要です。
+* 要素のデータソースは、[書き込みアクセス](https://help.sigmacomputing.com/docs/set-up-write-access)が有効になっている接続からデータを取得する必要があります。
+* `Create warehouse views` 権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* あなたはワークブックまたはデータモデルの所有者であるか、そのワークブックまたはデータモデルに対する `Can edit` [アクセス権](https://help.sigmacomputing.com/docs/share-a-workbook)を付与されている必要があります。
+
+##### **ウェアハウスビューについて (About warehouse views)**
+データベーステーブルにデータを保存する代わりに、ウェアハウスビューは、Sigmaの個々のデータ要素または入力テーブルによって定義された特定のクエリロジックを表現するSQLステートメントを保存します。
+
+ウェアハウスビューを作成すると、あなたのデータプラットフォームとSigmaの間にライブリンクが確立されます。ビューはデータ要素または入力テーブルを信頼できる唯一の情報源（source of truth）として参照し、要素の基盤となるデータの最新バージョンを反映するように自動的に更新されます。
+
+ウェアハウスビューはデータプラットフォームに直接クエリを実行するため、マテリアライゼーションとは動作が異なります。しかし、マテリアライズされた要素からウェアハウスビューを作成することもでき、その場合、ビューは要素のマテリアライズされた基盤となるデータテーブルにクエリを実行します。
+
+##### **ウェアハウスビューの考慮事項 (Warehouse view considerations)**
+ウェアハウスビューを作成する際には、以下を考慮してください。
+* ウェアハウスビューは、ドキュメントの公開バージョンから作成されます。データモデルまたはワークブックのタグ付きバージョンからウェアハウスビューを作成することはできません。ワークブックのカスタムビューと保存済みビューもサポートされていません。ドラフトでウェアハウスビューが作成された場合、以下のいずれかの結果となります。
+    * 要素がドラフトにのみ存在する場合、Sigmaはワークブックまたはデータモデルが公開され、要素が公開バージョンに存在するときにビューを作成します。
+    * 要素が公開バージョンに存在するが、ドラフトに未保存の変更が含まれている場合、Sigmaは要素の公開バージョンに基づいてビューを作成します。これはドラフトのデータと一致しない可能性があります。
+    * 要素が公開バージョンに存在し、ドラフトに未保存の変更がない場合、Sigmaは要素の公開バージョンに基づいてビューを作成します。これはドラフトのデータと一致します。
+* 以下の動的な条件はサポートされていません。
+    * **要素内でパラメータとして参照されるコントロール値:** コントロール値は、クエリがユーザー入力に依存するため、要素のSQLステートメントで明示的に定義されません。
+    * **相対日付フィルター:** 相対日付フィルター（`Last`, `Next`, `Current`など）は、要素のSQLステートメントで明示的に定義できない現在の日付基準に依存します。
+* グループ化されたテーブルからウェアハウスビューを作成する場合、ウェアハウスビューに使用するグルーピングレベルを定義することはできません。ウェアハウスビューは、要素の公開バージョンに表示されるデータを表し、これにはグループ化されたデータが含まれる場合と含まれない場合があります。
+
+##### **ビューを作成する (Create a view)**
+ウェアハウスビューを作成するには、以下を実行します。
+1.  公開済みのワークブックまたはデータモデルを開き、ウェアハウスビューを作成したい要素を探します。
+2.  要素ツールバーで、`More` をクリックして要素メニューを開き、`Advanced options` > `Create warehouse view` を選択します。
+3.  `Create Warehouse View` モーダルで、Sigmaはビューの名前を自動生成します。必要に応じて名前を編集し、`Create` をクリックします。この名前は、データプラットフォームにビューを保存する際にも使用されます。
+
+Sigmaはビューが正常に作成されると通知します。また、要素ツールバーでステータスをプレビューしたり、`View warehouse view info` をクリックしてビューの詳細を確認したりすることもできます。
+> 📘
+> Sigmaがビューを作成した後、要素に適用されたフィルターやその他の変更は、ワークブックが再公開されたときにのみビューに保存されます。
+
+要素ごとに作成できるウェアハウスビューは1つだけです。同じデータの複数のビューを作成する必要がある場合は、要素を複製し、必要に応じてデータを調整して、別のウェアハウスビューを作成できます。
+
+##### **ビューの名前を変更する (Rename a view)**
+ウェアハウスビューの名前を変更するには、以下を実行します。
+1.  ワークブックまたはデータモデルを開き、名前を変更したいウェアハウスビューに関連付けられた要素を探します。
+2.  要素ツールバーで、`More` > `Advanced options` > `Manage warehouse view` を選択します。
+3.  `Manage Warehouse View` モーダルで、`Name` フィールドに新しい名前を入力し、`Update` をクリックします。
+
+##### **ビューを削除する (Delete a view)**
+ウェアハウスビューを削除するには、以下を実行します。
+1.  ワークブックまたはデータモデルを開き、削除したいウェアハウスビューに関連付けられた要素を探します。
+2.  要素ツールバーで、`More` > `Advanced options` > `Manage warehouse view` を選択します。
+3.  `Manage Warehouse View` モーダルで、`Delete` をクリックします。
+4.  `Confirm Delete` モーダルで、`Delete` をクリックします。
+
+##### **ウェアハウスビューのステータス (Warehouse view statuses)**
+ウェアハウスビューには以下のステータスが適用されます。
+
+| ステータス | 説明 |
+| :--- | :--- |
+| **Pending** | Sigmaはワークブックが公開されるとビューを作成または更新します。|
+| **Successful** | Sigmaはビューの作成または更新に成功しました。|
+| **In Progress** | Sigmaは現在ビューを作成または更新中です。|
+| **Failed** | ビューの作成または更新ができませんでした。失敗ステータスの原因を表示するには、ウェアハウスビュー詳細で`Failed`ステータスインジケータにカーソルを合わせます。|
+
+##### **トラブルシューティング (Troubleshooting)**
+特定の要素に対してウェアハウスビューを作成できない場合は、以下のいずれかが真であるかを確認してください。
+* 現在、探索（exploration）で作業している。ウェアハウスビューを作成する前に、探索をワークブックとして保存する必要があります。
+* 別のウェアハウスビューをソースとするデータ要素または入力テーブルに対してウェアハウスビューを作成しようとしている。ビューは他のビューをクエリできません。
+* 要素データが[コントロール値をパラメータとして参照している](https://help.sigmacomputing.com/docs/reference-workbook-control-values-in-sql-statements)。
+* 要素タイプが現在ウェアハウスビューをサポートしていない。
+
+### 5-5. クエリの調査
+
+#### 5-5-1. ワークブックとデータモデルのクエリを調査する (Examine workbook and data model queries)
+
+ワークブックまたはデータモデルを開くと、Sigmaは最適化されたSQLクエリを生成・実行し、接続されたデータプラットフォームからデータを取得します。クエリ結果は、安全にあなたのウェブブラウザに返されます。
+
+ワークブックまたはデータモデルの**クエリ履歴**を開くことで、ブラウザセッション中に実行されたクエリの構文やその他の詳細を確認できます。データセットのクエリ履歴に関する詳細は、「[データセットのクエリを調査する](https://help.sigmacomputing.com/docs/examine-dataset-queries)」を参照してください。
+
+**クエリ履歴**は、ユーザーセッション中にワークブックから実行された最近のクエリの概要を表示し、クエリのランタイムや現在のステータスを含みます。個々のクエリをさらに深く掘り下げて、基盤となるSQLを表示したり、トラブルシューティングのためのリクエストIDを収集したり、エラーを調査したりすることができます。
+
+##### **最近のクエリを表示する (View recent queries)**
+クエリ履歴は、既存のセッション中にワークブックまたはデータモデルから実行された最近のクエリを表示します。ドキュメントの個々のクエリのリストは、各クエリの詳細を自動的に表示します。
+
+1.  ドキュメントヘッダーで、更新データボタンの隣にある`More options`をクリックします。
+2.  `Query history`を選択します。
+
+##### **ブラウザの計算を表示する (View browser calculations)**
+一部のクエリはデータプラットフォームから結果を返し、その他はデータプラットフォームの結果キャッシュから、さらに他の結果はブラウザキャッシュから返されます。
+デフォルトでは、ブラウザで実行された計算はデータプラットフォームに送信されないため、クエリ履歴から非表示になっています。ブラウザの計算履歴を表示するには、以下を実行します。
+
+1.  ドキュメントヘッダーで、更新データボタンの隣にある`More options`をクリックします。
+2.  `Query history`を選択します。
+3.  `Query history`モーダルの上部で、`View browser calculations`トグルをオンにします。
+4.  `Execution Path`列で`Browser`エントリを確認します。
+
+##### **個々のクエリ詳細を表示する (View individual query details)**
+生成されたSQL、完全な実行時間、トラブルシューティング用のリクエストIDなど、個々のクエリの詳細を表示するには、以下を実行します。
+1.  ドキュメントヘッダーで、更新データボタンの隣にある`More options`をクリックします。
+2.  `Query history`を選択します。
+3.  調査したいクエリを選択します。Sigmaは選択されたクエリの詳細を表示します。
+    * 要素名を選択して、クエリが実行されたデータ要素を開きます。
+    * 実行時間と期間を確認します。
+    * 生成されたSQLを表示およびコピーします。
+    * 失敗したクエリの場合、エラーメッセージを確認します。
+    * トラブルシューティングの際にSigmaサポートと共有するためのリクエストIDをコピーします。
+
+##### **クエリを一時停止および再開する (Pause and resume queries)**
+データプラットフォームに対して自動的にクエリを実行せずにドキュメントに変更を加えるには、クエリを一時停止します。
+1.  ドキュメントヘッダーで、更新データボタンの隣にある`More options`をクリックします。
+2.  `Pause queries`を選択します。
+クエリを一時停止した後にクエリの実行を再開するには、`Resume queries`を選択します。
+
+##### **クエリ履歴のリファレンス (Query history reference)**
+ステータス、実行時間、リクエストタイプ、および実行パスの詳細については、以下のセクションを参照してください。
+
+* **クエリステータスタイプ (Query status types)**
+
+| ステータス | 詳細 |
+| :--- | :--- |
+| **Completed** | クエリは正常に実行されました。|
+| **Running** | クエリは現在実行中です。デフォルトでは、Sigmaはクエリのタイムアウトを120秒（2分）に設定しています。 |
+| **Errored** | クエリ実行中にエラーが発生しました。行を選択してクエリ詳細とエラーメッセージを表示します。 |
+| **Paused** | ドキュメント上のクエリは一時停止しています。クエリの実行を再開して最新データを取得するには、ドキュメントヘッダーの`Refresh queries`をクリックします。 |
+| **Canceled** | クエリはキャンセルされました。これは、クエリが終了する前に別のドキュメントタブに切り替えた場合や、クエリが終了する前にドキュメントに変更が加えられた場合に発生する可能性があります。 |
+
+* **クエリ実行時間 (Query run time)**
+    正常に完了したクエリとタイムアウトしたクエリに対して、詳細なクエリ実行時間の内訳が利用可能です。クエリの実行時間は、ネットワークトラフィック、キューの遅延、またはデータプラットフォームの処理時間によって変動する可能性があります。実行時間の内訳により、クエリが遅延したかどうか、どの段階で遅延したかを確認できます。
+    * **Queue duration:** クエリがデータプラットフォームに送信される前にSigmaのキューで待機する時間。
+    * **Sigma runtime:** キューの期間とデータプラットフォームの時間を除く、Sigmaがクエリを処理するのにかかる時間。
+    * **Warehouse runtime:** Sigmaがデータプラットフォームにリクエストを送信してから応答を受け取るまでの時間。
+    * **Result fetch time:** Sigmaがデータプラットフォームから結果を取得するのにかかる時間。
+
+* **クエリリクエストタイプ (Query request types)**
+    Sigmaは、異なるタイプの情報を取得するために、データプラットフォームに対して異なるタイプの最適化されたクエリを作成します。
+
+| リクエストタイプ | 詳細 |
+| :--- | :--- |
+| Data Prefetch Query | 表示されているデータ要素によって使用されるデータソースを取得します。|
+| `<Element name> <Element type>` | 要素のデータを取得します。|
+| SQL Preview | データモデルの概要を表示するために使用されるデータを取得します。|
+| Filter Top Values | 列の詳細を表示する際や、データ要素のリストフィルターを開く際など、トップの値を取得します。|
+| `<Element name>` Count Rows | 列の詳細を取得する際や、データモデルの概要で折りたたまれた要素を表示する際など、要素の行数を取得します。|
+| `<Element name>` Column statistics | ワークブックまたはデータモデルの列の詳細を表示する際など、列の統計情報を取得します。|
+| Export Query | スケジュールされた、またはオンデマンドのワークブック、ページ、または要素のエクスポートを実行するために最新のデータを取得します。|
+| `<Element name>` Export Query | CSVやJSONなどの生データ形式で要素をダウンロードするために最新のデータを取得します。|
+
+* **クエリ実行パス詳細 (Query execution path details)**
+
+| 実行パス | 詳細 |
+| :--- | :--- |
+| Warehouse | 最適化されたSQLクエリでデータプラットフォームを直接クエリしてデータを取得します。|
+| Warehouse (cache) | 特定のデータプラットフォームで利用可能。クエリIDを使用して、データプラットフォームのクエリ結果キャッシュからデータを取得するクエリを実行します。|
+| Warehouse (materialized) | マテリアライズされたテーブルにクエリを実行してデータを取得します。 |
+| Browser | ブラウザキャッシュからデータを取得し、アルファクエリを使用して計算を実行します。|
+
+### 5-5-2. データセットのクエリを調査する (Examine dataset queries)
+
+#### **最近のクエリを表示する (View recent queries)**
+クエリ履歴モーダルは、既存のセッション内に開いているドキュメントから実行された最近のクエリを表示します。
+あなたのドキュメントの個々のクエリリストは、各クエリのステータス、アクションタイプ、開始時刻、実行時間を自動的に表示します。
+
+1.  データセットのワークシートタブを開きます。
+2.  データセットのツールバーの一番左にある更新ボタンの隣にあるキャレットアイコンをクリックします。
+3.  `Query history...`をクリックします。
+
+#### **個々のクエリを表示する (View an individual query)**
+1.  データセットの`Worksheet`タブを開きます。
+2.  データセットのツールバーの一番左にある更新ボタンの隣にあるキャレットアイコンをクリックします。
+3.  `Query history...`をクリックします。
+4.  調査したいクエリをクリックします。
+5.  クエリ詳細ビューを探索します：
+    * Sigmaが生成したSQLを表示およびコピーします。
+    * クエリが失敗した場合、エラーも`Query Details`の下に表示されます。
+
+#### **クエリステータスタイプ (Query status types)**
+これらはSigma内で可能なクエリステータスタイプです。
+
+| | |
+| :--- | :--- |
+| **Completed** | あなたのクエリは正常に実行されました！ |
+| **Running** | あなたのクエリは現在実行中です。 |
+| **Errored** | 何か問題があります。クエリ詳細ビューを開いてエラーメッセージを確認してください。 |
+| **Paused** | ドキュメント上のクエリは一時停止しています。クエリを再開するには、ドキュメントツールバーの`Play`をクリックしてください。 |
+| **Canceled** | クエリはキャンセルされました。これは、クエリが実行される前にドキュメントに追加の変更が加えられた場合に発生する可能性があります。この状況では、Sigmaは新しいクエリのみを実行します。 |
+
+> 📘
+> デフォルトでは、Sigmaはクエリのタイムアウトを120秒（2分）に設定しています。組織の管理者は、接続ごとにこれをカスタマイズするオプションがあります。
+
+#### **クエリ実行時間の内訳 (Query runtime breakdown)**
+正常に完了したクエリとタイムアウトしたクエリに対して、詳細なクエリ実行時間の内訳が利用可能です。クエリの実行時間は、ネットワークトラフィック、キューの遅延、またはデータウェアハウスの処理時間によって変動する可能性があります。Sigmaの実行時間の内訳により、クエリが遅延したかどうか、いつ遅延したかを確認できます。
+
+実行時間は3つの部分に分かれています。
+| | |
+| :--- | :--- |
+| **Queue duration** | クエリがウェアハウスに送信される前にSigmaのキューで待機する時間。 |
+| **Sigma runtime** | キューの期間とウェアハウスの時間を除く、Sigmaがクエリを処理するのにかかる時間。 |
+| **Warehouse runtime**| Sigmaがデータウェアハウスにリクエストを送信してから応答を受け取るまでの時間。これは、おおよそウェアハウスがクエリの実行に費やした時間です。 |
+
+未完了のクエリは、詳細な実行時間の内訳を表示しません。この機能は、ダウンロード/エクスポートリクエストでも利用できません。
+
+#### **クエリを一時停止および再開する (Pause and resume queries)**
+ウェアハウスに対して自動的にクエリを実行せずにドキュメントに変更を加えるために、クエリを一時停止できます。
+
+1.  データセットの`Worksheet`タブを開きます。
+2.  データセットのツールバーの一番左にある更新/再生ボタンの隣にあるキャレットアイコンをクリックします。
+3.  `Pause queries`または`Resume queries`をクリックします。
+
+### 5-5-3. クエリIDキャッシュ期間を設定する (Set a query ID cache duration)
+
+一部のクラウドデータウェアハウス（CDW）には、Sigmaが追加のコンピューティングコストを発生させることなくクエリ結果を取得するために使用できるクエリ結果キャッシュがあります。CDWで利用可能な場合、SigmaはクエリIDを使用してキャッシュされたデータにアクセスします。これにより、パフォーマンスが向上します。
+
+ワークブックには、クエリIDのキャッシュ期間、つまり存続期間（TTL）の設定があります。デフォルトの期間は10分です。詳細については、「[Caching and data freshness](https://help.sigmacomputing.com/docs/caching-and-data-freshness)」を参照してください。
+
+実際のクエリ結果はSigmaではなく、CDWにキャッシュされます。通常、CDWキャッシュは結果のコピーの形をとり、24時間保存されます。
+TTL期間内にソースデータが変更された場合、キャッシュされた結果は無関係または不正確なデータを反映します。
+
+クエリの結果を返そうとする場合、`Cache duration`設定を使用して、結果キャッシュが特定の分数だけ古いことを指定できます。
+
+#### **要件 (Requirements)**
+* この機能は、SnowflakeやBigQueryを含む、結果キャッシュをサポートするCDWでのみ利用可能です。
+* ワークブックのクエリIDキャッシュ期間を設定するには、組織の`Admin`である必要があります。
+
+#### **クエリキャッシュID期間を設定する (Set a query cache ID duration)**
+1.  ワークブックのヘッダーにある更新ボタンの右側にあるキャレット（▼）ボタンをクリックします。
+2.  `Data refresh`を選択します。
+3.  `Data Refresh Settings`モーダルが開きます。
+4.  `Cache duration`の下で、分または時間で期間を設定します。
+5.  `Save`をクリックします。
+
+### 5-5-4. キャッシュとデータの鮮度 (Caching and data freshness)
+
+ワークブックまたはデータモデルを開くと、Sigmaは最適化されたSQLクエリを生成・実行し、接続されたデータプラットフォームからデータを取得します。Sigmaはあなたのデータを保存せず、ブラウザのキャッシングとウェアハウスレベルのキャッシングを使用して、ウェアハウスのオーバーヘッドを削減しつつ、新鮮なデータを保証します。
+
+#### **Sigmaがウェアハウスのオーバーヘッドを削減する方法 (How Sigma reduces warehouse overhead)**
+データ要素が更新されると、Sigmaはウェアハウスへのオーバーヘッドを削減しようと試みます。Sigmaが従うステップは以下の通りです。
+1.  ブラウザキャッシュを確認する
+2.  アルファクエリを試す
+3.  CDWの結果IDキャッシュを試す（一部のCDWでのみ利用可能）
+4.  ウェアハウスに再度クエリを実行する
+
+> 🚩
+> 手動更新またはスケジュールされた更新は、すべてのキャッシングオプションをバイパスします。「[Manage workbook refresh options](https://help.sigmacomputing.com/docs/manage-workbook-refresh-options)」を参照してください。
+
+どのクエリがどこで実行されているかの詳細については、ワークブック、データモデル、またはデータセットのクエリ履歴を確認してください。「[Examine workbook and data model queries](https://help.sigmacomputing.com/docs/examine-workbook-queries)」および「[Examine dataset queries](https://help.sigmacomputing.com/docs/examine-dataset-queries)」を参照してください。
+
+##### **ブラウザキャッシュを確認する (Check browser cache)**
+ブラウザキャッシュは、ブラウザですぐにアクセスできるデータを占めます。キャッシュは空であるため、最初にワークブックまたはデータモデルを開いたときにはブラウザキャッシュは利用できませんが、変更を加えるにつれて、Sigmaは可能な場合に結果を表示するために自動的にブラウザキャッシュを使用します。
+データ要素に変更を加えると、Sigmaはまずブラウザに既にある既存のデータが、更新された要素でまだ機能するかどうかを確認します。
+これは、以下のような場合に発生する可能性があります。
+* 列の名前が変更されたり、移動されたりした場合
+
+##### **アルファクエリを試す (Try alpha query)**
+ブラウザ内のデータを直接使用できない場合、Sigmaはブラウザ内の既存のデータを使用して新しい値を再計算できるかどうかを確認します。
+これは、以下のような場合に発生する可能性があります。
+* 新しい集計列が追加された場合
+
+##### **クエリIDキャッシュを試す (Try query ID cache)**
+クエリキャッシュは、SnowflakeやBigQueryのように、データウェアハウスが結果キャッシングをサポートしている場合にのみ使用されます。
+これは、以下のような場合に発生する可能性があります。
+* データを再グループ化する場合
+
+Sigmaはクエリ結果を保存せず、ウェアハウスから返されたクエリIDのみを保存し、そのIDを使用してデータウェアハウスのキャッシュから結果を取得します。
+
+##### **クエリIDキャッシュ期間を設定する (Set a query ID cache duration)**
+SnowflakeやBigQueryなど、一部のデータプラットフォームは、クエリIDを使用してキャッシュから過去のクエリの結果を返すことをサポートしています。
+ワークブックのキャッシュ期間、つまり存続期間（TTL）とは、SigmaがクエリIDを使用してCDWの結果キャッシュから結果を取得しようと試みる期間を指します。
+SigmaがクエリIDキャッシュをクエリに使用できると判断し、CDWに対して最後にクエリが実行された時刻がクエリIDキャッシュ期間内である場合、Sigmaはウェアハウスに対してクエリを再実行しようとはしません。
+ウェアハウスに対して最後にクエリが実行された時刻がクエリIDキャッシュ期間外である場合、SigmaはクエリIDを使用してCDWの結果キャッシュから結果を取得してワークブックをレンダリングし、並行してウェアハウスに対してクエリを実行します。最新の結果がウェアハウスから返されると、Sigmaはワークブック要素を更新します。
+TTLの変更に関する情報については、「[Set a query ID cache duration](https://help.sigmacomputing.com/docs/set-a-query-id-cache-duration)」を参照してください。
+
+##### **手動更新と更新スケジュール (Manual refresh and refresh schedules)**
+必要に応じて、更新スケジュールを使用してください。詳細は「[workbook refresh options](https://help.sigmacomputing.com/docs/manage-workbook-refresh-options)」を参照してください。
+> 🚩
+> Sigmaはクエリ結果を保存せず、ウェアハウスから返されたクエリIDのみを保存します。すべてのデータ更新は、ウェアハウス内のデータに再度クエリを実行します。自動更新を設定すると、接続に負荷がかかり、多額のウェアハウスコストが発生する可能性があります。
