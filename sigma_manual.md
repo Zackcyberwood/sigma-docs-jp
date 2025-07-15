@@ -1188,22 +1188,30 @@ SigmaはPostgreSQLへの安全な接続をサポートしています。
 
 以下のステップに従って、Sigmaに接続するためにPostgreSQLを構成します。
 
-1.  EC2コンソールで、**Elastic IP**に移動します。
+1.  EC2コンソールで、**Elastic IP**に移動します。<img width="700" height="682" alt="0f87750-8" src="https://github.com/user-attachments/assets/8e13ab6f-718a-40a0-8d7d-7dac18f49752" />
+
 2.  **Elastic IP Address**を作成します。
     * このステップは、IPアドレスを公開アクセス可能にするために必要です。
-3.  **Allocate Elastic IP address**をクリックします。
+3.  **Allocate Elastic IP address**をクリックします。<img width="613" height="84" alt="fa5e5e5-9" src="https://github.com/user-attachments/assets/750a4cd9-9631-4a07-8a0a-46455feda2f0" />
+
 4.  **Allocate**をクリックします。
 5.  あなたのRedshiftクラスターに戻り、**Actions**をクリックします。
 6.  **Modify publicly accessible setting**をクリックします。
-7.  **Enable**をクリックし、**Elastic IP Address**ドロップダウンで作成した**Elastic IP address**を選択します。
-8.  EC2コンソールで、**Security Groups**に移動します。
-9.  **Create security group**ページで、セキュリティグループに名前と説明を付けます。
+7.  **Enable**をクリックし、**Elastic IP Address**ドロップダウンで作成した**Elastic IP address**を選択します。<img width="682" height="418" alt="ce17489-10" src="https://github.com/user-attachments/assets/d38f31d3-f4a2-433a-8795-eb0f9b435ace" />
+
+8.  EC2コンソールで、**Security Groups**に移動します。<img width="687" height="593" alt="193ce25-11" src="https://github.com/user-attachments/assets/2518bc4c-5184-48df-8b36-cd0d95e364b9" />
+
+9.  **Create security group**ページで、セキュリティグループに名前と説明を付けます。<img width="511" height="202" alt="bb7fe1b-12" src="https://github.com/user-attachments/assets/5a0f7b26-a85d-48da-9539-cac4bb5bd920" />
+
     * 注：VPCは、共通のセキュリティと相互接続を共有するインフラ、プラットフォーム、アプリケーションサービスによって構成されるエラスティックネットワークです。
-10. SigmaのIPアドレスを**Inbound rules**と**Outbound rules**の両方に追加します。
+10. SigmaのIPアドレスを**Inbound rules**と**Outbound rules**の両方に追加します。<img width="1243" height="319" alt="6791ad9-13" src="https://github.com/user-attachments/assets/684f442c-f87b-492d-b59f-8ff55b4471d5" />
+
     * **GCP Sigma hosting :** `104.197.169.18`, `104.197.193.23`
     * **AWS Sigma hosting:** `44.229.241.60`, `54.188.54.135`
-11. あなたのPostgreSQLクラスターに戻り、**Properties**タブをクリックします。. **Network and security settings**タブの**Edit**をクリックします。
-12. 作成した**VPC Security Group**を選択し、**Save Changes**をクリックします。
+11. あなたのPostgreSQLクラスターに戻り、**Properties**タブをクリックします。. **Network and security settings**タブの**Edit**をクリックします。<img width="596" height="140" alt="75bddb9-14" src="https://github.com/user-attachments/assets/0af6ef90-8cb2-40a2-aeaf-7fecc2e0db78" />
+
+12. 作成した**VPC Security Group**を選択し、**Save Changes**をクリックします。<img width="700" height="589" alt="85727e9-15" src="https://github.com/user-attachments/assets/0ed3268a-6e5d-4192-a757-386d7abc3cf9" />
+
 ##### **データ権限 (Data permissions)**
 既存のPostgreSQLユーザーを使用したくない場合は、Sigma用に新しいユーザーを作成してください。書き込みアクセスを活用したい場合は、Sigma用にスキーマを作成し、そのスキーマに対する全ての権限をあなたのユーザーに付与してください。Sigmaでアクセスする予定の全てのスキーマに対して `USAGE` を、全てのテーブルに対して `SELECT` を付与するようにしてください。
 
@@ -1212,10 +1220,12 @@ create user sigma_user password ‘123’;
 create schema sigma_write;
 grant all privileges on schema sigma_write to sigma_user;
 grant usage on schema public to sigma_user;
-grant select on all tables in schema public to sigma_user;
+grant select on all tables in schema public to sigma_user;```
+<img width="514" height="248" alt="b7ac16d-16" src="https://github.com/user-attachments/assets/a103ca32-5883-444d-b232-d435d3dc3925" />
 
 ##### **接続資格情報 (Connection credentials)**
 あなたのPostgreSQLクラスターの `General Information` セクションで、`Endpoint` の仕様を見つけてコピーします。これがSigmaの `Host` フィールドの値です。
+<img width="676" height="165" alt="248cb87-17" src="https://github.com/user-attachments/assets/61fd7fb5-012f-438c-a5d7-bb5549bdf4e7" />
 
 #### 2-12. Redshiftへの接続 (Connect to Redshift)
 
