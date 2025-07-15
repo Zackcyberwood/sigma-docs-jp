@@ -159,7 +159,7 @@ Sigmaにログインすると、ホームページが表示されます。以下
 * **h. ヘルプ (Help):**
     ドキュメントやSigmaサポートのライブチャットへのアクセスなど、役立つ情報へのリンクです。
 
-### 1-2--2-1. Sigmaのサンプル接続 (Sigma's sample connection)
+### 1-2-2-1. Sigmaのサンプル接続 (Sigma's sample connection)
 
 Sigma組織を作成すると、私たちは自動的にあなたを私たちのサンプルのSnowflakeまたはDatabricksウェアハウスに接続します。この接続は`Sigma sample connection`という名前で、あなたと組織のメンバーに、初めてのSigma体験をすぐに始められるよう、様々なアクセス可能なデータを提供することを目的としています。
 
@@ -355,15 +355,15 @@ SigmaはSnowflakeへの安全な接続をサポートしています。
 
 **SigmaでSnowflake接続を作成する (Create a Snowflake connection in Sigma)**
 
-Snowflake接続を作成するには、Sigmaで以下のステップを実行します。
-1.  接続を追加し、接続詳細を指定する
-2.  接続資格情報を指定する
-3.  認証方法を構成する：
+1.Snowflake接続を作成するには、Sigmaで以下のステップを実行します。
+2.接続を追加し、接続詳細を指定する
+3.  接続資格情報を指定する
+4.  認証方法を構成する：
     * キーペア認証でSnowflakeに接続する
     * OAuthでSnowflakeに接続する
     * 基本認証でSnowflakeに接続する
-4.  書き込みアクセスを構成する
-5.  接続機能を構成する
+5.  書き込みアクセスを構成する
+6.  接続機能を構成する
 
 **1. 接続を追加し、接続詳細を指定する (Add a connection and specify connection details)**
 
@@ -374,7 +374,7 @@ Snowflake接続を作成するには、Sigmaで以下のステップを実行し
     * **Name:** 新しい接続の `Name` を入力します。Sigmaはこの名前を接続リストに表示します。
     * **Type:** `Snowflake` タイルを選択します。
 
-**2. 接続資格情報を指定する (Specify your connection credentials)**
+#### **接続資格情報を指定する (Specify your connection credentials)**
 
 `Connection Credentials` セクションで、必須項目を入力します。
 
@@ -383,7 +383,141 @@ Snowflake接続を作成するには、Sigmaで以下のステップを実行し
 * `Warehouse` フィールドに、Snowflakeにリストされているウェアハウス名を入力します。
     > 📘
     > ユーザー属性を使用してウェアハウスを設定するには、`Warehouse` フィールドの `Set by user attributes` をクリックします。「[Configure user attributes on a Snowflake connection](https://help.sigmacomputing.com/docs/user-attributes-snowflake)」を参照してください。
-* `Warehouse` フィールドをユーザー属性を使用して設定し、この接続で入力テーブルを使用する予定がある
+* `Warehouse` フィールドをユーザー属性を使用して設定し、この接続で入力テーブルを使用する予定がある場合は、`Service Account Warehouse` フィールドに、動的ウェアハウス切り替えの場合にサービスアカウントが使用できるウェアハウス名を提供してください。「[Dynamic Role Switching with Snowflake QuickStart](https://help.sigmacomputing.com/docs/dynamic-role-switching-quickstart)」の「Warehouse Switching」を参照してください。
+* `Authentication` の隣にあるキャレット()をクリックし、認証方法を選択し、選択した方法の必須フィールドを入力します。
+    * [キーペア認証でSnowflakeに接続する](#connect-to-snowflake-with-key-pair-authentication)
+    * [OAuthでSnowflakeに接続する](#connect-to-snowflake-with-oauth)
+    * [基本認証でSnowflakeに接続する](#connect-to-snowflake-with-basic-authentication)
+
+> 🚩
+> Snowflakeは、プログラムによるサービスユーザーにはキーペア認証またはOAuthの使用を推奨しており、認証ポリシーでそれを強制することができます。Snowflakeブログの「[Snowflake Strengthens Security with Default Multi-Factor Authentication and Stronger Password Policies](https://www.snowflake.com/blog/snowflake-strengthens-security-default-multi-factor-authentication-stronger-password-policies/)」を参照してください。
+
+---
+
+##### **キーペア認証でSnowflakeに接続する (Connect to Snowflake with key pair authentication)**
+
+公開鍵と秘密鍵のRSAキーペアの組み合わせを使用して接続を認証するには、認証方法として `Key Pair` を選択します。
+この方法では、公開鍵と秘密鍵が既に作成されており、公開鍵で構成されたSnowflakeユーザーが必要です。Snowflakeドキュメントの「[Key-pair authentication and key-pair rotation](https://docs.snowflake.com/en/user-guide/key-pair-auth)」を参照してください。多要素認証（MFA）ポリシーが適用されている場合は、このユーザーをMFAポリシーから除外してください。すべての前提条件ステップとキーのローテーション方法の詳細なウォークスルーについては、「[Snowflake Key-pair Auth QuickStart](https://help.sigmacomputing.com/docs/snowflake-key-pair-auth-quickstart)」を参照してください。
+
+1.  `User` フィールドに、公開鍵で構成されたSnowflakeの`login_name`を入力します。Snowflakeでは、`login_name`はユーザー名とは異なります。Snowflakeの`describe user`コマンドを使用して、任意のユーザーの`login_name`を見つけます。`describe user`コマンドのすべての有効な名前は、Snowflakeの`all_user_names`コマンドで見つけます。
+2.  `Private Key` フィールドに、ヘッダーを含む秘密鍵のテキストを貼り付けます。
+3.  [任意] 構成している場合は、`Private Key Passphrase` を入力します。
+4.  [任意] この接続で使用するSnowflakeの `Role` を入力します。ロールが提供されない場合は、Snowflakeでのユーザーのデフォルトロールが使用されます。
+    > 📘
+    > ユーザー属性を使用してロールを設定するには、`Role` フィールドの `Set by user attributes` をクリックします。「[Configure user attributes on a Snowflake connection](https://help.sigmacomputing.com/docs/user-attributes-snowflake)」を参照してください。
+5.  `Role` フィールドをユーザー属性を使用して設定し、この接続で入力テーブルを使用する予定がある場合は、動的ロール切り替えの場合にサービスアカウントが使用できる `Service Account Role` を提供してください。設定しない場合、サービスアカウントのロールはSnowflakeでユーザーに設定されたデフォルトロールになります。「[Dynamic Role Switching with Snowflake QuickStart](https://help.sigmacomputing.com/docs/dynamic-role-switching-quickstart)」を参照してください。
+6.  次に、追加オプションについては「[書き込みアクセスを構成する](#configure-write-access)」および「[接続機能を構成する](#configure-connection-features)」を参照してください。または、接続の構成が完了した場合は、右上の `Create` をクリックして接続を作成します。
+
+##### **OAuthでSnowflakeに接続する (Connect to Snowflake with OAuth)**
+
+`Authentication`ドロップダウンから`OAuth`を選択して、接続の認証方法として構成します。
+
+> 📘
+> 接続へのユーザー認証のために一意のOAuthアプリケーションを構成するオプション（つまり、組織レベルで使用するOAuth構成を再利用しないことを選択する）は、パブリックベータ機能であり、制限の対象となります。
+> 「[Use different OAuth configurations for authenticating users to your connections than you use for your Sigma organization (Beta)](https://help.sigmacomputing.com/docs/oauth-for-connections-overview)」を参照してください。
+
+1.  [任意] 外部IdPを使用してSigma組織へのユーザー認証にOAuthを使用しており、組織で[複数のIDプロバイダー](https://help.sigmacomputing.com/docs/configure-multiple-idps-for-an-organization)が有効になっていない場合、この接続に組織レベルのOAuth構成を再利用するオプションがあります。既存のOAuth構成を再利用するには、`Use organization-level OAuth configuration`の隣にあるトグルをオンにします。このトグルをオンにした場合は、ステップ3に進みます。
+2.  組織レベルのOAuth構成がない場合、組織で[複数のIDプロバイダー](https://help.sigmacomputing.com/docs/configure-multiple-idps-for-an-organization)が有効になっている場合、または組織レベルのOAuth構成を再利用したくない場合は、この接続用に一意のOAuth構成を設定します。
+    * `OAuth Features`セクションのフィールドを入力する前に、「[Configure a Sigma OAuth application](https://help.sigmacomputing.com/docs/configure-okta-oauth-for-sigma#configure-a-sigma-oauth-application)」の手順を完了してください。
+3.  [任意] OAuthトークンのアクセスをさらに指定するために、追加の`Scopes`を入力します。デフォルトのスコープ`openid`, `profile`, `email`, `session:role-any`は必須です。デフォルトのスコープ`offline_access`は推奨されますが必須ではありません。これらのスコープの詳細については、「Configure a Sigma OAuth application」のステップ3を参照してください。
+    > 📘
+    > Microsoft Entra IDをIdPとして使用している場合、`session:role-any`スコープの前に、Microsoft Entra IDのExpose an APIページの「Scopes defined by this API」の下にあるアプリケーションID URIを付けます。結果のスコープは次のパターンに従います： `https://<your_azure_domain>/<your_app_UUID>/session:role-any`
+4.  `Metadata URI`フィールドに、OAuthメタデータURIを入力します。
+5.  `Client ID`フィールドに、OAuthアプリケーションのクライアントIDを入力します。
+6.  [任意] OAuthアプリケーションでPKCEを有効にしなかった場合は、`Client Secret`フィールドにOAuthアプリケーションのクライアントシークレットを入力します。
+7.  [任意] この接続をさらに認証するためにProof Key for Code Exchangeを使用したい場合は、`Require PKCE`の隣のボックスをチェックします。
+8.  [任意] この接続をさらに認証するためにJSON Web Tokensを使用したい場合は、`Use JWT bearer tokens`の隣のボックスをチェックします。
+9.  `Service Account`が必要かどうかを判断します。サービスアカウントを構成する理由は3つあります。
+    * この接続で書き込みアクセスを有効にする場合。
+    * Sigmaのパブリック埋め込み機能を使用する場合。
+    * 管理者が個々のワークブックを各個人のOAuth資格情報ではなくサービスアカウントを使用して実行するように構成したい場合。
+10. サービスアカウントが必要な場合は、`Service Account`スイッチをオンにし、Snowflakeサービスアカウントの`User`と`Password`を入力します。
+    > 📘
+    > サービスアカウントは、Sigmaでの管理目的で作成されたSnowflakeユーザーです。他のSnowflakeユーザーと同じです。ユーザーには接続で使用したいロールが付与されている必要があり、そのロールにはウェアハウスに対する`USAGE`権限が付与されている必要があります。MFAポリシーが適用されている場合は、サービスアカウントをこのポリシーから除外してください。
+    > サービスアカウントは、接続上の他のすべてのOAuthアカウントと同様に、OAuthユーザーリストに追加する必要があります。
+11. [任意] この接続で使用するSnowflakeの`Role`を入力します。ロールが提供されない場合は、Snowflakeでのユーザーのデフォルトロールが使用されます。
+12. 次に、追加オプションについては「[書き込みアクセスを構成する](#configure-write-access)」および「[接続機能を構成する](#configure-connection-features)」を参照してください。または、接続の構成が完了した場合は、右上の`Create`をクリックして接続を作成します。
+
+##### **基本認証でSnowflakeに接続する (Connect to Snowflake with basic authentication)**
+
+ユーザー名とパスワードで接続するには、認証方法として `Basic Auth` を選択します。
+
+> 🚩
+> Sigma Computingは、Snowflakeへの接続時に基本認証の使用から移行することを推奨しています。セキュリティを向上させるために、代わりにキーペアまたはOAuth認証を使用してください。
+> 多要素認証（MFA）ポリシーが適用されている場合は、このユーザーをMFAポリシーから除外してください。
+
+1.  `User` フィールドに、Snowflakeの`login_name`を入力します。Snowflakeでは、`login_name`はユーザー名とは異なります。Snowflakeの`describe user`コマンドを使用して、任意のユーザーの`login_name`を見つけます。`describe user`コマンドのすべての有効な名前は、Snowflakeの`all_user_names`コマンドで見つけます。
+2.  `Password` フィールドに、Snowflakeのパスワードを入力します。
+3.  [任意] この接続で使用するSnowflakeの `Role` を入力します。ロールが提供されない場合は、Snowflakeでのユーザーのデフォルトロールが使用されます。
+    > 📘
+    > ユーザー属性を使用してロールを設定するには、`Role` フィールドの `Set by user attributes` をクリックします。「[Configure user attributes on a Snowflake connection](https://help.sigmacomputing.com/docs/user-attributes-snowflake)」を参照してください。
+4.  `Role` フィールドをユーザー属性を使用して設定し、この接続で入力テーブルを使用する予定がある場合は、動的ロール切り替えの場合にサービスアカウントが使用できる `Service Account Role` を提供してください。設定しない場合、サービスアカウントのロールはSnowflakeでユーザーに設定されたデフォルトロールになります。「[Dynamic Role Switching with Snowflake QuickStart](https://help.sigmacomputing.com/docs/dynamic-role-switching-quickstart)」を参照してください。
+5.  次に、追加オプションについては「[書き込みアクセスを構成する](#configure-write-access)」および「[接続機能を構成する](#configure-connection-features)」を参照してください。または、接続の構成が完了した場合は、右上の `Create` をクリックして接続を作成します。
+
+---
+
+#### **書き込みアクセスを構成する (Configure write access)**
+
+書き込みアクセスは、以下の機能に必要です。
+* CSV upload
+* Materialization
+* Input tables
+* Warehouse views
+
+> 📘
+> バイナリの入出力は `hex` 形式に設定する必要があります。Snowflakeドキュメントの「[Binary input and output](https://docs.snowflake.com/en/user-guide/binary-input-output)」を参照してください。
+
+書き込みアクセスを構成する手順は、接続に使用される認証方法によって異なります。あなたの認証オプションに一致する指示に従ってください。
+* [基本認証またはキーペア認証を使用する接続で書き込みアクセスを構成する](#configure-write-access-on-a-connection-with-basic-auth-or-key-pair-auth)
+* [OAuthを使用する接続で書き込みアクセスを構成する](#configure-write-access-on-a-connection-with-oauth)
+
+##### **基本認証またはキーペア認証を使用する接続で書き込みアクセスを構成する (Configure write access on a connection with Basic Auth or Key Pair Auth)**
+書き込みアクセスを構成するには、Snowflakeで専用のデータベースとスキーマを設定し、必要な権限を付与する必要があります。
+書き込みアクセスを有効にする前に、Sigma接続の構成に使用するSnowflakeユーザーに、以下の権限を持つロールを付与してください。
+
+| オブジェクト | 権限 |
+| :--- | :--- |
+| **Database** | USAGE |
+| **Schema** | USAGE, CREATE TABLE, CREATE VIEW, CREATE STAGE |
+
+> 📘
+> 動的テーブルで増分マテリアライゼーションを実行するには、接続で使用されるプライマリロールに、Snowflakeドキュメントの「[Privileges to create a dynamic table](https://docs.snowflake.com/en/user-guide/dynamic-tables-privileges)」にリストされている権限も付与されている必要があります。
+
+1.  `Enable write access` の隣にあるスイッチをオンにします。次に、以下のフィールドを構成します。
+2.  `Write database` フィールドに、Sigmaが書き戻しデータを保存するデータベースの名前を入力します。
+3.  `Write schema` フィールドに、Sigmaが書き戻しデータを保存するデータベーススキーマを入力します。
+4.  [任意] `Materialization warehouse` フィールドに、マテリアライゼーションを実行するクエリを実行するための別のウェアハウスを入力します。
+5.  [任意] デフォルトでは、Sigmaは増分マテリアライゼーションに動的テーブルを使用します。動的テーブルを使用したくない場合は、`Use dynamic tables` スイッチをオフにします。
+6.  次に、追加オプションについては「[接続機能を構成する](#configure-connection-features)」を参照してください。または、接続の構成が完了した場合は、右上の `Create` をクリックして接続を作成します。
+
+##### **OAuthを使用する接続で書き込みアクセスを構成する (Configure write access on a connection with OAuth)**
+書き込みアクセスを構成するには、Snowflakeで専用のデータベースとスキーマを設定し、必要な権限を付与する必要があります。すべての前提条件ステップについては、「[Configure OAuth with write access](https://help.sigmacomputing.com/docs/oauth-with-write-access)」を参照してください。
+1.  `Enable write access` の隣にあるスイッチをオンにします。次に、以下のフィールドを構成します。
+2.  SnowflakeがSigmaからの書き戻しデータを保存する `Destination` を少なくとも1つ提供します。`DATABASE.SCHEMA` の形式を使用します。
+3.  [任意] 必要に応じて、追加のデスティネーションを入力します。
+4.  [任意] `Input table edit log destination` フィールドに、この接続上の入力テーブルへのすべての編集をログに記録するための追加の `DATABASE.SCHEMA` デスティネーションを提供します。
+5.  [任意] `Materialization warehouse` フィールドに、マテリアライゼーションを実行するクエリを実行するための別のウェアハウスを入力します。
+6.  [任意] デフォルトでは、Sigmaは増分マテリアライゼーションに動的テーブルを使用します。動的テーブルを使用したくない場合は、`Use dynamic tables` スイッチをオフにします。
+7.  次に、追加オプションについては「[接続機能を構成する](#configure-connection-features)」を参照してください。または、接続の構成が完了した場合は、右上の `Create` をクリックして接続を作成します。
+
+---
+
+#### **接続機能を構成する (Configure connection features)**
+
+`Connection Features` セクションで、以下を指定します。
+
+* `Connection timeout` フィールドに、タイムアウトまでの時間（秒）を指定します。デフォルトは120秒です。最大は600秒（10分）です。
+* [任意] `Use friendly names` スイッチをオフにすると、Sigmaが自動で列名を読みやすくするのをやめます。
+* [任意] `Export warehouse` フィールドに、エクスポートクエリ用に作成された仮想ウェアハウスの名前を入力します。詳細は、「[Configure an export warehouse](https://help.sigmacomputing.com/docs/configure-an-export-warehouse)」を参照してください。
+
+#### **接続作成を完了する (Finish creating your connection)**
+
+接続の全てのパラメータを指定した後、`Create` をクリックします。
+画面右上の`Create`をクリックして接続を作成します。Sigmaは画面に接続の概要を表示します。
+
+`Browse Connection` をクリックし、`Add permission` をクリックして、組織内のユーザーにデータアクセスを許可します。「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
+
+左側のナビゲーションパネルを使用して、接続のスキーマやテーブルを探索します。
 
 * #### 2-4. Snowflake接続でユーザー属性を構成する (Configure user attributes on a Snowflake connection)
 
