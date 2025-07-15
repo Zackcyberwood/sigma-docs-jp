@@ -599,14 +599,13 @@ Snowflakeウェアハウス接続でユーザー属性を構成するために�
 ##### **セキュアな埋め込みURLにパラメータを追加する (Add parameters to a secure embed URL)**
 セキュアな埋め込みで属性を渡すためには、両方の属性のパラメータを埋め込みURLに追加する必要があります。
 埋め込みURLでは、属性は次のようにフォーマットされるべきです。
-:ua_{nameofattribute}=value
-
+**:ua_{nameofattribute}=value
 //example
-:ua_warehouse=wh
+:ua_warehouse=wh:**
 
 以下の例では、属性はセキュアな埋め込みURLの末尾に追加されています。
 
-https://app.sigmacomputing.com/embed/1qmpD5yiMIRvb6dI8l4pzK
+**https://app.sigmacomputing.com/embed/1qmpD5yiMIRvb6dI8l4pzK
 ?:nonce=35df8548-c7e5-4d35-92da7f8114843999
 &:session_length=3600
 &:client_id=9319bfb04ae48af48bbee8f702669c085a38b6a73f43d32htd70a3cd6ee4h9iu
@@ -617,7 +616,7 @@ https://app.sigmacomputing.com/embed/1qmpD5yiMIRvb6dI8l4pzK
 &:account_type=explorer
 &:mode=userbacked
 &:ua_warehouse=wh1
-&:signature=j323557c82b26103faf65314db41ebc51ea9n3a61795ef22f45ep0aed1f4182493
+&:signature=j323557c82b26103faf65314db41ebc51ea9n3a61795ef22f45ep0aed1f4182493**
 セキュアな埋め込みURLへのパラメータ追加に関する詳細は、「[Embed URL parameters](https://help.sigmacomputing.com/docs/embed-url-parameters)」および「[Example embed API and URL](https://help.sigmacomputing.com/docs/example-embed-api-and-url)」を参照してください。
 
 #### 2-5. エクスポートウェアハウスを構成する (Configure an export warehouse)
