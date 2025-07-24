@@ -45,3 +45,74 @@ SELECT
     UNIFORM(50000, 200000, RANDOM())
 FROM BASE_DATA b;
 
+【TBL_ANSWER】
+-- ステップ1：購入履歴テーブルを一度まっさらにする
+CREATE OR REPLACE TABLE TBL_PURCHASES (
+    PURCHASE_ID       VARCHAR(10),
+    CUSTOMER_ID       VARCHAR(10),
+    PURCHASE_DATE     TIMESTAMP_NTZ,
+    PRODUCT_CATEGORY  VARCHAR(50),
+    PURCHASE_AMOUNT   NUMBER(10, 0)
+);
+
+-- ステップ2：シンプルなロジックでデータを挿入する
+INSERT INTO TBL_PURCHASES (
+    PURCHASE_ID,
+    CUSTOMER_ID,
+    PURCHASE_DATE,
+    PRODUCT_CATEGORY,
+    PURCHASE_AMOUNT
+)
+SELECT
+    'PURC' || LPAD(SEQ8(), 5, '0'),
+    
+    -- 1番から1000番までの顧客IDをランダムに割り振る
+    'CUST' || LPAD(UNIFORM(1, 1000, RANDOM()), 5, '0'),
+
+    -- 購入日時は、2025年上半期のランダムな日時
+    DATEADD(second, UNIFORM(0, 15552000, RANDOM()), '2025-01-01 00:00:00'),
+
+    -- 商品カテゴリをランダムに割り振る
+    (SELECT val FROM (VALUES ('スナック菓子'),('チョコレート'),('焼き菓子'),('ドリンク')) AS T(val) ORDER BY RANDOM() LIMIT 1),
+    
+    -- 購入金額をランダムに割り振る
+    UNIFORM(500, 8000, RANDOM())
+
+FROM
+    TABLE(GENERATOR(ROWCOUNT => 400)); -- 400件の購入データを生成MY_HANDSON_DB.PUBLIC.TBL_ANSWERS
+
+【TBL_Purchase】
+-- ステップ1：購入履歴テーブルを一度まっさらにする
+CREATE OR REPLACE TABLE TBL_PURCHASES (
+    PURCHASE_ID       VARCHAR(10),
+    CUSTOMER_ID       VARCHAR(10),
+    PURCHASE_DATE     TIMESTAMP_NTZ,
+    PRODUCT_CATEGORY  VARCHAR(50),
+    PURCHASE_AMOUNT   NUMBER(10, 0)
+);
+
+-- ステップ2：シンプルなロジックでデータを挿入する
+INSERT INTO TBL_PURCHASES (
+    PURCHASE_ID,
+    CUSTOMER_ID,
+    PURCHASE_DATE,
+    PRODUCT_CATEGORY,
+    PURCHASE_AMOUNT
+)
+SELECT
+    'PURC' || LPAD(SEQ8(), 5, '0'),
+    
+    -- 1番から1000番までの顧客IDをランダムに割り振る
+    'CUST' || LPAD(UNIFORM(1, 1000, RANDOM()), 5, '0'),
+
+    -- 購入日時は、2025年上半期のランダムな日時
+    DATEADD(second, UNIFORM(0, 15552000, RANDOM()), '2025-01-01 00:00:00'),
+
+    -- 商品カテゴリをランダムに割り振る
+    (SELECT val FROM (VALUES ('スナック菓子'),('チョコレート'),('焼き菓子'),('ドリンク')) AS T(val) ORDER BY RANDOM() LIMIT 1),
+    
+    -- 購入金額をランダムに割り振る
+    UNIFORM(500, 8000, RANDOM())
+
+FROM
+    TABLE(GENERATOR(ROWCOUNT => 400)); -- 400件の購入データを生成MY_HANDSON_DB.PUBLIC.TBL_ANSWERS
