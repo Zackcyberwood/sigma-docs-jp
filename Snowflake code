@@ -116,3 +116,140 @@ SELECT
 
 FROM
     TABLE(GENERATOR(ROWCOUNT => 400)); -- 400件の購入データを生成MY_HANDSON_DB.PUBLIC.TBL_ANSWERS
+
+【TBL_ANSWER】
+-- ステップ1：アンケート回答テーブルを一度まっさらにして作り直す
+CREATE OR REPLACE TABLE TBL_ANSWERS (
+    ANSWER_ID         VARCHAR(30),
+    CUSTOMER_ID       VARCHAR(10),
+    CAMPAIGN_ID       VARCHAR(10),
+    QUESTION_ID       VARCHAR(10),
+    ANSWER_TEXT       VARCHAR(500),
+    ANSWERED_AT       TIMESTAMP_NTZ
+);
+
+-- ステップ2：他のテーブルを一切参照せず、設問に応じたリアルな回答データを挿入する
+INSERT INTO TBL_ANSWERS (
+    ANSWER_ID, CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT
+)
+WITH 
+-- まず、4200件の回答の元となる、ランダムなIDの組み合わせを生成
+BASE AS (
+    SELECT
+        'CUST' || LPAD(UNIFORM(1, 1000, RANDOM()), 5, '0') as CUSTOMER_ID,
+        'CAMP' || LPAD(UNIFORM(1, 120, RANDOM()), 5, '0') as CAMPAIGN_ID,
+        'Q' || UNIFORM(1, 6, RANDOM()) as QUESTION_ID
+    FROM
+        TABLE(GENERATOR(ROWCOUNT => 4200))
+)
+-- 次に、生成したIDを基に、設問に応じた回答を組み立てる
+SELECT
+    'ANS_' || b.CUSTOMER_ID || '_' || b.CAMPAIGN_ID || '_' || b.QUESTION_ID,
+    b.CUSTOMER_ID,
+    b.CAMPAIGN_ID,
+    b.QUESTION_ID,
+    -- ▼▼▼ 設問ID（QUESTION_ID）に応じて、回答内容をリアルに変動させる ▼▼▼
+    CASE
+        WHEN b.QUESTION_ID = 'Q1' THEN
+            DECODE(MOD(ABS(HASH(b.CUSTOMER_ID)), 3),
+                0, 'コラボキャラクターが好きだから',
+                1, '新商品に興味があったから',
+                'お得な価格だったから')
+        WHEN b.QUESTION_ID = 'Q2' THEN
+            DECODE(MOD(ABS(HASH(b.CUSTOMER_ID)), 4),
+                0, '味の信頼性',
+                1, '価格の手頃さ',
+                2, 'パッケージのデザイン',
+                '新しさ・話題性')
+        WHEN b.QUESTION_ID = 'Q3' THEN
+            DECODE(MOD(ABS(HASH(b.CUSTOMER_ID)), 5),
+                0, 'Instagram',
+                1, 'X (旧Twitter)',
+                2, 'Web検索',
+                3, 'メールマガジン',
+                '店頭ポスター')
+        WHEN b.QUESTION_ID IN ('Q4', 'Q5') THEN
+            CAST(UNIFORM(1, 5, RANDOM()) AS VARCHAR)
+        WHEN b.QUESTION_ID = 'Q6' THEN
+            DECODE(MOD(ABS(HASH(b.CUSTOMER_ID)), 6),
+                0, 'いつも新商品を楽しみにしております。オンラインストアの決済方法を改善してほしいです。',
+                1, 'コラボデザインが想像以上に可愛く、つい全種類集めてしまいました。',
+                2, '期待して購入しましたが、私には少し甘すぎると感じました。',
+                3, 'パッケージが少し開けにくいと感じました。ジッパー付きだと嬉しいです。',
+                4, 'Webサイトの応募方法が少し分かりにくかったです。',
+                '特になし')
+    END,
+    -- 回答日時は、2025年上半期のランダムな日時
+    DATEADD(second, UNIFORM(0, 15552000, RANDOM()), '2025-01-01 00:00:00')
+
+FROM BASE b;
+
+
+【Answer　Ver.2】
+-- ステップ1：アンケート回答テーブルを一度まっさらにする
+CREATE OR REPLACE TABLE TBL_ANSWERS (
+    ANSWER_ID         VARCHAR(30),
+    CUSTOMER_ID       VARCHAR(10),
+    CAMPAIGN_ID       VARCHAR(10),
+    QUESTION_ID       VARCHAR(10),
+    ANSWER_TEXT       VARCHAR(500),
+    ANSWERED_AT       TIMESTAMP_NTZ
+);
+
+-- ステップ2：物語と、詳細な回答ロジックを反映したデータを挿入する
+INSERT INTO TBL_ANSWERS (
+    ANSWER_ID, CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT
+)
+WITH 
+-- まず、4200件の回答の元となる、ランダムなIDの組み合わせと、「隠れ属性」を生成
+BASE AS (
+    SELECT
+        'CUST' || LPAD(UNIFORM(1, 1000, RANDOM()), 5, '0') as CUSTOMER_ID,
+        'Q' || UNIFORM(1, 6, RANDOM()) as QUESTION_ID,
+        -- 各行に、どの物語を割り振るかの「シナリオID」を生成 (1=3月のコラボ, 2=5月の新商品, 3=その他)
+        CASE 
+            WHEN UNIFORM(1, 100, RANDOM()) <= 40 THEN 1 
+            WHEN UNIFORM(1, 100, RANDOM()) <= 80 THEN 2
+            ELSE 3 
+        END as scenario_id
+    FROM TABLE(GENERATOR(ROWCOUNT => 4200))
+)
+-- 次に、生成したIDと属性を基に、回答を組み立てる
+SELECT
+    'ANS_' || SEQ8(),
+    b.CUSTOMER_ID,
+    -- シナリオIDに応じて、キャンペーンIDと回答日時を意図的に設定
+    CASE 
+        WHEN b.scenario_id = 1 THEN 'CAMP00003' -- 3月のコラボキャンペーンID (固定)
+        WHEN b.scenario_id = 2 THEN 'CAMP00005' -- 5月の新商品キャンペーンID (固定)
+        ELSE 'CAMP00001' -- その他のキャンペーンID (固定)
+    END,
+    b.QUESTION_ID,
+    
+    -- ▼▼▼ 設問IDと、顧客IDから生成される「隠れ属性」に応じて、詳細な回答内容を生成 ▼▼▼
+    CASE
+        WHEN b.QUESTION_ID = 'Q1' THEN
+            DECODE(MOD(ABS(HASH(b.CUSTOMER_ID)), 3), 0, 'コラボキャラクターが好きだから', 1, '新商品に興味があったから', 'お得な価格だったから')
+        WHEN b.QUESTION_ID = 'Q2' THEN
+            DECODE(MOD(ABS(HASH(b.CUSTOMER_ID)), 4), 0, '味の信頼性', 1, '価格の手頃さ', 2, 'パッケージのデザイン', '新しさ・話題性')
+        WHEN b.QUESTION_ID = 'Q3' THEN
+            DECODE(MOD(ABS(HASH(b.CUSTOMER_ID)), 5), 0, 'Instagram', 1, 'X (旧Twitter)', 2, 'Web検索', 3, 'メールマガジン', '店頭ポスター')
+        WHEN b.QUESTION_ID IN ('Q4', 'Q5') THEN
+            CAST(UNIFORM(1, 5, RANDOM()) AS VARCHAR)
+        WHEN b.QUESTION_ID = 'Q6' THEN
+            -- 顧客IDのハッシュ値を基に「隠れランク」を擬似的に作り、回答内容を変化させる
+            CASE
+                WHEN MOD(ABS(HASH(b.CUSTOMER_ID)), 100) < 10 THEN 'いつも新商品を楽しみにしております。オンラインストアの決済で後払い決済が使えるようになると、さらに嬉しいです。' -- 隠れプラチナ (10%)
+                WHEN MOD(ABS(HASH(b.CUSTOMER_ID)), 100) < 30 THEN 'コラボデザインが想像以上に可愛く、つい全種類集めてしまいました。' -- 隠れゴールド (20%)
+                WHEN MOD(ABS(HASH(b.CUSTOMER_ID)), 100) < 50 THEN '期待して購入しましたが、私には少し甘すぎると感じました。' -- 隠れ不満層 (20%)
+                ELSE '特になし' -- その他 (50%)
+            END
+    END,
+    
+    -- シナリオIDに応じて、回答日時を意図的に設定
+    CASE
+        WHEN b.scenario_id = 1 THEN DATEADD('day', UNIFORM(0, 30, RANDOM()), '2025-03-01') -- 3月に回答が集中
+        WHEN b.scenario_id = 2 THEN DATEADD('day', UNIFORM(0, 30, RANDOM()), '2025-05-01') -- 5月に回答が集中
+        ELSE DATEADD('day', UNIFORM(0, 180, RANDOM()), '2025-01-01') -- その他は上半期に分散
+    END
+FROM BASE b;
