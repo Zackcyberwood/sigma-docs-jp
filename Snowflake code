@@ -1,0 +1,48 @@
+【キャンペーンデータ】
+-- ステップ1：テーブルを一度まっさらに作り直す
+CREATE OR REPLACE TABLE TBL_CAMPAIGNS (
+    CAMPAIGN_ID       VARCHAR(10),
+    CAMPAIGN_NAME     VARCHAR(100),
+    START_DATE        DATE,
+    END_DATE          DATE,
+    CAMPAIGN_TYPE     VARCHAR(30),
+    CAMPAIGN_COST     NUMBER(10, 0)
+);
+
+-- ステップ2：作り直したテーブルに、2025年上半期だけのデータを120件生成・挿入する
+INSERT INTO TBL_CAMPAIGNS (
+    CAMPAIGN_ID, CAMPAIGN_NAME, START_DATE, END_DATE, CAMPAIGN_TYPE, CAMPAIGN_COST
+)
+WITH BASE_DATA AS (
+    SELECT
+        SEQ8() as id,
+        -- 開始日を「2025年上半期」の範囲に限定（最終日が6/30になるよう、5月中旬までの開始日にする）
+        DATEADD(day, UNIFORM(0, 150, RANDOM()), '2025-01-01') AS GENERATED_START_DATE,
+        CASE 
+            WHEN UNIFORM(1, 10, RANDOM()) <= 2 THEN 'タイアップ・コラボ型'
+            WHEN UNIFORM(1, 10, RANDOM()) <= 4 THEN '新商品ローンチ型'
+            WHEN UNIFORM(1, 10, RANDOM()) <= 7 THEN '購入者限定応募型'
+            ELSE '季節イベント型'
+        END AS CAMPAIGN_TYPE
+    FROM TABLE(GENERATOR(ROWCOUNT => 120))
+)
+SELECT
+    'CAMP' || LPAD(b.id, 5, '0'),
+    '2025年 上半期 ' || 
+    CASE
+        WHEN b.CAMPAIGN_TYPE = 'タイアップ・コラボ型' THEN (SELECT NAME FROM (VALUES ('人気アニメ「グルログ」'), ('有名パティシエ「辻口氏」')) T(NAME) ORDER BY RANDOM() LIMIT 1) || ' コラボ'
+        ELSE (SELECT NAME FROM (VALUES ('焦がしバターのフィナンシェ'), ('石臼挽き抹茶のテリーヌ')) T(NAME) ORDER BY RANDOM() LIMIT 1) || ' 発売記念'
+    END,
+    b.GENERATED_START_DATE,
+    
+    -- ▼▼▼ 終了日が6/30を超えないように、LEAST関数で制御 ▼▼▼
+    LEAST(
+        DATEADD(day, UNIFORM(14, 28, RANDOM()), b.GENERATED_START_DATE),
+        '2025-06-30'
+    ),
+    
+    b.CAMPAIGN_TYPE,
+    UNIFORM(50000, 200000, RANDOM())
+FROM BASE_DATA b;
+
+SELECT COUNT(*) FROM TBL_CAMPAIGNS;
