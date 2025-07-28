@@ -1770,7 +1770,7 @@ ALTER TABLE {original_db}.{original_schema}.{original_table} RENAME TO {new_db}.
 #### **セキュアな埋め込みでの使用 (Use with secure embeds)**
 「[埋め込みコンテンツのデータへのアクセスを制限する](https://help.sigmacomputing.com/docs/restrict-access-to-data-in-embedded-content)」を参照してください。
 
-### 2-2-3. SSH経由で接続する (Connect through SSH)
+### 2-2-4. SSH経由で接続する (Connect through SSH)
 
 Sigmaは、`PostgreSQL`、`Redshift`、`AlloyDB`、および`MySQL`接続に対して、Secure Shell (SSH) 経由での接続をサポートしています。
 
@@ -1817,7 +1817,7 @@ SSH接続を有効にするには、以下のSigma情報をシステム管理者
 7. 既存の接続を編集している場合は、`Save`をクリックします。
    新しい接続を作成している場合は、`Connection features`, `Write access`などの指定を続行します。
 
-### 2-2-4-1. AWS PrivateLink接続 (AWS PrivateLink Connections)
+### 2-2-5-1. AWS PrivateLink接続 (AWS PrivateLink Connections)
 
 Sigma組織がAmazon Web Services (AWS)で実行されている場合、AWS PrivateLinkを使用してデータに安全に接続できます。AWS PrivateLinkは、パブリックインターネット経由でトラフィックを送信することなく、AWS Virtual Private Cloud (VPC)間に接続を作成できるセキュリティ機能です。Sigmaは、PrivateLinkをサポートするすべてのAmazonリージョンで、AWS PrivateLinkを介してクラウドデータプラットフォームに接続できます。
 
@@ -1830,7 +1830,7 @@ PrivateLinkのセキュリティ上の利点と内部構造に関する詳細は
 * AWSで実行されているSigma組織。
     > ❗️
     > 注：プライベートリンクを使用するには、Sigma組織がデータプラットフォームと同じクラウド上にある必要があります。組織がAzureを使用している場合は、「[Azure Private Link connections](https://help.sigmacomputing.com/docs/azure-private-link-connections)」を参照してください。
-* Sigmaで`Admin`アカウントタイプを割り当てられている必要があります。
+* Sigmaで`Admin`アカウントタイプを割り当てられている必要があります。「[User account types](https://help.sigmacomputing.com/docs/user-account-types)」を参照してください。
 * AWS VPCにデプロイされたSnowflake（セルフマネージドまたはVPS）、Redshift、MySQL、SQL Server 2022、Starburst、Postgresデータウェアハウス、または任意のAWSリージョンにあるカスタムプロキシサーバー。
     > 📘
     > この機能は、BigQueryウェアハウスや、Azure、GCP、VMwareクラウドで実行されているセルフマネージドウェアハウスをサポートしていません。
@@ -1839,12 +1839,10 @@ PrivateLinkのセキュリティ上の利点と内部構造に関する詳細は
 
 #### **PrivateLinkでデータに接続する (Connecting to your data with PrivateLink)**
 以下の手順は、既存のパブリック接続をPrivateLinkを使用するように更新する場合と、PrivateLinkを使用する新しい接続を作成する場合の両方をカバーしています。PrivateLinkを設定するプロセスは、組織が使用するデータプラットフォームによって異なります。
-* [Snowflake](#snowflake)
-* [Redshift](#redshift)
-* [Databricks](#databricks)
-* [MySQL, SQL Server 2022, PostgreSQL, Starburst, およびカスタムプロキシサーバー](#mysql-sql-server-2022-postgresql-starburst-or-custom-proxy-servers)
-
----
+* Snowflake
+* Redshift
+* Databricks
+* MySQL, SQL Server 2022, PostgreSQL, Starburst, およびカスタムプロキシサーバー (e.g. secuPi)
 
 #### **Snowflake**
 PrivateLinkを介したSnowflakeへの接続は、Snowflakeの構成に依存します。
@@ -1852,55 +1850,546 @@ PrivateLinkを介したSnowflakeへの接続は、Snowflakeの構成に依存し
 * Snowflake顧客で、Virtual Private Server (VPS)またはプロキシサーバーを使用している場合は、「[独自のVPCを介してSnowflakeに接続する](#connect-to-snowflake-via-your-own-vpc)」を参照してください。
 
 ##### **SnowflakeのPrivateLink統合で接続する (Connect with Snowflake’s PrivateLink Integration)**
-SnowflakeのPrivateLink統合により、Sigmaはデータを収容しているSnowflake VPCに直接、PrivateLinkを介して安全な接続を作成できます。
-* **追加要件:**
+SnowflakeのPrivateLink統合により、Sigmaはデータを収容しているSnowflake VPCに直接、PrivateLinkを介して安全な接続を作成できます。SigmaとあなたのSnowflakeウェアハウス間のトラフィックは、AWSバックボーン上のみを通過します。あなた自身のアマゾンアカウントやVPCは必要ありません - Snowflakeによって管理されるウェアハウスのみがAWS VPC内に存在する必要があります。
+
+* **追加要件 (Additional requirements)**
     * SnowflakeはPrivateLinkサポートのために`Business Critical`エディション（またはそれ以上）を要求します。
-    * SnowflakeアカウントがVPSを使用しているか、プロキシサーバーでSigmaをSnowflakeに接続している場合、SnowflakeのPrivateLink統合は使用できません。
+    * あなたのSigmaアカウントエグゼクティブに連絡して、Sigma組織の適格性を確認してください。
+    * SnowflakeアカウントがVPSを使用しているか、プロキシサーバーでSigmaをSnowflakeに接続している場合、SnowflakeのPrivateLink統合は使用できません。「[独自のVPCを介してSnowflakeに接続する](#connect-to-snowflake-via-your-own-vpc)」を参照してください。
     * Snowflakeアカウント管理者である必要があります（システムロールは`ACCOUNTADMIN`）。
 
-##### **独自のVPCを介してSnowflakeに接続する (Connect to Snowflake via your own VPC)**
-1.  VPCエンドポイントサービスを作成します。
-2.  新しく作成したVPCエンドポイントサービスをSigmaに検出可能にします。
-3.  SigmaのAmazon Resource Name (ARN)が必要です：`arn:aws:iam::185497759670:role/cdktf-operator`
-4.  Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡して、PrivateLink接続をインストールします。
-5.  インストール後、VPCエンドポイントサービスが新しい接続を手動で受け入れる必要がある場合は、Sigmaの新しいエンドポイント接続を受け入れる必要があります。
-6.  PrivateLinkを使用するように接続を更新します。
+* **SnowflakeのPrivateLink統合を使用して接続する (Connect using Snowflake's PrivateLink integration)**
+    SnowflakeのPrivateLink統合で接続するには：
+    1.  Snowflakeで、`SYSTEM$GET_PRIVATELINK_CONFIG`を呼び出します。以下の値を記録してください。
+        * **privatelink-vpce-id:** これはVPCエンドポイントサービス名で、`com.amazonaws.vpce.<region>.vpce-svc-xxxxxxxxxx`のような形式です。
+        * **privatelink-account-url:** これはSnowflake PrivateLinkアカウントURLで、`<privatelink-account-name>.<aws-region>.privatelink.snowflakecomputing.com`のような形式です。
+    2.  Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡して、SigmaとのPrivateLink接続をインストールし、サービス名とURLを提供してください。インストールが完了すると、Sigmaから連絡があります。
+    3.  PrivateLinkを使用するように接続を更新します。
+        * **既存のSnowflakeへの接続の場合：**
+            a. `Home` > `Administration` > `Connections`に移動します。
+            b. 既存の接続を選択し、`Edit`を選択します。
+            c. `Account`フィールドに、ステップ1で記録したPrivateLinkアカウントURLを、`<privatelink-account-name>.<aws-region>.privatelink`の形式で入力します。
+            d. `Save`を選択します。
+            > 📘
+            > 既存の接続は引き続き機能しますが、このステップが完了するまでPrivateLinkは使用されません。
+        * **新しいSnowflakeへの接続の場合：**
+            「[Connect to Snowflake](https://help.sigmacomputing.com/docs/connect-to-snowflake)」の手順を使用して新しい接続を作成します。`Account`フィールドを入力する際、ステップ1で記録したPrivateLinkアカウントURLを、`<privatelink-account-name>.<aws-region>.privatelink`の形式で入力します。<img width="250" height="21" alt="74e4420e5fde0485e6293a59b1293a8d9486ecc49dee93c1c50b11e474f69cd2-accountfieldprivatelink" src="https://github.com/user-attachments/assets/d4a8e0d8-1a60-42cd-b771-8f6e386c20b3" />
 
----
+##### **独自のVPCを介してSnowflakeに接続する (Connect to Snowflake via your own VPC)**
+
+SnowflakeのPrivateLinkに接続するには：
+1.  VPCエンドポイントサービスを作成します。エンドポイントサービスを作成するには、AWSドキュメントの「[Create a service powered by AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html)」を参照してください。
+2.  新しく作成したVPCエンドポイントサービスをSigmaに検出可能にします。エンドポイントを検出可能にするには、AWSドキュメントの「[Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-permissions.html)」を参照してください。
+    * エンドポイントサービスを構成するには、SigmaのAmazon Resource Name (ARN)が必要です。VPCエンドポイントサービスの`Allow principals`構成に、以下のARNを入力してください：`arn:aws:iam::185497759670:role/cdktf-operator`
+    > 📘
+    > `arn:aws:iam::185497759670:role/root`構成を持つ既存の構成は、すべてのユーザーに対して引き続き機能しますが、`role/cdktf-operator`の使用が推奨されます。
+3.  Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡して、PrivateLink接続をインストールします。彼らは以下を必要とします。
+    * あなたのエンドポイントのVPCエンドポイントサービス名（`com.amazonaws.vpce.<region>.vpce-svc-xxxx`のような形式）。
+    * あなたのロードバランサーのアベイラビリティゾーンID（`use1-az1`のような形式）。
+    * アカウントURL（`<account-name>.<region>.privatelink.snowflakecomputing.com`のような形式）。
+4.  インストールには数日かかる場合があります。インストールが完了すると、Sigmaから連絡があり、接続用のアカウントURL名が提供されます（後の構成で必要です）。
+5.  インストール後、VPCエンドポイントサービスが新しい接続を手動で受け入れる必要がある場合は、Sigmaの新しいエンドポイント接続を受け入れる必要があります。AWSドキュメントの「[Accept or reject connection requests](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-endpoint-services.html#accept-reject-connection-requests)」を参照してください。
+6.  PrivateLinkを使用するように接続を更新します。
+    * **既存のデータプラットフォームへの接続の場合：**
+        a. `Home` > `Administration` > `Connections`に移動します。
+        b. 目的の接続を選択し、`Edit`を選択します。
+        c. `Account`フィールドに、Sigmaから提供されたアカウントURL名を入力します。
+        d. `Save`を選択します。
+        > 📘
+        > 既存のデータプラットフォームへの接続は引き続き機能しますが、このステップが完了するまでPrivateLinkは使用されません。
+    * **新しいデータプラットフォームへの接続の場合：**
+        「[Connect to data sources](https://help.sigmacomputing.com/docs/connect-to-data-sources)」の手順を使用してデータプラットフォームに接続します。`Account`フィールドを入力する際、Sigmaから提供された新しいアカウントURLを使用します。
 
 #### **Redshift**
 PrivateLinkを介したRedshiftへの接続は、Redshiftの構成に依存します。
-* RedshiftクラスターがRA3インスタンスタイプで、クラスターの再配置がオンになっている場合、SigmaはRedshift管理のVPCエンドポイントを介して接続することを推奨します。
-* そうでない場合は、独自のVPCを介してRedshiftに接続します。
+* RedshiftクラスターがRA3インスタンスタイプで、クラスターの再配置がオンになっている場合、SigmaはRedshift管理のVPCエンドポイントを介して接続することを推奨します。「[Redshift管理のVPCエンドポイントで接続する](#connect-with-redshift-managed-vpc-endpoints)」を参照してください。
+* RedshiftクラスターがRA3インスタンスタイプでない場合、クラスターの再配置がオフになっている場合、またはRedshift管理のエンドポイントを使用したくない場合は、「[独自のVPCを介してRedshiftに接続する](https://help.sigmacomputing.com/docs/aws-privatelink-connections#connect-to-redshift-via-your-own-vpc)」を参照してください。
 
----
+##### **Redshift管理のVPCエンドポイントで接続する (Connect with Redshift managed VPC endpoints)**
+Redshift管理のVPCエンドポイントを使用すると、追加のインフラストラクチャを作成することなく、クラスターに追加のセキュリティを追加できます。詳細は、AWSドキュメントの「[Redshift managed VPC endpoints](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-redshift-managed-vpc-endpoints.html)」を参照してください。
+
+* **追加要件 (Additional requirements)**
+    * 既存のRedshiftインスタンスを持っていること。
+    * アクセスするクラスターはRA3インスタンスタイプである必要があります。
+    * アクセスするクラスターは、クラスターの再配置がオンになっている必要があります。AWSドキュメントの「[Relocating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-recovery.html#relocating-a-cluster)」を参照してください。
+
+* **Redshift管理のVPCエンドポイントでPrivateLinkを設定する (Set up PrivateLink on Redshift managed VPC endpoints)**
+    Redshift管理のVPCエンドポイントを設定するには：
+    1.  SigmaにRedshiftインスタンスへのアクセスを承認します。AWSドキュメントの「[Granting access to a VPC](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-redshift-managed-vpc-endpoints.html#managed-vpc-endpoint-access-method-console)」を参照してください。アクセスを許可するAWSアカウントIDは`185497759670`です。Redshiftクラスターの場所に応じて、以下のVPC IDへのアクセスを許可してください。
+
+| | |
+| :--- | :--- |
+| us-east-1 | vpc-03e998398a2b8d7d4 |
+| us-east-2 | vpc-0eb5c451f6d93b9b0 |
+| us-west-1 | vpc-0b98df9ea218bbae3 |
+| us-west-2 | vpc-0ebc060057f91792c |
+| ap-southeast-2 | vpc-0173a781cad403b87 |
+| ap-northeast-1 | vpc-01d69d4176bf329d4 |
+| eu-central-1 | vpc-03967ee832f14c234 |
+| eu-west-1 | vpc-0ef690315d8c934e9 |
+| eu-west-2 | vpc-0d89ee0ccf9f3eeb7 |
+
+    もしあなたのRedshiftクラスターのリージョンが上記にリストされていない場合は、Sigmaサポートに支援を求めてください。
+
+    2.  Sigmaに以下の情報を提供してください。
+        * Redshiftクラスター識別子
+        * RedshiftクラスターのAWSリージョン
+        * AWSアカウント番号
+        * アベイラビリティゾーンID：`use1-az1`のような形式。AWSドキュメントの「[Availability Zone IDs for your AWS resources](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/#Availability_Zone_IDs)」を参照してください。
+        * [任意] 希望のDNS名：プライベートリンクアカウントURLの希望するサブドメイン名。名前は記述的で識別しやすいものであるべきです。例えば、`<name>-<env>-<region>-<index_number>`のような形式にしたいかもしれません。
+
+    3. プライベートリンクが作成されると、Sigmaから連絡があります。
+
+##### **独自のVPCを介してRedshiftに接続する (Connect to Redshift via your own VPC)**
+
+1.  VPCエンドポイントサービスを作成します。エンドポイントサービスを作成するには、AWSドキュメントの「[Create a service powered by AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html)」を参照してください。
+2.  新しく作成したVPCエンドポイントサービスをSigmaに検出可能にします。エンドポイントを検出可能にするには、AWSドキュメントの「[Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-permissions.html)」を参照してください。
+    * エンドポイントサービスを構成するには、SigmaのAmazon Resource Name (ARN)が必要です。VPCエンドポイントサービスの`Allow principals`構成に、以下のARNを入力してください：`arn:aws:iam::185497759670:role/cdktf-operator`
+    > 📘
+    > `arn:aws:iam::185497759670:role/root`構成を持つ既存の構成は、すべてのユーザーに対して引き続き機能しますが、`role/cdktf-operator`の使用が推奨されます。
+3.  Sigmaアカウントエグゼクティブ、カスタマーアカウントマネージャー、またはSigmaサポートに連絡して、PrivateLink接続をインストールします。彼らは以下を必要とします。
+    * あなたのエンドポイントのVPCエンドポイントサービス名（`com.amazonaws.vpce.<region>.vpce-svc-xxxx`のような形式）。
+    * あなたのロードバランサーのアベイラビリティゾーンID（`use1-az1`のような形式）。
+    * [任意] 希望のDNS名：プライベートリンクアカウントURLの希望するサブドメイン名。名前は記述的で識別しやすいものであるべきです。例えば、`<cdw_name>-<env>-<region>-<index_number>`のような形式にしたいかもしれません。この値を提供しない場合、Sigmaサポートがそれを選択し、あなたに提供します。
+4.  インストールには数日かかる場合があります。インストールが完了すると、Sigmaから連絡があり、接続用のアカウントURL名が提供されます（後の構成で必要です）。
+5.  インストール後、VPCエンドポイントサービスが新しい接続を手動で受け入れる必要がある場合は、Sigmaの新しいエンドポイント接続を受け入れる必要があります。AWSドキュメントの「[Accept or reject connection requests](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-endpoint-services.html#accept-reject-connection-requests)」を参照してください。
+6.  PrivateLinkを使用するように接続を更新します。
+    * **既存のデータプラットフォームへの接続の場合：**
+        a. `Home` > `Administration` > `Connections`に移動します。
+        b. 目的の接続を選択し、`Edit`を選択します。
+        c. `Host`フィールドに、ステップ3のDNS名の後に`.privatelink.sigma.internal`を付けたものを入力します。例えば、`<cdw_name>-<env>-<region>-<index_number>.privatelink.sigma.internal`。
+        d. `Save`を選択します。
+        > 📘
+        > 既存のデータプラットフォームへの接続は引き続き機能しますが、このステップが完了するまでPrivateLinkは使用されません。
+    * **新しいデータプラットフォームへの接続の場合：**
+        「[Connect to data sources](https://help.sigmac.com/docs/connect-to-data-sources)」の手順を使用してデータプラットフォームに接続します。`Host`フィールドを入力する際、ステップ3のDNS名の後に`.privatelink.sigma.internal`を付けたものを入力します。例えば、`<cdw_name>-<env>-<region>-<index_number>.privatelink.sigma.internal`。
 
 #### **Databricks**
-* **追加要件:**
-    * Databricksプラットフォームは`Enterprise`ティアである必要があります。
-    * Databricksワークスペースは`us-west-1`リージョンにあってはなりません。
-    * Databricksワークスペースは、顧客管理である必要があります。
+
+##### **追加要件 (Additional requirements)**
+* Databricksプラットフォームは`Enterprise`ティアである必要があります。
+* Databricksワークスペースは`us-west-1`リージョンにあってはなりません。
+* Databricksワークスペースは、顧客管理である必要があります（Databricks管理ではない）。
+    * Databricksワークスペースにアクセスしたときに`Network`サムネイルが表示されない場合、ワークスペースはDatabricks管理です。
+    * Databricksワークスペースにアクセスしたときに`Network`サムネイルが表示される場合、それは顧客管理です。
 
 ##### **PrivateLinkでDatabricksに接続する (Connect to Databricks with PrivateLink)**
-1.  AWSアカウントに2つのVPCエンドポイントを作成します。
-2.  Databricksで、作成した2つのVPCエンドポイントを登録する必要があります。
-3.  Databricksで、リージョン用のSigma VPCエンドポイントを登録する必要があります。
-4.  Databricksで、PrivateLink接続を許可するためのプライベートアクセス設定オブジェクトを作成します。
-5.  Databricksで、新しいネットワーク構成を作成します。
-6.  新しいネットワーク構成とプライベートアクセス設定を含むようにDatabricksワークスペースを更新します。
-7.  Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡して、PrivateLink接続をインストールします。
-8.  PrivateLinkを使用するように接続を更新します。
+PrivateLinkでDatabricksに接続するには：
+1.  AWSアカウントに2つのVPCエンドポイントを作成します。AWSドキュメントの「[Create a VPC endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)」を参照してください。リージョンでVPCエンドポイントを作成するために必要なエンドポイントサービス名については、Databricksドキュメントの「[PrivateLink VPC endpoint services](https://docs.databricks.com/en/administration-guide/cloud-configurations/aws/privatelink.html#step-2-create-aws-vpc-endpoints)」を参照してください。作成する必要があるのは：
+    * 1つの`Workspace (including REST API)` VPCエンドポイント
+    * 1つの`Secure cluster connectivity relay` VPCエンドポイント
+2.  Databricksで、作成した2つのVPCエンドポイントを登録する必要があります。これにより、ネットワーク構成で使用できるようになります。Databricksドキュメントの「[Manage VPC endpoint registrations](https://docs.databricks.com/en/administration-guide/cloud-configurations/aws/privatelink.html#manage-vpc-endpoint-registrations)」を参照してください。
+3.  Databricksで、リージョン用のSigma VPCエンドポイントを登録する必要があります。Databricksドキュメントの「[Manage VPC endpoint registrations](https://docs.databricks.com/en/administration-guide/cloud-configurations/aws/privatelink.html#manage-vpc-endpoint-registrations)」を参照してください。
+    SigmaのVPCエンドポイントは以下の表にリストされています。もしあなたのリージョンがリストされていない場合は、Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡してください。
+
+| Region | WORKSPACE_ACCESS Endpoint |
+| :--- | :--- |
+| us-east-2 | vpce-01e5bcfb542cc064b |
+| us-east-1 | vpce-01e5ee810ad38e87a |
+| us-west-2 | vpce-0f7f1c9eb781e5ee0 |
+| ap-southeast-2 | vpce-0ea8cc8aaac99003c |
+| eu-central-1 | vpce-042d25a7829e28994 |
+| eu-west-1 | vpce-089a8efa3ea799d03 |
+| eu-west-2 | vpce-0e2cc626d12fd41a5 |
+| ap-northeast-1 | vpce-05a3ec6e4605fdd94 |
+
+4.  Databricksで、PrivateLink接続を許可するためのプライベートアクセス設定オブジェクトを作成します。Databricksドキュメントの「[Create a private access settings object](https://docs.databricks.com/en/administration-guide/cloud-configurations/aws/privatelink.html#step-4-create-a-private-access-settings-object)」を参照してください。以下の構成が設定されていることを確認してください。
+    * Public access enabled: `False`
+    * Private access level: `Account`
+5.  Databricksで、新しいネットワーク構成を作成します。Databricksドキュメントの「[Create a network configuration](https://docs.databricks.com/en/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#step-3-create-a-network-configuration-using-the-account-console)」を参照してください。以下の構成が使用されていることを確認してください。
+    * 目的のDatabricksワークスペースの`VPC`, `Subnet IDs`, `Security Group IDs`を使用します。
+    * `VPC endpoint for secure cluster connectivity relay`および`VPC endpoint for REST APIs`フィールドには、AWSアカウントで作成したAWSエンドポイントを使用します。
+6.  新しいネットワーク構成とプライベートアクセス設定を含むようにDatabricksワークスペースを更新します。Databricksドキュメントの「[Advanced configurations](https://docs.databricks.com/en/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#advanced-configurations)」を参照してください。
+7.  Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡して、PrivateLink接続をインストールします。彼らはあなたのDatabricksワークスペースに関する以下の情報を必要とします。
+    * Deployment name
+    * Workspace region
+8.  インストールには数日かかる場合があります。インストールが完了すると、Sigmaから連絡があり、接続用のホストURLが提供されます。
+9.  PrivateLinkを使用するように接続を更新します。
+    * **既存のデータプラットフォームへの接続の場合：**
+        a. `Home` > `Administration` > `Connections`に移動します。
+        b. 目的の接続を選択し、`Edit`を選択します。
+        c. `Host`フィールドに、ステップ7でSigmaから提供されたホストURLを入力します。
+        d. `Save`を選択します。
+        > 📘
+        > 既存のデータプラットフォームへの接続は引き続き機能しますが、このステップが完了するまでPrivateLinkは使用されません。
+    * **新しいデータプラットフォームへの接続の場合：**
+        「[Connect to data sources](https://help.sigmacomputing.com/docs/connect-to-data-sources)」の手順を使用してデータプラットフォームに接続します。`Host`フィールドを入力する際、ステップ7でSigmaから提供されたホストURLを使用します。
+
+#### **MySQL, SQL Server 2022, PostgreSQL, Starburst, またはカスタムプロキシサーバー**
+
+MySQL, SQL Server 2022, Starburst, PostgreSQL, またはカスタムプロキシサーバー（例：secuPi）を使用する組織の場合、AWS PrivateLinkで接続するには以下の手順を使用します。
+
+1.  VPCエンドポイントサービスを作成します。エンドポイントサービスを作成するには、AWSドキュメントの「[Create a service powered by AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html)」を参照してください。
+2.  新しく作成したVPCエンドポイントサービスをSigmaに検出可能にします。エンドポイントを検出可能にするには、AWSドキュメントの「[Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-permissions.html)」を参照してください。
+    * エンドポイントサービスを構成するには、SigmaのAmazon Resource Name (ARN)が必要です。VPCエンドポイントサービスの`Allow principals`構成に、以下のARNを入力してください：`arn:aws:iam::185497759670:role/cdtraf-operator`
+    > 📘
+    > `arn:aws:iam::185497759670:role/root`構成を持つ既存の構成は、すべてのユーザーに対して引き続き機能しますが、`role/cdktf-operator`の使用が推奨されます。
+3.  Sigmaアカウントエグゼクティブ、カスタマーアカウントマネージャー、またはSigmaサポートに連絡して、PrivateLink接続をインストールします。彼らは以下を必要とします。
+    * あなたのエンドポイントのVPCエンドポイントサービス名（`com.amazonaws.vpce.<region>.vpce-svc-xxxx`のような形式）。
+    * あなたのロードバランサーのアベイラビリティゾーンID（`use1-az1`のような形式）。
+    * [任意] 希望のDNS名：プライベートリンクアカウントURLの希望するサブドメイン名。名前は記述的で識別しやすいものであるべきです。例えば、`<cdw_name>-<env>-<region>-<index_number>`のような形式にしたいかもしれません。この値を提供しない場合、Sigmaサポートがそれを選択し、あなたに提供します。
+4.  インストールには数日かかる場合があります。インストールが完了すると、Sigmaから連絡があり、接続用のアカウントURL名が提供されます（後の構成で必要です）。
+5.  インストール後、VPCエンドポイントサービスが新しい接続を手動で受け入れる必要がある場合は、Sigmaの新しいエンドポイント接続を受け入れる必要があります。AWSドキュメントの「[Accept or reject connection requests](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-endpoint-services.html#accept-reject-connection-requests)」を参照してください。
+6.  PrivateLinkを使用するように接続を更新します。
+    * **既存のデータプラットフォームへの接続の場合：**
+        a. `Home` > `Administration` > `Connections`に移動します。
+        b. 目的の接続を選択し、`Edit`を選択します。
+        c. `Host`フィールドに、ステップ3のDNS名の後に`.privatelink.sigma.internal`を付けたものを入力します。例えば、`<cdw_name>-<env>-<region>-<index_number>.privatelink.sigma.internal`。
+        d. `Save`を選択します。
+        > 📘
+        > 既存のデータプラットフォームへの接続は引き続き機能しますが、このステップが完了するまでPrivateLinkは使用されません。
+    * **新しいデータプラットフォームへの接続の場合：**
+        「[Connect to data sources](https://help.sigmacomputing.com/docs/connect-to-data-sources)」の手順を使用してデータプラットフォームに接続します。`Host`フィールドを入力する際、ステップ3のDNS名の後に`.privatelink.sigma.internal`を付けたものを入力します。例えば、`<cdw_name>-<env>-<region>-<index_number>.privatelink.sigma.internal`。
+
+### 2-2-5. Azure Private Link接続 (Azure Private Link Connections)
+
+このドキュメントでは、AzureのPrivate Linkを使用して、AzureでホストされているデータウェアハウスにSigmaを接続する方法について説明します。
+
+> 📘
+> SigmaのAzure Private Linkラボに関する詳細は、「[Azure Private Link lab](https://www.sigmacomputing.com/hands-on-lab/azure-private-link)」を参照してください。
+
+#### **要件 (Requirements)**
+* Azureで実行されているSigma組織。
+* Sigma組織における管理者権限。「[User account types](https://help.sigmacomputing.com/docs/user-account-types)」を参照してください。
+* データウェアハウスに応じて、Snowflake, Databricks, PostgreSQLまたはMySQLの管理者。
+* Azureでの管理者であること。
+* Snowflakeの内部ステージにアクセスするためにAzure Private Linkを作成したい場合は、Sigmaアカウントエグゼクティブに連絡してください。
+
+#### **概要 (Introduction)**
+Azureで実行されているSigma組織は、AzureのPrivate Linkを使用してデータに安全に接続できます。これにより、Sigmaは仮想ネットワーク内のプライベートエンドポイントを介してAzureでホストされているデータウェアハウスにアクセスできます。これにより、データ転送中のセキュリティが向上するだけでなく、ネットワーク遅延を削減することでパフォーマンスも向上します。Private Linkを使用すると、SigmaはプライベートIPアドレスを使用してデータウェアハウスに接続するため、トラフィックがMicrosoftネットワークを離れることはなく、データはインターネットに公開されることなく安全に保たれます。
+
+Private Linkを利用するには、仮想ネットワークにプライベートエンドポイントを作成し、それをデータウェアハウスにマッピングし、プライベートIPアドレスを割り当て、このアドレスを使用してウェアハウスに接続します。
+
+Sigmaは、Azure上の以下のデータウェアハウスへの接続をサポートしています。
+* Snowflake
+* Databricks
+* PostgreSQL
+* MySQL
+* Azure SQL Database, Azure SQL Managed Instance, or SQL Server 2022
+
+#### **データウェアハウス用のPrivate Link接続を作成する (Create Private Link Connection for Your Data Warehouse)**
+以下の手順に従って、AzureでホストされているデータウェアハウスへのPrivate Link接続を作成します。
+> 📘
+> このプロセスを開始するために、すべてのデータウェアハウスの最初のステップは、必要な情報を取得してアカウントマネージャーに送信することです。
+
+#### **Snowflake**
+
+##### **Snowflakeの情報をSigmaに提供する (Provide Snowflake Info to Sigma)**
+以下の手順に従って、組織用のPrivate Linkを作成するために必要な情報をSigmaに提供します。
+> 📘
+> Private Linkを使用するには、SnowflakeアカウントがBusiness Critical Editionである必要があります。
+
+1.  Snowflake SQLコンソールで、以下のコマンドを実行します。
+    ```sql
+    select system$get_privatelink_config();
+    ```
+<img width="1463" height="843" alt="9e7f78e-1" src="https://github.com/user-attachments/assets/5feee0c2-1473-4f43-950c-24949e5d02e7" />
+
+2.  以下はSQLクエリからの出力です。
+    ```json
+    {"regionless-snowsight-privatelink-url":"app-br67048-sigma_azure_us_east_2.privatelink.snowflakecomputing.com","privatelink-account-name":"os99982.east-us-   privatelink","snowsight-privatelink-url":"app.east-us-2.privatelink.snowflakecomputing.com","privatelink-account-url":"os99982.east-us-privatelink.snowflakecomputing.com","privatelink-pls-id":"sf-pvlinksvc-azeastus2.cf82bce2-bw2d-4dw2-92ee-3dw2fb04d191.eastus2.azure.privatelinkservice","regionless-privatelink-account-url":"br67048-sigma_azure_us_east_2.snowflakecomputing.com","privatelink_ocsp-url":"ocsp.os99982.east-us-privatelink.snowflakecomputing.com","privatelink-connection-urls":"[]"}
+    ```
+3.  出力フィールドで、`privatelink-pls-id`と`privatelink-account-url`の値をコピーします。
+    * 上記の例では、`privatelink-pls-id`は
+      `sf-pvlinksvc-azeastus2.cf82bce2-bw2d-4dw2-92ee-3dw2fb04d191.eastus2.azure.privatelinkservice`
+    * `privatelink-account-url`は
+      `os99982.east-us-2.privatelink.snowflakecomputing.com`
+      です。 これら2つの値をSigmaのアカウントマネージャーに送信します。
+4.  SigmaがPrivate Linkを作成し、リンクがアクティブになったら通知します。
+    > 📘
+    > SigmaがPrivate Linkを作成するまで、接続を構成することはできません。
+
+##### **Snowflake接続を構成する (Configure Snowflake Connection)**
+以下の手順に従って、Private Linkを使用するようにSigmaのSnowflake接続を構成します。
+
+1.  プライベートリンクがアクティブになった後、Sigmaで、**Admin > Connections > Snowflake**に移動します。
+2.  `Create`をクリックしてSnowflake接続を作成します。
+3.  `Account`フィールドに、アカウントURLの3つの部分を次の形式で入力します：`<account>.<region_id>.privatelink`
+    * 例えば、アカウントURLが `test123.west-us-2.privatelink.snowflakecomputing.com` の場合、`Account`フィールドは `test123.west-us-2.privatelink` となります。
+4.  `Warehouse`の下に、Snowflakeにリストされているウェアハウス名を入力します。
+5.  組織でOAuthが有効になっており、接続でそれを使用したい場合は、OAuthアクセスをオンにします。「[OAuthでSnowflakeに接続する](https://help.sigmacomputing.com/docs/connect-to-snowflake#connect-to-snowflake-with-oauth)」を参照してください。
+  　注意：サービスアカウントなしでOAuthを使用することを選択した場合、ステップ9〜11は適用されません。
+6.  `User`の下に、Snowflakeのユーザー名を入力します。
+7.  `Password`の下に、Snowflakeのパスワードを入力します。
+8.  [任意] `Role`には、この接続で使用するSnowflakeロールを指定できます。<img width="658" height="457" alt="fd91793-2" src="https://github.com/user-attachments/assets/3a232a57-75f9-493f-b7c0-b658af178f9f" />
+9. [任意] `Connection Features`には、接続タイムアウトを設定したり、書き込みアクセスを有効にしたりできます。
+10. フォームへの入力を完了したら、`Create`をクリックします。
+
+#### **Databricks**
+
+##### **前提条件 (Prerequisites)**
+* Azure Databricksワークスペースを作成する必要があります。
+* DatabricksワークスペースはPremiumティアである必要があります。
+* Private Linkをサポートするには、カスタマイズされたネットワーク構成が必要です。
+
+##### **DatabricksのリソースIDをSigmaに提供する (Provide Databricks Resource ID to Sigma)**
+以下の手順に従って、組織用のプライベートリンクを作成するために必要なリソースIDをSigmaに提供します。
+
+1.  Azure Servicesで、**Azure Databricks**にカーソルを合わせ、**Create**をクリックします。<img width="259" height="88" alt="cd565f2-4" src="https://github.com/user-attachments/assets/8387e996-dc82-4555-9b6c-2021f47ab49d" />
+
+2.  Azureのdatabricksワークスペースページの右上隅にある**JSON View**をクリックします。
+3.  **Networking**タブで、**Deploy Azure Databricks workspace in your own Virtual Network**に**Yes**をチェックし、事前に構成された仮想ネットワークと、パブリックおよびプライベートサブネットフィールド用の仮想ネットワークCIDR範囲内の2つのサブネットを入力する必要があります。
+4.  以下の値をコピーして、アカウントエグゼクティブに送信してください。
+    * Resource ID
+    * DatabricksウェアハウスのRegion Name（Locationの下）
+    * DatabricksサービスのURL、`adb-<workspace-id>.<random-number>.azuredatabricks.net`の形式。
+<img width="1118" height="662" alt="26fdb87-5" src="https://github.com/user-attachments/assets/b1feb2ec-0c9a-44b8-8128-3d978ee04829" />
+
+##### **プライベートリンクの承認 (Private Link Approval)**
+Sigmaから通知があった後、以下の手順に従ってプライベートリンクを承認します。
+
+1.  Azureポータルで、**Azure Databricks**に移動します。
+2.  選択したAzure Databricksワークスペースをクリックします。
+3.  左側のパネルで**Networking**をクリックします。
+4.  **Private endpoint connections**をクリックします。
+5.  新しく作成されたプライベートエンドポイントを選択します。ステータスは`Pending`になります。エンドポイントを承認するには、**Approve**をチェックします。Sigmaを構成する際に必要になるため、プライベートエンドポイントの名前をコピーしてください。<img width="1722" height="380" alt="bb7b579-6" src="https://github.com/user-attachments/assets/6e2306b4-9568-42e9-be22-5ed6377cbb68" />
+
+##### **Databricks接続を構成する (Configure Databricks Connection)**
+1.  AzureのDatabricksセクションで、ウェアハウスインスタンス > **Databricks Workspace**をクリックします。
+2.  **Launch Workspace**をクリックします。<img width="698" height="294" alt="870df05-7" src="https://github.com/user-attachments/assets/53cb6c90-1347-455c-80dd-5298802c23e1" />
+3.  Databricksで、**Data Science & Engineering**ドロップダウンから**SQL**を選択します。<img width="277" height="151" alt="200f8d7-8" src="https://github.com/user-attachments/assets/3d2b1e37-4ebe-4a76-a452-2215513dc3a1" />
+4.  **Review SQL Warehouses**をクリックします。<img width="220" height="165" alt="0138e83-9" src="https://github.com/user-attachments/assets/d7f49630-c51e-41b1-92a6-527b7d082b5f" />
+
+5.  ウェアハウスを選択します。
+6.  **Connection details**タブをクリックします。
+7.  Sigma UIで必要になるため、Databricksの**HTTP path**の値をコピーします。<img width="464" height="385" alt="7d4fc7c-10" src="https://github.com/user-attachments/assets/171b3e19-9d6d-41d8-90b1-1874a99083b1" />
+
+8.  Databricksでユーザー名をクリックして**User Settings**に移動します。<img width="127" height="145" alt="c69849a-11" src="https://github.com/user-attachments/assets/a821f92e-fcf8-4781-a53d-6ce07b363aa6" />
+
+9.  **Personal access tokens**タブをクリックします。
+10. **Generate new token**をクリックします。
+11. **Lifetime**フィールドで、プライベートリンクの期間を設定します。リンクはこの値に基づいて期限切れになります。
+12. **Comment**フィールドに値を入力します。<img width="554" height="233" alt="6cf7600-12" src="https://github.com/user-attachments/assets/fc29c138-12c7-436f-87ef-a9523b708353" />
+
+13. **Generate**をクリックします。Sigma UIで必要になるため、このトークンをコピーします。
+14. Sigmaで、**Admin > Connections > Databricks**に移動します。
+15. **Host**フィールドに、エンドポイントを承認したときにコピーしたプライベートエンドポイントを、以下の形式で入力します。
+    `<private_endpoint_name>.privatelink.azuredatabricks.net`
+    例えば、プライベートエンドポイント名が`databricks-endpoint`の場合、`Host`フィールドには次のように入力します。
+    `databrick-endpoint.privatelink.azuredatabricks.net`
+    > 📘
+    > プライベートエンドポイントの名前を見つけるには、Azureポータル > **Azure Databricks Workspace > Networking**（左パネル）に移動します。プライベートエンドポイント名は、`Private endpoint connections`の`Private Endpoint`列に表示されます。
+16. Azureからコピーした**HTTP path**の値を、Sigmaの**HTTP path**フィールドに貼り付けます。
+17. Azureで作成したトークンをコピーし、Sigmaの**Access token**フィールドに入力します。<img width="644" height="236" alt="e8b6e0c-14" src="https://github.com/user-attachments/assets/6bc1ed72-2bbc-40a7-a7f2-16ceaa593720" />
+
+18. [任意] **Connection Features**の下で、接続タイムアウトを設定したり、書き込みアクセスを有効にしたりできます。
+19. [任意] **Connection queue size**フィールドで、Sigmaがこの接続で同時に実行できるインタラクティブクエリの数を定義します。
+20. Sigmaで**Create**をクリックします。<img width="703" height="518" alt="a8d5ed4-15" src="https://github.com/user-attachments/assets/b4707bd8-93cd-442b-a92a-10ee45bc9482" />
+
+#### **PostgreSQL**
+
+Private Linkは、パブリックアクセスで作成されたAzure Database for PostgreSQLフレキシブルサーバーインスタンス、またはシングルサーバーインスタンスに対して有効にできます。
+
+##### **前提条件 (Prerequisites)**
+Private Link接続を追加するには、以下の手順を完了する必要があります。
+* [PostgreSQLのリソースIDをSigmaに提供する](#provide-your-postgresql-resource-id-to-sigma)
+* [Azureでプライベートリンクを承認する](#approve-the-private-link-in-azure)
+* [SigmaでPostgreSQL接続を構成する](#configure-the-postgresql-connection-in-sigma)
+
+##### **PostgreSQLのリソースIDをSigmaに提供する (Provide your PostgreSQL Resource ID to Sigma)**
+Sigmaは、あなたの組織用のPrivate Linkを作成するために、あなたの`Resource ID`を必要とします。Azureドキュメントの「[How to get your Azure Resource ID](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resources-portal#get-resource-id)」を参照してください。サーバーページの`JSON View`から`Resource ID`をコピーし、PostgreSQLウェアハウスの`Region Name`も同様にコピーしてください。これらをSigmaのアカウントエグゼクティブに送信します。
+
+##### **Azureでプライベートリンクを承認する (Approve the Private Link in Azure)**
+SigmaがPrivate Linkの構成を完了した後、Azureドキュメントの「[Approve private endpoint connections](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview#approve-a-private-endpoint-connection)」を参照してプライベートエンドポイント接続を承認する方法を確認してください。プライベートエンドポイントのステータスが`Pending`から`Accepted`に変更されていることを確認してください。
+
+##### **SigmaでPostgreSQL接続を構成する (Configure the PostgreSQL connection in Sigma)**
+Sigmaで新しいPrivate Link PostgreSQL接続を構成します。
+1.  **Administration > Connections**に移動します。
+2.  `Create Connection`を選択し、次に`PostgreSQL`を選択します。接続に`Name`を入力します。
+3.  `Connection Credentials`の下にあるフィールドを入力します。
+
+| フィールド | 説明 |
+| :--- | :--- |
+| **Host** | Sigmaのアカウントエグゼクティブから提供されたDNS名を入力します。|
+| **User** | Azure PostgreSQLサーバーページにある`Admin Username`を入力します。|
+| **Port** | PostgreSQLのポート番号を入力します。|
+| **Password** | データウェアハウスにアクセスするために作成したパスワードを入力します。|
+| **Database** | データベースの名前を入力します。|
+
+4.  接続のTLS暗号化を有効にするには、`Enable TLS`トグルをオンにします。
+
+#### **MySQL**
+
+##### **前提条件 (Prerequisites)**
+* Private Linkは、パブリックアクセスで作成されたAzure Database for MySQLフレキシブルサーバーインスタンスに対してのみ有効にできます。
+* Private Link接続を追加するには、以下の手順を完了する必要があります。
+    * [MySQLのリソースIDをSigmaに提供する](#provide-your-mysql-resource-id-to-sigma)
+    * [Azureでプライベートリンクを承認する](#approve-the-private-link-in-azure-mysql)
+    * [SigmaでMySQL接続を構成する](#configure-the-mysql-connection-in-sigma)
+
+##### **MySQLのリソースIDをSigmaに提供する (Provide your MySQL Resource ID to Sigma)**
+Sigmaは、あなたの組織用のPrivate Linkを作成するために、あなたの`Resource ID`を必要とします。Azureドキュメントの「[How to get your Azure Resource ID](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resources-portal#get-resource-id)」を参照してください。サーバーページの`JSON View`から`Resource ID`をコピーし、MySQLウェアハウスの`Region Name`も同様にコピーしてください。これらをSigmaのアカウントエグゼクティブに送信します。
+
+##### **Azureでプライベートリンクを承認する (Approve the Private Link in Azure)**
+SigmaがPrivate Linkの構成を完了したら、Azureドキュメントの「[Approve private endpoint connections](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview#approve-a-private-endpoint-connection)」を参照してプライベートエンドポイント接続を承認する方法を確認してください。プライベートエンドポイントのステータスが`Pending`から`Accepted`に変更されていることを確認してください。
+
+##### **SigmaでMySQL接続を構成する (Configure the MySQL connection in Sigma)**
+Sigmaで新しいPrivate Link MySQL接続を構成します。
+1.  **Administration > Connections**に移動します。
+2.  `Create Connection`を選択し、次に`MySQL`を選択します。接続に`Name`を入力します。
+3.  `Connection Credentials`の下にあるフィールドを入力します。
+
+| フィールド | 説明 |
+| :--- | :--- |
+| **Host** | Sigmaのアカウントエグゼクティブから提供されたDNS名を入力します。|
+| **User** | MySQLサーバーページにある`Admin Username`を入力します。|
+| **Port** | MySQLのポート番号を入力します。|
+| **Password** | データウェアハウスにアクセスするために作成したパスワードを入力します。|
+| **Database** | データベースの名前を入力します。|
+
+4.  接続のTLS暗号化を有効にするには、`Enable TLS`トグルをオンにします。
+---
+#### **Azure SQL Database, Azure SQL Managed Instance, or SQL Server 2022**
+Azure SQL Database, Azure SQL Managed Instance, または SQL Server 2022接続用のPrivate Linkの設定に関する詳細については、Sigmaのアカウントエグゼクティブにお問い合わせください。
+
+### 2-2-6. 接続のトラブルシューティング (Troubleshoot your connection)
+
+テーブルが見つからない、接続できないなどの接続に関する問題をトラブルシューティングする必要がある場合は、このページのガイダンスに従ってください。
+
+#### **SigmaのIPを許可リストに追加する (Add Sigma IPs to the allowlist)**
+場合によっては、データに正常に接続するために、SigmaのIPアドレスを許可リストに追加する必要があります。これは、ファイアウォール、セキュリティグループ、またはその他のIPベースのセキュリティポリシーによってウェアハウスが外部接続に対して閉じられている場合に、必要なステップです。
+
+Sigmaは、すべての個々の`Connection`ページにアウトバウンドIPアドレスをリストしています。それらを表示するには、以下の手順に従います。
+1.  **Administration > Connections**ページを開きます。
+2.  関連する接続を選択します。
+3.  データソースへの接続がない場合は、`Create Connection`をクリックします。
+4.  `Connection Credentials`セクションで、`Host`フィールドの下にリストされているIPを確認します。
+> 📘
+> 接続概要にリストされているIPアドレスは、Private Link経由の接続には適用されません。Private Link接続用のIPアドレスが必要な場合は、Sigmaサポートにお問い合わせください。
+
+個々のデータプラットフォームに特有のガイダンスについては：
+* **PostgreSQL:** Sigmaは、ネットワークレベルまたはクライアント認証のいずれかで認証される必要があります。
+* **Redshift:** 「[Amazon Redshift cluster security groups](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)」を参照してください。
+* **Snowflake:** 「[Network Policies](https://docs.snowflake.com/en/user-guide/network-policies)」を参照してください。
+
+#### **Snowflakeユーザーロールの権限 (Permissions for the Snowflake user role)**
+Sigmaは、接続で指定されたSnowflakeユーザーロールを使用します。Snowflakeでそのロールに正しい権限が付与されていない限り、Sigmaでデータを表示することはできません。
+
+接続が`OAuth`を使用している場合、接続は組織の各メンバーの権限をSnowflakeから直接継承します。個々のユーザーまたはサービスアカウントユーザーの権限をトラブルシューティングするには、以下を確認してください。
+* ユーザーに付与されたプライマリロールが、Snowflakeで関連するアクセスを提供していること。
+* ユーザーが、OAuthプロバイダーを通じて意図したロールを継承していること。
+
+#### **データを同期する (Sync your data)**
+Sigmaは、接続のメタデータを自動的（かつ定期的）に同期します。
+クラウドデータウェアハウスでテーブルのスキーマを更新するなど、変更を加えた場合は、これらの変更がSigmaに反映されるように手動で同期を実行する必要があります。同期は、接続、データベース、スキーマ、またはテーブルレベルで実行できます。同期は選択したレベルでのみ行われるため、変更が表示されるようにするには、これら4つのレベルすべてで手動同期を実行する必要があります。
+
+UIを使用するか、プログラムで手動同期を実行できます。Sigma REST APIを使用して手動同期を実行するガイダンスについては、「[Sync a connection by path](https://help.sigmacomputing.com/reference/syncconnectionbypath)」を参照してください。
+
+UIで手動同期を実行するには、以下の手順に従います。
+1.  **Administration > Connections**に移動します。
+2.  リストから関連する接続を選択します。
+3.  `Browse connection`をクリックします。
+4.  接続を同期するには（その接続で利用可能なデータベースへの更新を検出します）、接続の`Sync connection metadata`()をクリックします。<img width="995" height="314" alt="64da128-1" src="https://github.com/user-attachments/assets/6ede8db2-52cb-45b8-8852-7d811e90ab6e" />
+
+5.  個々のデータベースまたはスキーマを同期するには、接続を展開し、コンテナを見つけ、データベースまたはスキーマの名前の隣にある`More`をクリックします。あるいは、名前で検索してデータベースまたはスキーマを見つけることもできます。<img width="996" height="334" alt="7b5f8e5-2" src="https://github.com/user-attachments/assets/92603d06-52bd-4c40-b4cd-d6bf0bd1c625" />
+
+    * ドロップダウンメニューから、`Sync now`を選択します。
+6.  個々のテーブルを同期するには、接続を展開し、テーブルを含むデータベースを見つけ、そのデータベースを展開し、テーブルを見つけ、テーブルの名前の隣にある`More`をクリックします。あるいは、名前で検索してテーブルを見つけることもできます。
+    * ドロップダウンメニューから、`Sync now`を選択します。<img width="996" height="447" alt="3edde1c-3" src="https://github.com/user-attachments/assets/ae259d1c-3e86-442d-bf94-380b0f97e88f" />
+
+
+### 2-2-7. 入力テーブルの接続問題をトラブルシューティングする (Troubleshoot input table connection issues)
+
+入力テーブルのエラーに遭遇した場合（一般ユーザーとして）、または失敗した入力テーブルの編集を通知するシステムメールを受け取った場合（管理者として）、それは接続またはデータプラットフォームの構成または可用性の問題が原因である可能性があります。この種の問題は、Sigma内の管理者またはデータプラットフォームで直接解決する必要があります。
+
+このドキュメントでは、Sigmaが構成および可用性の問題から生じる入力テーブルのエラーをどのように処理するかを説明し、これらのエラーのトラブルシューティングと解決に関するガイダンスを提供します。
+
+#### **ユーザー要件 (User requirements)**
+このドキュメントで特定された入力テーブルの問題を解決する機能には、以下が必要です。
+* あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* このドキュメントで特定された解決タスクを実行するために、データプラットフォームで必要な権限を持っている必要があります。
+
+これらの要件を満たしていない場合は、Sigmaまたはデータプラットフォームの管理者に連絡して問題を解決してください。
+
+#### **入力テーブルのエラーハンドリング (Input table error handling)**
+データの整合性を向上させ、予期しないデータ損失を防ぐために、Sigmaは入力テーブルのエラーを次のように処理します。
+* 接続またはデータプラットフォームの構成または可用性の問題により入力テーブルの編集が失敗した場合、Sigmaはそれを致命的なエラーとして扱い、操作を再試行しません。基盤となる問題はSigmaでは回復不可能であるため、操作を再試行しても失敗し続けます。
+* 接続またはデータプラットフォームの構成または可用性の問題から生じる入力テーブルのエラーは、特定のユーザーまたは組織全体に適用される可能性があります。Sigmaがこの種の問題を検出すると、同じエラーの影響を受けるユーザーが入力テーブルを作成および編集する能力を一時的に制限します。最初の入力テーブルエラーの後、関連するすべての既存の入力テーブル要素には「編集が制限されています」というメッセージが表示されます。
+* Sigmaは、構成が誤っているか利用できない接続を特定し、エラーメッセージを表示し、このドキュメントへのリンクを含むメールアラートを管理者に送信します。
+
+#### **トラブルシューティングの手順 (Troubleshooting steps)**
+エラーをトラブルシューティングするには、以下の手順を完了してください。
+1.  システムメールで特定された組織と接続を確認します。これは、複数の組織または接続を管理している場合に重要です。
+2.  システムメールで特定されたエラーメッセージを確認します。
+3.  `Error messages and resolutions`テーブルで該当するエラーメッセージを探します。該当するエラーメッセージが見つからない場合は、[サポートに連絡](https://help.sigmacomputing.com/hc/en-us/requests/new)してください。
+4.  根本原因を確認し、接続に構成されている認証方法に対応する解決策を完了します。
+
+#### **エラーメッセージと解決策 (Error messages and resolutions)**
+このセクションでは、Databricks、Redshift、およびSnowflakeに特有の既知の構成および可用性エラーに関する詳細を提供します。以下の表に含まれていないエラーメッセージに遭遇した場合は、[サポートに連絡](https://help.sigmacomputing.com/hc/en-us/requests/new)してください。
+
+##### **Databricksのエラー (Databricks errors)**
+
+* **権限が不十分です (Insufficient privileges)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `execution error: failed to execute query: unexpected operation state ERROR_STATE: [INSUFFICIENT_PERMISSIONS] Insufficient privileges: User does not have <REQUIRED_PRIVILEGE> on <OBJECT_TYPE><OBJECT_NAME>. SQLSTATE: 42501` |
+| **根本原因** | サービスプリンシパルが、特定された操作を実行するために必要な権限を持っていません。 |
+| **解決策** | Databricksドキュメントの「[Show, grant, and revoke privileges](https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/manage-privileges.html)」を参照して、接続に使用されるサービスプリンシパルに必要なカタログとスキーマの権限が付与されていることを確認してください。<br>必要な権限に関する情報については、「[Configure Databricks](https://help.sigmacomputing.com/docs/connect-to-databricks#configure-databricks)」を参照してください。 |
+
+* **無効または期限切れのアクセストークン (Invalid or expired access token)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `Databricks access token is invalid or expired.`<br>または<br>`Invalid Databricks access token.` |
+| **根本原因** | 接続構成で提供されたアクセストークンが認証に使用できませんでした。<br>考えられる原因：<br>・提供されたトークンに入力ミスがある。<br>・不正なトークンが提供された。<br>・トークンが削除または失効した。<br>・トークンが期限切れになった。 |
+| **解決策 (非OAuth)** | Sigmaで、接続構成ページに移動し、`Connection Credentials` > `Access token`フィールドに有効なトークンを入力します。<br>アクセストークンが期限切れ、削除、または失効した場合は、Databricksドキュメントの「[Databricks personal access tokens for workspace users](https://docs.databricks.com/en/dev-tools/auth/pat.html)」を参照して新しいものを生成してください。<br>アクセストークンの要件に関する詳細は、「[Specify your connection credentials](https://help.sigmacomputing.com/docs/connect-to-databricks#specify-your-connection-credentials)」を参照してください。 |
+| **解決策 (OAuth)** | Sigmaで、接続構成ページに移動し、`Service Account Configuration` > `Access token`フィールドに有効なトークンを入力します。<br>アクセストークンが期限切れ、削除、または失効した場合は、Databricksドキュメントの「[Databricks personal access tokens for service principals](https://docs.databricks.com/en/dev-tools/auth/pat-v2.html)」を参照して新しいものを生成してください。<br>アクセストークンの要件に関する詳細は、「[Configure OAuth features](https://help.sigmacomputing.com/docs/connect-to-databricks#configure-oauth-features)」を参照してください。 |
+
+##### **Redshiftのエラー (Redshift errors)**
+
+* **大文字と小文字の区別が有効 (Case sensitivity enabled)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `enable_case_sensitive_identifier must be off` |
+| **根本原因** | Redshiftの`enable_case_sensitive_identifier`構成値が`true`に設定されているため、入力テーブルの編集が失敗します。 |
+| **解決策** | Redshiftで、`enable_case_sensitive_identifier`を`false`に設定します。<br>構成値に関する詳細は、Redshiftドキュメントの「[enable_case_sensitive_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html)」を参照してください。 |
 
 ---
 
-#### **MySQL, SQL Server 2022, PostgreSQL, Starburst, またはカスタムプロキシサーバー**
-MySQL, SQL Server 2022, Starburst, PostgreSQL, またはカスタムプロキシサーバー（例：secuPi）を使用する組織の場合、AWS PrivateLinkで接続するには以下の手順を使用します。
-1.  VPCエンドポイントサービスを作成します。
-2.  新しく作成したVPCエンドポイントサービスをSigmaに検出可能にします。
-3.  SigmaのAmazon Resource Name (ARN)が必要です：`arn:aws:iam::185497759670:role/cdktf-operator`
-4.  Sigmaアカウントエグゼクティブ、カスタマーアカウントマネージャー、またはSigmaサポートに連絡して、PrivateLink接続をインストールします。
-5.  インストール後、VPCエンドポイントサービスが新しい接続を手動で受け入れる必要がある場合は、Sigmaの新しいエンドポイント接続を受け入れる必要があります。
-6.  PrivateLinkを使用するように接続を更新します。
+##### **Snowflakeのエラー (Snowflake errors)**
+
+* **ロールが見つかりません (Role not found)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `Role does not exist` |
+| **根本原因** | 接続構成で提供されたロールが、Snowflake環境で見つかりません。<br>考えられる原因：<br>・提供されたロールに入力ミスや大文字小文字の問題がある。<br>・ロールがSnowflakeで削除された。 |
+| **解決策 (非OAuth)** | Sigmaで、接続構成ページに移動し、`Connection Credentials` > `Role`フィールドでロール名が正しく入力されていることを確認します。<br>ロールが削除された場合は、Snowflakeドキュメントの「[Create a role](https://docs.snowflake.com/en/user-guide/security-access-control-configure#create-a-role)」を参照して再作成してください（削除されたロールは回復できません）。 |
+| **解決策 (OAuth)** | Sigmaで、接続構成ページに移動し、`Service Account Configuration` > `Role`フィールドでロール名が正しく入力されていることを確認します。<br>ロールが削除された場合は、Snowflakeドキュメントの「[Create a role](https://docs.snowflake.com/en/user-guide/security-access-control-configure#create-a-role)」を参照して再作成してください。 |
+
+* **ウェアハウスにアクセスできません (Cannot access warehouse)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `000606 (57P03): No active warehouse selected in the current session. Select an active warehouse with the 'use warehouse' command.` |
+| **根本原因** | 接続がウェアハウスにアクセスできません。<br>考えられる原因：ウェアハウスが、無効な、またはユーザーに値が割り当てられていないユーザー属性を使用して設定されている。 |
+| **解決策 (非OAuth/OAuth)** | Sigmaで、接続構成ページに移動し、`Connection Credentials` > `Warehouse`フィールドで使用されているユーザー属性名が正しく入力されていることを確認します。<br>提供されたユーザー属性名が有効な場合は、「[Configure user attributes on a Snowflake connection](https://help.sigmacomputing.com/docs/user-attributes-snowflake)」を参照して、ユーザーにウェアハウス属性が割り当てられていることを確認してください。 |
+
+* **テーブルにアクセスできません (Cannot access tables)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `002003 (42S02): SQL compilation error: Object <OBJECT_NAME> does not exist or not authorized.` |
+| **根本原因** | 接続が、入力テーブルデータと編集ログを含むテーブルにアクセスできません。<br>考えられる原因：<br>・提供されたロールに、特定されたテーブルにアクセスするために必要なSnowflake権限がない。<br>・テーブルが削除または移動された。 |
+| **解決策** | 「[Restore input table access for a Snowflake connection or user](https://help.sigmacomputing.com/docs/restore-input-table-access-for-a-snowflake-connection-or-user)」を参照してください。 |
+
+* **ロールの権限が不十分です (Insufficient role privileges)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `003001 (42501): SQL access control error: Insufficient privileges to operate on schema <SCHEMA_NAME>` |
+| **根本原因** | 接続構成で提供されたロールが、特定されたスキーマで操作を実行するために必要なSnowflake権限を持っていません。 |
+| **解決策** | Snowflakeドキュメントの「[Grant privileges to a role](https://docs.snowflake.com/en/user-guide/security-access-control-configure#grant-privileges-to-the-role)」を参照して、必要な権限をロールに付与してください。<br>書き込みアクセスを正しく構成するために必要なスキーマ権限に関する詳細は、「[Configure write access](https://help.sigmacomputing.com/docs/connect-to-snowflake#configure-write-access)」を参照してください。 |
+
+* **ユーザーアクセスが無効です (User access disabled)**
+
+| | |
+| :--- | :--- |
+| **エラーメッセージ** | `390101 (08004): User access disabled. Contact your local system administrator.` |
+| **根本原因** | 接続構成で提供されたユーザー名とパスワードが変更されたか、無効になっています。 |
+| **解決策 (非OAuth)** | Sigmaで、接続構成ページの`Connection Credentials`セクションで`User`と`Password`フィールド（またはキーペア認証を使用している場合は`User`, `Private key`, `Private key passphrase`）を更新します。<br>あるいは、Snowflakeドキュメントの「[Disabling or enabling a user](https://docs.snowflake.com/en/user-guide/admin-user-management#disabling-or-enabling-a-user)」を参照してユーザーを再有効化します。 |
 
 
 ### 第3章：データモデリング (Model Data)
