@@ -107,7 +107,7 @@ Sigma の機能へのアクセスは、さまざまなグループの人々の�
 
 ワークブックへの権限を持つユーザーは誰でも、スクリーンショットを撮るのと同じように、要素のPNG画像をダウンロードできます。割り当てられたアカウントタイプで関連する権限が有効になっているユーザーは、Sigmaからメール、Slack、その他の形式や出力先にレポートをエクスポートできます。「ワークブックのエクスポートを送信またはスケジュールする」をご覧ください。
 
-#### 1-3-1. Sigmaの歩き方 (Get around in Sigma)
+#### 1-1-2. Sigmaの歩き方 (Get around in Sigma)
 
 **Sigmaのホームページ**
 
@@ -159,7 +159,7 @@ Sigmaにログインすると、ホームページが表示されます。以下
 * **h. ヘルプ (Help):**
     ドキュメントやSigmaサポートのライブチャットへのアクセスなど、役立つ情報へのリンクです。
 
-### 1-2-2-1. Sigmaのサンプル接続 (Sigma's sample connection)
+### 1-2-1. Sigmaのサンプル接続 (Sigma's sample connection)
 
 Sigma組織を作成すると、私たちは自動的にあなたを私たちのサンプルのSnowflakeまたはDatabricksウェアハウスに接続します。この接続は`Sigma sample connection`という名前で、あなたと組織のメンバーに、初めてのSigma体験をすぐに始められるよう、様々なアクセス可能なデータを提供することを目的としています。
 
@@ -175,14 +175,14 @@ Sigmaのサンプル接続からワークブックを作成することで、Sig
 2.  管理ポータルのサイドパネルで、`Account`を選択します。
 3.  `Features`セクションの下で、`Sample connection`の隣にあるトグルをオンにします。
 
-### 1-2-2-2. ワークブックテンプレートを始める (Get started with workbook templates)
+### 1-2-2-1. ワークブックテンプレートを始める (Get started with workbook templates)
 
 ワークブックテンプレートを使用すると、ユーザーはワークブックの構造をテンプレート化して共有し、迅速かつ一貫性のある再利用が可能になります。
 
 Sigmaは、Sigmaが作成した一連のサンプルを含む、あなたが利用できるすべてのテンプレートをTemplatesギャラリーページにリストします。ホームページの左側ナビゲーションパネルからTemplatesページにアクセスします。
 <img width="1449" height="869" alt="03849a4-Screen_Shot_2021-10-28_at_2 12 01_PM" src="https://github.com/user-attachments/assets/04750dda-4139-43aa-a357-3255682c3f07" />
 
-### 1-2--2-3. HubSpotキャンペーン分析テンプレート (HubSpot Campaign Analysis template)
+### 1-2-1-2. HubSpotキャンペーン分析テンプレート (HubSpot Campaign Analysis template)
 
 HubSpotキャンペーン分析テンプレートは、HubSpotのマーケティングデータを可視化します。これにより、マーケティング専門家は以下の方法で、職務の中核タスクを実行できます。
 * HubSpotデータを迅速に構成する
@@ -270,6 +270,99 @@ HubSpotキャンペーン分析テンプレートを使用するには、以下�
 | **CTR Benchmark %** | この測定のベンチマークを、10進数値として設定します。例えば、CTR 1%の場合は、0.01と入力します。|
 | **CTOR Benchmark %** | この測定のベンチマークを、10進数値として設定します。例えば、CTOR 5%の場合は、0.05と入力します。|
 
+### 1-2-1-3. Snowflake利用状況テンプレート (Snowflake usage templates)
+
+SigmaのSnowflake利用状況テンプレートは、あなたの会社のSnowflakeの消費量とパフォーマンスを理解するのに役立つ、正確で詳細な、事前構築済み分析を提供します。これらのテンプレートは、記述的分析と処方的分析を組み合わせて、Snowflake利用状況データへの制約のない分析を開始するための基盤を提供します。Sigmaは以下のテンプレートを提供しています。
+* コストモニタリング (Cost monitoring)
+* パフォーマンスモニタリング (Performance monitoring)
+* ユーザーアクティビティ (User activity)
+* リーダーコスト (Reader cost)
+
+#### **ユーザー要件 (User requirements)**
+あなたの会社のSnowflake利用状況データでSnowflake利用状況テンプレートを表示するには、以下が必要です。
+* あなたは組織の`Admin`であるか、`View usage dashboard`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+* あなたの接続は、各テンプレートに対応する適切なSnowflake利用状況スキーマへのアクセス権を持っている必要があります（「[Snowflakeでロールに権限を付与する](#grant-privileges-to-a-role-in-snowflake)」を参照）。
+
+接続のSnowflakeアクセスに関係なく、テンプレートを起動することで、サンプルのSnowflake利用状況データでテンプレートを表示できます。
+
+#### **Snowflake利用状況テンプレートの種類 (Types of Snowflake usage templates)**
+各テンプレートの説明、データ、および権限は以下の通りです。
+
+* **コストモニタリング (Cost Monitoring)**
+    組織内のすべてのアカウントにわたるコンピューティングとストレージのコストをカバーします。あなたのSnowflake組織全体の契約消費量、コンピューティングコスト、ストレージコストを追跡します。
+    * `ORGANIZATION_USAGE`スキーマに対する`SELECT`アクセス権。このスキーマは、プライマリSnowflakeアカウントにのみ存在します。
+
+* **パフォーマンスモニタリング (Performance Monitoring)**
+    個々のSnowflakeアカウントのクエリを監視します。クエリのパフォーマンス、ウェアハウスのアクティビティ、およびその他のパフォーマンスメトリックを追跡します。
+    * `ACCOUNT_USAGE`スキーマに対する`SELECT`アクセス権。
+
+* **ユーザーアクティビティ (User Activity)**
+    個々のSnowflakeアカウントのユーザーを監視します。Snowflakeユーザーがウェアハウスとデータベースをどのように使用するかを追跡します。
+    * `ACCOUNT_USAGE`スキーマに対する`SELECT`アクセス権。
+
+* **リーダーコスト (Reader Cost)**
+    個々のSnowflakeアカウントのリーダーアカウントのコンピューティングコストを監視します。
+    * `READER_ACCOUNT_USAGE`スキーマに対する`SELECT`アクセス権。
+
+#### **接続のロールを変更する (Change the role of a connection)**
+値はユーザー属性によって設定される場合があります。アクセス権によっては、変更できない場合があります。
+1.  Sigmaの管理ポータルを開きます。
+2.  左側のパネルから`Connections`ページを選択します。
+3.  接続リストからあなたの接続を選択します。
+4.  `Connection Details`で、`Edit`をクリックします。
+5.  `Edit connection`ページで、`Connection Credentials`セクションまでスクロールします。
+6.  `Role`の定義を変更します。
+7.  `Save`をクリックします。
+
+#### **Snowflakeでロールに権限を付与する (Grant privileges to a role in Snowflake)**
+Snowflake利用状況テンプレートを使用するには、Sigmaの[Snowflakeへの接続](https://help.sigmacomputing.com/docs/connect-to-snowflake)のロールに、適切なスキーマへのアクセス権を付与する必要があります。
+
+すべてのテンプレートが同じスキーマで実行されるわけではないことに注意してください。特定のスキーマのロール、権限、および許可を理解するには、SnowflakeのAccount Usageドキュメントを参照してください。
+
+#### **Snowflake利用状況テンプレートから新しいワークブックを作成する (Create a new workbook from a Snowflake Usage Template)**
+あなたの会社のSnowflake利用状況データを表示するには、以下の手順に従ってSnowflake利用状況テンプレートからワークブックを作成します。
+
+1.  ホームページに移動します。
+2.  左のナビゲーションペインで、Templatesギャラリーページを選択します。
+3.  使用したいSnowflake Usage Templateをクリックします。
+4.  このページは最初にサンプルのSnowflake利用状況データを表示します。
+5.  このサンプルデータをあなた自身のSnowflake利用状況データに置き換えるには、Swap Nowをクリックします。
+    * サンプルデータでワークブックを表示するには、Dismissをクリックします。
+6.  Swap Nowをクリックすると、Swap Data Sourcesページが開きます。Sigmaは、現在のソースの構造に一致するテーブルを接続から検索します。
+    * Snowflake利用状況テーブルは構造が一貫しているため、完全に互換性のある一致があるはずです。一致が見つからない場合は、手動で正しいテーブルを探すことができます。
+7.  Replace Withセクションで、置き換えたい一致したソースを探し、Editをクリックします。
+8.  モーダルから新しいテーブルを選択します。
+9.  交換する正しいテーブルを見つけたら、Swapをクリックします。ページが更新され、あなたのデータが表示されます。
+10. ワークブックを確認して、正しいデータがあることを確認します。
+11. テンプレートから編集可能で公開可能なワークブックを作成するには、ヘッダーのSave Asをクリックし、新しいワークブックを保存します。
+
+#### **既知の問題とSnowflakeの概念 (Known issues and Snowflake concepts)**
+
+##### **アップロードが遅いまたはタイムアウトする (Slow upload or timeout)**
+Snowflake利用状況ワークブックのアップロードが遅い、またはタイムアウトする場合、パフォーマンスを改善できます。
+ロード時間が遅い、またはクエリがタイムアウトするのは、ビジーなウェアハウスの大規模なテーブルで実行されるクエリの複雑さのために、ウェアハウスがリクエストに応答するのに苦労している場合に一般的です。ロード時間が遅い場合、Sigmaはクエリが2分以上実行されているとリクエストをタイムアウトします。
+クエリの実行時間を確認し、タイムアウトを表示するには、ワークブックのクエリ表示モーダルにアクセスしてください。
+ワークブックのロード時間を改善するには、日付をより小さな日付範囲にフィルタリングします。SnowflakeのOrganizationおよびAccount Usageテーブルは時間でパーティション分割されているため、日付でフィルタリングするとパフォーマンスが向上します。
+
+##### **ソース交換時のエラー (Errors when source swapping)**
+テンプレートでテーブルを交換する際に、エラーやNULLデータが発生することがあります。エラーを避けるために、交換するテーブルが以下の条件を満たしていることを確認してください。
+* 同じ接続からであること
+* 正しいスキーマからであること
+* 空でないこと
+
+これらを確認するには、Swap Data Sourcesモーダルを開き、各テーブルの接続を確認します。
+Snowflakeは時々、セカンダリSnowflakeアカウントにORGANIZATION_USAGEスキーマを提供しますが、空のままにします。Cost monitoringテンプレートがこの空のスキーマを参照し、エラーが発生することがあります。これは、ソースの指示をプライマリアカウントのORGANIZATION_USAGEスキーマを使用するように変更することで修正できます。
+
+##### **Snowflakeの組織 vs. アカウント (Snowflake organization vs. account)**
+組織は主要なSnowflakeオブジェクトです。それは事実上、Snowflakeアカウントのコレクションです。一つまたは多くのアカウントを含むことができ、そのうちの一つだけがプライマリアカウントです。このプライマリアカウントには、SNOWFLAKEデータベース内にORGANIZATION_USAGEスキーマが提供されます。他の（セカンダリ）アカウントは、デフォルトではこのスキーマにアクセスできません。
+アカウントは、ウェアハウス、データベース、ユーザー、ロールなどのコレクションです。各アカウントは組織の子であり、独自のACCOUNT_USAGEおよびREADER_ACCOUNT_USAGEスキーマを持っています。これらのスキーマには、このアカウントのみのデータが含まれており、同じ組織内の他のアカウントに関する情報はありません。
+
+##### **現在のデータ (Current data)**
+テンプレートのコピーをあなた自身のデータに添付して起動した後、Snowflake利用状況テンプレートは常に最新のデータを表示します。テンプレートは、Snowflakeによって管理されるSnowflake提供のビューに依存しており、現在のデータ（最大数時間の遅延）を提供します。
+
+##### **テンプレートの更新 (Updating templates)**
+Sigmaがテンプレートを更新し、SUTのような共有テンプレートに変更を公開すると、そのテンプレートにアクセスできるすべてのSigma組織は、そのテンプレートから起動されるすべての新しいワークブックでそれらの変更を見ることができます。テンプレートの以前のバージョンから作成されたワークブックは、更新を見ることができません。
+
 ### 第2章：データへの接続 (Connect to Data)
 
 #### 2-1. データソースへの接続 (Connect to data sources)
@@ -331,7 +424,7 @@ SigmaのアウトバウンドIPアドレスは、あなたのSigma管理者ポ�
 **関連リソース (Related resources)**
 
 * Connect to Snowflake
-#### 2-1-1. Snowflakeへの接続 (Connect to Snowflake)
+#### 2-1-1-1. Snowflakeへの接続 (Connect to Snowflake)
 
 SigmaはSnowflakeへの安全な接続をサポートしています。
 
@@ -521,7 +614,7 @@ f.  [任意] この接続をさらに認証するためにJSON Web Tokensを使�
 3.左側のナビゲーションパネルを使用して、接続のスキーマやテーブルを探索します。
 <img width="1270" height="463" alt="df1cae029a961e4beaffb79b6dca5804b6c2e02d17f610bd9d2d34a4bc750625-browse-snowflake-connection" src="https://github.com/user-attachments/assets/8d0b5fc1-1861-4093-8d56-0c5f7d844222" />
 
-* #### 2-1-2. Snowflake接続でユーザー属性を構成する (Configure user attributes on a Snowflake connection)
+* #### 2-1-1-2. Snowflake接続でユーザー属性を構成する (Configure user attributes on a Snowflake connection)
 
 新規または既存のSnowflake接続でユーザー属性を設定することで、特定のユーザーが使用するSnowflakeのウェアハウスやロールを、そのユーザーの属性値に基づいて動的に割り当てることができます。
 
@@ -621,7 +714,7 @@ Snowflakeウェアハウス接続でユーザー属性を構成するために�
 
 セキュアな埋め込みURLへのパラメータ追加に関する詳細は、「[Embed URL parameters](https://help.sigmacomputing.com/docs/embed-url-parameters)」および「[Example embed API and URL](https://help.sigmacomputing.com/docs/example-embed-api-and-url)」を参照してください。
 
-#### 2-1-3. エクスポートウェアハウスを構成する (Configure an export warehouse)
+#### 2-1-1-3. エクスポートウェアハウスを構成する (Configure an export warehouse)
 
 エクスポートウェアハウスとは、Sigmaのエクスポートを実行するために特別に作成された、Snowflake内の仮想ウェアハウスのことです。
 
@@ -713,191 +806,7 @@ SQLまたはSnowsightを使用して、Snowflakeのテーブルに権限を付�
 > テーブルに権限を付与する前に、そのロールが入力テーブルデータへのアクセスを必要とし、意図的に制限されていないことを確認してください。
 > Snowflakeで特定された書き戻しスキーマまたはテーブルが見つからない場合、そのオブジェクトはもはや存在しない可能性があります。スキーマまたは編集ログが意図せず削除された場合は、新しい接続を作成するか、編集ログテーブルを再作成する必要があります。詳細はサポートにお問い合わせください。
 
-* #### 2-5. AlloyDBへの接続 (Connect to AlloyDB)
-
-SigmaはAlloyDBへの安全な接続をサポートしています。
-このドキュメントでは、あなたの組織をAlloyDBデータベースに接続する方法を説明します。
-
-> 📘
-> AlloyDB接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
-
-**要件 (Requirements)**
-
-* あなたのSigma組織における管理者権限。
-  * 詳細は、「[User account types](https://help.sigmacomputing.com/docs/user-account-types)」を参照してください。
-* AlloyDBデータウェアハウスと、そこのアカウント。
-  * データストアに接続する際に使用するアカウントに過剰な権限を付与しないことをお勧めします。例えば、SYSADMINレベルのアクセスは必要ありません。
-
-**AlloyDB接続を作成する (Create an AlloyDB Connection)**
-
-> 📘
-> あなたのAlloyDBインスタンスがVPC上にある場合、追加のステップが必要です。詳細は、「[Configure VPC Service Controls](https://help.sigmacomputing.com/docs/vpc-service-controls)」を参照してください。
-
-接続を作成するには、以下のステップに従います。
-
-1.  画面右上のユーザーアイコンをクリックします。
-    * ユーザーアイコンは通常、あなたのイニシャルで構成されています。
-2.  ドロップダウンメニューで、`Add connection` を選択します。
-3.  `Add new connections` ページが表示されます。
-
-4.  `Connection details` で、以下を指定します。
-    * **Name**
-        新しい接続の `Name` を指定します。Sigmaはこの名前を接続リストに表示します。
-        ここでは、`AlloyDB connection` を使用します。
-    * **Type**
-        使用するデータウェアハウスを表すタイルを選択します。
-        ここでは、`AlloyDB` タイルをクリックします。
-
-5.  `Connection Credentials` セクションで、以下を指定します。
-    * **Host**
-        あなたのデータベースへのパス。これはURLまたはIPアドレスです。
-        あなたのクラスタのエンドポイントURLを入力してください。SigmaはIP `104.197.169.18` と `104.197.193.23` から接続します。
-    * **Port**
-        Sigmaがホストへの接続に使用するポート。
-    * **User**
-        AlloyDBへの接続に使用するユーザー名またはアカウント。
-        例： `test`
-    * **Password**
-        AlloyDBアカウントの `User` に対応するパスワードを入力します。
-    * **Database**
-        クエリを実行します。
-      * **Enable TLS (TLSを有効にする)**
-    任意。このスイッチは接続のTLS暗号化を有効または無効にします。
-    デフォルトで有効。
-* **SSH Tunnel (SSHトンネル)**
-    任意。このスイッチはセキュアなリモートログインのためのSSHプロトコルを有効にします。詳細は、「[Connect through SSH](https://help.sigmacomputing.com/docs/connect-through-ssh)」を参照してください。
-    デフォルトで無効。
-    もしオンにする場合は、`Tunnel host`と`Tunnel port`フィールドを指定します。
-* **Tunnel host (トンネルホスト)**
-    トンネルサーバーへのパス。これはURLまたはIPアドレスです。
-    `SSH Tunnel`がオンの場合にのみ表示されます。
-* **Tunnel port (トンネルポート)**
-    トンネルが接続するポート。
-    `SSH Tunnel`がオンの場合にのみ表示されます。
-
-6. ##### **Connection Featuresセクションで、以下を指定します。**
-* **Connection timeout (接続タイムアウト)**
-    タイムアウト（またはキャンセル）までの時間（秒単位）。Sigmaがクエリ結果の返却を待つ時間です。
-    デフォルトは120（2分）。最大は600（10分）。
-* **Use friendly names (分かりやすい名前を使用する)**
-    このスイッチはデータソースの列名をより読みやすくします。
-    例えば、データベースの列`ORDER_NUMBER`は`Order Number`として表示されます。
-    デフォルトでオン。
-
-7. ##### **Write Accessセクションで、書き込みアクセスが必要かどうかを決定します。**
-詳細は、「[Set up write access](https://help.sigmacomputing.com/docs/set-up-write-access)」を参照してください。
-* **Enable write access (書き込みアクセスを有効にする)**
-    `CSV upload`と`Materialization`に必要です。
-    デフォルトでオフ。
-    もしオンにする場合は、`Write schema`フィールドを指定します。
-* **Write schema (書き込みスキーマ)**
-    Sigmaがテーブルを書き込むスキーマ。
-    `Enable write access`がオンの場合にのみ表示されます。
-
-8. ##### **接続の全てのパラメータを指定したら、`Create`をクリックします。**
-
-9. 接続が正常に作成されると、Sigmaはそれを画面に表示します。
-10.接続を確認するには、`Browse Connection`をクリックし、表示されるデータベースとテーブルを探索します。
-11.`Add Permission`をクリックして、組織内のユーザーにデータアクセス権を付与します。
-詳細は、「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
-12. 新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
-
-#### **AlloyDBクラスタの資格情報を特定する (Locate your AlloyDB cluster credentials)**
-1.  Google Cloudコンソールで、`Clusters`ページに移動します。
-2.  Sigmaに接続する予定のクラスタをクリックします。
-3.  クラスタページが表示されます。 そこには、Sigmaへの接続に必要な資格情報がリストされています。
-
-#### 2-1-4. BigQueryへの接続 (Connect to BigQuery)
-
-SigmaはMySQL（リリース8.0以上）への安全な接続をサポートしています。
-このドキュメントでは、あなたの組織をMySQLデータベースに接続する方法を説明します。
-
-> 📘
-> MySQL接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
-
-* **お客様 (Customers)**
-  この機能へのアクセスは、アカウント担当者を通じてリクエストしてください。
-* **見込み客の皆様 (Prospects)**
-  この機能へのアクセスは、弊社[セールスチーム](https://www.sigmacomputing.com/contact-sales/)を通じてリクエストしてください。
-
-#### **要件 (Requirements)**
-* あなたのSigma組織における管理者権限。詳細は、「[User account types](https://help.sigmacomputing.com/docs/user-account-types)」を参照してください。
-* 関連するデータベースとテーブルに対する `READ` 権限を持つMySQLアカウント。CSVデータをアップロードする予定がある場合は、アカウントは `WRITE` 権限を持っている必要があります。
-* SigmaはMySQLバージョン8.0以上をサポートしています。
-* データストアに接続する際に使用するアカウントに過剰な権限を付与しないことをお勧めします。例えば、SYSADMINレベルのアクセスは必要ありません。
-* Azure上のMySQLは、デフォルトでは名前付きタイムゾーンを持っていません。そのため、Sigmaが正しく動作するためには、タイムゾーンデータをMySQLデータベースにロードする必要があります。そうしないと、接続設定時にエラーが発生する可能性があります。Microsoftのドキュメント「[Populating the time zone tables](https://learn.microsoft.com/en-us/azure/mysql/single-server/how-to-server-parameters#populating-the-time-zone-tables)」を参照してください。これはAWSやGCP上のMySQLでは問題になりません。
-
-#### **接続を作成する (Create a connection)**
-接続を作成するには、以下の基本的なステップに従います。
-
-1.  画面右上のユーザーアイコンをクリックします。
-    * ユーザーアイコンは通常、あなたのイニシャルで構成されています。
-2.  ドロップダウンメニューで、`Add connection` を選択します。
-3.  Add new connections` ページが表示されます。
-
-4. Connection detailsで、以下を指定します。
-* **Name**
-    新しい接続の `Name` を指定します。Sigmaはこの名前を接続リストに表示します。
-    ここでは、`MySQL connection` を使用します。
-* **Type**
-    使用するデータウェアハウスを表すタイルを選択します。
-    ここでは、`MySQL` タイルをクリックします。
-
-5. **Connection Credentialsセクションで、以下を指定します。**
-* **Host**
-    あなたのデータベースへのパス。これはURLまたはIPアドレスです。
-* **Port**
-    Sigmaがホストへの接続に使用するポート。
-    MySQLのデフォルトポートは `3306` です。
-* **User**
-    MySQLデータウェアハウスへの接続に使用するユーザー名またはアカウント。
-    例：`test`
-* **Password**
-    MySQLアカウントの `User` に対応するパスワードを入力します。
-* **Database**
-    クエリを実行する予定のデータベースの名前。
-* **Enable TLS**
-    任意。このスイッチは接続のTLS暗号化を有効または無効にします。
-    デフォルトで有効。
-* **SSH Tunnel**
-    任意。このスイッチはセキュアなリモートログインのためのSSHプロトコルを有効にします。詳細は、「[Connect through SSH](https://help.sigmacomputing.com/docs/connect-through-ssh)」を参照してください。
-    デフォルトで無効。
-    もしオンにする場合は、`Tunnel host` と `Tunnel port` フィールドを指定します。
-* **Tunnel host**
-    トンネルサーバーへのパス。これはURLまたはIPアドレスです。
-    `SSH Tunnel` がオンの場合にのみ表示されます。
-* **Tunnel port**
-    トンネルが接続するポート。
-    `SSH Tunnel` がオンの場合にのみ表示されます。
-6. **Connection Featuresセクションで、以下を指定します。**
-* **Connection timeout**
-    タイムアウト（またはキャンセル）までの時間（秒単位）。Sigmaがクエリ結果の返却を待つ時間です。
-    デフォルトは120（2分）。最大は600（10分）。
-* **Use friendly names**
-    このスイッチはデータソースの列名をより読みやすくします。
-    例えば、データベースの列 `ORDER_NUMBER` は `Order Number` として表示されます。
-    デフォルトでオン。
-
-7. **Write Accessセクションで、書き込みアクセスが必要かどうかを決定します。**
-詳細は、「[Set up write access](https://help.sigmacomputing.com/docs/set-up-write-access)」を参照してください。
-* **Enable write access**
-    `CSV upload` と `Materialization` に必要です。
-    デフォルトでオフ。
-    もしオンにする場合は、`Write schema` フィールドを指定します。
-* **Write schema**
-    Sigmaがテーブルを書き込むスキーマ。
-    `Enable write access` がオンの場合にのみ表示されます。
-
-8. **接続の全てのパラメータを指定したら、`Create`をクリックします。**
-
-9. 接続が正常に作成されると、Sigmaはそれを画面に表示します。
-10. 接続を確認するには、`Browse Connection` をクリックし、表示されるデータベースとテーブルを探索します。
-11. `Add Permission` をクリックして、組織内のユーザーにデータアクセス権を付与します。
-詳細は、「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
-12. 新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
-  
-* #### 2-1-3. Databricksへの接続 (Connect to Databricks)
-
+* #### 2-1-2-1. Databricksへの接続 (Connect to Databricks)
 SigmaはDatabricksへの安全な接続をサポートしています。
 このドキュメントでは、あなたの組織をDatabricksウェアハウスに接続する方法を説明します。
 
@@ -1002,8 +911,290 @@ SigmaでDatabricks接続を作成するには、以下のステップを実行�
 #### **Databricks Partner Connect**
 DatabricksはSigmaのパートナーの1つなので、そのインターフェースを通じて迅速に接続を確立できます。Databricksドキュメントの「[What is Databricks Partner Connect?](https://docs.databricks.com/en/partner-connect/index.html)」を参照してください。
 
+### 2-1-3-1. Redshiftへの接続 (Connect to Redshift)
 
-* #### 2-1-6. MySQLへの接続 (Connect to MySQL)
+SigmaはAmazon Redshiftへの安全な接続をサポートしています。
+このドキュメントでは、あなたの組織をAmazon Redshiftウェアハウスに接続する方法を説明します。
+
+> 📘
+> Amazon Redshift接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
+
+#### **要件 (Requirements)**
+
+* **あなたのSigma組織にて：**
+    * あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* **AWSにて：**
+    * 構成済みのクラスターを持つAmazon Redshiftデータウェアハウスへのアクセス権が必要です。この接続で入力テーブルを使用している場合、ノードサイズは`ra3.4xlarge`以上が推奨されます。
+
+#### **Amazon Redshiftを構成する (Configure Amazon Redshift)**
+
+あなたのSigma組織でAmazon Redshift接続を追加する前に、AWSマネジメントコンソールで以下のステップを完了してください。
+
+1.  あなたのAmazon Redshiftクラスターをパブリックアクセス可能に変更し、それに接続するためのElastic IPアドレスを割り当てます。
+2.  セキュリティグループを作成し、そのセキュリティグループのインバウンドおよびアウトバウンドルールにSigmaのIPアドレスを追加します。IPアドレスはSigma UIの接続構成ページから取得します。「[Add Sigma IPs to the allowlist](https://help.sigmacomputing.com/docs/connect-to-data-sources#add-sigma-ips-to-the-allowlist)」を参照してください。
+3.  あなたのAmazon Redshiftクラスターにセキュリティグループをアタッチします。
+4.  あなたのSigma組織への接続のためのサービスアカウントとして機能するAmazon Redshiftユーザーを作成します。
+5.  このユーザーに、Redshiftクラスター内の関連する全てのスキーマに対する`USAGE`権限と、それらのスキーマ内の関連する全てのテーブルに対する`SELECT`許可を付与します。スキーマに追加される可能性のある追加のテーブルに対しても、このユーザーが同じ権限を持つように構成します。
+    * 権限付与に関するドキュメントは、Amazon Redshiftデータベース開発者ガイドの「[GRANT](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html)」を参照してください。
+    * **SQLステートメントの例:**
+        ```sql
+        CREATE USER your_sigma_service_account_name password ‘a_secure_password’; 
+        GRANT USAGE ON SCHEMA your_schema_name TO your_sigma_service_account_name;
+        GRANT SELECT ON ALL TABLES IN SCHEMA your_schema_name TO your_sigma_service_account_name;
+        ALTER DEFAULT PRIVILEGES IN SCHEMA your_schema_name
+        GRANT SELECT ON TABLES TO your_sigma_service_account_name;
+        ```
+6.  [任意] [ストアドプロシージャアクション](https://help.sigmacomputing.com/docs/stored-procedure-actions)を実行したい場合は、サービスアカウントユーザーに、Sigmaから実行したいストアドプロシージャを含む任意のスキーマに対する`USAGE`と、全てまたは特定のストアドプロシージャに対する`EXECUTE`権限を付与します。
+    * **SQLステートメントの例:**
+        ```sql
+        GRANT USAGE ON SCHEMA your_sproc_schema_name TO your_sigma_service_account_name;
+        GRANT EXECUTE ON ALL PROCEDURES IN SCHEMA your_sproc_schema_name TO your_sigma_service_account_name;
+        ```
+7.  [任意] CSVアップロード、マテリアライゼーション、入力テーブル、ウェアハウスビューなどの書き込みアクセス機能を活用したい場合は、Sigmaの書き戻し機能がデータ書き込みに使用できる専用のスキーマを作成します。
+    * そのスキーマに対する`CREATE`権限をあなたのユーザーに付与し、そのスキーマ内の全てのテーブルに対する`SELECT, INSERT, UPDATE, DELETE`を付与します。スキーマに追加される可能性のある追加のテーブルに対しても、あなたのユーザーが同じ権限を持つように構成します。
+    * **SQLステートメントの例:**
+        ```sql
+        GRANT USAGE, CREATE ON SCHEMA your_write_schema_name TO your_sigma_service_account_name;
+        GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA your_write_schema_name TO your_sigma_service_account_name;
+        ALTER DEFAULT PRIVILEGES IN SCHEMA your_write_schema_name
+        GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO your_sigma_service_account_name;
+        ```
+
+#### **SigmaでAmazon Redshift接続を作成する (Create an Amazon Redshift connection in Sigma)**
+
+Amazon Redshift接続を作成するには、Sigma UIで以下のステップを実行します。
+1.  接続を追加し、接続詳細を指定する
+2.  接続資格情報を指定する
+3.  書き込みアクセスを構成する
+4.  接続機能を構成する
+
+##### **1. 接続を追加し、接続詳細を指定する**
+1.  画面右上のユーザーアイコンをクリックします。
+2.  ドロップダウンメニューで、`Add connection`を選択します。
+3.  `Connection Details`セクションで、以下を指定します。
+    * **Name:** 新しい接続の`Name`を入力します。
+    * **Type:** `Redshift`タイルを選択します。
+
+##### **2. 接続資格情報を指定する**
+`Connection Credentials`セクションで、必須項目を入力します。
+* `Host`フィールドに、あなたのRedshiftクラスターの`General Information`画面にある`Endpoint`フィールドの値を入力します。
+  * *例: `cluster.abcd.us-west-1.redshift.amazonaws.com`*
+* `Port`フィールドに、あなたのクラスターのポート番号を入力します。
+  * *例: `5439`*
+* `User`および`Password`フィールドに、あなたのSigma組織に接続するために作成したAmazon Redshiftユーザーのユーザー名とパスワードを入力します。
+* `Database`フィールドに、あなたのクラスターのデータベース名を入力します。
+* [任意] `Enable TLS`トグルをオンにして、接続のTLS暗号化を有効にします。
+* [任意] `SSH Tunnel`トグルをオンにしてSSH経由で接続し、`Tunnel host`と`Tunnel port`を入力します。
+* 次に、追加オプションについては「[書き込みアクセスを構成する](#configure-write-access)」および「[接続機能を構成する](#configure-connection-features)」を参照してください。または、接続の構成が完了した場合は、右上の`Create`をクリックして接続を作成します。
+
+##### **3. 書き込みアクセスを構成する**
+書き込みアクセスは、以下の機能に必要です。
+* CSV upload
+* Materialization
+* Input tables
+* Warehouse views
+
+書き込みアクセスを構成するには、Sigmaがデータ書き込みに使用できる専用のスキーマをAmazon Redshiftで設定し、そのスキーマに対する必要な権限をサービスアカウントに付与する必要があります。
+1.  この接続で書き込みアクセスを許可するには、`Enable write access`の隣にあるトグルをオンにします。
+2.  `Write schema`フィールドに、Sigmaが書き戻しデータを保存するために作成した専用スキーマの名前を入力します。
+3.  次に、追加オプションについては「[接続機能を構成する](#configure-connection-features)」を参照してください。または、接続の構成が完了した場合は、右上の`Create`をクリックして接続を作成します。
+
+##### **4. 接続機能を構成する**
+`Connection Features`セクションで、以下を指定します。
+* `Connection timeout`フィールドに、タイムアウトまでの時間（秒）を指定します。デフォルトは120秒です。最大は600秒（10分）です。
+* [任意] `Use friendly names`トグルをオフにすると、Sigmaが自動で列名を読みやすくするのをやめます。
+
+##### **接続作成を完了する**
+1. 接続の全てのパラメータを指定した後、`Create`をクリックします。
+画面右上の`Create`をクリックして接続を作成します。Sigmaは画面に接続の概要を表示します。
+2. `Browse Connection`をクリックし、`Add permission`をクリックして、組織内のユーザーに接続アクセスを許可します。「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。<img width="1324" height="564" alt="641ba71f977c5cce33b88891c248aa71586a969ad54446c8619b176863dc76cb-redshift-new-connection" src="https://github.com/user-attachments/assets/5689b38f-1520-4381-ace6-e7148f367b3e" />
+
+3. 左側のナビゲーションパネルを使用して、接続のスキーマやテーブルを探索します。<img width="1336" height="381" alt="c740f832f805473e7f35bebecd259c33c6c024c3485d4c340d11b9ff16c6c0cb-redshift-browse-connection" src="https://github.com/user-attachments/assets/1849e235-3f8d-4d4b-9aee-4e470b693eab" />
+
+#### 2-1-4-1. BigQueryへの接続 (Connect to BigQuery)
+SigmaはMySQL（リリース8.0以上）への安全な接続をサポートしています。
+このドキュメントでは、あなたの組織をMySQLデータベースに接続する方法を説明します。
+
+> 📘
+> MySQL接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
+
+* **お客様 (Customers)**
+  この機能へのアクセスは、アカウント担当者を通じてリクエストしてください。
+* **見込み客の皆様 (Prospects)**
+  この機能へのアクセスは、弊社[セールスチーム](https://www.sigmacomputing.com/contact-sales/)を通じてリクエストしてください。
+
+#### **要件 (Requirements)**
+* あなたのSigma組織における管理者権限。詳細は、「[User account types](https://help.sigmacomputing.com/docs/user-account-types)」を参照してください。
+* 関連するデータベースとテーブルに対する `READ` 権限を持つMySQLアカウント。CSVデータをアップロードする予定がある場合は、アカウントは `WRITE` 権限を持っている必要があります。
+* SigmaはMySQLバージョン8.0以上をサポートしています。
+* データストアに接続する際に使用するアカウントに過剰な権限を付与しないことをお勧めします。例えば、SYSADMINレベルのアクセスは必要ありません。
+* Azure上のMySQLは、デフォルトでは名前付きタイムゾーンを持っていません。そのため、Sigmaが正しく動作するためには、タイムゾーンデータをMySQLデータベースにロードする必要があります。そうしないと、接続設定時にエラーが発生する可能性があります。Microsoftのドキュメント「[Populating the time zone tables](https://learn.microsoft.com/en-us/azure/mysql/single-server/how-to-server-parameters#populating-the-time-zone-tables)」を参照してください。これはAWSやGCP上のMySQLでは問題になりません。
+
+#### **接続を作成する (Create a connection)**
+接続を作成するには、以下の基本的なステップに従います。
+
+1.  画面右上のユーザーアイコンをクリックします。
+    * ユーザーアイコンは通常、あなたのイニシャルで構成されています。
+2.  ドロップダウンメニューで、`Add connection` を選択します。
+3.  Add new connections` ページが表示されます。
+
+4. Connection detailsで、以下を指定します。
+* **Name**
+    新しい接続の `Name` を指定します。Sigmaはこの名前を接続リストに表示します。
+    ここでは、`MySQL connection` を使用します。
+* **Type**
+    使用するデータウェアハウスを表すタイルを選択します。
+    ここでは、`MySQL` タイルをクリックします。
+
+5. **Connection Credentialsセクションで、以下を指定します。**
+* **Host**
+    あなたのデータベースへのパス。これはURLまたはIPアドレスです。
+* **Port**
+    Sigmaがホストへの接続に使用するポート。
+    MySQLのデフォルトポートは `3306` です。
+* **User**
+    MySQLデータウェアハウスへの接続に使用するユーザー名またはアカウント。
+    例：`test`
+* **Password**
+    MySQLアカウントの `User` に対応するパスワードを入力します。
+* **Database**
+    クエリを実行する予定のデータベースの名前。
+* **Enable TLS**
+    任意。このスイッチは接続のTLS暗号化を有効または無効にします。
+    デフォルトで有効。
+* **SSH Tunnel**
+    任意。このスイッチはセキュアなリモートログインのためのSSHプロトコルを有効にします。詳細は、「[Connect through SSH](https://help.sigmacomputing.com/docs/connect-through-ssh)」を参照してください。
+    デフォルトで無効。
+    もしオンにする場合は、`Tunnel host` と `Tunnel port` フィールドを指定します。
+* **Tunnel host**
+    トンネルサーバーへのパス。これはURLまたはIPアドレスです。
+    `SSH Tunnel` がオンの場合にのみ表示されます。
+* **Tunnel port**
+    トンネルが接続するポート。
+    `SSH Tunnel` がオンの場合にのみ表示されます。
+6. **Connection Featuresセクションで、以下を指定します。**
+* **Connection timeout**
+    タイムアウト（またはキャンセル）までの時間（秒単位）。Sigmaがクエリ結果の返却を待つ時間です。
+    デフォルトは120（2分）。最大は600（10分）。
+* **Use friendly names**
+    このスイッチはデータソースの列名をより読みやすくします。
+    例えば、データベースの列 `ORDER_NUMBER` は `Order Number` として表示されます。
+    デフォルトでオン。
+
+7. **Write Accessセクションで、書き込みアクセスが必要かどうかを決定します。**
+詳細は、「[Set up write access](https://help.sigmacomputing.com/docs/set-up-write-access)」を参照してください。
+* **Enable write access**
+    `CSV upload` と `Materialization` に必要です。
+    デフォルトでオフ。
+    もしオンにする場合は、`Write schema` フィールドを指定します。
+* **Write schema**
+    Sigmaがテーブルを書き込むスキーマ。
+    `Enable write access` がオンの場合にのみ表示されます。
+
+8. **接続の全てのパラメータを指定したら、`Create`をクリックします。**
+
+9. 接続が正常に作成されると、Sigmaはそれを画面に表示します。
+10. 接続を確認するには、`Browse Connection` をクリックし、表示されるデータベースとテーブルを探索します。
+11. `Add Permission` をクリックして、組織内のユーザーにデータアクセス権を付与します。
+詳細は、「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
+12. 新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
+
+
+* #### 2-1-5-1. AlloyDBへの接続 (Connect to AlloyDB)
+
+SigmaはAlloyDBへの安全な接続をサポートしています。
+このドキュメントでは、あなたの組織をAlloyDBデータベースに接続する方法を説明します。
+
+> 📘
+> AlloyDB接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
+
+**要件 (Requirements)**
+
+* あなたのSigma組織における管理者権限。
+  * 詳細は、「[User account types](https://help.sigmacomputing.com/docs/user-account-types)」を参照してください。
+* AlloyDBデータウェアハウスと、そこのアカウント。
+  * データストアに接続する際に使用するアカウントに過剰な権限を付与しないことをお勧めします。例えば、SYSADMINレベルのアクセスは必要ありません。
+
+**AlloyDB接続を作成する (Create an AlloyDB Connection)**
+
+> 📘
+> あなたのAlloyDBインスタンスがVPC上にある場合、追加のステップが必要です。詳細は、「[Configure VPC Service Controls](https://help.sigmacomputing.com/docs/vpc-service-controls)」を参照してください。
+
+接続を作成するには、以下のステップに従います。
+
+1.  画面右上のユーザーアイコンをクリックします。
+    * ユーザーアイコンは通常、あなたのイニシャルで構成されています。
+2.  ドロップダウンメニューで、`Add connection` を選択します。
+3.  `Add new connections` ページが表示されます。
+
+4.  `Connection details` で、以下を指定します。
+    * **Name**
+        新しい接続の `Name` を指定します。Sigmaはこの名前を接続リストに表示します。
+        ここでは、`AlloyDB connection` を使用します。
+    * **Type**
+        使用するデータウェアハウスを表すタイルを選択します。
+        ここでは、`AlloyDB` タイルをクリックします。
+
+5.  `Connection Credentials` セクションで、以下を指定します。
+    * **Host**
+        あなたのデータベースへのパス。これはURLまたはIPアドレスです。
+        あなたのクラスタのエンドポイントURLを入力してください。SigmaはIP `104.197.169.18` と `104.197.193.23` から接続します。
+    * **Port**
+        Sigmaがホストへの接続に使用するポート。
+    * **User**
+        AlloyDBへの接続に使用するユーザー名またはアカウント。
+        例： `test`
+    * **Password**
+        AlloyDBアカウントの `User` に対応するパスワードを入力します。
+    * **Database**
+        クエリを実行します。
+      * **Enable TLS (TLSを有効にする)**
+    任意。このスイッチは接続のTLS暗号化を有効または無効にします。
+    デフォルトで有効。
+* **SSH Tunnel (SSHトンネル)**
+    任意。このスイッチはセキュアなリモートログインのためのSSHプロトコルを有効にします。詳細は、「[Connect through SSH](https://help.sigmacomputing.com/docs/connect-through-ssh)」を参照してください。
+    デフォルトで無効。
+    もしオンにする場合は、`Tunnel host`と`Tunnel port`フィールドを指定します。
+* **Tunnel host (トンネルホスト)**
+    トンネルサーバーへのパス。これはURLまたはIPアドレスです。
+    `SSH Tunnel`がオンの場合にのみ表示されます。
+* **Tunnel port (トンネルポート)**
+    トンネルが接続するポート。
+    `SSH Tunnel`がオンの場合にのみ表示されます。
+
+6. ##### **Connection Featuresセクションで、以下を指定します。**
+* **Connection timeout (接続タイムアウト)**
+    タイムアウト（またはキャンセル）までの時間（秒単位）。Sigmaがクエリ結果の返却を待つ時間です。
+    デフォルトは120（2分）。最大は600（10分）。
+* **Use friendly names (分かりやすい名前を使用する)**
+    このスイッチはデータソースの列名をより読みやすくします。
+    例えば、データベースの列`ORDER_NUMBER`は`Order Number`として表示されます。
+    デフォルトでオン。
+
+7. ##### **Write Accessセクションで、書き込みアクセスが必要かどうかを決定します。**
+詳細は、「[Set up write access](https://help.sigmacomputing.com/docs/set-up-write-access)」を参照してください。
+* **Enable write access (書き込みアクセスを有効にする)**
+    `CSV upload`と`Materialization`に必要です。
+    デフォルトでオフ。
+    もしオンにする場合は、`Write schema`フィールドを指定します。
+* **Write schema (書き込みスキーマ)**
+    Sigmaがテーブルを書き込むスキーマ。
+    `Enable write access`がオンの場合にのみ表示されます。
+
+8. ##### **接続の全てのパラメータを指定したら、`Create`をクリックします。**
+
+9. 接続が正常に作成されると、Sigmaはそれを画面に表示します。
+10.接続を確認するには、`Browse Connection`をクリックし、表示されるデータベースとテーブルを探索します。
+11.`Add Permission`をクリックして、組織内のユーザーにデータアクセス権を付与します。
+詳細は、「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
+12. 新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
+
+#### **AlloyDBクラスタの資格情報を特定する (Locate your AlloyDB cluster credentials)**
+1.  Google Cloudコンソールで、`Clusters`ページに移動します。
+2.  Sigmaに接続する予定のクラスタをクリックします。
+3.  クラスタページが表示されます。 そこには、Sigmaへの接続に必要な資格情報がリストされています。
+
+* #### 2-1-6-1. MySQLへの接続 (Connect to MySQL)
 
 SigmaはMySQL（リリース8.0以上）への安全な接続をサポートしています。
 このドキュメントでは、あなたの組織をMySQLデータベースに接続する方法を説明します。
@@ -1227,106 +1418,7 @@ grant select on all tables in schema public to sigma_user;```
 あなたのPostgreSQLクラスターの `General Information` セクションで、`Endpoint` の仕様を見つけてコピーします。これがSigmaの `Host` フィールドの値です。
 <img width="676" height="165" alt="248cb87-17" src="https://github.com/user-attachments/assets/61fd7fb5-012f-438c-a5d7-bb5549bdf4e7" />
 
-#### 2-12. Redshiftへの接続 (Connect to Redshift)
-
-SigmaはAmazon Redshiftへの安全な接続をサポートしています。
-このドキュメントでは、あなたの組織をAmazon Redshiftウェアハウスに接続する方法を説明します。
-
-> 📘
-> Amazon Redshift接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
-
-**要件 (Requirements)**
-
-* **あなたのSigma組織にて：**
-    * あなたは `Admin` アカウントタイプを割り当てられている必要があります。
-* **AWSにて：**
-    * 構成済みのクラスターを持つAmazon Redshiftデータウェアハウスへのアクセス権が必要です。この接続で入力テーブルを使用している場合、ノードサイズは `ra3.4xlarge` 以上が推奨されます。
-
-**Amazon Redshiftを構成する (Configure Amazon Redshift)**
-
-あなたのSigma組織でAmazon Redshift接続を追加する前に、AWSマネジメントコンソールで以下のステップを完了してください。
-
-1.  あなたのAmazon Redshiftクラスターをパブリックアクセス可能に変更し、それに接続するためのElastic IPアドレスを割り当てます。
-2.  セキュリティグループを作成し、そのセキュリティグループのインバウンドおよびアウトバウンドルールにSigmaのIPアドレスを追加します。IPアドレスはSigma UIの接続構成ページから取得します。「[Add Sigma IPs to the allowlist](https://help.sigmacomputing.com/docs/connect-to-data-sources#add-sigma-ips-to-the-allowlist)」を参照してください。
-3.  あなたのAmazon Redshiftクラスターにセキュリティグループをアタッチします。
-4.  あなたのSigma組織への接続のためのサービスアカウントとして機能するAmazon Redshiftユーザーを作成します。
-5.  このユーザーに、Redshiftクラスター内の関連する全てのスキーマに対する `USAGE` 権限と、それらのスキーマ内の関連する全てのテーブルに対する `SELECT` 許可を付与します。スキーマに追加される可能性のある追加のテーブルに対しても、このユーザーが同じ権限を持つように構成します。
-    * 権限付与に関するドキュメントは、Amazon Redshiftデータベース開発者ガイドの「[GRANT](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html)」を参照してください。
-    * **SQLステートメントの例:**
-        ```sql
-        CREATE USER your_sigma_service_account_name password ‘a_secure_password’; 
-        GRANT USAGE ON SCHEMA your_schema_name TO your_sigma_service_account_name;
-        GRANT SELECT ON ALL TABLES IN SCHEMA your_schema_name TO your_sigma_service_account_name;
-        ALTER DEFAULT PRIVILEGES IN SCHEMA your_schema_name
-        GRANT SELECT ON TABLES TO your_sigma_service_account_name;
-        ```
-6.  [任意] [ストアドプロシージャアクション](https://help.sigmacomputing.com/docs/stored-procedure-actions)を実行したい場合は、サービスアカウントユーザーに、Sigmaから実行したいストアドプロシージャを含む任意のスキーマに対する `USAGE` と、全てまたは特定のストアドプロシージャに対する `EXECUTE` 権限を付与します。
-    * **SQLステートメントの例:**
-        ```sql
-        GRANT USAGE ON SCHEMA your_sproc_schema_name TO your_sigma_service_account_name;
-        GRANT EXECUTE ON ALL PROCEDURES IN SCHEMA your_sproc_schema_name TO your_sigma_service_account_name;
-        ```
-7.  [任意] CSVアップロード、マテリアライゼーション、入力テーブル、ウェアハウスビューなどの書き込みアクセス機能を活用したい場合は、Sigmaの書き戻し機能がデータ書き込みに使用できる専用のスキーマを作成します。
-    * そのスキーマに対する `CREATE` 権限をあなたのユーザーに付与し、そのスキーマ内の全てのテーブルに対する `SELECT, INSERT, UPDATE, DELETE` を付与します。スキーマに追加される可能性のある追加のテーブルに対しても、あなたのユーザーが同じ権限を持つように構成します。
-    * **SQLステートメントの例:**
-        ```sql
-        GRANT USAGE, CREATE ON SCHEMA your_write_schema_name TO your_sigma_service_account_name;
-        GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA your_write_schema_name TO your_sigma_service_account_name;
-        ALTER DEFAULT PRIVILEGES IN SCHEMA your_write_schema_name
-        GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO your_sigma_service_account_name;
-        ```
-
-**SigmaでAmazon Redshift接続を作成する (Create an Amazon Redshift connection in Sigma)**
-
-Amazon Redshift接続を作成するには、Sigma UIで以下のステップを実行します。
-1.  接続を追加し、接続詳細を指定する
-2.  接続資格情報を指定する
-3.  書き込みアクセスを構成する
-4.  接続機能を構成する
-
-* **1. 接続を追加し、接続詳細を指定する**
-    1.  画面右上のユーザーアイコンをクリックします。
-        * ユーザーアイコンは通常、あなたのイニシャルで構成されています。
-    2.  ドロップダウンメニューで、`Add connection` を選択します。`Add new connection` ページが表示されます。
-    3.  `Connection Details` セクションで、以下を指定します。
-        * **Name:** 新しい接続の `Name` を入力します。
-        * **Type:** `Redshift` タイルを選択します。
-
-* **2. 接続資格情報を指定する**
-    `Connection Credentials` セクションで、必須項目を入力します。
-    * `Host` フィールドに、あなたのRedshiftクラスターの `General Information` 画面にある `Endpoint` フィールドの値を入力します。
-      * *例: `cluster.abcd.us-west-1.redshift.amazonaws.com`*
-    * `Port` フィールドに、あなたのクラスターのポート番号を入力します。ポート番号はAmazon Redshiftクラスターのプロパティの `Database configurations` の下にあります。
-      * *例: `5439`*
-    * `User` および `Password` フィールドに、あなたのSigma組織に接続するために作成したAmazon Redshiftユーザーのユーザー名とパスワードを入力します。「[Configure Amazon Redshift](#configure-amazon-redshift)」のステップ4を参照してください。
-    * `Database` フィールドに、あなたのクラスターのデータベース名を入力します。
-    * [任意] `Enable TLS` トグルをオンにして、接続のTLS暗号化を有効にします。
-    * [任意] `SSH Tunnel` トグルをオンにしてSSH経由で接続し、`Tunnel host` と `Tunnel port` を入力します。「[Connect through SSH](https://help.sigmacomputing.com/docs/connect-through-ssh)」を参照してください。
-    * 次に、追加オプションについては「書き込みアクセスを構成する」および「接続機能を構成する」を参照してください。または、接続の構成が完了した場合は、右上の `Create` をクリックして接続を作成します。
-
-* **3. 書き込みアクセスを構成する**
-    書き込みアクセスは、以下の機能に必要です。
-    * CSV upload
-    * Materialization
-    * Input tables
-    * Warehouse views
-
-    書き込みアクセスを構成するには、Sigmaがデータ書き込みに使用できる専用のスキーマをAmazon Redshiftで設定し、そのスキーマに対する必要な権限をサービスアカウントに付与する必要があります。「[Configure Amazon Redshift](#configure-amazon-redshift)」のステップ5を参照してください。
-    1.  この接続で書き込みアクセスを許可するには、`Enable write access` の隣にあるトグルをオンにします。
-    2.  `Write schema` フィールドに、Sigmaが書き戻しデータを保存するために作成した専用スキーマの名前を入力します。
-    3.  次に、追加オプションについては「接続機能を構成する」を参照してください。または、接続の構成が完了した場合は、右上の `Create` をクリックして接続を作成します。
-
-* **4. 接続機能を構成する**
-    `Connection Features` セクションで、以下を指定します。
-    * `Connection timeout` フィールドに、タイムアウトまでの時間（秒）を指定します。デフォルトは120秒です。最大は600秒（10分）です。
-    * [任意] `Use friendly names` トグルをオフにすると、Sigmaが自動で列名を読みやすくするのをやめます。
-
-* **接続作成を完了する**
-    接続の全てのパラメータを指定した後、`Create` をクリックします。接続の概要が表示されます。
-    `Browse Connection` をクリックし、`Add permission` をクリックして、組織内のユーザーに接続アクセスを許可します。「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
-    左側のナビゲーションパネルを使用して、接続のスキーマやテーブルを探索します。
-* Connect to Starburst
-#### 2-13. Starburstへの接続 (Connect to Starburst)
+### 2-13. Starburstへの接続 (Connect to Starburst)
 
 Sigmaは、Snowflake、Databricks、BigQuery、またはPostgreSQLデータウェアハウスに接続するために、TrinoのSaaSディストリビューションであるStarburst Galaxyの使用をサポートしています。
 
@@ -1335,49 +1427,483 @@ Sigmaは、Snowflake、Databricks、BigQuery、またはPostgreSQLデータウ�
 > 📘
 > Starburst接続とのSigma機能の互換性に関する情報は、「[Region, warehouse, and feature support](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
 
-**要件 (Requirements)**
+#### **要件 (Requirements)**
+* あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* Sigmaがアクセスする必要のある全てのテーブルに対する`Select from table`権限と、クラスターに対する`Use cluster`権限を持つStarburst Galaxyサービスアカウントの資格情報が必要です。
 
-* あなたは `Admin` アカウントタイプを割り当てられている必要があります。
-* Sigmaがアクセスする必要のある全てのテーブルに対する `Select from table` 権限と、クラスターに対する `Use cluster` 権限を持つStarburst Galaxyサービスアカウントの資格情報が必要です。
-
-**Starburst接続を作成する (Create a Starburst connection)**
-
+#### **Starburst接続を作成する (Create a Starburst connection)**
 1.  画面右上のユーザーアイコンをクリックします。
     * ユーザーアイコンは通常、あなたのイニシャルで構成されています。
-2.  ドロップダウンメニューで、`Add connection` を選択します。
-    * `Add new connection` ページが表示されます。
+2.  ドロップダウンメニューで、`Add connection`を選択します。
+3.　`Add new connection`ページが表示されます。
+4.  `Connection details`で、以下を指定します。
+    * **Name:** 新しい接続の`Name`を入力します。Sigmaはこの名前を接続リストに表示します。
+    * **Type:** `Starburst`を選択します。
+5.  `Connection Credentials`セクションで、フィールドを入力します。
+    * **Host:** URLまたはIPアドレスとしての、あなたのStarburst Galaxyクラスターのアドレス。
+    * **Port:** SigmaがあなたのStarburst Galaxyクラスターに接続するためのポート。
+    * **User:** あなたのStarburst管理者によって設定されたサービスアカウントのユーザー名。
+    * **Password:** あなたのStarburst管理者によって設定されたサービスアカウントのパスワード。
+6.  (任意) `Connection features`セクションで、必要に応じてデフォルト値を調整します。
+    * **Connection timeout:** タイムアウトまでの時間（秒単位）。デフォルトは120秒、最大は600秒です。
+    * **Use friendly names:** この設定はデフォルトでオンになっており、データソースの列名をより読みやすくします。
+7.  接続の全てのパラメータを指定したら、`Create`をクリックします。Sigmaは画面に接続の概要を表示します。
+<img width="1101" height="166" alt="d0d5a22-connectionsummary" src="https://github.com/user-attachments/assets/f0d41072-3fb4-4e6d-a7f5-64d96cd0d109" />
+8.  `Browse Connection`をクリックし、次に`Add permission`をクリックして、組織内のユーザーにデータアクセスを許可します。
+<img width="1034" height="510" alt="452f1a2-Addpermissions" src="https://github.com/user-attachments/assets/c6f74fef-dadb-4b7b-8a44-09ca987097aa" />
+9.  左側のナビゲーションパネルを使用して、接続内のデータベースとテーブルを探索します。
+<img width="1386" height="332" alt="5493f7d-exploreconnection" src="https://github.com/user-attachments/assets/55321f57-4e72-4c59-9e0b-308a1e120138" />
+10. 新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
 
-3.  `Connection Details` セクションで、以下を指定します。
-    * **Name:** 新しい接続の `Name` を入力します。Sigmaはこの名前を接続リストに表示します。
-    * **Type:** 構成したい接続タイプを表すタイルを選択します。ここでは、`Starburst` タイルをクリックします。
+### 2-1-9. Azure SQL Databaseへの接続 (Connect to Azure SQL Database)
 
-4.  `Connection Credentials` セクションで、以下のフィールドを入力します。
-    * **Host:**
-        URLまたはIPアドレスとしての、あなたのStarburst Galaxyクラスターのアドレス。
-    * **Port:**
-        SigmaがあなたのStarburst Galaxyクラスターに接続するためのポート。
-    * **User:**
-        あなたのStarburst管理者によって設定されたサービスアカウントのユーザー名。
-    * **Password:**
-        あなたのStarburst管理者によって設定されたサービスアカウントのパスワード。
+SigmaはAzure SQL Databaseへの安全な接続をサポートしています。
+このドキュメントでは、あなたのSigma組織を[Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database)に接続する方法を説明します。
 
-5.  [任意] `Connection features` セクションで、必要に応じてデフォルト値を調整します。
-    * **Connection timeout:**
-        タイムアウト（またはキャンセル）までの時間（秒単位）。Sigmaがクエリ結果の返却を待つ時間です。
-        デフォルトは120（2分）。最大は600（10分）。
-    * **Use friendly names:**
-        この設定はデフォルトでオンになっており、データソースの列名をより読みやすくします。
-        例えば、データベースの列 `ORDER_NUMBER` は `Order Number` として表示されます。
+#### **要件 (Requirements)**
+* あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* データベースのネットワーク設定を構成するために、Azureで適切なアクセス権を持っている必要があります。
+* サポートされているインスタンスタイプを持っている必要があります。「[インスタンスタイプを確認する](#verify-my-instance-type)」を参照してください。
 
-6.  接続の全てのパラメータを指定したら、`Create` をクリックします。Sigmaは画面に接続の概要を表示します。
+#### **インスタンスタイプを確認する (Verify my instance type)**
+インスタンスタイプを確認するには、データベースインスタンスで以下のクエリを実行します。
+`select serverproperty('ProductMajorVersion'),serverproperty('EngineEdition')`
 
-7.  `Browse Connection` をクリックし、次に `Add permission` をクリックして、組織内のユーザーにデータアクセスを許可します。
+`EngineEdition`が`5`のインスタンスがサポートされています。
+以下の場合、代わりにSQL Server 2022接続を使用してください。
+* `EngineEdition`が`1`, `2`, `3`, `4`で、`ProductMajorVersion`が`16.x`の場合
+* `EngineEdition`が`8`の場合
+「[Connect to SQL Server 2022](https://help.sigmacomputing.com/docs/connect-to-sql-server-2022)」を参照してください。
+クエリ出力の解釈に関する情報は、Microsoftのドキュメント「[SERVERPROPERTY](https://learn.microsoft.com/en-us/sql/t-sql/functions/serverproperty-transact-sql)」を参照してください。
 
-8.  左側のナビゲーションパネルを使用して、接続内のデータベースとテーブルを探索します。
-    新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
-*
+#### **Azure SQL Database接続を作成する (Create an Azure SQL Database connection)**
+1.  画面右上のユーザーアイコンをクリックします。
+2.  ドロップダウンメニューで、`Add connection`を選択します。
+3.  `Connection Details`セクションで、以下を指定します。
+    * **Name:** 新しい接続の`Name`を入力します。
+    * **Type:** `Azure SQL DB`を選択します。
+
+SigmaのIPアドレスを許可するために、Azureデータベースのネットワーク設定を構成する必要があります。これを行うには、Azureのドキュメント「[Network Access Controls](https://learn.microsoft.com/en-us/azure/azure-sql/database/network-access-controls-overview)」を参照してください。必要なSigmaのIPは、`Connection Credentials`セクションの`Server`フィールドの下にあります。
+
+##### **Connection Credentialsセクションで、以下を指定します。**
+* **Server:** 完全修飾ホスト名またはIPアドレス。「[サーバー接続情報を取得する](https://learn.microsoft.com/en-us/azure/azure-sql/database/connect-query-portal)」に関するMicrosoftのドキュメントを参照してください。
+* **Database:** クエリを実行したいデータベースの名前。
+* **Port:** SigmaがAzure SQL Databaseクラスターに接続するためのポート。デフォルトポートは1433です。
+* **User:** Azure SQL Database管理者によって設定されたサービスアカウントのユーザー名。
+* **Password:** Azure SQL Database管理者によって設定されたサービスアカウントのパスワード。
+
+##### **Connection Featuresセクションで、以下を指定します。**
+* **Connection Timeout:** タイムアウトまでの時間（秒）。デフォルトは120秒、最大は600秒です。
+* **Use friendly names:** この設定はデフォルトでオンになっており、データソースの列名をより読みやすくします。
+
+##### **接続作成を完了する**
+`Browse Connection`をクリックし、次に`Add permission`をクリックして、組織内のユーザーにデータアクセスを許可します。
+左側のナビゲーションパネルを使用して、接続のスキーマやテーブルを探索します。新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
+
+#### **書き込みアクセスを構成する (Configure write access)**
+書き込みアクセスは[マテリアライゼーション](https://help.sigmacomputing.com/docs/about-materialization)に必要です。書き込みアクセスを構成するには、専用のデータベースとスキーマを設定し、必要な権限を付与する必要があります。
+1.  Sigma接続の構成に使用するAzure SQL Databaseユーザーに、以下の権限を持つロールを付与します。
+
+| オブジェクト | 権限 |
+| :--- | :--- |
+| **Schema** | CREATE TABLE, CREATE VIEW, ALTER |
+
+2.  Sigmaで、`Connections`に移動し、Azure SQL Database接続を選択して`Edit`を選択します。
+3.  `Enable write access`トグルをオンにし、以下を構成します。
+    * `Write schema`フィールドに、Sigmaが書き戻しデータを保存するデータベーススキーマを入力します。
+
+#### **機能の制限 (Feature Limitations)**
+現在、Azure SQL Database接続は以下の機能をサポートしていません。
+* Sigmaで作成されたデータセットウェアハウスビュー
+* ワークブックウェアハウスビュー
+* クラウドストレージへのエクスポート
+* OAuth接続
+* Sigma結果IDキャッシュ
+* ロールとウェアハウス切り替えのためのユーザー属性
+* 書き戻し機能：CSVアップロード、入力テーブル
+* 地理データ型
+* すべての地理関数
+* 特定のパススルー関数（Geography, Variant, Logical）
+* 特定のウィンドウ関数（CumulativeCorr, MovingCorr, Corr）
+* CTEを含むカスタムSQL
+
+### 2-1-10. SQL Server 2022およびAzure SQL Managed Instanceへの接続
+
+#### **要件 (Requirements)**
+* SQL Server 2022は、仮想マシン上にあるか、インターネット経由で公開アクセス可能であるか、または[Azure SQL Managed Instance](https://azure.microsoft.com/en-us/products/azure-sql/managed-instance)である必要があります。他のバージョンのSQL Serverはサポートされていません。
+* あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* データベースのネットワーク設定を構成するために、Azureで適切なアクセス権を持っている必要があります。
+* サポートされているインスタンスタイプを持っている必要があります。「[インスタンスタイプを確認する](#verify-my-instance-type)」を参照してください。
+
+#### **インスタンスタイプを確認する (Verify my instance type)**
+インスタンスタイプを確認するには、データベースインスタンスで以下のクエリを実行します。
+`select serverproperty('ProductMajorVersion'),serverproperty('EngineEdition')`
+
+以下を持つインスタンスがサポートされています。
+* `EngineEdition`が`1`, `2`, `3`, `4`で、`ProductMajorVersion`が`16.x`
+* `EngineEdition`が`8`
+
+`EngineEdition`が`5`の場合は、Azure SQL Database接続を使用してください。「[Connect to Azure SQL Database](https://help.sigmacomputing.com/docs/connect-to-azure-sql-database)」を参照してください。
+クエリ出力の解釈に関する情報は、Microsoftのドキュメント「[SERVERPROPERTY](https://learn.microsoft.com/en-us/sql/t-sql/functions/serverproperty-transact-sql)」を参照してください。
+
+#### **SQL Server 2022またはAzure SQL Managed Instance接続を作成する**
+1.  画面右上のユーザーアイコンをクリックします。
+2.  ドロップダウンメニューで、`Add connection`を選択します。
+3.  `Connection Details`セクションで、以下を指定します。
+    * **Name:** 新しい接続の`Name`を入力します。
+    * **Type:** `SQL Server`を選択します。
+
+4. SigmaのIPを許可するために、データベースのネットワーク設定を構成する必要があります。これを行うには、Azureのドキュメント「[Network Access Controls](https://learn.microsoft.com/en-us/azure/azure-sql/database/network-access-controls-overview)」を参照してください。必要なSigmaのIPは、Connection CredentialsセクションのServerフィールドの下にあります。
+
+5. **Connection Credentialsセクションで、以下を指定します。**
+* **Server:** 完全修飾ホスト名またはIPアドレス。「[Connect to SQL Server](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/connect-to-sql-server-when-system-administrators-are-locked-out)」に関するMicrosoftのドキュメントを参照してください。
+* **Port:** SigmaがSQL Serverに接続するためのポート。デフォルトポートは1433です。
+* **User:** SQL Server管理者によって設定されたサービスアカウントのユーザー名。
+* **Password:** SQL Server管理者によって設定されたサービスアカウントのパスワード。
+
+6. **Connection Featuresセクションで、以下を指定します。**
+* **Connection Timeout:** タイムアウトまでの時間（秒）。デフォルトは120秒、最大は600秒です。
+* **Use friendly names:** この設定はデフォルトでオンになっており、データソースの列名をより読みやすくします。
+
+7.  **接続作成を完了する**
+8. `Browse Connection`をクリックし、次に`Add permission`をクリックして、組織内のユーザーにデータアクセスを許可します。
+左側のナビゲーションパネルを使用して、接続のスキーマやテーブルを探索します。新しい接続は、あなたのアカウントにある接続のリストにも表示されます。
+<img width="1048" height="441" alt="c98c5ff04834a29fca916cd7b2f97d69392e38a7ab3fb0de743a4e509fc3d9cd-sqlserver" src="https://github.com/user-attachments/assets/53b4db4c-0e16-47ee-96b4-fd74f1fc15a3" />
+
+#### **書き込みアクセスを構成する (Configure write access)**
+書き込みアクセスは[マテリアライゼーション](https://help.sigmacomputing.com/docs/about-materialization)に必要です。書き込みアクセスを構成するには、専用のデータベースとスキーマを設定し、必要な権限を付与する必要があります。
+1.  Sigma接続の構成に使用するSQL Server 2022/Azure SQL Managed Instanceユーザーに、以下の権限を持つロールを付与します。
+
+| オブジェクト | 権限 |
+| :--- | :--- |
+| **Database** | CREATE TABLE |
+| **Schema** | CREATE TABLE, CREATE VIEW, ALTER |
+
+2.  Sigmaで、`Connections`に移動します。SQL Server 2022/Azure SQL Managed Instance接続を選択し、`Edit`を選択します。
+3.  `Enable write access`トグルをオンにし、以下のフィールドを構成します。
+    * `Write database`フィールドに、Sigmaが書き戻しデータを保存するデータベースの名前を入力します。
+    * `Write schema`フィールドに、Sigmaが書き戻しデータを保存するデータベーススキーマを入力します。
+
+#### **機能の制限 (Feature Limitations)**
+現在、SQL Server 2022/Azure SQL Managed Instance接続は以下の機能をサポートしていません。
+* Sigmaで作成されたデータセットウェアハウスビュー
+* クラウドストレージへのエクスポート
+* OAuth接続
+* Sigma結果IDキャッシュ
+* ロールとウェアハウス切り替えのためのユーザー属性
+* 書き戻し機能：CSVアップロードと入力テーブル
+* 地理データ型
+* すべての地理関数
+* 特定のパススルー関数（AggGeography, CallGeography）
+* 特定のウィンドウ関数（CumulativeCorr, MovingCorr, Median）
+* CTEを含むカスタムSQL
+
+### 2-2-1. 書き込みアクセスを設定する (Set up write access)
+
+[入力テーブル](https://help.sigmacomputing.com/docs/input-tables-overview)、[ウェアハウスビュー](https://help.sigmacomputing.com/docs/warehouse-views)、[マテリアライゼーション](https://help.sigmacomputing.com/docs/about-materialization)、および[CSVアップロード](https://help.sigmacomputing.com/docs/upload-csv-data)といった機能の使用を有効にするために、書き込みアクセスを設定します。
+
+> 📘
+> あなたの組織が接続の認証にOAuthを使用している場合、追加の構成ステップがあります。詳細は「[Configure OAuth with write access](https://help.sigmacomputing.com/docs/oauth-with-write-access)」を参照してください。
+
+#### **システムとユーザーの要件 (System and user requirements)**
+* あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* 書き込み先のデスティネーションを作成し、権限を構成するために、あなたのクラウドデータウェアハウス（CDW）で必要な権限を持っている必要があります。
+
+#### **あなたのデータプラットフォームで、書き込みアクセスのためのデスティネーションと権限を設定する**
+書き込みアクセスを設定するためには、Sigmaがあなたのデータプラットフォームで十分な権限を持っていることを確認してください。
+
+各CDWは、固有のデータベース構造と権限モデルを持っています。あなたのCDWのドキュメントに従って、Sigmaがデータを書き戻すために使用できるデスティネーションを作成し、あなたが構成した認証情報を使用してSigmaが書き戻しを実行できるように、必要な権限を適用してください。
+
+> 💡
+> 設計上、あなたが書き込みアクセス用に構成したデスティネーションは、Sigmaの接続エクスプローラーパネルには表示されません。Sigmaがこのデスティネーションに書き込むデータは、閲覧したり使用したりできる形式にはなっていません。書き込みアクセスの目的のためには、別のデータベース、またはデータベースとスキーマの組み合わせを構成してください。
+
+#### **Sigmaで書き込みアクセスを構成する (Configure write access in Sigma)**
+1.  画面右上のユーザーメニューで`Administration`を選択します。
+2.  左側のパネルから`Connections`ページを選択します。
+3.  接続を表示するために、リスト内の既存の接続をクリックします。
+4.  `Edit`をクリックします。
+5.  `Write access`の下にある`Enable write access`のスイッチをオンにします。
+6.  Sigmaは書き込みアクセスのための追加情報を要求します。この情報は、あなたのCDWの仕様に依存します：`Snowflake`, `BigQuery`, `PostgreSQL`, `Redshift`, `Databricks`, `AlloyDB`, および `MySQL`。
+7.  フォームへの入力を完了したら、`Save`をクリックします。
+
+### 2-2-2. OAuthでの書き込みアクセスを構成する (Configure OAuth with write access)
+
+Sigmaでは、[入力テーブル](https://help.sigmacomputing.com/docs/input-tables-overview)、[ウェアハウスビュー](https://help.sigmacomputing.com/docs/warehouse-views)、[ワークブックとデータモデルのマテリアライゼーション](https://help.sigmacomputing.com/docs/about-materialization)、および[CSVアップロード](https://help.sigmacomputing.com/docs/upload-csv-data)のような書き込みアクセス機能で、OAuthの権限管理の利点を活用できます。
+
+このドキュメントでは、Sigmaオブジェクト（書き込みアクセス機能を使用して作成または編集されたもの）のための安全で効率的な書き戻しワークフローを有効にするために、OAuth接続を構成する方法について説明します。OAuthと一般的な使用法に関する詳細は、「[OAuthを構成する](https://help.sigmacomputing.com/docs/configure-okta-oauth-for-sigma)」を参照してください。
+
+> 📘
+> 設計上、あなたが書き込みアクセス用に構成したデスティネーションは、Sigmaの接続エクスプローラーパネルには表示されません。Sigmaがこのデスティネーションに書き込むデータは、閲覧したり使用したりできる形式にはなっていません。書き込みアクセスの目的のためには、別のデータベース、またはデータベースとスキーマの組み合わせを構成してください。
+
+#### **システムとユーザー要件 (System and user requirements)**
+OAuth接続を書き込みアクセスで構成する機能には、以下が必要です。
+* あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* Sigmaの書き込みアクセス機能で使用されるすべての書き込みデスティネーションのスキーマパス（入力テーブルの編集ログデスティネーションのスキーマパスを含む）を提供できる必要があります。
+* また、入力テーブルの編集ログデスティネーションに書き込む権限を持つサービスアカウントの資格情報を提供できる必要もあります。
+    * Snowflakeの場合、サービスアカウントはSnowflakeの編集ログデスティネーションスキーマに対する`CREATE`権限が必要です。
+    * Databricksの場合、サービスアカウントは`DATA EDITOR`権限が必要です。
+
+#### **書き込みアクセス機能を持つOAuthについて (About OAuth with write access features)**
+書き込みアクセス機能を持つOAuth接続を使用するには、Sigmaは一つ以上のスキーマをSigmaオブジェクトデータの書き込みデスティネーションとして指定することを要求します。OAuthはデータウェアハウス内の各個人ユーザーに付与されたデータ権限を使用するため、それらのユーザーは構成された書き戻しデスティネーションへの書き込みを承認されている必要があります。
+
+ユーザーが特定のデスティネーションへの書き込みを承認されているかどうかを判断するために、SigmaはCDW内のユーザーの対応するユーザーアカウント（サービスアカウントではない）を利用して、各書き込みデスティネーションスキーマにテーブルを作成しようと試みます。テーブルが正常に作成された場合、そのスキーマの書き込みアクセスが確認され、検証テーブルは削除されます。Sigmaはユーザーがログインする際に検証プロセスを開始し、承認された書き込みデスティネーションはセッションの期間中キャッシュされ、クエリの頻度を減らします。
+> 🚧
+> 書き込みアクセス検証プロセスによって作成されたテーブルは、`SIGDS`で始まるオブジェクト名で簡単に識別できます。書き込みアクセス機能の適切な機能を確保するために、`SIGDS`プレフィックスを持つテーブルは変更しないでください。
+
+ユーザーがOAuth接続の書き込みデスティネーションとして指定された一つのスキーマへの書き込みのみを承認されている場合、彼らが作成するSigmaオブジェクトはデフォルトでそのデスティネーションに書き込まれます。それ以外の場合、Sigmaはオブジェクトを作成する際に、ユーザーが複数のデスティネーションから選択できるようにします。
+> 💡
+> Snowflakeでは、書き込み権限はSnowflakeのプライマリまたはセカンダリロールを通じてユーザーに付与できます。ただし、オブジェクトを作成する能力はプライマリロールを通じて付与される必要があります。
+
+##### **ウェアハウスビュー、マテリアライゼーション、CSVアップロードの書き戻しアーキテクチャ**
+以下のステップは、OAuth接続がSigmaにワークブックのウェアハウスビュー、ワークブックとデータモデルのマテリアライゼーション、およびCSVアップロードをCDWに書き込むことを可能にする方法を説明します。
+1.  Sigma UIで、ユーザーは指定された書き込みデスティネーションでSigmaオブジェクトを作成または編集します。
+2.  Sigma UIはオブジェクトデータをSigmaのWebサービスに送信します。
+3.  SigmaのWebサービスは、SigmaデータベースからユーザーのOAuth資格情報を取得します。
+4.  SigmaのWebサービスは、ユーザーのOAuth資格情報を適用してCDWへのアクセスを承認し、オブジェクトデータを指定された書き込みデスティネーションスキーマに書き込みます。
+<img width="950" height="491" alt="fef8d78e33e588b5c30bb60baa76566d312d9d9676ae928c01c8adedcfaed0bf-Screenshot_2024-08-27_at_3 12 39_PM" src="https://github.com/user-attachments/assets/2edeed86-61ae-419a-b0af-046b04203462" />
+
+#### **入力テーブルを持つOAuthについて (About OAuth with input tables)**
+組織が入力テーブルを利用する場合、書き込みアクセスでOAuthを有効にするには、スキーマを入力テーブルの編集ログデスティネーションとして指定する必要があります。
+編集ログ（先行書き込みログまたはWALとも呼ばれる）は、ユーザーアクティビティと結果として生じるシステム操作（編集レコードとして保存される入力テーブルデータを含む）に関連する情報を保存する、入力テーブルの変更のシーケンシャルな記録です。
+Sigmaはまた、CDWの編集ログデスティネーションスキーマに書き込むために必要な権限が付与されたサービスアカウントの資格情報を提供することも要求します。
+> 🚧
+> 編集ログに対応するテーブルとすべての入力テーブルは、`SIGDS`で始まるオブジェクト名で簡単に識別できます。適切な入力テーブルの機能を確保するために、`SIGDS`プレフィックスを持つテーブルは変更しないでください。
+
+#### **入力テーブルの書き戻しアーキテクチャ (Write-back architecture for input tables)**
+以下のステップは、OAuth接続がSigmaにCDWに入力テーブルを書き込むことを可能にする方法を説明します。
+1.  Sigma UIで、ユーザーは指定された書き込みデスティネーションで入力テーブルを作成または編集します。
+2.  Sigma UIはオブジェクトデータをSigmaのWebサービスに送信します。
+3.  SigmaのWebサービスは、Sigmaデータベースから接続のサービスアカウント資格情報を取得します。
+4.  SigmaのWebサービスは、サービスアカウント資格情報を適用してCDWアクセスを承認し、入力テーブルの変更情報を編集ログデスティネーションスキーマに書き込みます。
+5.  SigmaのWebサービスは、Sigmaデータベースから**ユーザー**のOAuth資格情報を取得します。
+6.  SigmaのWebサービスは、**ユーザー**のOAuth資格情報を適用してCDWアクセスを承認し、オブジェクトデータを指定された書き込みデスティネーションスキーマに書き込みます。
+<img width="1151" height="489" alt="062ff4a5d9669ebb6b6c9edaa61856a240ea4e28c77bf485c2ac4d226fddae2f-Screenshot_2024-08-27_at_3 15 09_PM" src="https://github.com/user-attachments/assets/9a6d5f45-67cf-493e-8ac6-36cea9661618" />
+
+#### **入力テーブルを持つOAuthにアップグレードする際のベストプラクティス (Best practices when upgrading to OAuth with input tables)**
+
+組織が入力テーブルを使用する場合、非OAuth接続をOAuthを使用するようにアップグレードする際には、以下の情報とベストプラクティスに注意することが重要です。
+
+アップグレード前に接続に書き込まれた入力テーブルは、以前のデスティネーションスキーマが新しい書き込みデスティネーションとして構成されているかどうかに関係なく、Sigmaで引き続き表示できます。ただし、ユーザーが既存の入力テーブルに書き込みを続けるには、CDW内の以前のデスティネーションスキーマへの書き込み権限が付与されている必要があります。
+
+OAuthを使用したシームレスな移行のために、編集ログデスティネーションは、アップグレード前に接続の書き戻しデスティネーションとして構成されていたのと同じスキーマパスでなければなりません。編集ログデスティネーションとして異なるスキーマパスを構成する必要がある場合は、編集ログに対応するテーブルも新しいデスティネーションに移動する必要があります。
+
+例えば、Snowflakeでは、以下のSQLステートメントを使用して編集ログテーブルを新しいデスティネーションに移動します。
+```sql
+ALTER TABLE {original_db}.{original_schema}.{original_table} RENAME TO {new_db}.{new_schema}.{new_table};
+
+各接続には、`SIGDS`という名前の単一の編集ログテーブルがあります。複数の接続が同じ編集ログデスティネーションを使用する場合、そのデスティネーションスキーマには`SIGDS_WAL`プレフィックスを持つ複数のテーブルが含まれることがあります。特定の接続に対して正しい編集ログテーブルを移動するようにしてください。
+
+### 2-2-2-1. サービスアカウントの資格情報でワークブックを実行する (Run a workbook with service account credentials)
+
+サービスアカウントを持つOAuth接続からのデータで作成されたワークブックでは、管理者は各ユーザーのOAuth資格情報の代わりに、サービスアカウントを使用してクエリを実行するようにワークブックを構成できます。
+
+所有者がSigmaに長時間ログインしない場合、OAuthトークンは期限切れになる可能性があります。これが発生すると、そのユーザーによって構成されたスケジュールされたエクスポートとマテリアライゼーションのスケジュールは失敗します。この制限は、サービスアカウントの資格情報でワークブックを実行することで回避できます。
+
+この設定は、Sigmaがデータをクエリし、ワークブックの権限を評価する方法を変更します。以下の表を参照して、動作を比較してください。
+
+| ワークブックの接続 | `Run as service account`は構成されているか？ | Sigmaがデータをクエリし、権限を評価する方法 |
+| :--- | :--- | :--- |
+| **非OAuth接続を使用するワークブック** | N/A | Sigmaはワークブック所有者の[ソースデータへの権限](https://help.sigmacomputing.com/docs/data-permissions)を評価し、次に接続設定で設定されたユーザーアカウントの資格情報を使用してクエリを実行します。 |
+| **OAuth接続を使用するワークブック** | **はい** | Sigmaは、Sigma内から閲覧されるか、スケジュールされたレポートの一部として実行されるたびに、データ接続のサービスアカウント資格情報を使用してワークブックの公開バージョンにクエリを実行します。これにより、ワークブックに[権限](https://help.sigmacomputing.com/docs/share-a-workbook)を持つどのユーザーも、クラウドデータウェアハウスでの権限に関係なく、それを表示できます。 |
+| **OAuth接続を使用するワークブック** | **いいえ** | Sigmaは常に組織メンバーのOAuth資格情報でクエリを実行します。これには、ユーザーが他人の所有するワークブックを閲覧している場合も含まれます。 |
+| **OAuth接続と非OAuth接続の両方からのデータを使用するワークブック** | **はい** | OAuth接続からのデータについては、Sigmaはサービスアカウント資格情報を使用します。<br>非OAuth接続からのデータについては、Sigmaはワークブック所有者の権限を評価し、接続設定の資格情報を使用します。 |
+| **OAuth接続と非OAuth接続の両方からのデータを使用するワークブック** | **いいえ** | OAuth接続からのデータについては、Sigmaは常にユーザーのOAuth資格情報を使用します。<br>非OAuth接続からのデータについては、Sigmaはワークブック所有者の権限を評価し、接続設定の資格情報を使用します。 |
+| **異なるOAuth構成を持つ2つの異なるOAuth接続からのデータを使用するワークブック** | **はい** | Sigmaは、各データ接続のサービスアカウント資格情報を使用してワークブックの公開バージョンにクエリを実行します。 |
+| **異なるOAuth構成を持つ2つの異なるOAuth接続からのデータを使用する-ワークブック** | **いいえ** | Sigmaは、各接続用に構成されたユーザーのOAuth資格情報で常にクエリを実行します。 |
+
+#### **要件 (Requirements)**
+* ワークブックでこの設定を構成するには、`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* `Run as service account`オプションは、以下の基準を満たすOAuth接続を使用するワークブックでのみ利用可能です。
+    * OAuth接続用にサービスアカウントが構成されている。
+    * OAuthが組織レベルで構成されている。（この機能は独立したOAuthを持つ接続では利用できません。）
+
+#### **個々のワークブックをサービスアカウントとして実行する (Run an individual workbook as a service account)**
+1.  ワークブックを`Published`モードで開きます。
+2.  キャレット()をクリックしてワークブックメニューを開きます。
+3.  `Share…`を選択します。
+4.  `Run as service account`の隣にあるトグルをオンにします。
+
+### 2-2-3 接続で使用されるロールを動的に割り当てる (Dynamically assign roles used by a connection)
+
+割り当てられたユーザー属性の値に基づいて、特定のユーザーまたはユーザーチームが、それをサポートする新規または既存の接続で使用するロールを動的に割り当てることができます。
+
+> 📘
+> この機能は、すべてのデータプラットフォーム接続でサポートされているわけではありません。あなたの接続がサポートしているかを確認するには、「[サポートされているデータプラットフォームと機能の互換性](https://help.sigmacomputing.com/docs/region-and-feature-support)」を参照してください。
+
+動的に割り当てられたロールを使用して、埋め込みユーザーのチームがセキュアに埋め込まれたコンテンツにアクセスするために使用すべきロールを割り当てるなど、さまざまなユースケースのユーザーアクセスを管理します。接続で複数のロールを使用することで、Sigmaで手動で行レベルのセキュリティやセキュリティポリシーを再作成する代わりに、データプラットフォームで定義された行レベルのセキュリティを活用できます。
+
+> 📘
+> このオプションは、キーペア認証でのみ使用できます。OAuthを使用してSigmaをデータプラットフォームに接続している場合、このオプションは使用できません。
+
+接続で属性を構成した後、セキュアな埋め込みURLで外部の埋め込みユーザーに属性を割り当てることもできます。詳細は、「[埋め込みコンテンツのデータへのアクセスを制限する](https://help.sigmacomputing.com/docs/restrict-access-to-data-in-embedded-content)」を参照してください。
+
+> 💡
+> Snowflake接続の場合、`Warehouse`ユーザー属性を使用して仮想ウェアハウスを動的に割り当てることもできます。ウェアハウスを動的に割り当てることで、例えばSigmaをセキュアに埋め込む場合に、顧客ごとにコンピューティングコストを個別に管理できます。
+
+#### **要件 (Requirements)**
+* あなたは`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* また、この構成をサポートするために、データプラットフォームが設定されていることを確認する必要があります。
+    * 各ロールは、接続に関連付けられたユーザーまたはユーザーアカウントに付与されている必要があります。
+    * 各ロールには、関連するデータベースオブジェクトを使用するための権限が付与されている必要があります。
+    * Snowflakeのウェアハウスを動的に割り当てる場合、特定のウェアハウスで使用されるSnowflakeロールには、そのウェアハウスに対する少なくとも`USAGE`権限が付与されている必要があります。
+
+#### **ユーザー属性を構成する (Configure user attributes)**
+接続でユーザー属性を設定するには、まず`Role`ユーザー属性を作成し、それを関連するユーザーおよびユーザーのチームに割り当てる必要があります。
+1.  `Role`ユーザー属性を作成します。データプラットフォーム構成の適切なデフォルトロールに相当するデフォルト値を設定します。
+2.  `Role`ユーザー属性をユーザーとチームに割り当てます。ユーザー属性の値を、各チームまたはユーザーがデータにアクセスする際に使用してほしいロール名に設定します。
+> 💡
+> `Warehouse`属性についても同じ手順が適用されます。
+
+手順については、「[ユーザー属性を構成する](https://help.sigmacomputing.com/docs/user-attributes)」を参照してください。
+
+#### **接続でユーザー属性を設定する (Set user attributes on a connection)**
+ユーザーとチームにユーザー属性を作成して割り当てた後、新規または既存の接続でユーザー属性を使用するように構成します。
+1.  お使いのデータプラットフォームの接続を作成する手順に従います。
+    * Snowflake
+    * PostgreSQL
+    * AlloyDB
+    * MySQL
+2.  (Snowflakeのみ) `Connection Credentials`セクションの`Warehouse`フィールドで、`Set by user attribute`を選択して、以前に構成した`Warehouse`属性を参照して選択します。
+3.  `Connection Credentials`セクションの`Role`フィールドで、`Set by user attribute`を選択して、以前に構成した`Role`属性を参照して選択します。
+4.  接続の設定を完了します。接続を作成または保存すると、変更が有効になります。
+
+#### **セキュアな埋め込みでの使用 (Use with secure embeds)**
+「[埋め込みコンテンツのデータへのアクセスを制限する](https://help.sigmacomputing.com/docs/restrict-access-to-data-in-embedded-content)」を参照してください。
+
+### 2-2-3. SSH経由で接続する (Connect through SSH)
+
+Sigmaは、`PostgreSQL`、`Redshift`、`AlloyDB`、および`MySQL`接続に対して、Secure Shell (SSH) 経由での接続をサポートしています。
+
+SSHプロトコルは、クライアントとサーバーが安全なチャネル上で通信する、セキュアなリモートシェルプロトコルです。これには3つのレイヤーがあります。
+* **トランスポート層:** サーバーとクライアント間の通信を保護し、データの暗号化と復号化を監視し、接続の整合性を保護し、データをキャッシュし、データ圧縮を実行します。
+* **認証層:** 各セッションの開始時にクライアント認証を実行します。
+* **接続層:** 認証成功後に通信チャネルを管理します。
+
+SSHチャネルは、公開鍵暗号を使用してクライアントを認証します。接続を確立した後、SSHは情報を暗号化してサーバーとクライアント間で安全に交換します。これにより、特定のネットワークインフラストラクチャに依存しないデータセキュリティが提供されます。
+
+#### **要件 (Requirements)**
+* あなたのSigma組織における管理者権限。「[account types](https://help.sigmacomputing.com/docs/account-type-and-license-overview)」を参照してください。
+* PostgreSQL, Redshift, AlloyDB, または MySQLデータベース。
+
+#### **SSHサーバーのパラメータ (SSH server parameters)**
+SSH接続を有効にするには、以下のSigma情報をシステム管理者に送信してください。
+
+| | |
+| :--- | :--- |
+| **公開鍵** | `ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCfBoABeXmQjlx+Sc8V3WWMMPQKtFUEeRhg64WrZ0Om922TpJum1967LzGkHP/RIdZa95S0m8WRbGOzl9TeSzUz3jz2/NOxfwzzv/UKGsytzrkWaUZICPK/HlHF7kYWAT6gxMP3MGALwepYWwtPBAk+R3tba+T7siZYjI0URY+uFg329CiRuilPZ3AtsPoXQqEH3sdTPfT6RUKytiVSwCZgwsnzp4LyE2lSGTKRvMm90S+k5rPeQ20N9A6LAtLrFjCpaOwEqPK7JFJqAamOcST7mI/lYsB7+f6BuH8I7Vq+1xdHFEQ1Uy1KelxLcwdJ5FAsjdGPWb1pKYZInXfd/CxnFMyr++PVYOz6xCAxpfWzCn6zCYUieqsjUPk5mYxz4+tc7ejuWUTHf/htiPfW2JwUObt8xo0y4xIJ8G4qzueovlz5BxWyA55OfjOOqNU7OsyRMvqkSQrfvWtfD3T8RrL82fOUewGFur3RJYD1/Nj9RX8cZDjDipxStarFO1ORBDWwSzNPHkn/xzNWc/IsSPKsN9ZATFkUIN1PXjCqqhVhIrLCFb63DLK9xjo3JdQ40oYjHN1YCKLF5E2f+kjz4jZZSjvN+uDDp2BjV5a75bQvZjXOB32gjNnjZdi6krZEh9z//3NKj55zwqynjn0JTq3/dgQFYItVP4F4/bJORBcUfQ== info@sigmacomputing.com` |
+| **ユーザー** | `sigmacomputing` |
+| **Sigma IPアドレス** | SigmaのアウトバウンドIPアドレスは、Sigma管理ポータルのすべての個々の接続ページにリストされています。 |
+
+##### **SigmaのIPを取得する (Get Sigma IPs)**
+アプリからSigmaのIPを取得するには、以下の手順に従います。
+1.  管理ポータルを`Connection`ページで開きます。
+2.  任意の接続を選択するか、`Create Connection`をクリックします。
+3.  接続資格情報の下にあるIPアドレスを探します。
+
+#### **SSH経由でSigmaに接続する (Connect to Sigma through SSH)**
+1.  SigmaのSSH公開鍵をダウンロードまたは保存します。
+2.  あなたの許可リストにSigmaのIPを追加します。
+3.  SSHユーザーアカウントを作成し、`sigmacomputing`と名付けます。
+    * ユーザー`sigmacomputing`は公開鍵を通じて認証されます。
+4.  あなたのSSHサーバーの指示に従って、Sigmaの公開鍵を承認します。
+5.  ほとんどのサーバーでは、SSHのデフォルトポートは22です。これはSigmaのデフォルトポートでもあります。
+    あなたのSSHサーバーのポートがSigmaのポートと一致することを確認してください。
+6.  Sigmaで、管理ポータル内の接続ページに移動します。
+    a.  `Connection Credentials`の下で、`SSH Tunnel`をオンにします。
+    これらのパラメータを設定します。
+    * **Tunnel host:** これはあなたのIPアドレスです。
+    * **Tunnel port:** この値はあなたのSSHサーバーのポートと一致する必要があります。
+<img width="630" height="173" alt="9c7e113-connection-ssh" src="https://github.com/user-attachments/assets/11e25b89-a787-4c98-8e68-0d5988cf4205" />
+7. 既存の接続を編集している場合は、`Save`をクリックします。
+   新しい接続を作成している場合は、`Connection features`, `Write access`などの指定を続行します。
+
+### 2-2-4-1. AWS PrivateLink接続 (AWS PrivateLink Connections)
+
+Sigma組織がAmazon Web Services (AWS)で実行されている場合、AWS PrivateLinkを使用してデータに安全に接続できます。AWS PrivateLinkは、パブリックインターネット経由でトラフィックを送信することなく、AWS Virtual Private Cloud (VPC)間に接続を作成できるセキュリティ機能です。Sigmaは、PrivateLinkをサポートするすべてのAmazonリージョンで、AWS PrivateLinkを介してクラウドデータプラットフォームに接続できます。
+
+PrivateLinkのセキュリティ上の利点と内部構造に関する詳細は、AWSドキュメントの「[AWS PrivateLink](https://aws.amazon.com/privatelink/)」を参照してください。
+
+このドキュメントでは、SigmaからデータプラットフォームへのAWS PrivateLink接続を設定する方法について説明します。
+
+#### **システムとユーザー要件 (System and user requirements)**
+すべてのAWS PrivateLink接続には、以下が必要です。
+* AWSで実行されているSigma組織。
+    > ❗️
+    > 注：プライベートリンクを使用するには、Sigma組織がデータプラットフォームと同じクラウド上にある必要があります。組織がAzureを使用している場合は、「[Azure Private Link connections](https://help.sigmacomputing.com/docs/azure-private-link-connections)」を参照してください。
+* Sigmaで`Admin`アカウントタイプを割り当てられている必要があります。
+* AWS VPCにデプロイされたSnowflake（セルフマネージドまたはVPS）、Redshift、MySQL、SQL Server 2022、Starburst、Postgresデータウェアハウス、または任意のAWSリージョンにあるカスタムプロキシサーバー。
+    > 📘
+    > この機能は、BigQueryウェアハウスや、Azure、GCP、VMwareクラウドで実行されているセルフマネージドウェアハウスをサポートしていません。
+
+データプラットフォームと特定のPrivateLink構成方法によっては、追加の要件が適用される場合があり、以下の対応するセクションに記載されます。
+
+#### **PrivateLinkでデータに接続する (Connecting to your data with PrivateLink)**
+以下の手順は、既存のパブリック接続をPrivateLinkを使用するように更新する場合と、PrivateLinkを使用する新しい接続を作成する場合の両方をカバーしています。PrivateLinkを設定するプロセスは、組織が使用するデータプラットフォームによって異なります。
+* [Snowflake](#snowflake)
+* [Redshift](#redshift)
+* [Databricks](#databricks)
+* [MySQL, SQL Server 2022, PostgreSQL, Starburst, およびカスタムプロキシサーバー](#mysql-sql-server-2022-postgresql-starburst-or-custom-proxy-servers)
+
+---
+
+#### **Snowflake**
+PrivateLinkを介したSnowflakeへの接続は、Snowflakeの構成に依存します。
+* `Business Critical`（またはそれ以上）エディションのSnowflake顧客で、Virtual Private Server (VPS)またはプロキシサーバーを使用していない場合は、SnowflakeのPrivateLink統合を介して接続できる可能性があります。「[SnowflakeのPrivateLink統合で接続する](#connect-with-snowflakes-privatelink-integration)」を参照してください。
+* Snowflake顧客で、Virtual Private Server (VPS)またはプロキシサーバーを使用している場合は、「[独自のVPCを介してSnowflakeに接続する](#connect-to-snowflake-via-your-own-vpc)」を参照してください。
+
+##### **SnowflakeのPrivateLink統合で接続する (Connect with Snowflake’s PrivateLink Integration)**
+SnowflakeのPrivateLink統合により、Sigmaはデータを収容しているSnowflake VPCに直接、PrivateLinkを介して安全な接続を作成できます。
+* **追加要件:**
+    * SnowflakeはPrivateLinkサポートのために`Business Critical`エディション（またはそれ以上）を要求します。
+    * SnowflakeアカウントがVPSを使用しているか、プロキシサーバーでSigmaをSnowflakeに接続している場合、SnowflakeのPrivateLink統合は使用できません。
+    * Snowflakeアカウント管理者である必要があります（システムロールは`ACCOUNTADMIN`）。
+
+##### **独自のVPCを介してSnowflakeに接続する (Connect to Snowflake via your own VPC)**
+1.  VPCエンドポイントサービスを作成します。
+2.  新しく作成したVPCエンドポイントサービスをSigmaに検出可能にします。
+3.  SigmaのAmazon Resource Name (ARN)が必要です：`arn:aws:iam::185497759670:role/cdktf-operator`
+4.  Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡して、PrivateLink接続をインストールします。
+5.  インストール後、VPCエンドポイントサービスが新しい接続を手動で受け入れる必要がある場合は、Sigmaの新しいエンドポイント接続を受け入れる必要があります。
+6.  PrivateLinkを使用するように接続を更新します。
+
+---
+
+#### **Redshift**
+PrivateLinkを介したRedshiftへの接続は、Redshiftの構成に依存します。
+* RedshiftクラスターがRA3インスタンスタイプで、クラスターの再配置がオンになっている場合、SigmaはRedshift管理のVPCエンドポイントを介して接続することを推奨します。
+* そうでない場合は、独自のVPCを介してRedshiftに接続します。
+
+---
+
+#### **Databricks**
+* **追加要件:**
+    * Databricksプラットフォームは`Enterprise`ティアである必要があります。
+    * Databricksワークスペースは`us-west-1`リージョンにあってはなりません。
+    * Databricksワークスペースは、顧客管理である必要があります。
+
+##### **PrivateLinkでDatabricksに接続する (Connect to Databricks with PrivateLink)**
+1.  AWSアカウントに2つのVPCエンドポイントを作成します。
+2.  Databricksで、作成した2つのVPCエンドポイントを登録する必要があります。
+3.  Databricksで、リージョン用のSigma VPCエンドポイントを登録する必要があります。
+4.  Databricksで、PrivateLink接続を許可するためのプライベートアクセス設定オブジェクトを作成します。
+5.  Databricksで、新しいネットワーク構成を作成します。
+6.  新しいネットワーク構成とプライベートアクセス設定を含むようにDatabricksワークスペースを更新します。
+7.  Sigmaアカウントエグゼクティブまたはカスタマーアカウントマネージャーに連絡して、PrivateLink接続をインストールします。
+8.  PrivateLinkを使用するように接続を更新します。
+
+---
+
+#### **MySQL, SQL Server 2022, PostgreSQL, Starburst, またはカスタムプロキシサーバー**
+MySQL, SQL Server 2022, Starburst, PostgreSQL, またはカスタムプロキシサーバー（例：secuPi）を使用する組織の場合、AWS PrivateLinkで接続するには以下の手順を使用します。
+1.  VPCエンドポイントサービスを作成します。
+2.  新しく作成したVPCエンドポイントサービスをSigmaに検出可能にします。
+3.  SigmaのAmazon Resource Name (ARN)が必要です：`arn:aws:iam::185497759670:role/cdktf-operator`
+4.  Sigmaアカウントエグゼクティブ、カスタマーアカウントマネージャー、またはSigmaサポートに連絡して、PrivateLink接続をインストールします。
+5.  インストール後、VPCエンドポイントサービスが新しい接続を手動で受け入れる必要がある場合は、Sigmaの新しいエンドポイント接続を受け入れる必要があります。
+6.  PrivateLinkを使用するように接続を更新します。
+
+
 ### 第3章：データモデリング (Model Data)
-
 #### 3-1. データモデリングを始める (Get started with data modeling)
 
 データモデルはあなたのデータにセマンティックレイヤーを提供し、生データを変更することなく、構造化され管理された方法でデータを整理・保存することを可能にします。最も重要なのは、データモデルが再利用可能であるという点です。データモデルを作成すると、ビジネスロジックとメトリクスを一元管理でき、結合や長い数式を記述するような繰り返し作業を最小限に抑えることができます。
