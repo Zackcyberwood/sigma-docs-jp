@@ -1411,9 +1411,8 @@ create user sigma_user password ‘123’;
 create schema sigma_write;
 grant all privileges on schema sigma_write to sigma_user;
 grant usage on schema public to sigma_user;
-grant select on all tables in schema public to sigma_user;
-```sql
-SELECT * FROM my_table;
+grant select on all tables in schema public to sigma_user;```
+
 <img width="514" height="248" alt="b7ac16d-16" src="https://github.com/user-attachments/assets/a103ca32-5883-444d-b232-d435d3dc3925" />
 
 ##### **接続資格情報 (Connection credentials)**
