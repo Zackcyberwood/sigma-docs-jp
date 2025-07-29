@@ -1,4 +1,4 @@
-# Sigma日本語ドキュメント 構成案
+<img width="975" height="456" alt="image" src="https://github.com/user-attachments/assets/97bff070-a96e-4cfa-a030-c39c2082dae4" /><img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/01b7533d-bf74-4579-9586-404fc1e47587" /><img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/c912256d-9406-4d4b-9185-8b46011bd802" /># Sigma日本語ドキュメント 構成案
 
 #### 1-1-1. Sigmaについて (About Sigma)
 
@@ -2927,6 +2927,7 @@ Sigmaでデータカタログを管理する機能には、以下が必要です
     1.  Sigmaホームから `Connections` を選択して、接続されているデータソースのリストを開きます。
     2.  表示したいデータカタログを持つデータ接続を選択します。
     3.  左のナビゲーションパネルで、注釈を付けたいテーブルを検索または参照して探します。
+<img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/7d4a5a33-aa78-4abd-8b80-5cf8e0bb5bc2" />
 
 * **テーブルの説明を追加する (Add table descriptions)**
     データカタログでテーブルを見つけたら、説明を追加します。
@@ -2934,7 +2935,8 @@ Sigmaでデータカタログを管理する機能には、以下が必要です
     2.  テーブル名を選択してテーブルを開きます。
     3.  右上の `Edit` を選択します。
     4.  テーブル名の隣にある `More info` () を選択します。
-    5.  表示されるポップオーバーで、`Description` フィールドに説明を入力します。
+    5.  表示されるポップオーバーで、`Description` フィールドに説明を入力します。<img width="649" height="373" alt="9427d4eb8011689db736f8f38af96a6abbdb7879c19a948db8c7182c9ea74769-edit-table-descr-db-table" src="https://github.com/user-attachments/assets/9fee68fa-e4a9-475d-99c2-d49604f52eec" />
+
     6.  変更を保存するには、`Publish` を選択します。
 
 * **バッジを追加または更新する (Add or update a badge)**
@@ -2942,10 +2944,12 @@ Sigmaでデータカタログを管理する機能には、以下が必要です
     1.  データカタログでテーブルに移動します。
     2.  テーブル名を選択してテーブルを開きます。
     3.  テーブル名の隣にある `More info` () を選択します。
-    4.  ポップオーバーで、`Badge` ドロップダウンからオプションを選択します。
+    4.  ポップオーバーで、`Badge` ドロップダウンからオプションを選択します。<img width="1336" height="457" alt="78287f84edecad3e43dfabc88333e7bd32f9c6cbb4c9ce786d540c74d33b48b2-2025-02-13_23-12-13" src="https://github.com/user-attachments/assets/f4aa575c-02c5-46e7-acee-d26c5f151138" />
+
     5.  [任意] バッジを選択すると、ポップオーバーに `Badge note` フィールドが表示されます。バッジに関するコンテキストを提供するためにメモを追加します。
 
-    バッジは自動的に保存され、左パネルのテーブルアイコンに即座に反映されます。
+    バッジは自動的に保存され、左パネルのテーブルアイコンに即座に反映されます。<img width="1336" height="520" alt="1f561bb406350a33516423ea091c28754a95019249c2f0705029bab7e324d188-2025-02-13_23-40-41" src="https://github.com/user-attachments/assets/31a8401a-362e-4ca4-b02d-2d49a16210d5" />
+
 
 * **列の説明を追加する (Add column descriptions)**
     データソースのユーザーに追加のメタデータとガイダンスを提供するために、列に説明を追加します。
@@ -2953,7 +2957,8 @@ Sigmaでデータカタログを管理する機能には、以下が必要です
     2.  テーブル名を選択してテーブルを開きます。
     3.  右上の `Edit` を選択します。
     4.  `Columns` タブを選択します。
-    5.  `Description` 列で、テーブル内の任意の列に説明を追加します。
+    5.  `Description` 列で、テーブル内の任意の列に説明を追加します。<img width="1377" height="670" alt="cb0b2139d79fbdf4299ff32ddec3e859ac7e12c2be26834f4ebbb2c2837eb53c-update-columns-db-table" src="https://github.com/user-attachments/assets/2bad08e6-6fcf-4364-8b3d-10157935b24f" />
+
     6.  変更を保存するには、`Publish` を選択します。
 
 * **列をフォーマットする (Format columns)**
@@ -3005,7 +3010,7 @@ Sigmaでデータセット（CDWやDBMSのテーブルに基づくデータの�
 * [データセットのウェアハウスビュー](https://help.sigmacomputing.com/docs/dataset-warehouse-views)
 * [データセットのマテリアライゼーションAPI](https://help.sigmacomputing.com/docs/dataset-materialization-api)
 
-#### 3-9. データセットの作成と管理 (Create and manage datasets)
+#### 3-5-1. データセットの作成と管理 (Create and manage datasets)
 
 Sigmaでデータをモデリングしたい場合、データセットを作成することができます。データセットを作成すると、数式、データ変換、フィルタ、グルーピング、およびパラメータを、他の人がその上で構築できるリッチなデータソースにまとめることができます。また、[データセットをマテリアライズする](https://help.sigmacomputing.com/docs/dataset-materialization-api)ことで、データ分析を加速させるのに役立ちます。
 
@@ -3027,7 +3032,7 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
 1.  Sigmaホームから `Connections` を選択して、接続されているデータソースのリストを開きます。
 2.  表示したいデータカタログを持つデータ接続を選択します。
 3.  左のナビゲーションパネルで、テーブルを検索または参照して探します。
-4.  テーブル名を選択してテーブルを開きます。
+4.  テーブル名を選択してテーブルを開きます。<img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/1f53b9f6-568c-46a3-8abb-e11b17604c89" />
 5.  `Explore` の隣にあるキャレット()を選択して `Use this table` を選び、次に `Create Dataset` を選択します。
 6.  データセットに名前を付け、保存する場所を選択し、`Create` をクリックします。
 
@@ -3046,10 +3051,10 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
     データのステータス、品質、信頼性を示すために、認定バッジを追加または更新します。
     1.  データセットを開きます。
     2.  ヘッダーで `More info` () を選択します。
-    3.  ポップオーバーで、`Badge` ドロップダウンからオプションを選択します。
-    4.  [任意] バッジを選択すると、ポップオーバーに `Badge note` フィールドが表示されます。バッジに関するコンテキストを提供するためにメモを追加します。
-    
-    バッジは自動的に保存され、データセットのヘッダーに即座に反映されます。
+    3.  ポップオーバーで、`Badge` ドロップダウンからオプションを選択します。<img width="1336" height="591" alt="cd187ccbc76e4fecde9d0f17612432daf3ba0914f9c0f0e934d2dc34511a83b8-2025-02-13_23-25-54" src="https://github.com/user-attachments/assets/82cf8bed-4128-44fc-96ef-ef7264ad5490" />
+
+    4.  [任意] バッジを選択すると、ポップオーバーに `Badge note` フィールドが表示されます。バッジに関するコンテキストを提供するためにメモを追加します。<img width="1336" height="696" alt="5aac68f70f462ac91619f31e45d2721631771954fddde7e459a7261799826075-2025-02-13_23-33-20" src="https://github.com/user-attachments/assets/aa6dc357-5e9f-4b5d-8547-c0c66d7b3720" />
+    バッジは自動的に保存され、データセットのヘッダーに即座に反映されます。<img width="805" height="101" alt="f58ae3ac97e5a41634693591d4c86aee2f3ff6f2c16ffe8707a15accda535b95-2025-02-13_23-28-42" src="https://github.com/user-attachments/assets/05dd8850-86de-495e-a435-773d84760476" />
 
 **データセットを削除する (Delete a dataset)**
 
@@ -3065,7 +3070,7 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
 3.  `Trash` ページで、削除されたドキュメントのリストを検索し、復元したいものをクリックします。`Name`, `Deleted on`, `Deleted by` の列をソートして、該当するドキュメントを特定するのに役立てることができます。
 4.  `Document has been deleted` モーダルで、`Recover` をクリックします。Sigmaは復元されたドキュメントを即座に開きます。
 
-5.  #### 3-10. データセットのベストプラクティス (Dataset best practices)
+5.  #### 3-5-2. データセットのベストプラクティス (Dataset best practices)
 
 * **レベルを最小限にする (Minimize Levels)**
     データセットのワークシートタブにあるすべてのレベルは、そのデータセットを基に作成されたワークシートではフラット化されます。混乱を防ぐため、主要な計算に必要なレベルのみを作成してください。
@@ -3079,7 +3084,7 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
 * **マテリアライズする (Materialize)**
     データセットのマテリアライゼーションを設定している場合は、使用しているデータがデータベースでいつ更新されるかを確認してください。データベースの更新後に更新スケジュールが発生するように設定したいはずです。
 
-#### 3-11. チュートリアル：データセットを使用したデータモデリング (Tutorial: Data modeling with datasets)
+#### 3-5-3. チュートリアル：データセットを使用したデータモデリング (Tutorial: Data modeling with datasets)
 
 データチームは、ビジネスユーザーによるデータ探索を可能にするためにデータセットを作成することが多いですが、データセットは多くの理由で作成されます。例えば以下のような理由です。
 * ディメンショナルモデルの結合とフラット化
@@ -3094,26 +3099,30 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
 * あなたはCreatorアカウントタイプ、またはモデリング権限を含むカスタムアカウントタイプを割り当てられている必要があります。
 
 **データセットを作成する (Create Datasets)**
-1.  ホームページの上部で、`Create New` をクリックし、`Dataset` を選択します。
-2.  `Select a Data Source` ページで、`Table` オプションを選択します。
+1.  ホームページの上部で、`Create New` をクリックし、`Dataset` を選択します。<img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/8e338631-bbe2-4402-9fd9-722ff8607806" />
+2.  `Select a Data Source` ページで、`Table` オプションを選択します。<img width="1280" height="720" alt="a870abb-2" src="https://github.com/user-attachments/assets/3f0a601f-6ec5-487c-9bd0-75d77e257ed2" />
 3.  左パネルのConnectionsセクションを見つけ、`Sigma Sample Database` を選択します。
 4.  `Examples` データベースと `PLUGS_ELECTRONICS` スキーマを探します。
-5.  `F_POINT_OF_SALE` テーブルをクリックして、データのプレビューを表示します。
+5.  `F_POINT_OF_SALE` テーブルをクリックして、データのプレビューを表示します。<img width="1280" height="720" alt="664e345-3" src="https://github.com/user-attachments/assets/ba6dddb0-124a-43ce-80c8-2e11e59a4f5a" />
 6.  ページヘッダーの右上隅にある `Get Started` をクリックします。
 
 **データをモデリングする (Modeling Data)**
 
 * **計算を作成する (Create Calculations)**
     データセットを構築するためのテーブルを見つけたので、次に追加の列に計算を追加します。データセットに計算列を追加することで、組織によるメトリクスやKPIの計算方法の一貫性が保証されます。計算列は、アナリストが毎回共通の計算をワークブックに追加する必要がなくなるため、貴重な時間節約になります。
-    1.  画面上部の `Worksheet` タブをクリックします。
+    1.  画面上部の `Worksheet` タブをクリックします。<img width="1280" height="720" alt="625b47d-4" src="https://github.com/user-attachments/assets/8e1c23aa-2ab0-4ce5-9f60-80c9be905062" />
+
     2.  `Sales Amount` 列のキャレットアイコン()をクリックします。
-    3.  `Add New Column` をクリックします。
-    4.  数式バーに `[Sales Amount] * [Sales Quantity]` と入力します。
+    3.  `Add New Column` をクリックします。<img width="1280" height="720" alt="cb3609d-5" src="https://github.com/user-attachments/assets/3f2d53ec-665c-4112-a76e-68e8b09e8579" />
+
+    4.  数式バーに `[Sales Amount] * [Sales Quantity]` と入力します。<img width="1280" height="720" alt="05b82ff-6" src="https://github.com/user-attachments/assets/c2d9c4a6-b7ce-43be-9dd7-dad6e6ba98fa" />
+
     5.  キーボードの `Enter` をクリックします。
     6.  新しい列の名前をダブルクリックし、`Revenue` に変更します。
     7.  `Revenue` 列のキャレットアイコン()をクリックします。
     8.  `Format` を選択します。
-    9.  `Currency` を選択します。
+    9.  `Currency` を選択します。<img width="1280" height="720" alt="8cd0b4f-7" src="https://github.com/user-attachments/assets/ada28772-bd97-4aa7-9139-3bdec36c73c9" />
+
     10. ステップ1-5を繰り返し、`COGS` (Cost of Goods Sold) という名前の別の列を追加します。
         * 数式バーに `[Cost Amount] * [Sales Quantity]` と入力します。
     11. キーボードの `Enter` をクリックします。
@@ -3123,16 +3132,17 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
 * **追加のテーブルを結合する (Joining additional tables)**
     このデータセットに追加のテーブルを結合して、上記で作成したデータセットにさらなるコンテキストを追加しましょう。
     Sigmaはleft, right, full, inner joinタイプ、およびlookupをサポートしています。複数の列を結合したり、結合内で任意の関数（例：日付の切り捨て）を定義したりすることもできます。詳細は「[Join types](https://help.sigmacomputing.com/docs/join-data#join-types)」を参照してください。
-    1.  データセットが編集モードの状態で、データベースアイコンをクリックしてそのタブを開きます。これは右側のパネルにあります。
-    2.  データベースアイコンの下にあるプラスアイコン()をクリックします。これにより `Add Source` ページが開きます。
-    3.  データソースタイプとして `Table` を選択します。
+    1.  データセットが編集モードの状態で、データベースアイコンをクリックしてそのタブを開きます。これは右側のパネルにあります。<img width="1280" height="720" alt="9eb7f07-8" src="https://github.com/user-attachments/assets/3ff2bb2b-60eb-4282-be4a-21999f866a59" />
+    2.  データベースアイコンの下にあるプラスアイコン()をクリックします。これにより `Add Source` ページが開きます。<img width="1280" height="720" alt="73683cd-9" src="https://github.com/user-attachments/assets/b80e3a1c-e1b5-4e0d-be55-216b8b3b2822" />
+    3.  データソースタイプとして `Table` を選択します。<img width="1280" height="720" alt="7062633-10" src="https://github.com/user-attachments/assets/166feee8-e3db-4b30-848d-d72ed26f9adc" />
     4.  ページの左側、`Connections` の下で、`Sigma Sample Database` を選択します。
     5.  `Examples` データベースと `PLUGS_ELECTRONICS` スキーマを探します。
     6.  `F_SALES` テーブルをクリックしてデータのプレビューを表示します。
     7.  ページヘッダーの右上隅にある `Next` をクリックします。
     8.  `Join Type` で、デフォルトの `Left Join` を使用します。
     9.  左の結合キーセレクタを `ORDER_NUMBER` 列に設定します。
-    10. 右の結合キーセレクタを `ORDER_NUMBER` 列に設定します。
+    10. 右の結合キーセレクタを `ORDER_NUMBER` 列に設定します。<img width="1280" height="720" alt="97e1703-11" src="https://github.com/user-attachments/assets/d8c231f4-6b1b-42fd-8af0-ab1bed8f4a72" />
+
         * *注：Sigmaは両方のテーブルに同名の列を見つけた場合、これらのフィールドを自動的に入力します。*
     11. `Done` をクリックして、データセットのワークシートに戻ります。
         * *注：左側のパネルを見ると、`F_SALES` からの列がワークシートに存在し、`F_SALES` テーブルがデータソースとしてリストされていることがわかります。*
@@ -3143,15 +3153,17 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
         * **D_CUSTOMER**
             * Join Key: `CUST_KEY`
             * Columns: `CUST_NAME`, `CUST_JSON_FIELD`
+          <img width="1280" height="720" alt="52a6e07-12" src="https://github.com/user-attachments/assets/b34e0365-a0e3-4ea6-a8d7-b0f0ed1e34ba" />
+
         * *注：結合を介して追加されたすべての列には、括弧内にテーブル名が付加されます。列名をダブルクリックして名前を変更します。列をワークシートの新しい位置にドラッグして移動します。*
 
 * **JSONを抽出する (Extracting JSON)**
     SigmaではJSONを抽出する機能があります。
     1.  `Cust Json Field (D_CUSTOMER)` 列のキャレットアイコン()をクリックします。
-    2.  `Extract Columns` を選択します。
-    3.  `Extract Fields` モーダルで、`AGE_GROUP` と `LOYALTY_PROGRAM` フィールドを選択します。
+    2.  `Extract Columns` を選択します。<img width="1280" height="720" alt="a53e61c-13" src="https://github.com/user-attachments/assets/9eeafc18-ba84-465c-b3d1-50162bccfd7b" />
+    3.  `Extract Fields` モーダルで、`AGE_GROUP` と `LOYALTY_PROGRAM` フィールドを選択します。<img width="846" height="666" alt="87b764a-14" src="https://github.com/user-attachments/assets/2f7da950-91d3-4995-af6f-47dad5efe693" />
     4.  `LOYALTY_PROGRAM` のキャレットアイコン()をクリックします。
-    5.  `Logical` を選択します。
+    5.  `Logical` を選択します。<img width="1764" height="1314" alt="38b9a34-15" src="https://github.com/user-attachments/assets/8d970e26-6ff9-414d-8499-d596afc5cd83" />
     6.  `Confirm` ボタンをクリックします。
 
 * **データをフィルタリングする (Filter Your Data)**
@@ -3160,30 +3172,34 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
         1.  `[Date (F_SALES)]` のキャレットアイコン()をクリックします。
         2.  `Add Filter` を選択します。
         3.  フィルタータイプとして `Date Range` を選択します。
-        4.  `Select Date Range` フィールドをクリックして、日付選択メニューを表示します。
+        4.  `Select Date Range` フィールドをクリックして、日付選択メニューを表示します。<img width="1280" height="882" alt="2e7869e-16" src="https://github.com/user-attachments/assets/92957832-1681-45d5-9c05-53c97a3af867" />
+
         5.  モーダルの左側で `Relative` を選択します。
         6.  テキスト入力フィールドに `1` と入力します。
         7.  `...` メニューで `Weeks` を選択します。
             * *注：このフィルターにより、データは常に最新の週にフィルタリングされます。*
+        <img width="1280" height="720" alt="8ab028c-17" src="https://github.com/user-attachments/assets/67e26eef-16f4-4bd5-8f6e-1c34d18b20f3" />
         8.  `Save` をクリックします。
+           
     * **テキストフィルターを追加する**
         1.  `Store State` 列のドロップダウン矢印をクリックし、`Add Filter` を選択します。
-        2.  `Filter Values` ドロップダウンメニューをクリックします。
-        3.  `California`, `Texas`, `Michigan` のチェックボックスをオンにします。
+        2.  `Filter Values` ドロップダウンメニューをクリックします。<img width="1280" height="720" alt="0b9a2da-18" src="https://github.com/user-attachments/assets/70fbbc7f-3849-4a7b-b21e-d15eaaf8cedd" />
+        3.  `California`, `Texas`, `Michigan` のチェックボックスをオンにします。<img width="1280" height="931" alt="c22c926-19" src="https://github.com/user-attachments/assets/5ea71c4e-77ce-4fc5-84fc-38089e1897de" />
         4.  `Save` をクリックします。
 
 * **テーブルをリンクする (Link Tables)**
     データセットでリンクを定義することにより、ユーザーは結合されたデータをワークブックに追加するオプションを得ます。さらに、SigmaはSnowflakeでリレーショナルメタデータ（外部キー）が定義されているテーブルを自動的にリンクします。
-    1.  画面上部の `Links` タブをクリックします。
-    2.  `Add links to other source` をクリックします。
-    3.  左パネルの下部にある `Connections` をクリックします。
+    1.  画面上部の `Links` タブをクリックします。<img width="1280" height="720" alt="8fe0b5b-20" src="https://github.com/user-attachments/assets/c9d22d70-9f3f-4524-bc5b-9bbfc09d9257" />
+    2.  `Add links to other source` をクリックします。<img width="1280" height="720" alt="01dd00e-21" src="https://github.com/user-attachments/assets/c4c7afc5-5ae4-48bf-b441-ebd8b53ba1f3" />
+    3.  左パネルの下部にある `Connections` をクリックします。<img width="1280" height="931" alt="5dfc6e6-22" src="https://github.com/user-attachments/assets/5a182533-8299-4bb9-89e5-b80d00d81a88" />
     4.  `Sigma Sample Database` を選択します。
     5.  `Examples` と `PLUGS_ELECTRONICS` フォルダを探します。
-    6.  `D_PRODUCT` テーブルをクリックしてデータのプレビューを表示します。
+    6.  `D_PRODUCT` テーブルをクリックしてデータのプレビューを表示します。<img width="1280" height="931" alt="496b49d-23" src="https://github.com/user-attachments/assets/ca93aafa-ba17-46b0-b163-97a8561e81d4" />
     7.  `Next` をクリックします。
     8.  `Join Type` の選択を見つけ、`Left Join` を選択します。
     9.  左の結合キーセレクタを `PRODUCT KEY Link (F_POINT_OF_SALE)` に設定します。
-    10. 右の結合キーセレクタを `PRODUCT KEY` に設定します。
+    10. 右の結合キーセレクタを `PRODUCT KEY` に設定します。<img width="1280" height="931" alt="3222b66-24" src="https://github.com/user-attachments/assets/a9c0e90d-e868-4a84-a039-a3128104d654" />
+
     11. `Save` をクリックします。
     12. 画面上部の `Publish` ボタンをクリックして、すべてのデータセットの変更を保存します。
 
@@ -3191,21 +3207,26 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
     データセットにバッジを追加して、コンテンツが `Endorsed`（推奨）、`Warning`（警告）、または `Deprecated`（非推奨）であることを示します。任意のバッジノートを使用して、すべての組織メンバーに追加のコンテキストを提供できます。
     * **バッジを追加または更新する**
         1.  ページヘッダーの情報アイコン()をクリックします。これにより、ページのポップアップが開きます。
-        2.  ドロップダウンリストから `Endorsed` バッジタイプを選択します。
+        2.  ドロップダウンリストから `Endorsed` バッジタイプを選択します。<img width="1280" height="720" alt="15aebdc-25" src="https://github.com/user-attachments/assets/1b8a319d-2164-4f53-8bbe-f30585156509" />
 
 * **権限設定とデータセットの共有 (Setting Permissions & Sharing Datasets)**
     モデリングが完了したら、データセットを共有できます。ユーザーのチームや個人に[直接共有](https://help.sigmacomputing.com/docs/share-a-dataset#direct-share)するか、より広範に[ワークスペース](https://help.sigmacomputing.com/docs/share-a-dataset#move-to-workspace)に共有することができます。権限が付与されると、人々はデータセットを分析の基礎として使用できます。「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
     * **直接共有 (Direct Share)**
         1.  画面上部の `Permissions` タブをクリックします。
-        2.  `Add Permission` をクリックします。
-        3.  メンバーのメールアドレスまたはチーム名を検索します。
-        4.  選択したメンバーまたはチームに付与したい権限の種類を選択します。
+        2.  `Add Permission` をクリックします。<img width="1280" height="720" alt="cad52ef-26" src="https://github.com/user-attachments/assets/9a1fc4e7-0caf-40f7-b45c-56e0ee628ae5" />
+        3.  メンバーのメールアドレスまたはチーム名を検索します。<img width="1280" height="720" alt="4e2b5a3-27" src="https://github.com/user-attachments/assets/d0b0a57e-aa58-49f4-8f1a-5861d8f7e042" />
+
+        4.  選択したメンバーまたはチームに付与したい権限の種類を選択します。<img width="1280" height="720" alt="d975497-28" src="https://github.com/user-attachments/assets/63ae7d88-68e0-4a0e-8cfb-35cdfb68bdc7" />
+
             * *注：ユーザーはホームページの「Shared with Me」タブからデータセットにアクセスできるようになります。*
     * **ワークスペースへ移動 (Move to Workspace)**
         1.  データセットヘッダーの `More` をクリックします。
-        2.  `Move` をクリックします。
-        3.  `Workspaces` タブをクリックします。
-        4.  データセットを移動したいワークスペースを選択します。
+        2.  `Move` をクリックします。<img width="1280" height="720" alt="32e6e40-29" src="https://github.com/user-attachments/assets/94d2e7fe-4285-4944-a042-5c762f45f9ac" />
+
+        3.  `Workspaces` タブをクリックします。<img width="1280" height="931" alt="1384d2a-30" src="https://github.com/user-attachments/assets/bccc9553-f3c4-4af5-873e-ca0326b1c8de" />
+
+        4.  データセットを移動したいワークスペースを選択します。<img width="1280" height="931" alt="4b85bae-31" src="https://github.com/user-attachments/assets/802b8979-55f7-4e0d-9ccc-197514906a85" />
+
         5.  `Move` をクリックします。
 
 * **マテリアライゼーション (Materialization)**
@@ -3214,21 +3235,24 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
         * データセットの接続で[書き込みアクセス](https://help.sigmacomputing.com/docs/set-up-write-access)が有効になっている必要があります。
         * あなたは組織のAdminである必要があります。
     * **データセットにマテリアライゼーションを追加する**
-        1.  画面上部の `Materialization` タブをクリックします。
-        2.  `Create Schedule` をクリックします。
-        3.  データをマテリアライズする頻度を選択します。
+        1.  画面上部の `Materialization` タブをクリックします。<img width="1280" height="720" alt="b619d7a-32" src="https://github.com/user-attachments/assets/c3e820f0-541b-4f74-ad41-fe6ad9b93813" />
+        2.  `Create Schedule` をクリックします。<img width="1280" height="720" alt="f06593a-33" src="https://github.com/user-attachments/assets/a90ebbb3-2c12-46e9-a8aa-3d2a12113e6e" />
+        3.  データをマテリアライズする頻度を選択します。<img width="1280" height="720" alt="0bb4ee1-34" src="https://github.com/user-attachments/assets/ea225629-b222-4e36-92cc-9efc14e896db" />
         4.  `Save` をクリックします。
         マテリアライゼーションのスケジュールを保存すると、Sigmaは最初のマテリアライゼーションを実行します。
         スケジュールされた全てのマテリアライゼーションは、データセットの `Materialization` タブで表示できます。
 
-#### 3-12. データセットワークシート入門 (Introduction to the Dataset Worksheet)
+#### 3-5-4. データセットワークシート入門 (Introduction to the Dataset Worksheet)
 
 データセットのワークシートを使用すると、そのデータを構造化し、操作することができます。計算の作成、データのグループ化、フィルターやフォーマットの適用、パラメータの追加などが可能です。データセットのワークシートには、少なくとも一つのデータソースが含まれている必要があります。データソースの例としては、あなたの組織のデータウェアハウスのテーブル、アップロードされたCSV、さらには他のデータセットも含まれます。
 
+
 **ワークシートタブの構成 (Worksheet Tab Anatomy)**
+<img width="3584" height="1968" alt="65ea8e1-dataset-worksheet" src="https://github.com/user-attachments/assets/b217f5d3-14b5-401f-8123-aa0ad606396b" />
 
 * **数式バー (The Formula Bar)**
-    各ワークシートには、ページの上部近くに数式バーが配置されています。
+    各ワークシートには、ページの上部近くに数式バーが配置されています。<img width="3584" height="324" alt="fbb79de-20-dataset-worksheet-formula-bar" src="https://github.com/user-attachments/assets/c2e9b486-d3c6-4508-8180-73c28baf795c" />
+
     数式はセルではなく、列に適用されます。数式が列に適用されると、その列のすべての行に適用されます。
     データソースから直接データを参照している列を含め、すべての列には数式があります。列の数式を表示するには、その列を選択すると、数式バーに自動的にその数式が表示されます。
     ワークシートで新しい計算を作成するには、まず新しい列を追加し、その列に数式を追加する必要があります。Sigmaの最も[人気のある関数](https://help.sigmacomputing.com/docs/function-index)から始めてみましょう。
@@ -3236,16 +3260,19 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
 * **右側パネル (The Right Side Panel)**
     どのワークシートの右側にあるパネルにも、列ビューとデータソースリストの2つのコンポーネントがあります。
     * **列ビューパネル (The Column View Panel)**
-        列ビューパネルには、ワークシート内の全列の完全なリストが含まれています。非表示に設定されていない限り、これらの列はすべてワークシートのスプレッドシートに表示されます。
+        列ビューパネルには、ワークシート内の全列の完全なリストが含まれています。非表示に設定されていない限り、これらの列はすべてワークシートのスプレッドシートに表示されます。<img width="504" height="1626" alt="9c74941-21-dataset-worksheet-right-bar" src="https://github.com/user-attachments/assets/1f09111f-a8c9-406f-9fcc-c74b857be333" />
+
         ここから、ワークシートの列を整理し、レベルにグループ化することができます。前述のスプレッドシートセクションで述べたように、レベル化されたグループを作成することで、選択した列の共通の特性に基づいてデータの行をまとめることができます。列ビューパネルからデータをグループ化すると、それらのグループは自動的にワークシートのスプレッドシートに反映されます。
         この列ビューパネルには、ワークシートの合計のためのセクションも含まれています。合計は、ワークシートの最上位レベルに存在する単一値の列集計です。
     * **データソースパネル (The Data Source Panel)**
         ワークシートの右側パネルにある2番目のタブをクリックすると、データソースパネルが開きます。このパネルには、ワークシートのデータソースが表示されます。ここから、データソースを編集したり、結合したりすることができます。
         各データソースにはその列のリストが含まれているため、ソースのドロップダウン列リストから、ワークシートに欠けているデータソースの列を追加することもできます。
+<img width="510" height="1471" alt="9bc5ad9-22-dataset-right-datasource-tab" src="https://github.com/user-attachments/assets/4ab0a15f-063e-438c-b30b-afe5d37b22c1" />
 
 * **コントロールパネル (The Control Panel)**
-    ワークシートには、画面の左側に展開可能なコントロールパネルがあります。これには、ワークシートのフィルターとパラメータが含まれています。また、合計値が存在する場合は、それも含まれます。
-  #### 3-13. データセットワークシートのコントロール (Dataset worksheet controls)
+    ワークシートには、画面の左側に展開可能なコントロールパネルがあります。これには、ワークシートのフィルターとパラメータが含まれています。また、合計値が存在する場合は、それも含まれます。<img width="1644" height="1101" alt="bef05d1-23_-_dataset-worksheet-left-bar" src="https://github.com/user-attachments/assets/487a5b1a-ad1a-4f50-8d4c-d6c8cd1d9074" />
+
+  #### 3-5-4-1. データセットワークシートのコントロール (Dataset worksheet controls)
 
 **ユーザー要件 (User requirements)**
 
@@ -3258,6 +3285,7 @@ Sigmaでデータをモデリングしたい場合、データセットを作成
 Sigmaのワークシートコントロールは、ワークシートのテーブルおよびチャートエリアの真左に配置された、ワークシートコントロールパネル内にあります。この配置により、コントロールの値を作成・修正しながら、同時にデータがリアルタイムで応答するのを見ることができます。
 
 コントロールパネルを開くには、ワークシートの左側にある `CONTROLS` バー、またはツールバーの `Show Controls` ボタンをクリックします。
+<img width="1280" height="853" alt="06d6c4a-37_-_hide-controls" src="https://github.com/user-attachments/assets/afbbe2b1-8f40-4d00-b5bb-806df88673d4" />
 
 コントロールパネルは、その右側にある青いホバーバーをドラッグすることで、サイズ変更したり閉じたりすることができます。
 
@@ -3272,25 +3300,28 @@ Sigmaのワークシートコントロールは、ワークシートのテーブ
 **パラメータ (Parameters)**
 
 パラメータは、ワークシートに追加し、数式で参照できるカスタマイズ可能なフィールドです。パラメータは、What-If分析やユーザー入力分析にとって非常に大きな資産となり得ます。ワークシートのパラメータは、コントロールパネルの `PARAMETERS` セクションで作成および管理できます。「[Dataset parameters](https://help.sigmacomputing.com/docs/dataset-parameters)」を参照してください。
-#### 3-14. データセットワークシートの列 (Dataset Worksheet Columns)
+
+#### 3-5-4-2. データセットワークシートの列 (Dataset Worksheet Columns)
 
 列はSigmaで作業する上で中心的な役割を果たします。データセットワークシートを作成する際、既存の列を構造化・フォーマットしたり、列の計算を作成したり、データをソート・フィルタリングしたりすることができます。
 
 **データセットワークシートで列を表示する (View columns in dataset worksheets)**
 
 データセットのワークシートで作業する際、下のスクリーンショットのように見えます。このビューは、列の操作をすぐに始めるための2つの方法を提供します：ワークシートのスプレッドシートと列ビューパネルです。これら2つのコンポーネントのいずれかから変更が加えられると、あなたの列はもう一方でも自動的に更新されます。
+<img width="3584" height="1968" alt="3b0459e-dataset-worksheet" src="https://github.com/user-attachments/assets/3e47194b-2015-4185-865e-5d337ef38ea4" />
 
 * **スプレッドシートインターフェース (The spreadsheet interface)**
-    ワークシートのスプレッドシートインターフェースは中央に配置され、インタラクティブなスプレッドシートのようなインターフェースを提供します。全ての列アクションは、このテーブルから列メニューを使用して開始できます。
+    ワークシートのスプレッドシートインターフェースは中央に配置され、インタラクティブなスプレッドシートのようなインターフェースを提供します。全ての列アクションは、このテーブルから列メニューを使用して開始できます。<img width="982" height="505" alt="image" src="https://github.com/user-attachments/assets/718a6ecc-50e2-4f38-aa06-b11c44ee3528" />
 
 * **列ビューパネル (The column view panel)**
-    列ビューパネルはワークシートの右側にあります。これはワークシートの列のハイレベルな編集可能ビューを表示します。このパネルを使用して列を検索し、データをレベルにグループ化します。スプレッドシートと同様に、各列には[列メニュー](#column-menus)もあります。
+    列ビューパネルはワークシートの右側にあります。これはワークシートの列のハイレベルな編集可能ビューを表示します。このパネルを使用して列を検索し、データをレベルにグループ化します。スプレッドシートと同様に、各列には[列メニュー](#column-menus)もあります。<img width="973" height="476" alt="image" src="https://github.com/user-attachments/assets/034ba59d-d432-4de1-92d5-dc73f2f6ee94" />
 
 **列の詳細 (Column details)**
 
 Jsonを除く全てのワークシート列タイプで、列の詳細が利用可能です。個々の列の詳細と統計情報を表示するには、列メニューを開き、`Column Details...` を選択します。
 
-モーダルの内容は列のタイプによって異なりますが、全体的な構造は一貫しています。
+モーダルの内容は列のタイプによって異なりますが、全体的な構造は一貫しています。<img width="819" height="490" alt="3a0aedc-26-column-details" src="https://github.com/user-attachments/assets/2f715091-7100-4b07-885c-91f9ab0af204" />
+
 * **About (概要)**
     このセクションには、列のタイプ、名前、および数式（fx）がリストされます。
 * **Values (値)**
@@ -3329,6 +3360,7 @@ Jsonを除く全てのワークシート列タイプで、列の詳細が利用�
 
 * **列の移動 (Moving columns)**
     個々の列はドラッグ＆ドロップを使用して移動できます。これはスプレッドシートインターフェースと列ビューパネルの両方で可能です。
+<img width="772" height="427" alt="image" src="https://github.com/user-attachments/assets/d222c4d6-fed9-440d-a0f2-aa38dbab01ee" />
 
 * **列の名前変更 (Renaming columns)**
     列の名前を変更するには、列名をダブルクリックするか、列メニューから `Rename Column` を選択します。
@@ -3337,7 +3369,8 @@ Jsonを除く全てのワークシート列タイプで、列の詳細が利用�
 * **列の説明の追加 (Adding column descriptions)**
     * **列メニューから説明を追加または編集するには：**
         1.  列メニューを開きます。
-        2.  `Add Description` をクリックします。
+        2.  `Add Description` をクリックします。<img width="1255" height="833" alt="ac38dfe-28-column-description" src="https://github.com/user-attachments/assets/f3570534-5490-4573-b088-d7ba052dde57" />
+
         3.  テキスト入力ボックスに説明を入力します。
         4.  `Save` をクリックします。
     * **ワークシートツールバーから説明を追加または編集するには：**
@@ -3348,9 +3381,11 @@ Jsonを除く全てのワークシート列タイプで、列の詳細が利用�
 
 * **列の説明の表示 (Viewing column descriptions)**
     説明付きの列は、列ヘッダーの左上隅にある黄色いマーカーで識別できます。説明を表示するには、列ヘッダーにカーソルを合わせます。
+<img width="257" height="280" alt="03cce34-29-view-column-description" src="https://github.com/user-attachments/assets/b484ee93-57b4-4a08-af64-01a5ab49528c" />
 
 * **列の非表示と再表示 (Hide or unhide columns)**
-    列は、列メニューの 'Hide Column' アクションを使用して非表示にできます。非表示の列はスプレッドシートには表示されません。しかし、列ビューパネルからは引き続き表示され、操作可能です。列ビューパネルでは、非表示の列は表示されている隣の列と比較して「グレーアウト」して表示されます。
+    列は、列メニューの 'Hide Column' アクションを使用して非表示にできます。非表示の列はスプレッドシートには表示されません。しかし、列ビューパネルからは引き続き表示され、操作可能です。列ビューパネルでは、非表示の列は表示されている隣の列と比較して「グレーアウト」して表示されます。<img width="493" height="1257" alt="3c13e66-30-worksheet-column-menu" src="https://github.com/user-attachments/assets/053b2843-ad96-4c48-bf8b-b1413ee9bc3e" />
+
     非表示の列を再表示するには、その列のメニューから `Unhide Column` アクションを選択します。
     `Hide Other Columns` アクションを使用することもできます。これは選択した列を表示し、ワークシート内の他のすべての列を非表示にします。
     * *非表示の列はスプレッドシートからのみ非表示になります。ビジュアライゼーション、フィルター、計算列など、ワークシートの他の場所では引き続き使用できます。*
@@ -3363,12 +3398,14 @@ Jsonを除く全てのワークシート列タイプで、列の詳細が利用�
 * **複数列の選択 (Multi-column selection)**
     スプレッドシートと列ビューパネルの両方から複数の列を選択できます。範囲の列を選択するには、範囲の2番目の端点をクリックするときにshiftキーを押し続けます。複数の列を個別に選択および選択解除するには、各列をクリックするときに⌘キーを押し続けます。
     選択した列に対してアクションを実行するには、選択した列のいずれかの列メニューを開きます。すべての列アクションが複数選択された列に適用できるわけではありません。
+<img width="756" height="423" alt="image" src="https://github.com/user-attachments/assets/348e3607-3e71-4c7e-8705-6261130e1517" />
 
 **列の作成と計算 (Creating and calculating columns)**
 
 * **新しい列の追加 (Adding a New Column)**
     テーブルの中間に新しい列を挿入するには、新しい列を配置したい場所の直前にある列のメニューから `Add New Column` を選択します。
     テーブルの最後またはグルーピングレベルの最後の列として新しい列を追加するには、列ビューパネルの関連する `Add New Column` ボタンをクリックします。
+<img width="598" height="1148" alt="d3ca22a-32-add-new-column" src="https://github.com/user-attachments/assets/eb1bd1b8-1868-447a-b3b6-bd8b22bdd9f1" />
 
 * **数式バーを使用する (Use the formula bar)**
     数式バーは、ワークシートでのデータ計算の中心です。これはワークシートの上部、スプレッドシートの上、ツールバーの下にあります。
@@ -3379,32 +3416,34 @@ Jsonを除く全てのワークシート列タイプで、列の詳細が利用�
 **レベルのグルーピングを操作する (Working with level groupings)**
 
 * **データをグループ化する (Group your data):**
-    画面の右側で、グループ化したい列の名前を見つけます。その列を `Select Grouping Key` と書かれたボックスまでドラッグします。
-    ワークシートの上部または側部にある列名の右側の矢印をクリックしてアクセスする列メニューを使用して、集計列を簡単に作成できます。集計列を作成すると、それは自動的に次のレベルのグループの下にネストされます。
+  1.  画面の右側で、グループ化したい列の名前を見つけます。その列を `Select Grouping Key` と書かれたボックスまでドラッグします。
+  2. ワークシートの上部または側部にある列名の右側の矢印をクリックしてアクセスする列メニューを使用して、集計列を簡単に作成できます。集計列を作成すると、それは自動的に次のレベルのグループの下にネストされます。
     * *Holidayでグループ化し、売上データを合計する集計列を作成すると、新しい列はHolidayごとの総売上を表示します。*
-    画面右側の列名リストからグループ化したい列の名前を探し、その列名を `Base Columns` リストの上にドラッグすると、新しいレベルを追加するオプションが表示されます。ワークシートには2つのレベルのデータグルーピングが表示されます。全てのグループレベルの下にデータの集計列を作成できます。
+  3．画面右側の列名リストからグループ化したい列の名前を探し、その列名を `Base Columns` リストの上にドラッグすると、新しいレベルを追加するオプションが表示されます。ワークシートには2つのレベルのデータグルーピングが表示されます。全てのグループレベルの下にデータの集計列を作成できます。
 
 * **レベルを折りたたむ (Collapsing levels)**
     レベルを折りたたむと、必要なデータのみを表示するのに役立ちます。`Base Columns` ラベルの左にある二重矢印をクリックすることで、レベルを折りたたんだり展開したりできます。
+<img width="758" height="434" alt="image" src="https://github.com/user-attachments/assets/ad4e686f-dea3-4c53-a168-01cc638363f3" />
 
 **半構造化データを抽出する (Extract semi-structured data)**
 
-SigmaがJSONまたはVariant列タイプを検出すると、列メニューのオプションに「Extract Columns」が表示されます。データが半構造化されており、「Extract Columns」オプションが表示されない場合は、型関数 `JSON` または `Variant` を使用して、Sigmaがデータの列をどのように解釈するかを変更できます。
+SigmaがJSONまたはVariant列タイプを検出すると、列メニューのオプションに「Extract Columns」が表示されます。データが半構造化されており、「Extract Columns」オプションが表示されない場合は、型関数 `JSON` または `Variant` を使用して、Sigmaがデータの列をどのように解釈するかを変更できます。<img width="3584" height="1968" alt="2f108c1-39_-_json-data" src="https://github.com/user-attachments/assets/b21497f0-9df6-4eaa-80bb-cdb271e98674" /><img width="1639" height="1274" alt="2f67593-40_-_json-field-extract-modal" src="https://github.com/user-attachments/assets/f2b536a1-265c-4e29-836a-2636f6df22f7" />
 
-#### 3-15. データセットの合計 (Dataset Totals)
+
+#### 3-5-4-3. データセットの合計 (Dataset Totals)
 
 合計（Totals）は、ワークシートの最上位レベルに存在する、単一値の列集計です。合計は、ワークシートの右側パネルにある列ビュータブの下で作成できます。計算された合計値は、その後ワークシートの[コントロールパネル](https://help.sigmacomputing.com/docs/dataset-worksheet-controls)に表示されます。
 
 **合計を作成する (Create a Total)**
 
-1.  ワークシートの右側パネルにある**列ビュータブ**を開きます。
+1.  ワークシートの右側パネルにある**列ビュータブ**を開きます。<img width="487" height="1027" alt="49e2dbc-45-totals-right-inspector" src="https://github.com/user-attachments/assets/6cb39147-1e88-48b0-b811-477500215a58" />
+
 2.  `TOTALS` セクションの下にある `New Total...` をクリックします。
 3.  リストから列を選択して、推奨される集計合計を自動的に作成します。または、`Add Empty Column` を選択して、独自の数式を記述します。
     * この例では、`[Sales Amount]` 列を選択します。これにより、`Sum([Sales Amount])` という数式を計算する新しい列 `[Sales Amount - Sum]` が自動的に作成されます。
-4.  その列は右側の `TOTALS` リストに表示され、その数式は数式バーでアクセス可能になり、計算された値はコントロールパネルの `TOTALS` リストの下に表示されます。
+    その列は右側の `TOTALS` リストに表示され、その数式は数式バーでアクセス可能になり、計算された値はコントロールパネルの `TOTALS` リストの下に表示されます。<img width="3584" height="1968" alt="966e943-46_-_new_total" src="https://github.com/user-attachments/assets/1d95b341-4853-4d6e-8444-1570c95fdec6" />
 
-
-#### 3-16. データセットのフィルター (Dataset filters)
+#### 3-5-4-4. データセットのフィルター (Dataset filters)
 
 フィルターを使用すると、特定の条件を満たす行のみを表示するようにデータを制限できます。Sigmaのワークシートフィルターは、データセットワークシートの左側パネルに直接配置されているコントロールパネル内にあります。この配置により、フィルターの値を変更しながら、同時にデータがリアルタイムで応答するのを見ることができます。
 
@@ -3415,14 +3454,16 @@ SigmaがJSONまたはVariant列タイプを検出すると、列メニューの�
 **フィルターの構成要素 (Anatomy of a filter)**
 
 * **コントロールパネル (Control panel)**
-    フィルターは、データセットワークシートタブの左側にあるワークシートコントロールパネル内にあります。このパネルには、ワークシートの合計（Totals）とパラメータも含まれます。
+    フィルターは、データセットワークシートタブの左側にあるワークシートコントロールパネル内にあります。このパネルには、ワークシートの合計（Totals）とパラメータも含まれます。<img width="1274" height="710" alt="15ae7b2-47_-_filters-left-inspector" src="https://github.com/user-attachments/assets/7db8610e-83a1-4ff4-ab0b-a228c8a34740" />
 
 * **フィルターリスト (Filter list)**
     既存のすべてのフィルターは、コントロールパネルの `FILTERS` ヘッダーの下で利用できます。無効化されたフィルターはグレーアウトされます。
+<img width="407" height="323" alt="584aef8-48_-_disabled-filter" src="https://github.com/user-attachments/assets/db5e3d7d-a9f8-4d1f-b535-d31a75b77302" />
 
 * **フィルター (Filter)**
     すべてのフィルタータイプは、フィルターリストに表示される際に同じ基本構造を持っています。
     以下は「Include」フィルターと「Range」フィルターの構成要素です。
+<img width="197" height="84" alt="4df978b-50_-_filter-56" src="https://github.com/user-attachments/assets/f44ca67d-8054-4395-a5b6-fea3ab2ad1c4" />
 
     1.  **列タイプアイコン (Column type icon)**
         フィルターされている列のタイプを示すアイコンです。
@@ -3438,11 +3479,13 @@ SigmaがJSONまたはVariant列タイプを検出すると、列メニューの�
         ホバー時にのみ表示されます。このメニューを開くと、編集や削除などの追加アクションが表示されます。
     7.  **Null値を含めるチェックボックス (Include Nulls Checkbox)**
         フィルターされた列にnull値を含めるかどうかを選択できます。「Include/Exclude」フィルターには「Include Nulls」チェックボックスは適用されません。代わりに、nullはフィルター値入力リストの値としてリストされます。Text Matchフィルターには適用されません。
+<img width="197" height="92" alt="8fd531d-51_-_filter7" src="https://github.com/user-attachments/assets/504e176d-c0c2-4f2b-b437-4d3e9815e07c" />
 
 **フィルターモーダル (The Filter Modal)**
 
 フィルターモーダルを使用すると、SigmaのCreatorはフィルターを作成および編集できます。モーダルのフィールドオプションは、選択した列タイプとフィルタータイプによって異なります。
 コントロールパネルのフィルターで直接値を選択する場合とは異なり、フィルターモーダルでの値の選択は、`Save` をクリックした後にのみワークシートデータに適用されます。
+<img width="426" height="366" alt="344c926-52_-_filter-modal" src="https://github.com/user-attachments/assets/862c1f25-c8da-46e6-88e9-e1d5a8e904cf" />
 
 **フィルタータイプ (Filter Types)**
 
@@ -3486,38 +3529,49 @@ Sigmaワークシートは7つのフィルタータイプをサポートして�
 **フィルターを作成する (Create a filter)**
 
 * **コントロールパネルからフィルターを作成する**
-    1.  [コントロールパネル](https://help.sigmacomputing.com/docs/dataset-worksheet-controls#opening-and-closing-the-control-panel)がまだ開いていない場合は、折りたたまれたCONTROLSバーまたはワークシートツールバーの `Show Controls` ボタンをクリックして開きます。
-    2.  パネルの `FILTERS` セクションの右側にある `+` アイコンをクリックします。
+    1.  [コントロールパネル](https://help.sigmacomputing.com/docs/dataset-worksheet-controls#opening-and-closing-the-control-panel)がまだ開いていない場合は、折りたたまれたCONTROLSバーまたはワークシートツールバーの `Show Controls` ボタンをクリックして開きます。<img width="1449" height="545" alt="c2bbe1f-53_-_show-controls" src="https://github.com/user-attachments/assets/9c91b6ad-3095-49d8-9c40-6b242e44045e" />
+
+    2.  パネルの `FILTERS` セクションの右側にある `+` アイコンをクリックします。<img width="1248" height="614" alt="1c7d692-54_-_add_new_filter" src="https://github.com/user-attachments/assets/ffd0e9fa-f58e-4e05-ad51-61e9cb85f724" />
+
     3.  `Add Filter` モーダルが画面に表示され、ワークシートからフィルターする列を選択するように求められます。
-    4.  ドロップダウンリストから `Column` を選択します。
-        * *注：選択する列のタイプによって、続くステップが決まります。これは、フィルタータイプとフィルター値が列タイプに依存するためです。この例では、Text (abc) 列を選択します。*
-    5.  次に、ドロップダウンメニューから `Filter Type` を選択します。
-        * *この例では、デフォルトの ‘Include Values’ フィルタータイプを使用します。*
-    6.  `Filter value` の下で、フィルターする値を選択します。
-        * *IncludeとExcludeの両方のフィルタータイプは、カウントでランク付けされた値のリストを提供します。順序付けられたリストをスクロールするか、検索を使用して値を見つけて選択します。*
-    7.  `Save` をクリックして新しいフィルターを保存します。
-        * *新しいフィルターはワークシートコントロールパネルに表示され、ワークシートのスプレッドシートインターフェースと並行して選択した値を変更できます。*
+        ドロップダウンリストから `Column` を選択します。
+        * *注：選択する列のタイプによって、続くステップが決まります。これは、フィルタータイプとフィルター値が列タイプに依存するためです。この例では、Text (abc) 列を選択します。*<img width="417" height="280" alt="f017774-55_-_new_filter_type_popup" src="https://github.com/user-attachments/assets/2b4b2661-a57f-4fcf-9aea-1d83e3f3f6c4" />
+
+    4.  次に、ドロップダウンメニューから `Filter Type` を選択します。
+        * *この例では、デフォルトの ‘Include Values’ フィルタータイプを使用します。*<img width="419" height="336" alt="aa1f101-56_-_filter_type_select" src="https://github.com/user-attachments/assets/9679425f-d2f0-432e-9e9a-ffffca6597c5" />
+
+    5.  `Filter value` の下で、フィルターする値を選択します。
+        * *IncludeとExcludeの両方のフィルタータイプは、カウントでランク付けされた値のリストを提供します。順序付けられたリストをスクロールするか、検索を使用して値を見つけて選択します。*<img width="420" height="357" alt="15fb580-57_-_include_values" src="https://github.com/user-attachments/assets/9275ada3-dc4c-45f6-b61b-c3ded2ad62fa" />
+
+    6.  `Save` をクリックして新しいフィルターを保存します。
+        * *新しいフィルターはワークシートコントロールパネルに表示され、ワークシートのスプレッドシートインターフェースと並行して選択した値を変更できます。*<img width="1252" height="704" alt="4d4aaa2-58_-_completed_filter_add" src="https://github.com/user-attachments/assets/e416c18f-fad7-4cf6-89f6-3543af01b165" />
+
 
 * **列メニューからフィルターを作成する**
     1.  フィルターしたい列の[列メニュー](https://help.sigmacomputing.com/docs/dataset-worksheet-columns#column-menus)を開きます。
     2.  メニューから `Add Filter...` を選択します。
     3.  `Add Filter` モーダルが画面に表示され、列が選択され、デフォルトの `Filter Type` が設定されています。
-        * *注：選択した列のタイプによって、続くステップが決まります。この例では、Numeric (123) 列を選択しました。*
+        * *注：選択した列のタイプによって、続くステップが決まります。この例では、Numeric (123) 列を選択しました。*<img width="416" height="361" alt="0cb4258-59_-_range-filter" src="https://github.com/user-attachments/assets/b7fc56ac-3802-4574-be19-00e8665228ca" />
+
     4.  [任意] `filter type` を変更します。
         * *この例では、デフォルトの ‘Range’ フィルタータイプを使用します。*
-    5.  `Filter value` の下で、フィルターしたい範囲を選択します。最小値と最大値の両方を指定するか、範囲の一端を開いたままにすることができます。
+    5.  `Filter value` の下で、フィルターしたい範囲を選択します。最小値と最大値の両方を指定するか、範囲の一端を開いたままにすることができます。<img width="417" height="365" alt="390bcfa-60_-_numeric_range_filter" src="https://github.com/user-attachments/assets/f3ce9d0a-9c98-4183-b85f-2b1a11ea21ca" />
+
     6.  値を選択した後、フィルターにnull値を含めるかどうかを選択できます。デフォルトではnullが含まれます。
     7.  `Save` をクリックして新しいフィルターを保存します。
-        * *新しいフィルターはワークシートコントロールパネルに表示され、そこで選択した値を変更できます。*
+        * *新しいフィルターはワークシートコントロールパネルに表示され、そこで選択した値を変更できます。*<img width="1059" height="757" alt="7cd9e6c-61_-_numeric_filter_complete" src="https://github.com/user-attachments/assets/b195855d-7e89-414c-bc89-7ca0e2556fb0" />
+
 
 * **セルメニューからフィルターする**
     テーブルセルのコンテキストメニューを使用して、新しいinclude/excludeタイプのフィルターを作成したり、既存のものを変更したりすることが可能です。選択したセルの値でフィルターするには：
     1.  フィルターしたいセルを右クリックします。`cell menu` が開きます。
     2.  メニューから `Include` または `Exclude` を選択します。
-        * *あなたの選択はワークシートに適用され、コントロールパネルの `Filters` リストに反映されます。*
+        * *あなたの選択はワークシートに適用され、コントロールパネルの `Filters` リストに反映されます。*<img width="344" height="217" alt="c772da8-62_-_filter_from_cell" src="https://github.com/user-attachments/assets/aaa3a875-c69d-4e0f-a868-8526d98e5ff2" />
+
 
 **フィルターの値の選択を変更する (Modify a filter’s value selection)**
 コントロールパネルからフィルターの値の選択に加えられた変更は、自動的にワークシートのデータに適用されます。値選択の入力フィールドは、フィルタータイプに依存します。
+![e1d3ec9-63-change-filter-value](https://github.com/user-attachments/assets/8e72314c-e0a2-4dcf-89b1-ae0ae4fcacd6)
 
 **フィルターを編集する (Edit a filter)**
 以下の手順は、「Edit Filter」モーダルを開く方法を示します。ここから、フィルターの構造的な詳細を編集できます。
@@ -3526,7 +3580,8 @@ Sigmaワークシートは7つのフィルタータイプをサポートして�
     1.  [コントロールパネル](https://help.sigmacomputing.com/docs/dataset-worksheet-controls#opening-and-closing-the-control-panel)を開きます。
     2.  FILTERSリストで、編集したいコントロールにカーソルを合わせ、キャレットアイコンをクリックしてドロップダウンメニューを開きます。
     3.  `Edit Filter` をクリックします。
-        * *「Edit Filter」モーダルが開きます。目的の変更を加えて `Save` をクリックします。*
+        * *「Edit Filter」モーダルが開きます。目的の変更を加えて `Save` をクリックします。*<img width="321" height="346" alt="413a412-64_-_edit_filter" src="https://github.com/user-attachments/assets/7ed4cca8-d030-426f-8426-0590eb1a791a" />
+
 
 **フィルターを削除する (Delete a filter)**
 以下の手順は、フィルターを永久に削除します。代わりに、[フィルターを一時的に無効にする](https://help.sigmacomputing.com/docs/dataset-filters#temporarily-disabling-a-filter)こともできます。
@@ -3537,12 +3592,12 @@ Sigmaワークシートは7つのフィルタータイプをサポートして�
 **フィルターを一時的に無効にする (Temporarily disabling a filter)**
 1.  [コントロールパネル](https://help.sigmacomputing.com/docs/dataset-worksheet-controls#opening-and-closing-the-control-panel)を開きます。
 2.  `FILTERS` リストで、無効にしたいコントロールにカーソルを合わせます。
-3.  青いトグルスイッチをクリックしてフィルターを無効にします。
+3.  青いトグルスイッチをクリックしてフィルターを無効にします。<img width="260" height="356" alt="5a50ce4-65_-_disable_filter" src="https://github.com/user-attachments/assets/988da6c9-9224-4831-a73f-2fa423f06e18" />
 
 **フィルターの権限 (Filter permissions)**
 SigmaのCreatorまたはAdminであれば、アクセス権のあるデータセットワークシートでフィルターを表示、作成、編集、削除できます。ただし、他のワークシートの変更と同様に、作業を公開するにはワークシートに対する編集権限が必要です。閲覧専用のアクセス権しかない場合は、ワークシートの変更を新しいワークシートとして保存できます。「[Data permissions](https://help.sigmacomputing.com/docs/data-permissions)」を参照してください。
 
-#### 3-17. データセットのパラメータの作成と管理 (Create and manage dataset parameters)
+#### 3-5-4-5. データセットのパラメータの作成と管理 (Create and manage dataset parameters)
 
 データセットパラメータは、データセットワークシートに追加し、数式やカスタムSQLで参照できるカスタマイズ可能なフィールドです。データセットパラメータを作成して参照することで、計算で使用される値を動的に置き換えることができます。
 
@@ -3563,8 +3618,10 @@ what-if分析やユーザー入力分析には、定数値の代わりにパラ�
 
 **データセットワークシートでデータセットパラメータを表示する (View dataset parameters in a dataset worksheet)**
 
-1.  Sigmaホームから、既存のデータセットを選択するか、新しいものを作成します。「[Create Datasets](https://help.sigmacomputing.com/docs/create-and-manage-datasets)」を参照してください。
-2.  データセットを表示する際、データセットの `Worksheet` タブを表示しているときに、左パネルでデータセットパラメータにアクセスします。
+Sigmaホームから、既存のデータセットを選択するか、新しいものを作成します。「[Create Datasets](https://help.sigmacomputing.com/docs/create-and-manage-datasets)」を参照してください。
+
+データセットを表示する際、データセットの `Worksheet` タブを表示しているときに、左パネルでデータセットパラメータにアクセスします。
+<img width="827" height="410" alt="b696725abe4e295e9794d875546667de5ce83e253c80c940d0998e3aa13d1bf6-dataset-parameters-sidebar" src="https://github.com/user-attachments/assets/9f02cbc1-f267-4f75-8b7b-5f04add675cd" />
 
 左パネルでは、既存のすべてのデータセットパラメータが `Parameters` の下に表示されます。各パラメータについて、以下を確認できます。
 * **Data type:** パラメータの値のタイプを表します。テキスト(abc)、数値(123)、日付(カレンダー)など。詳細は「[Supported data types and formats](https://help.sigmacomputing.com/docs/data-types)」を参照してください。
@@ -3577,17 +3634,17 @@ what-if分析やユーザー入力分析には、定数値の代わりにパラ�
 1.  データセットを開き、そのデータセットの `Worksheet` タブを開きます。
 2.  `Edit` をクリックします。
 3.  左のコントロールパネルがまだ開いていない場合は、ツールバーの `Show Controls` をクリックするか、`Controls` バーを選択して展開します。
-4.  `Parameters` セクションで、`Add Parameter` をクリックします。
-5.  `Add Parameter` モーダルが開きます。
-6.  `Parameter Name` に、パラメータの名前を入力します。
-7.  (任意) 説明を追加します。
-8.  パラメータの `Data Type` (Text, Number, Date) を選択します。
-9.  `Suggested Values` オプションが、パラメータの入力タイプを決定します。以下のいずれかを選択します。
+4.  `Parameters` セクションで、`Add Parameter` をクリックします。<img width="295" height="107" alt="f361738-3" src="https://github.com/user-attachments/assets/a4de45fa-1dfe-4469-a2b0-2930f9ee5e9d" />
+    Add Parameter` モーダルが開きます。<img width="759" height="550" alt="f6c91d6-4" src="https://github.com/user-attachments/assets/94c11c2c-b6bb-4481-af10-69db0b40e930" />
+5.  `Parameter Name` に、パラメータの名前を入力します。
+6.  (任意) 説明を追加します。
+7.  パラメータの `Data Type` (Text, Number, Date) を選択します。
+8.  `Suggested Values` オプションが、パラメータの入力タイプを決定します。以下のいずれかを選択します。
     * **All:** データ型に応じて、テキスト、数値、または日付の値にすることができます。
     * **List:** カスタムの値オプションのセット。ユーザーはリスト内の任意の値を選択できます。「[Use a list of values in a dataset parameter](#use-a-list-of-values-in-a-dataset-parameter)」を参照してください。
-10. (任意) パラメータの `Default Value` を指定します。
-11. (任意) 日付または数値のデータ型の場合、パラメータ値の `Format` を指定します。
-12. `Save` をクリックします。
+9. (任意) パラメータの `Default Value` を指定します。
+10. (任意) 日付または数値のデータ型の場合、パラメータ値の `Format` を指定します。
+11. `Save` をクリックします。
 
 パラメータを作成した後、以下のいずれかの方法で使用できます。
 * データセットワークシートの左の `Controls` パネルで、値を変更する。
@@ -3598,7 +3655,8 @@ what-if分析やユーザー入力分析には、定数値の代わりにパラ�
 
 1.  [データセットパラメータを作成する](https://help.sigmacomputing.com/docs/create-and-manage-dataset-parameters#create-a-dataset-parameter)手順に従い、`Suggested Values` で `List` を選択します。
 2.  (任意) 日付または数値のデータ型の場合、パラメータ値の `Format` を指定します。例えば、数値を通貨としてフォーマットします。
-3.  `Values List` に、各値を追加します。表示フォーマットを定義した場合、`Display Value` はそのフォーマットを反映します。
+3.  `Values List` に、各値を追加します。表示フォーマットを定義した場合、`Display Value` はそのフォーマットを反映します。<img width="665" height="765" alt="3902776-6" src="https://github.com/user-attachments/assets/c146474a-449b-418b-b3a9-488b87ca8e0d" />
+
 4.  (任意) `Default Value` ドロップダウンメニューで、リストから値の1つを選択します。
 5.  `Save` をクリックします。
 
@@ -3608,9 +3666,11 @@ what-if分析やユーザー入力分析には、定数値の代わりにパラ�
 
 例えば、`Revenue` 列を持つデータセットに対して、`Min Sales Amount` パラメータを作成し、売上収益が最小販売額より大きいかどうかを評価する数式を計算することができます。
 1.  データセットに新しい列を追加します。
-2.  新しい列の数式バーに、角括弧で囲んだデータセットパラメータの名前を入力します。例： `[Min Sales Amount]`
+2.  新しい列の数式バーに、角括弧で囲んだデータセットパラメータの名前を入力します。例： `[Min Sales Amount]`<img width="524" height="404" alt="f5c940b-7" src="https://github.com/user-attachments/assets/b43e88c1-9441-4415-ab69-99bfbdb7f775" />
+
 3.  数式を反映するように列の名前を変更します。例： `Min Sales Param`
-4.  パラメータリストで、パラメータの値を更新し、列の変更を観察します。
+4.  パラメータリストで、パラメータの値を更新し、列の変更を観察します。<img width="550" height="554" alt="1d042f2-8" src="https://github.com/user-attachments/assets/43c1379e-7356-4178-8781-a72c66ab1004" />
+
 5.  列の数式を変更して、計算でパラメータを使用します。例えば、列の各行の `Revenue` が `Min Sales Amount` パラメータ値より大きいかどうかを、数式 `[Revenue] > [Min Sales Amount]` を使用して評価します。
     * Sigmaは自動的に列のブール値（論理値）を計算します。
 6.  パラメータリストで、パラメータの値を変更し、列のtrue/false値の変更を観察します。
@@ -3622,9 +3682,10 @@ what-if分析やユーザー入力分析には、定数値の代わりにパラ�
 1.  パラメータを作成します。「[Create a dataset parameter](https://help.sigmacomputing.com/docs/create-and-manage-dataset-parameters#create-a-dataset-parameter)」を参照してください。
 2.  列の数式でパラメータを参照します。「[Reference a dataset parameter in a formula in a dataset worksheet](#reference-a-dataset-parameter-in-a-formula-in-a-dataset-worksheet)」を参照してください。
 3.  その列のフィルターを作成します。
-    1.  列メニューから、`Add Filter` を選択します。
-    2.  `Add Filter` モーダルで、フィルタータイプと、データセットでフィルターするフィルター値を選択します。例えば、True値のみを表示するように選択します。
-    3.  `Save` をクリックします。
+    a.  列メニューから、`Add Filter` を選択します。
+    b.  `Add Filter` モーダルで、フィルタータイプと、データセットでフィルターするフィルター値を選択します。例えば、True値のみを表示するように選択します。<img width="448" height="365" alt="3576ba4-10" src="https://github.com/user-attachments/assets/a7ca69e7-f396-493e-9aee-aa4071a23b4d" />
+
+    c.  `Save` をクリックします。
     * フィルターはサイドパネルの `Filters` セクションに表示されます。パネルからパラメータとフィルターを更新できます。
 
 **SQLでデータセットパラメータを参照する (Reference a dataset parameter in SQL)**
