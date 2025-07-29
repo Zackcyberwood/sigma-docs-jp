@@ -1,4 +1,4 @@
-<img width="1094" height="222" alt="977f0d3-1" src="https://github.com/user-attachments/assets/a12ae1f5-8f85-4824-b28a-df7ff9a7d063" /># Sigma日本語ドキュメント 構成案
+# Sigma日本語ドキュメント 構成案
 
 #### 1-1-1. Sigmaについて (About Sigma)
 
@@ -1411,7 +1411,8 @@ create user sigma_user password ‘123’;
 create schema sigma_write;
 grant all privileges on schema sigma_write to sigma_user;
 grant usage on schema public to sigma_user;
-grant select on all tables in schema public to sigma_user;```
+grant select on all tables in schema public to sigma_user;
+```
 
 <img width="514" height="248" alt="b7ac16d-16" src="https://github.com/user-attachments/assets/a103ca32-5883-444d-b232-d435d3dc3925" />
 
