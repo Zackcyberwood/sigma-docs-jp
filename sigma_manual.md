@@ -1,4 +1,4 @@
-<img width="1035" height="530" alt="226323e2b44bb82c5ceb714d467e6f4936828e7cf44fc1a445ae103b2f9cc970-rls-formula" src="https://github.com/user-attachments/assets/f5213bbc-8222-4fdc-a258-0d5c2cf01e80" /><img width="1152" height="699" alt="5420bd8-image" src="https://github.com/user-attachments/assets/87b986c1-ac05-4992-9e77-aa3d2171f8bd" /><img width="1152" height="699" alt="5420bd8-image" src="https://github.com/user-attachments/assets/18cb0e16-8398-484b-bafa-16a0e3894691" /><img width="3584" height="1968" alt="ebb9e06-2" src="https://github.com/user-attachments/assets/3bbaba61-ff81-4b5a-8b51-6ae50362c780" /><img width="975" height="456" alt="image" src="https://github.com/user-attachments/assets/97bff070-a96e-4cfa-a030-c39c2082dae4" /><img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/01b7533d-bf74-4579-9586-404fc1e47587" /><img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/c912256d-9406-4d4b-9185-8b46011bd802" /># Sigma日本語ドキュメント 構成案
+<img width="1104" height="677" alt="775fdf901c6924bd9520d12b6abe90ebb8b95e8ec0799047a199552c270792d6-cs-pivot-end" src="https://github.com/user-attachments/assets/37cf621c-78f8-4164-ac25-47de8c4b1d4d" /><img width="1803" height="1068" alt="21e909698b4fbd7722baa409a162a0837eca48b4fc4c95f05ceeeb3772cb0e96-publishedlayour" src="https://github.com/user-attachments/assets/b08b0d9d-5ee7-41c2-b505-7a751d725d03" /><img width="1035" height="530" alt="226323e2b44bb82c5ceb714d467e6f4936828e7cf44fc1a445ae103b2f9cc970-rls-formula" src="https://github.com/user-attachments/assets/f5213bbc-8222-4fdc-a258-0d5c2cf01e80" /><img width="1152" height="699" alt="5420bd8-image" src="https://github.com/user-attachments/assets/87b986c1-ac05-4992-9e77-aa3d2171f8bd" /><img width="1152" height="699" alt="5420bd8-image" src="https://github.com/user-attachments/assets/18cb0e16-8398-484b-bafa-16a0e3894691" /><img width="3584" height="1968" alt="ebb9e06-2" src="https://github.com/user-attachments/assets/3bbaba61-ff81-4b5a-8b51-6ae50362c780" /><img width="975" height="456" alt="image" src="https://github.com/user-attachments/assets/97bff070-a96e-4cfa-a030-c39c2082dae4" /><img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/01b7533d-bf74-4579-9586-404fc1e47587" /><img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/c912256d-9406-4d4b-9185-8b46011bd802" /># Sigma日本語ドキュメント 構成案
 
 #### 1-1-1. Sigmaについて (About Sigma)
 
@@ -4929,6 +4929,7 @@ Sigmaは、ワークブック内での異なるレベルのインタラクショ
 公開済みのワークブックを操作することで、既存のデータとインサイトを閲覧できます。個々のユーザー権限によっては、新しいフィルターの変更または追加、データの更新、独自のカスタムビューおよび保存済みビューの作成も可能です。
 
 公開済みのワークブックでは、以下のオプションが利用可能です。権限によっては一部利用できない場合があります。
+<img width="1803" height="1068" alt="21e909698b4fbd7722baa409a162a0837eca48b4fc4c95f05ceeeb3772cb0e96-publishedlayour" src="https://github.com/user-attachments/assets/69cf7502-0a1a-4f4d-830d-7aa8f056c4c9" />
 
 * **a. ホーム (Home):** 「ホーム」に移動して、組織内の他のドキュメントの表示、管理ポータルへのアクセス、ユーザープロファイルなどを確認します。ホームページの操作の詳細については、「Sigmaの基本操作」を参照してください。
 
@@ -4980,7 +4981,7 @@ Sigmaは、ワークブック内での異なるレベルのインタラクショ
 
 * **j. リネージ (Lineage) ボタン:** ワークブック内のすべてのデータ要素間の関連性と系統を表示するために選択します。詳細については、「ワークブックのデータリネージの表示」を参照してください。
 
-##### 4-4. ワークブックでのライブ編集による共同作業 (Collaborate with Live Edit in workbooks)
+##### 4-1-4. ワークブックでのライブ編集による共同作業 (Collaborate with Live Edit in workbooks)
 
 あなたのチームは、すべての編集者が一つのライブドラフトを共有し、リアルタイムでワークブックのドラフトで共同作業できます。「ライブ編集」機能を使用すると、他の人がドラフトした変更が公開される前に、それらを表示し、貢献することができます。
 
@@ -5019,11 +5020,13 @@ Sigmaは、ドラフトに加えたすべての変更を自動的に保存し、
 **データ要素 (Data Elements)**
 
 データ要素には、データソースから直接構築されたテーブル、ピボットテーブル、およびビジュアライゼーションが含まれます。ワークブックは、複数のデータソースから派生した様々なデータ要素を含むことができます。詳細は、「データ要素の概要」を参照してください。
-![741f849-1](https://github.com/user-attachments/assets/c254ec04-96cf-467c-a15b-528f633377cb)
+![741f849-1](https://github.com/user-attachments/assets/c254ec04-96cf-467c-a15b-528f633377cb)!<img width="1410" height="921" alt="741f849-1" src="https://github.com/user-attachments/assets/efe3387b-f7c0-4431-972c-09622e03cd60" />
+
 **UI要素 (UI Elements)**
 
 UI要素には、コンテキストおよび/またはワークブックのスタイリングを追加するために使用されるボタン、区切り線、画像、スペーサー、埋め込み、およびテキストが含まれます。詳細は、「UI要素の概要」を参照してください。
 ![4a6bb19-2](https://github.com/user-attachments/assets/062134de-6d3e-4cfb-8f11-ae9f08309573)
+<img width="1407" height="566" alt="4a6bb19-2" src="https://github.com/user-attachments/assets/de0e363b-0134-4297-ad3a-8499b18d2093" />
 
 **コントロール要素 (Control Elements)**
 
@@ -5142,6 +5145,7 @@ Sigmaでは、ワークブックにプラグイン要素を追加して、Sigma�
     * 個々のプラグインが、各要素の構成オプションを定義します。
 
 プラグインは、データソースの最初の25,000行にしかアクセスできません。したがって、データの[グループ化と集計](https://help.sigmacomputing.com/docs/create-and-manage-tables#group-data)を行って、総行数を減らしてください。データソースに既にグルーピングが含まれている場合、エディタパネルは集計レベルを選択するように促します。   
+<img width="1374" height="761" alt="da70c96-4" src="https://github.com/user-attachments/assets/53426cb4-6a94-4b88-80ec-32631b3205bf" />
 
 #### 4-2-4. ワークブックのドラフトと公開 (Draft and publish a workbook)
 
@@ -5192,6 +5196,7 @@ Sigmaでは、ワークブックにプラグイン要素を追加して、Sigma�
 #### **ドラフトされた変更を公開する (Publish drafted changes)**
 
 編集内容を公開するには、ワークブックヘッダーにある `Publish` ボタンをクリックします。
+<img width="640" height="56" alt="425a499069dbf1dd267baf2fd2e98f6bda0c7591ab76eafbdfe0bf215761cf85-click-publish" src="https://github.com/user-attachments/assets/3ab432e5-f492-4fb1-bbb3-06bd9db4e496" />
 
 このアクションは、ライブドラフトを使用して他の編集者によって行われた変更を含む、ワークブックへのすべてのドラフトされた変更を公開します。
 
@@ -5380,6 +5385,7 @@ Sigmaのコピー＆ペースト機能を使用すると、様々な場所に要
 [ワークブック](https://help.sigmacomputing.com/docs/workbooks-overview)は多くの[要素タイプ](https://help.sigmacomputing.com/docs/intro-to-element-types)をサポートしています。データ要素は、データソースから直接構築される要素で、[テーブル](https://help.sigmacomputing.com/docs/create-and-manage-tables)、[ピボットテーブル](https://help.sigmacomputing.com/docs/create-and-manage-pivot-tables)、および[チャート](https://help.sigmacomputing.com/docs/build-a-chart)が含まれます。
 
 各タイプのデータ要素はデータを異なる方法で表示しますが、基盤となるデータは常に表形式で列ベースです。可視化またはピボット化されたデータの構造を理解するには、そのデータ要素の基盤となるデータを表示します。「[View underlying data](https://help.sigmacomputing.com/docs/view-underlying-data)」を参照してください。
+<img width="2120" height="1106" alt="1b9a491-1" src="https://github.com/user-attachments/assets/1099772c-e3cf-47ea-8fae-918ba0821d45" />
 
 #### **データ要素のデータソース (Data sources for data elements)**
 
@@ -5413,6 +5419,7 @@ CSVのアップロードやカスタムSQLの記述には、`Upload CSV`また�
 
 1.  カスタマイズまたは編集のためにワークブックを開きます。
 2.  `Add element`バーで、追加するものを選択します。テーブルまたはピボットテーブルを追加するには、`Data`を選択し、関連するオプションを選択します。チャートを追加するには、`Charts`を選択し、追加したいチャートを選択します。![6548f3d62f2bf56e028d80d33d25cff17dc6240d89c119c06d5f1822132bb083-element-bar-charts](https://github.com/user-attachments/assets/926712ca-999c-47c8-b835-e6b8742d129d)
+<img width="417" height="478" alt="6548f3d62f2bf56e028d80d33d25cff17dc6240d89c119c06d5f1822132bb083-element-bar-charts" src="https://github.com/user-attachments/assets/9ad95dab-83b4-4a47-8364-6a4a565495a1" />
 
 3.  データソースを選択します。データソースをすぐに追加するか、プレビューして特定の列を選択して追加することができます。
     * データモデル、データベースまたはカタログのテーブル、データセット、または他のワークブック要素をデータソースとして使用するには、検索を実行するか、現在のワークブックから`Elements`を参照するか、`Tables and Datasets`からテーブル、データモデル、またはデータセットを選択します。
@@ -5424,7 +5431,7 @@ CSVのアップロードやカスタムSQLの記述には、`Upload CSV`また�
     * データソースを組み合わせるには、`Join`または`Union`を選択します。「[Join data in workbooks](https://help.sigmacomputing.com/docs/join-data-in-workbooks)」を参照してください。
     * 既存のデータソースを転置するには、`Transpose`を選択します。「[Transpose a table](https://help.sigmacomputing.com/docs/transpose-a-table)」を参照してください。![90a6e3737967ff9d7b37c7b35a3d928aa62fb03ae773b312f7b13fc94174e1f9-source-picker](https://github.com/user-attachments/assets/982885ca-c810-4004-8f9a-dc2aba2ba85d)
 
-5.  要素のデータソースを選択すると、新しい要素がページに表示され、その要素のエディタパネルが開きます。
+要素のデータソースを選択すると、新しい要素がページに表示され、その要素のエディタパネルが開きます。
 
 #### **キャンバス上の既存の要素からデータ要素を作成する (Create a data element from an existing element on the canvas)**
 
@@ -5442,9 +5449,11 @@ CSVのアップロードやカスタムSQLの記述には、`Upload CSV`また�
 1.  カスタマイズまたは編集のためにワークブックを開きます。
     > 💡
     > エディタパネルが表示されていない場合は、`Show panels` ()をクリックします。
-2.  ワークブックキャンバスで要素を選択し、エディタパネルの`Properties`タブを選択します。
+2.  ワークブックキャンバスで要素を選択し、エディタパネルの`Properties`タブを選択します。<img width="344" height="214" alt="4baa4ca6ff00a9bf2c2b4ff1fa358a53906f2198677fe69a0bc409b9ed4eea94-change-groupings" src="https://github.com/user-attachments/assets/9998fdb3-a1e1-4cd3-93f7-39670e6f0d26" />
+
 3.  データソースは`Data source`の下に表示されます。
-4.  選択した要素のデータソースを表示、変更、または変換するには、データソース名の隣にある下矢印()を選択します。「[Change the data source for a workbook or element](https://help.sigmacomputing.com/docs/change-the-data-source-for-a-workbook-or-element)」を参照してください。
+4.  選択した要素のデータソースを表示、変更、または変換するには、データソース名の隣にある下矢印()を選択します。「[Change the data source for a workbook or element](https://help.sigmacomputing.com/docs/change-the-data-source-for-a-workbook-or-element)」を参照してください。<img width="340" height="232" alt="41b8041f63eb1869e65ef605b02c3ce4e4267acfa6a7fdd2d6aeea4a4126ea0d-change-groupings-open" src="https://github.com/user-attachments/assets/fa04a198-2b52-45cf-aeb4-09e65b029af5" />
+
 
 #### **データソースのグルーピングレベルを変更する (Change the grouping level of a data source)**
 
@@ -5607,7 +5616,7 @@ Sigmaのガイド付きワークフローで期間比較分析をすぐに始め
 1.  ワークブックを`Explore`または`Edit`モードで開き、更新したいデータ要素を選択します。ビジュアライゼーションで作業している場合は、要素を[最大化](https://help.sigmacomputing.com/docs/maximize-an-element)して基盤となるデータテーブルを表示および編集します。
 2.  テーブルで、既存の列ヘッダーのキャレット()をクリックして列メニューを開きます。
 3.  `Add column via`にカーソルを合わせ、`Period over period comparison`を選択します。![pop_add-column-via-period-over-period-comparison](https://github.com/user-attachments/assets/ba5d5fd4-4844-45df-9308-4e234f961713)
-
+<img width="1143" height="469" alt="pop_add-column-via-period-over-period-comparison" src="https://github.com/user-attachments/assets/aa1ae932-e9e8-42ed-9977-015e729ea5b8" />
 4.  `Add comparison`モーダルで、比較を構成し、`Done`をクリックします。
     * **Compare field:** 比較したいメトリックまたは変数を含む列を選択します。
     * **Aggregate:** 期間の値と比較値を計算するための集計方法を選択します。
@@ -5621,6 +5630,7 @@ Sigmaのガイド付きワークフローで期間比較分析をすぐに始め
         * **Value (値):**
             比較期間の合計メトリック値を生の数値として。
 ![pop_add-comparison](https://github.com/user-attachments/assets/01b77df3-8472-4810-b887-b58c2d0ef680)
+<img width="1219" height="490" alt="pop_add-comparison" src="https://github.com/user-attachments/assets/7091516c-e90c-4859-89f9-1e11f9875546" />
 
 テーブル要素では、Sigmaは現在の期間、期間の値、および比較値を含む期間比較のグルーピングを作成します（以下のスクリーンショットで示されています）。
 ピボットテーブルとビジュアライゼーションでは、Sigmaは切り捨てられた日付（選択された比較期間に基づく）と比較値を含む基盤となるデータ列を作成します。その後、新しい列を使用して要素のプロパティを構成できます。
@@ -5628,6 +5638,7 @@ Sigmaのガイド付きワークフローで期間比較分析をすぐに始め
 > 📘
 > データ要素のタイプに関わらず、`Output`フィールドで複数の比較値タイプを選択すると、Sigmaはそれぞれに対して個別の列を生成します。
 ![pop_add-comparison_results](https://github.com/user-attachments/assets/2d97c64b-ee13-4dda-909e-5899b70c5bae)
+<img width="1143" height="469" alt="pop_add-comparison_results" src="https://github.com/user-attachments/assets/d3269960-1fd4-4807-83a9-6daf7465648f" />
 
 > 💡
 > KPIチャートで期間比較を視覚化しましょう。詳細は、「[Build a KPI chart](https://help.sigmacomputing.com/docs/build-a-kpi-chart)」を参照してください。
@@ -5640,9 +5651,11 @@ Sigmaのガイド付きワークフローで期間比較分析をすぐに始め
 2.  `Add column via`にカーソルを合わせ、`Comparison time frame`セクションでオプションを選択します。
     > 📘
     > 利用可能なオプションは、既存の比較の日付の粒度に依存します。例えば、期間の値が月ごとに集計されている場合、他の月次期間とのみ比較できます。この場合、`Comparison time frame`のオプションには`Last month`、`Same month last quarter`、`Same month last year`が含まれます。`Last year`や`Same week last quarter`のような他の比較は、比例した期間比較を提供しないため利用できません。
+<img width="1143" height="469" alt="pop_add-column-via-comparison-time-frame" src="https://github.com/user-attachments/assets/56e401e9-a549-4034-9c1a-100b883d73ff" />
 
 Sigmaは同じグルーピングに新しい比較値の列を追加します。
 ![pop_add-column-via-comparison-time-frame](https://github.com/user-attachments/assets/82955489-7a5c-4cc5-97ab-2a43a62c9e0e)
+<img width="1143" height="469" alt="pop_add-column-via-comparison-time-frame_results" src="https://github.com/user-attachments/assets/764d674a-a3e0-4526-940e-d2c33077853a" />
 
 #### **既存の比較を編集する (Edit an existing comparison)**
 
@@ -5654,11 +5667,12 @@ Sigmaは同じグルーピングに新しい比較値の列を追加します。
 1.  テーブルで、変更したい比較値を含む列を探し、列ヘッダーのキャレット()をクリックして列メニューを開きます。
 2.  比較期間、比較値のタイプ、または集計方法を編集します。
     * 比較期間または比較値のタイプを変更するには、`Edit comparison`にカーソルを合わせ、異なる`Comparison time frame`または`Output`オプションを選択します。![pop_edit-comparison](https://github.com/user-attachments/assets/67b1d3c4-2b44-46f9-92fe-6ddabf87f522)![pop_edit-comparison_results](https://github.com/user-attachments/assets/7a02c168-0fe7-47b1-a90f-6a037af830bc)
-
-
+<img width="1255" height="489" alt="pop_edit-comparison" src="https://github.com/user-attachments/assets/febc9c47-f37f-44b8-87e7-21f1f9daa2c7" />
+<img width="1143" height="469" alt="pop_edit-comparison_results" src="https://github.com/user-attachments/assets/e5dca5a4-4ae8-4594-b19a-34da582dbad0" />
     * 集計方法を変更するには、`Set aggregate`にカーソルを合わせ、異なるオプションを選択します。![pop_set-aggregate]![pop_set-aggregate_results](https://github.com/user-attachments/assets/6e19707d-2ddc-429a-ab0b-cf4a5427cb19)
 (https://github.com/user-attachments/assets/de7873ac-b12e-4c28-b84f-fd8d27383d2f)
-
+<img width="1265" height="471" alt="pop_set-aggregate" src="https://github.com/user-attachments/assets/30ecc20e-e5e5-448b-a988-a55fc34d90d6" />
+<img width="1143" height="469" alt="pop_set-aggregate_results" src="https://github.com/user-attachments/assets/8cfbe669-b64e-421f-8720-cdfaaef5ba12" />
 
 ### 4-3-6. 列をフォルダに整理する (ベータ版) (Organize columns into folders (Beta))
 
@@ -5857,9 +5871,9 @@ Sigmaの任意の[関数](https://help.sigmacomputing.com/docs/function-index)�
 > この例では、Sigmaサンプルデータベースの`Events`テーブルを使用します。テーブルへのフルパスは`APPLICATIONS.GOOGLE_ANALYTICS.EVENTS`です。
 
 1.  `Events`テーブルをデータソースとしてテーブルを作成します。
-    1.  `Add element`バーで、`Data`を選択し、次に`Table`を選択します。
-    2.  `Select source`で、Sigmaサンプルデータベースの`APPLICATIONS.GOOGLE_ANALYTICS.EVENTS`テーブルを検索または参照します。
-    3.  データソースを選択して、データが入力されたテーブルをワークブックに追加します。!
+    a.  `Add element`バーで、`Data`を選択し、次に`Table`を選択します。
+    b.  `Select source`で、Sigmaサンプルデータベースの`APPLICATIONS.GOOGLE_ANALYTICS.EVENTS`テーブルを検索または参照します。
+    c.  データソースを選択して、データが入力されたテーブルをワークブックに追加します。!
 ![4c665843caf925b207ece88ed952cb376e5a14e4dd5171d85559b1839d884d62-group-events-start](https://github.com/user-attachments/assets/396063dc-a75d-4924-802f-2c9c145b0070)
 
 2.  `Groupings`の隣で、`+ Add grouping...`を選択し、`Host Name`を選択します。![76a4104c94711bcde148f8fd4f47f57bc779a1f30a842c3b08e1a65ee3842e68-group-add-column](https://github.com/user-attachments/assets/c970389d-29bd-4878-baee-c48ff8862702)
@@ -5868,20 +5882,21 @@ Sigmaの任意の[関数](https://help.sigmacomputing.com/docs/function-index)�
  `Count of User Pseudo Id`として計算列が作成されます。ユニークユーザーのみを見るように列を更新するには、集計を`CountDistinct`に変更します。
     a.  エディタパネルで、計算列名にカーソルを合わせ、下矢印()をクリックして列メニューを開きます。
     b.  `Set aggregate > CountDistinct`を選択します。
-    c.  列は`CountDistinct of User Pseudo Id`に更新されます。
-    d.  列名をダブルクリックして`Total Unique Users`に名前を変更します。![32c7bac2de9573341acbbd26bbf5a9186c59d5c0c4584456b1dce766fb2dd923-group-events-2-calc](https://github.com/user-attachments/assets/0d4beb43-d2ad-411f-b45b-5cd29b96c16e)
+        列は`CountDistinct of User Pseudo Id`に更新されます。
+    c.  列名をダブルクリックして`Total Unique Users`に名前を変更します。![32c7bac2de9573341acbbd26bbf5a9186c59d5c0c4584456b1dce766fb2dd923-group-events-2-calc](https://github.com/user-attachments/assets/0d4beb43-d2ad-411f-b45b-5cd29b96c16e)
 
-5.  グルーピング内で、`Calculations`の隣にある`+ Add calculation...`を選択し、`Event Name`を選択します。
-6.  `Count of Event Name`として計算列が作成されます。ページビューのみに焦点を当てるように列を修正するには、`CountIf`関数を使用して数式バーに新しい数式を入力します。
+4.  グルーピング内で、`Calculations`の隣にある`+ Add calculation...`を選択し、`Event Name`を選択します。
+   `Count of Event Name`として計算列が作成されます。ページビューのみに焦点を当てるように列を修正するには、`CountIf`関数を使用して数式バーに新しい数式を入力します。
     a.  `Count of Event Name`列を選択します。
     b.  数式バーで、数式を`Count([Event Name])`から以下に変更します。
         `CountIf([Event Name] = "page_view")`
     c.  キーボードのenterまたはreturnを押すか、チェックマークをクリックして数式を保存し、列を更新します。
     d.  列名は`CountIf of Calc`に更新されます。
     e.  列名をダブルクリックして`Total Page Views`に名前を変更します。
-7.  テーブルで、`Host Name`列の隣にある`-`を選択して、テーブル内のグループ化されていない行を折りたたみ、グループ化されたデータのみを表示します。![a7bb01d11d1e461de50ac4d87f06a879fbe64eb64e14176c864a3632cffdc4d8-group-events-collapse-3](https://github.com/user-attachments/assets/0b002c61-a450-47a7-9306-1317c01ecb3d)
+5.  テーブルで、`Host Name`列の隣にある`-`を選択して、テーブル内のグループ化されていない行を折りたたみ、グループ化されたデータのみを表示します。![a7bb01d11d1e461de50ac4d87f06a879fbe64eb64e14176c864a3632cffdc4d8-group-events-collapse-3](https://github.com/user-attachments/assets/0b002c61-a450-47a7-9306-1317c01ecb3d)
 
-8.  テーブルを読みやすくするために、総ページビューで列をソートできます。`Total Page Views`列について、下矢印()をクリックして列メニューを開き、`Sort descending`()を選択します。
+6.  テーブルを読みやすくするために、総ページビューで列をソートできます。`Total Page Views`列について、下矢印()をクリックして列メニューを開き、`Sort descending`()を選択します。<img width="897" height="140" alt="0ad87ade60f6dceeaf0d7157fbfbe22404f6ae00f0fa9817181733aa5bfce3b8-group-events-table-result-4" src="https://github.com/user-attachments/assets/71673a14-f768-4b34-8c42-d4bf46d92702" />
+
 これで、各ホスト名の総ページビューとユニークユーザーが、総ページビューでソートされたテーブルができました。テーブルをフォーマットすることで、折りたたまれた列を非表示にするなどの書式変更ができます。「[Format and customize tables](https://help.sigmacomputing.com/docs/format-and-customize-a-table)」を参照してください。
 テーブルを修正し、追加の列でグループ化できます。例えば、各ホスト名のトラフィックソース別のトップセッション開始を知りたい場合は、これらのステップを繰り返して`Traffic Source`列で2番目のグルーピングを追加し、`CountIf([Event Name] = "session_start")`でグルーピング内に計算を作成します。![2e1535ebcf679ed5ba8a760184cc7c46dbeffade67cd6b13426eb2b439136a33-group-events-grouping2](https://github.com/user-attachments/assets/e4462abd-809e-4386-969f-dc67c7059baf)
 
@@ -5939,9 +5954,11 @@ Sigma では、表形式データの表示を効率的かつ効果的にデザ�
 ##### **利用可能なテーブルスタイルのプリセット (Available table style presets)**
 Sigmaには、ワークブックのすべての表スタイルオプションを自動的に設定する2つのプリセットが含まれています。プリセットは、ワンクリックソリューションとして、またはカスタム表デザインの出発点として使用できます。
 * **スプレッドシート (Spreadsheet)**
-    スプレッドシートプリセット（デフォルト）は、継続的な分析と共同作業のために設計されています。読みやすさを確保し、ツールヒントや画像などの追加コンテキストを含めるのに最適です。
+    スプレッドシートプリセット（デフォルト）は、継続的な分析と共同作業のために設計されています。読みやすさを確保し、ツールヒントや画像などの追加コンテキストを含めるのに最適です。<img width="784" height="354" alt="eb2ccc5-image" src="https://github.com/user-attachments/assets/b4535931-89c2-42d7-b927-05e6e5e47195" />
+
 * **プレゼンテーション (Presentation)**
     プレゼンテーションプリセットは、表形式での表示向けに設計されています。企業ブランディングに合わせ、ワークブックに視覚的な魅力を加えるのに最適です。
+<img width="784" height="354" alt="7db37b0-image" src="https://github.com/user-attachments/assets/6300ad22-a46e-4193-9718-321b44c6a9c6" />
 
 ##### **カスタマイズ可能なテーブルスタイルオプション (Customizable table style options)**
 テーブル、ピボット テーブル、入力テーブル要素を使用して、ブランド化と美的要件を満たすように次のテーブル スタイル コンポーネントをカスタマイズできます。
@@ -5953,24 +5970,36 @@ Sigmaには、ワークブックのすべての表スタイルオプションを
 * セル形式 (Cell format)
 
 * **セル間隔 (Cell spacing)**
-    セル間隔設定では、表のセル内のテキストの周囲のパディングを調整できます。「極小(Extra small)」、「小(Small)」、「中(Medium)」、「大(Large)」の4つのオプションから選択できます。
+    セル間隔設定では、表のセル内のテキストの周囲のパディングを調整できます。「極小(Extra small)」、「小(Small)」、「中(Medium)」、「大(Large)」の4つのオプションから選択できます。<img width="376" height="220" alt="473d8a8-image" src="https://github.com/user-attachments/assets/3715b8ee-1899-4db5-8868-9551f477ec6a" />
+<img width="376" height="219" alt="5fcc740-image" src="https://github.com/user-attachments/assets/f17a88f0-57e0-4501-bbf3-08bc9d94718f" />
+<img width="376" height="219" alt="a7c8be7-image" src="https://github.com/user-attachments/assets/c6017d83-f189-4fde-bc3f-38880a5a5d53" />
+<img width="376" height="219" alt="3a0ab4b-image" src="https://github.com/user-attachments/assets/377b78e6-8bf7-403e-a2a2-7f6af132b801" />
 
 * **グリッド線 (Grid lines)**
     グリッド線の設定では、セルの境界線の表示を管理できます。「グリッドなし(No grid)」、「垂直グリッド(Vertical grid)」、「水平グリッド(Horizontal grid)」、「すべてグリッド(All grid)」の4つのオプションから選択できます。
+<img width="376" height="220" alt="769cfab-image" src="https://github.com/user-attachments/assets/b673626e-d0a0-4c64-923e-9b409948e4d0" />
+<img width="376" height="220" alt="9840201-image" src="https://github.com/user-attachments/assets/71c2de69-4064-4339-8aaf-7a2c9451f0ce" />
+<img width="376" height="218" alt="a63ea2f-image" src="https://github.com/user-attachments/assets/ac84a52e-5af3-4d6b-bae2-2a7d1d0d5280" />
+<img width="376" height="219" alt="af58fb0-image" src="https://github.com/user-attachments/assets/6243517a-44d1-4045-b975-c2f12fcbdc6a" />
 
 * **バンディング (Banding)**
     「バンドを表示(Show banding)」設定では、データ行の背景色を交互に変更できます。バンド表示の行の背景色は、デフォルトのヘッダーの背景色と一致します。
+<img width="376" height="220" alt="62da251-image" src="https://github.com/user-attachments/assets/565be85b-68ce-4f92-9431-42bd8e4f9c50" />
+<img width="376" height="220" alt="ad2addf-image" src="https://github.com/user-attachments/assets/675a5262-59e6-4ef7-a424-6a9ce60e49d2" />
 
 * **ヘッダー形式 (Header format)**
     「ヘッダー」タブには、表のヘッダーの書式設定に必要な設定とツールが含まれています。フォントの種類、サイズ、太さ、色、テキストの折り返し、テキストの配置、背景色、区切り線の色などをカスタマイズできます。
+<img width="648" height="313" alt="bc13511-image" src="https://github.com/user-attachments/assets/73609c3c-461d-4c06-ad7d-fe55fb32faa1" />
 
 * **サブヘッダー形式（ピボットテーブルのみ）(Subheader format (pivot tables only))**
     「サブヘッダー」タブには、サブヘッダーの行と列の書式設定を行うための設定とツールが含まれています。行ヘッダーと列ヘッダーの両方について、フォントの種類、サイズ、太さ、色、テキストの折り返し、テキストの配置、背景色の設定をカスタマイズできます。
+<img width="648" height="313" alt="9231f92-image" src="https://github.com/user-attachments/assets/a6de17d0-6f62-4da2-8883-da73cac1dbce" />
 
 * **セル形式 (Cell format)**
     「セル」タブには、データセルの書式設定に必要な設定とツールが含まれています。フォントの種類、サイズ、太さ、色、テキストの折り返し、テキストの配置、背景色の設定をカスタマイズできます。
     > 📘
     > ピボットテーブルでは、セルスタイルはデフォルトで値セルと合計セルの両方に適用されます。ピボットテーブルの合計セルに異なるスタイルを適用するには、 「[列と合計データの書式設定](#format-column-and-totals-data)」および「[ピボットテーブルの合計の書式設定](https://help.sigmacomputing.com/docs/format-pivot-table-totals)」をご覧ください。
+<img width="648" height="313" alt="2eee376-image" src="https://github.com/user-attachments/assets/29f15860-33e2-4b28-a8d4-dd6d25086985" />
 
 #### **表内の列の位置を書式設定する (Format column location in a table)**
 テーブル内の列の表示と操作を管理するには、テーブルまたはピボット テーブル内の列の位置を書式設定できます。
@@ -6113,7 +6142,8 @@ Sigmaには、ワークブックのすべての表スタイルオプションを
 
 データ列のリンクから画像を表示するには：
 1.  列にカーソルを合わせ、キャレット()をクリックして列メニューを開きます。
-2.  `Transform > Set image...`を選択します。
+2.  `Transform > Set image...`を選択します。<img width="375" height="709" alt="ca08e01-image" src="https://github.com/user-attachments/assets/6c7bf17c-84c5-4a66-bb3a-dae5f645de3f" />
+
 3.  `Set image options`モーダルで、`Display as image`トグルをオンにします。
 4.  画像のサイジング、高さ、幅、および画像のアスペクト比を維持するかどうかを指定します。
 5.  `Save`を選択します。
@@ -6140,10 +6170,11 @@ JSONまたはバリアントデータから列を抽出する機能には、以�
 1.  ワークブック内の列に移動します。この例では、`EXAMPLES.PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA`サンプルデータの`Cust Json`列を使用します。
 2.  列について、キャレット()をクリックして列メニューを開きます。
 3.  `Extract columns`を選択します。
-4.  `Extract Fields`モーダルが開きます。
-5.  モーダルで、独自の列に抽出したいJSONキーを選択します。選択した各JSONキーに対して一つの列が作成されます。
-6.  `Confirm`をクリックして、選択したキーと値のペアを抽出し、対応する列を作成します。
-7.  その後、新しい列をデータ探索や分析で使用できます。
+    `Extract Fields`モーダルが開きます。
+4.  モーダルで、独自の列に抽出したいJSONキーを選択します。選択した各JSONキーに対して一つの列が作成されます。
+5.  `Confirm`をクリックして、選択したキーと値のペアを抽出し、対応する列を作成します。
+<img width="711" height="760" alt="1740b22dd46ddd5706ead9883a0a60ff5be62b63c333c703d7748ab7f6897ef2-extractjson_4" src="https://github.com/user-attachments/assets/7882238e-0d46-49c6-88d1-5c6eb74254d7" />
+その後、新しい列をデータ探索や分析で使用できます。
 
 #### **列のデータ型を変換する (Convert the data type of a column)**
 
@@ -6173,9 +6204,11 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
 既存のデータ要素から、または`Add element`バーで`Data` > `Pivot table`を選択してピボットテーブルを作成できます。詳細は、「[Create a data element](https://help.sigmacomputing.com/docs/create-a-data-element)」を参照してください。
 
 ピボット行および/またはピボット列として使用するデータソース列を定義するまで、ピボットテーブルはデータを表示しません。エディタパネルの`Properties`タブで、以下のプロパティを構成します。
-* **Pivot rows (ピボット行):** テーブルから一つ以上の列を選択し、ピボットテーブルの行として表示します。例えば、製品タイプごとの総コストを要約するには、製品タイプ列をピボット行として追加します。
-* **Pivot columns (ピボット列):** [任意] 一つ以上のピボット行を定義した場合。各行の値を分割するために一つ以上の列を選択します。例えば、各店舗地域ごとの各製品タイプの総コストを要約するには、店舗地域列をピボット列として追加します。
-* **Values (値):** 各ピボット行と列の値を表示するために一つ以上の列を選択します。`Values`に追加された列はデフォルトで集計され、使用される集計のタイプは元の列のデータ型に依存します。例えば、コスト列を値として追加し、デフォルトの集計である`Sum`のままにするか、丸めて調整します。「[Change the aggregation of values](#change-the-aggregation-of-values)」を参照してください。
+* **Pivot rows (ピボット行):** テーブルから一つ以上の列を選択し、ピボットテーブルの行として表示します。例えば、製品タイプごとの総コストを要約するには、製品タイプ列をピボット行として追加します。<img width="1298" height="531" alt="6fd7287721b59c1407cc826eb2cb3c038ccc161b32f688f9624be2351f28e3d1-pivot-one-row" src="https://github.com/user-attachments/assets/24a0177a-2b38-4769-ad5b-21259ef3e82a" />
+
+* **Pivot columns (ピボット列):** [任意] 一つ以上のピボット行を定義した場合。各行の値を分割するために一つ以上の列を選択します。例えば、各店舗地域ごとの各製品タイプの総コストを要約するには、店舗地域列をピボット列として追加します。<img width="1298" height="531" alt="9394cca08b38349c8d7e2fb4b5035b0ab740f5015a1ab704623c196d9e49bac2-pivot-row-column-foreal" src="https://github.com/user-attachments/assets/60735bd5-bfbe-4d85-9701-a2f7f0f2a341" />
+
+* **Values (値):** 各ピボット行と列の値を表示するために一つ以上の列を選択します。`Values`に追加された列はデフォルトで集計され、使用される集計のタイプは元の列のデータ型に依存します。例えば、コスト列を値として追加し、デフォルトの集計である`Sum`のままにするか、丸めて調整します。「[Change the aggregation of values](#change-the-aggregation-of-values)」を参照してください。<img width="1297" height="540" alt="05af48a26bb503feba86d2186a46024c2446c4144f64f0a3cbf3202bfd27b18e-pivot-row-column-value" src="https://github.com/user-attachments/assets/f6d7b161-dce3-4b13-ba39-8439a7c08318" />
 
 ##### **ピボットテーブルの書式設定とカスタマイズオプション (Pivot table formatting and customization options)**
 多くの方法でピボットテーブルの書式設定と表示をカスタマイズできます。ピボットテーブルで合計を表示または非表示にするには、「[Pivot table totals and subtotals](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals)」を参照してください。
@@ -6199,6 +6232,13 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
 2.  ピボットテーブル要素を選択し、エディタパネルで`Format`タブを選択します。
 3.  `Format`をクリックします。
 4.  `Empty cell display value`に、値を入力します。
+| 選択したオプション | 例 |
+| :--- | :--- |
+| Default | (<img width="1299" height="531" alt="50db5684821a699ca21f3784ac74a71c493c65f6f58d1b2ba231b96b42feb71f-pivot-empty-cell-empty" src="https://github.com/user-attachments/assets/15ff1c64-d244-4b98-9537-d8ecfabadc49" />
+) |
+| Empty Cell display value | (<img width="1299" height="533" alt="73ba99717cf8011a6ca863d99ee3667fb442cffb155fb97a697eda9404f94454-pivot-empty-cell-full" src="https://github.com/user-attachments/assets/d559bf69-92c0-4b1e-bb37-2c6ac5ae30cc" />
+) |
+
 
 ##### **行ラベルを繰り返す (Repeat row labels)**
 複数のピボット行が定義されており、ピボット行のグルーピングを別々の列として表示することを選択した場合、行ラベルを繰り返すことができます。
@@ -6209,8 +6249,10 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
 
 | 選択したオプション | 例 |
 | :--- | :--- |
-| Default | (画像) |
-| Repeat row labels | (画像) |
+| Default | (<img width="1015" height="497" alt="e959ccd750408812bec170e10de3b6392fcb8b97f95ad0ceae132d110072809e-pivot-repeat-norepeat" src="https://github.com/user-attachments/assets/0ef4515f-9b12-4f65-af7d-ab3123b2cb2a" />
+) |
+| Repeat row labels | (<img width="1019" height="496" alt="6e415503b512c78f338619ad7950f21c783b228ed7ab596e72e73d80a57f809f-pivot-repeat-headers" src="https://github.com/user-attachments/assets/002b03d6-f059-44e7-b60e-72c64a0f1827" />
+) |
 
 ##### **ピボットテーブルの列を書式設定する (Format pivot table columns)**
 以下の列書式設定オプションが利用可能です。
@@ -6238,6 +6280,7 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
         * 書式を適用する列を選択します。
         * 単色、カラースケール、またはセルにデータバーを追加するかを選択します。
         * 書式を値、小計、または総計に適用するためのチェックボックスを選択します。
+<img width="1285" height="603" alt="97ba76222412421ae945ba2abe556394ab67000e516d58d9838f3d14f743032b-pivot-condi-format" src="https://github.com/user-attachments/assets/a47e4d9b-cfe4-4861-9ad5-cff9c9975039" />
 
 ##### **ピボットテーブルでデータ表示を変更する (Change data presentation in a pivot table)**
 ピボットテーブルのほとんどの複雑なデータ変換はフラット化されたソーステーブルで行うべきですが、いくつかの方法でピボットテーブルのデータ表示を操作できます。
@@ -6260,15 +6303,17 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
     合計に対するパーセンテージや期間比較分析など、ピボット全体で繰り返される計算を実行するために、ピボットテーブルに計算列を追加します。
     1.  ピボットテーブル要素を選択します。
     2.  `Values`セクションで、`+` > `Add new column`を選択します。
-    3.  `Calc`というタイトルの新しい列が表示され、フォーカスが数式バーに移動します。
-    4.  計算列の数式を入力し、キーボードのEnterを押すか、チェックマークを選択して保存します。列は数式の後に自動的に名前が変更されます。
-    計算列でピボットテーブルの合計を使用するガイダンスについては、「[Pivot table totals and subtotals](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals)」を参照してください。
+        `Calc`というタイトルの新しい列が表示され、フォーカスが数式バーに移動します。
+    3.  計算列の数式を入力し、キーボードのEnterを押すか、チェックマークを選択して保存します。列は数式の後に自動的に名前が変更されます。
+    計算列でピボットテーブルの合計を使用するガイダンスについては、「[Pivot table totals and subtotals](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals)」を参照してください。<img width="1293" height="434" alt="ab4cdda894a8c51f42486098735c1276156aa6cf1764279b4f996b296d471fd6-pivot-calc-column" src="https://github.com/user-attachments/assets/e8a26c65-f071-4366-87bc-05c108358bc0" />
 
 * **ピボットの列と行を交換する (Swap pivot columns and rows)**
     ピボットテーブルのレイアウトを変更し、行と列を交換できます。
     1.  ピボットテーブル要素を選択します。
-    2.  エディタパネルで、`Pivot rows`ヘッダーの隣にある`Swap rows with columns`をクリックします。
-    3.  ピボットテーブルの行と列が交換されます。
+    2.  エディタパネルで、`Pivot rows`ヘッダーの隣にある`Swap rows with columns`をクリックします。<img width="1364" height="371" alt="3ca38ccd9f31250cf851bef8ca993d35e9996cf60658d888a86c43b4f02b760f-pivot-swap-rows-start" src="https://github.com/user-attachments/assets/8e4c38da-51b9-4dcb-8710-5f2b672c35dc" />
+
+  ピボットテーブルの行と列が交換されます。
+<img width="1362" height="370" alt="3c68b2270e8141950bcb90c38156cc8f06022eb37687491ead106abee355b418-pivot-swap-rows-end" src="https://github.com/user-attachments/assets/65d172d2-edf3-475a-b0d7-40e792cd1613" />
 
 * **複数のピボット行を別々の列として表示する (Display multiple pivot rows as separate columns)**
     複数のピボット行がある場合、データを1つの列に結合して表示するか、別々の列として表示するかを選択できます。
@@ -6276,8 +6321,10 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
 
 | 選択したオプション | 例 |
 | :--- | :--- |
-| Display as a single column | (画像) |
-| Display as separate columns | (画像) |
+| Display as a single column | (<img width="1363" height="544" alt="28730a10b906e444ccb4d2e1dd893fd4178ebc87aba1def10b5061c002b813c6-pivot-display-single-column" src="https://github.com/user-attachments/assets/942092f8-7d63-4858-8752-548e8244418b" />
+) |
+| Display as separate columns | (<img width="1362" height="540" alt="3c58634d4cff505bb4be5d9b5abb0dbd327308da1597607f9a202dcf4ebf876d-pivot-display-separate-column" src="https://github.com/user-attachments/assets/12ccb45e-e00b-4c2e-8999-57dc62ebd7a3" />
+) |
 
 * **グループ化された行と列を折りたたむ (Collapse grouped rows and columns)**
     ピボットテーブルに`Pivot rows`または`Pivot columns`として少なくとも2つのデータ列が追加されている場合、行と列を展開および折りたたむことができます。そのためには、ピボットテーブルの行、列、またはセルヘッダーの値の隣にある`+`または`-`をクリックします。
@@ -6286,17 +6333,23 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
     ピボットテーブルに複数の値がある場合、表示したいデータの要約を反映するように、データ列、値、および行の階層とグルーピングを定義できます。
     ピボットテーブルの値の階層を構造化するには：
     1.  ピボットテーブル要素を選択します。
-    2.  `Values`として少なくとも2つの列を追加します。
-    3.  `Pivot columns`の下に`Values`というラベルの付いたボックスが表示されます。
+    2.  `Values`として少なくとも2つの列を追加します。<img width="1272" height="532" alt="2d9a9ce-pivot-values-default" src="https://github.com/user-attachments/assets/7da6a498-331e-48b4-bfb7-8d348836b6c8" />
+
+    3.  `Pivot columns`の下に`Values`というラベルの付いたボックスが表示されます。<img width="1103" height="356" alt="image" src="https://github.com/user-attachments/assets/a7544a77-7c4e-4d78-833c-467997973f65" />
+
     4.  デフォルトの階層を変更するには、`Values`ボックスを`Pivot columns`の下の別の位置または`Pivot rows`にドラッグ＆ドロップします。
         データの表示は、値の場所に基づいて変化します。
 
 | 値の場所 | 例 |
 | :--- | :--- |
-| Default, below pivot columns. | (画像) |
-| Above pivot columns. | (画像) |
-| Below pivot rows. | (画像) |
-| Above pivot rows. | (画像) |
+| Default, below pivot columns. | (<img width="1364" height="430" alt="53d50c851c2bdab1452c1ebb5f9c43c0b9d93da752ae7045e944f4083a4b90b8-pivot-values-defalt" src="https://github.com/user-attachments/assets/9d0cfe8c-849a-4a73-8a60-b6c4d7772ab7" />
+) |
+| Above pivot columns. | (<img width="1362" height="432" alt="b7852d55a05a3fd65debac5362915a562a3c79bd2390492428d751ee0c3bc848-pivot-values-columns-top" src="https://github.com/user-attachments/assets/cbcc6a1b-8549-4ab0-a73e-99e511974da5" />
+) |
+| Below pivot rows. | (<img width="1363" height="434" alt="eb65999386026c99f1d62a148c2477753268a5b04c0d335978ed4f74edffcd8e-pivot-values-rows-bottom" src="https://github.com/user-attachments/assets/49f203f2-b7a1-43e3-878c-ce12debf6916" />
+) |
+| Above pivot rows. | (<img width="1365" height="433" alt="3e3ec295014bb68502a2699aed2984fa31d98ade839120152bd3648126c2d4af-pivot-values-rows-top" src="https://github.com/user-attachments/assets/8363348c-35f7-421e-a7b2-e0be9a96a0b8" />
+) |
 
 * **ピボットテーブルを最大化してフラット化されたテーブルを表示する (Maximize a pivot table to view the flattened table)**
     ワークブックを表示、カスタマイズ、または編集中、すべての[データ要素](https://help.sigmacomputing.com/docs/create-a-data-element)はデフォルトで最小化され、キャンバスに複数の要素を表示します。任意のデータ要素を最大化して、その詳細に焦点を当て、基盤となるデータを探索できます。
@@ -6326,6 +6379,7 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
 総計の計算はテーブルまたはピボットテーブル全体に対して実行され、小計の計算はデータの各グルーピングに対して実行されます。
 * **総計 (Grand total):** ピボット行、ピボット列、またはグルーピング計算の**すべて**の値の集計計算。例のスクリーンショットでは、総計はピンクでハイライトされています。
 * **小計 (Subtotal):** ピボット行、ピボット列の**グループ**、または特定のテーブルグルーピングの値の集計計算。例のスクリーンショットでは、小計は黄色でハイライトされています。
+<img width="1319" height="554" alt="c6fff12-grand-and-sub-totals-both" src="https://github.com/user-attachments/assets/4623c309-944a-423d-b7ae-305be89adf65" />
 
 グループ化されたテーブルでは、各グルーピングの総計のみが数式で使用できます。ピボットテーブルでは、存在するピボット行、列、または値の数に応じて、`Subtotal`や`PercentOfTotal`などの関数で、他の計算済み合計を数式で使用できる場合があります。
 * **行合計 (Row Total):** 行の総計。ピボット行全体の値を集計します。複数のピボット行がある場合、これはグルーピングの最下位レベルの行の総計です。
@@ -6351,17 +6405,26 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
     2.  変更したいピボットテーブルを選択します。
     3.  サイドパネルで`Format`を選択し、`Totals`ヘッダーをクリックしてセクションを展開します。
     4.  `Grand Totals`で、トグルをオフにします。
+<img width="1071" height="503" alt="7ca84e2-hide-all-grand-totals-pivot" src="https://github.com/user-attachments/assets/0da8d869-9d56-459f-804c-ad6bb1451b44" />
 
 * **親行合計を非表示にする (Hide parent row totals)**
     行レベルの総計のみを非表示または削除するには、以下を実行します。
     1.  ピボットテーブルまたはエディタパネルで、列名の隣にある下矢印()を選択します。
     2.  ドロップダウンメニューで`Show totals`を選択し、チェックマークが消えるようにします。
+<img width="1183" height="513" alt="0d87323-hide-column-grand-totals-pivot" src="https://github.com/user-attachments/assets/8c4c6146-c34c-445a-a5fe-b376fdb1e1b3" />
 
 ##### **小計を非表示にする (Hide subtotals)**
 ピボットテーブルの小計を非表示または削除するには、以下を実行します。
 1.  エディタパネルで、`Element format`を選択します。
 2.  `Totals`を選択して、合計の書式設定セクションを開きます。
 3.  `Subtotals`で、トグルをオフにします。
+<img width="1041" height="437" alt="401bc93-hide-subtotals-column-view-pivot" src="https://github.com/user-attachments/assets/2b188739-11b8-4b55-9aad-8e40de33d092" />
+
+列レベルの総計のみを非表示または削除するには、以下を実行します。
+1.  ピボットテーブルまたはエディタパネルで、列名の隣にある下矢印()を選択します。この例では、`Quarter of Date`列です。
+2.  ドロップダウンメニューで`Show totals`を選択し、チェックマークが消えるようにします。
+3.  `Total`列がピボットテーブルから削除されます。
+<img width="1183" height="513" alt="0d87323-hide-column-grand-totals-pivot" src="https://github.com/user-attachments/assets/502d3111-e1fc-4aef-9efa-d9ec86f6fd4b" />
 
 ##### **合計と小計をカスタマイズする (Customize totals and subtotals)**
 グループ化されたテーブルとピボットテーブルの合計と小計の計算に使用される数式をカスタマイズすることで、より柔軟なレポートを構築します。異なる集計を設定するか、カスタム数式を記述してカスタム合計またはカスタム小計を設定します。集計数式をカスタマイズしなくても、合計と小計に使用される[ラベルをカスタマイズする](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals#customize-total-labels)こともできます。
@@ -6371,8 +6434,10 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
     1.  調整したい合計が表示されていることを確認します。
     2.  合計を持つピボットテーブルまたはグループ化されたテーブルを選択します。
     3.  小計または合計について、合計の行または列を探して選択します。
-    4.  以下のいずれかを実行します。
-        * 合計の行または列の任意のセルを右クリックしてコンテキストメニューを開きます。
+    4.  以下のいずれかを実行します。<img width="675" height="703" alt="10f87fdd591832fc1e09e07ab7afdc89f329979309e8ecbde88ee826f8288f8f-cs-set-agg-menu" src="https://github.com/user-attachments/assets/8c556dc4-ed6a-4baf-b4c0-afb272b38f33" />
+
+        * 合計の行または列の任意のセルを右クリックしてコンテキストメニューを開きます。<img width="1080" height="519" alt="f8f610d2db58346dbbe8fb2cec6f6d964f53120e5da55de8a64567445400ab81-cs-grouped-subtotal-avg" src="https://github.com/user-attachments/assets/897de9d1-7d5d-4611-8008-211f4906866f" />
+
         * 関連するピボット行、列、または上位レベルのテーブルグルーピング列について、下矢印()をクリックして列メニューを開きます。
     5.  `totals`を選択し、`Set aggregate`を選択して関連する集計関数を選択します。デフォルトは`Auto`（`Sum`）です。
 
@@ -6380,33 +6445,88 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
     小計または総計を計算するためにカスタム数式を記述するには、以下を実行します。
     1.  カスタマイズしたい合計の行または列を探します。
     2.  合計の行または列で、セルを選択して数式バーに数式を表示させます。
-    3.  数式バーで数式を更新します。
+<img width="1102" height="675" alt="6ebec90d4074d31ab021d4e20e2d1e6b3d0b921feae468f0bfc73539d656479e-cs-pivot-formula" src="https://github.com/user-attachments/assets/5d7e4126-f186-49e5-8112-136aded2428b" />
 
-* **合計ラベルをカスタマイズする (Customize total labels)**
-    テーブルまたはピボットテーブルの小計または総計のラベルをカスタマイズできます。
-    1.  名前を変更したい合計ラベルをテーブルまたはピボットテーブルで探します。
-    2.  ラベルをダブルクリックして編集可能にし、新しいラベルを入力します。
-    3.  キーボードのenterを押すか、セルの外側をクリックして新しいラベルを保存します。
+    3.  数式バーで数式を更新します。
+       例えば、各`Stadium Level`のすべての製品タイプの合計を計算しつつ、総計から最もパフォーマンスの低い製品タイプを除外するには、`Sum([Quantity])`を   `Sum([Quantity]) - Min([Sum of Quantity (Parent Row Total)])`に置き換えます。
+> 📘
+> あなたの数式は、トップレベルの値ではなく、集計された値に適用されなければなりません。そうしないと、非集計の結果が表示される可能性があります。
+
+数式はすべての`Stadium Level`の総計で更新され、総計のラベルは`Custom grand total`に変わります。
+
+[任意] 合計行のラベルを修正します。「[合計ラベルをカスタマイズする](https://help.sigmacomputing.com/docs/pivot-table-totals-and-subtotals#customize-total-labels)」を参照してください。
+<img width="1104" height="677" alt="775fdf901c6924bd9520d12b6abe90ebb8b95e8ec0799047a199552c270792d6-cs-pivot-end" src="https://github.com/user-attachments/assets/b5a52c63-cab2-4e03-9510-8fb2a606ea53" />
+
+##### **例：ピボットテーブルの総計をカスタマイズする (Example: Customize pivot table grand totals)**
+例えば、野球場のさまざまなレベルでの特定の製品タイプと製品ラインの売上を示すピボットテーブルがある場合、特定のスタジアムレベルで最もパフォーマンスの低い製品タイプの売上を除外する数式に総計を設定して、特定のスタジアムレベルで特定の製品タイプの販売を停止した場合の全体的な売上にどのように影響するかを確認できます。
+
+
+1.  ワークブックにピボットテーブルを追加し、`MLB_STADIUM_SALES_HANDS_ON_LAB`テーブルをデータソースとして使用します。
+2.  ピボットテーブルを次のように構成します。
+    * `Product Type`と`Product Line`列をピボット行として追加します。
+    * `Stadium Level`列をピボット列として追加します。
+    * `Sales Quantity`列をピボット値として追加します。これは自動的に`Sum of Sales Quantity`として集計されます。列の名前を`Total Sales Volume`に変更します。
+    * ピボットテーブルの表示を`Display as separate columns`に設定します。
+    > 📘
+    > この例では、小計は青で、総計セルは茶色で条件付き書式を使用してハイライトされており、フィルターが表示される製品タイプの数を制限しています。<img width="1382" height="668" alt="776a16dee7e8cca360d4be551b4eb7ae42658626a7eecddf3835498949c03154-cs-pivot-start" src="https://github.com/user-attachments/assets/9b5d387a-e7e8-4e96-8c9f-2dbb9eb2f216" />
+
+3.  各スタジアムレベルで最もパフォーマンスの低い製品ラインの売上を除外するカスタム数式に総計を変更するには、総計の行を探します。
+
+    * 総計の列は、すべてのスタジアムレベルにわたる各製品ラインの総販売量を計算し、総計の行は、各スタジアムレベルのすべての製品タイプの総販売量を計算します。
+4.  総計の行のセルを選択し、数式を`Sum([Sales Quantity])`から`Sum([Sales Quantity]) - Min([Total Sales Volume (Parent Row Total)])`に変更します。<img width="1102" height="675" alt="6ebec90d4074d31ab021d4e20e2d1e6b3d0b921feae468f0bfc73539d656479e-cs-pivot-formula" src="https://github.com/user-attachments/assets/4fa63e34-0249-47c4-9592-ba12982f2dd0" />
+
+ 行の総計値が更新され、ラベルが`Custom grand total`に更新されます。
+<img width="1104" height="677" alt="775fdf901c6924bd9520d12b6abe90ebb8b95e8ec0799047a199552c270792d6-cs-pivot-end" src="https://github.com/user-attachments/assets/ed283e61-0b8b-4057-bda1-f34f71ac4656" />
+
+##### **合計ラベルをカスタマイズする (Customize total labels)**
+テーブルまたはピボットテーブルの小計または総計のラベルをカスタマイズできます。
+1.  名前を変更したい合計ラベルをテーブルまたはピボットテーブルで探します。
+2.  ラベルをダブルクリックして編集可能にし、新しいラベルを入力します。<img width="1038" height="447" alt="4daaa66fe8c0a4ccc641987e79970d9ca71d0e3898bc4cf8f18e27d658cf8d40-cs-rename-start" src="https://github.com/user-attachments/assets/2a53dbd6-6e8b-4c1e-adb9-b801a2dec63f" />
+
+    > 📘
+    > 小計のラベルを変更すると、そのレベルと値の組み合わせのすべての小計ラベルが変更されます。
+3.  キーボードのenterを押すか、セルの外側をクリックして新しいラベルを保存します。
     > 💡
-    > 合計または小計のデフォルトラベルに戻すには、既存のラベルを削除します。
+    > 合計または小計のデフォルトラベルに戻すには、既存のラベルを削除します。ラベルをダブルクリックして既存のラベルを削除し、enterを押して変更を保存します。
+<img width="1041" height="446" alt="507f4cf608e62796334e474459ac631144cfdb458241fea2aff340d2f5c7bef1-cs-rename-end" src="https://github.com/user-attachments/assets/d14ef573-980c-4795-bc68-91f092e4adb0" />
 
 ##### **合計と小計をカスタマイズする際の制限事項 (Limitations when customizing totals and subtotals)**
 名前が変更された小計と総計のラベルは、下流では更新されません。合計にカスタム数式を持つピボットテーブルまたはグループ化されたテーブルから作成された子テーブルは、元の列名を表示します。合計または小計の値を参照するサマリーメトリクスなどの数式は、代わりに元の列名を参照する必要があります。
-カスタム小計数式の後、交差する合計が意味をなさない場合、小計が交差するセルは空白になることがあります。
+* `<Values Column Name> (Parent Row Total)` ピボット行の小計用。
+* `<Values Column Name> (Row Total)` ピボット行の総計用。
+* `<Values Column Name> (Parent Column Total)` ピボット列の小計用。
+* `<Values Column Name> (Column Total)` ピボット列の総計用。
+* `<Values Column Name> (Grand Total)` ピボットテーブルまたはグループ化されたテーブルの行と列の両方の値の総計用。
+
+カスタム小計数式の後、交差する合計が意味をなさない場合、小計が交差するセルは空白になることがあります。例えば、一方の小計が平均を計算し、もう一方の小計が最大値を計算する場合などです。
+<img width="1170" height="458" alt="71b0b0ae9e9b875bdadc35c92de22376567acdab091cc2383c22ae323a6a23f9-cs-pivot-intersect" src="https://github.com/user-attachments/assets/ee0f82e1-591c-419a-b7e1-cbe0615a0d4c" />
 
 ##### **チュートリアル：ピボットテーブルの小計のパーセンテージを計算する**
-この例では、特定の地域で販売された総ユニット数のパーセンテージを計算します。
-1.  ピボット行に`Store Region`と`Store State`、集計値に`Sum of Quantity`を持つピボットテーブルから始めます。
-2.  ピボットテーブルに新しい列を追加します。
-3.  新しい列の数式バーに、`[Sum of Quantity (Row Total)] / [Sum of Quantity (Parent Row Total)]`と入力します。
-4.  数式を保存し、計算列をパーセンテージとしてフォーマットします。
+この例では、特定の地域で販売された総ユニット数のパーセンテージを計算します。この例では、Sigmaサンプルデータベースに含まれる`PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA`テーブルを使用します。ピボット行に`Store Region`と`Store State`、集計値に`Sum of Quantity`を持つピボットテーブルから始めます。<img width="713" height="457" alt="2675ef2-tutorial-no-columns-start-small" src="https://github.com/user-attachments/assets/b341a64b-bea3-401e-b542-d64e06dea9c1" />
+
+ピボットテーブルに新しい列を追加するには：
+1.エディタパネルの`Values`ヘッダーで、プラス(+)をクリックします。
+2.`Add New Column`を選択します。<img width="711" height="290" alt="d06ee9e-pivot-tutorial-add-new-column" src="https://github.com/user-attachments/assets/520095ba-a3d8-4197-ba05-06d3b2c03a4d" />
+
+3.  新しい列の数式バーに、次のように入力します。
+    `[Sum of Quantity (Row Total)] / [Sum of Quantity (Parent Row Total)]`<img width="1323" height="226" alt="1f5586f-pivot-tutorial-no-column-formula-bar" src="https://github.com/user-attachments/assets/1077cc62-b8f3-458f-a003-39e42bebb762" />
+
+4.  `Enter`を押すか、チェックマークをクリックして数式を保存します。
+5.  計算列をパーセンテージとして書式設定するには、ワークブックツールバーで`Format as percent`(%)をクリックします。
+　　結果は以下のように表示されます。<img width="776" height="453" alt="a115575-pivot-tutorial-no-columns-end" src="https://github.com/user-attachments/assets/f754f2f9-4e6e-4475-97f8-da86ebdf08df" />
 
 ##### **チュートリアル：行の小計のパーセンテージを計算する**
 このチュートリアルでは、地域と販売四半期ごとに分類された州の総小売売上高のパーセンテージを計算します。
-1.  ピボット行に`Store Region`と`Store State`、ピボット列に`Quarter of Date`に切り捨てられた`Date`、集計値に`Sum of Quantity`を持つピボットテーブルから始めます。
-2.  ピボットテーブルに新しい列を追加します。
-3.  新しい列の数式バーに、`[Sum of Quantity] / [Sum of Quantity (Parent Row Total)]`と入力します。
-4.  数式を保存し、計算列をパーセンテージとしてフォーマットします。
+ピボット行に`Store Region`と`Store State`、ピボット列に`Quarter of Date`に切り捨てられた`Date`、集計値に`Sum of Quantity`を持つピボットテーブルから始めます。<img width="1289" height="471" alt="48a9d03-pivot-tutorial-add-percent-column-before" src="https://github.com/user-attachments/assets/126d777e-9a1a-455a-bdd4-73734b154618" />
+
+1.  エディタパネルの`Values`ヘッダーで、プラス(+)をクリックします。
+2.  `Add New Column`を選択します。
+3.  新しい列の数式バーに、次のように入力します。
+    `[Sum of Quantity] / [Sum of Quantity (Parent Row Total)]`<img width="1295" height="343" alt="2935071-pivot-tutorial-with-column-formula-bar" src="https://github.com/user-attachments/assets/bcb44a71-bc9c-4a49-939a-c5627b8f5839" />
+
+4.  `Enter`を押すか、チェックマークをクリックして数式を保存します。
+5.  計算列をパーセンテージとして書式設定するには、ワークブックツールバーで`Format as percent`(%)をクリックします。
+    果は以下のように表示されます。<img width="1653" height="528" alt="a05ebde-pivot-tutorial-result-with-column" src="https://github.com/user-attachments/assets/3cb9ad84-1c57-47a6-8e87-bf76c7754ae5" />
 
 #### 4-4-5-3. ピボットテーブルの合計の書式設定 (Format pivot table totals)
 
@@ -6429,18 +6549,24 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
 
 * **小計 (Subtotals)**
     `Subtotals`ツールを使用すると、小計の行と列のフォントの太さ、フォントの色、および背景色をカスタマイズできます。
+<img width="632" height="472" alt="subtotals" src="https://github.com/user-attachments/assets/1b8bc237-ed83-4b47-8efb-2b4fddaf9a90" />
 
 * **総計 (Grand totals)**
     `Grand totals`ツールを使用すると、総計の行と列のフォントの太さ、フォントの色、および背景色をカスタマイズできます。
+<img width="632" height="472" alt="grand-totals" src="https://github.com/user-attachments/assets/6edffab3-3242-4a90-9de1-61b3ad25c315" />
 
 * **位置 (Position)**
     `Position`設定を使用すると、総計を最初または最後の列と行に移動できます。
+First<img width="630" height="332" alt="position_first" src="https://github.com/user-attachments/assets/cecc994c-cbb5-45f4-bdc9-3750c09aff0d" />
+Last<img width="630" height="332" alt="position_last" src="https://github.com/user-attachments/assets/1144f385-a140-4f9a-b560-452f9fb28545" />
 
 ##### **ピボットテーブルの合計を書式設定する (Format pivot table totals)**
 1.  ワークブックを`Explore`または`Edit`モードで開きます。
 2.  書式設定したいピボットテーブルを選択します。
-3.  サイドナビゲーションで`Element format`を選択し、`Totals`ヘッダーをクリックしてセクションを展開します。
-4.  `Subtotals`および`Grand totals`ツールを使用して、フォントの太さ、フォントの色、背景色をカスタマイズし、`Position`ドロップダウンでオプションを選択して総計の行と列の位置を制御します。
+3.  サイドナビゲーションで`Element format`を選択し、`Totals`ヘッダーをクリックしてセクションを展開します。<img width="1037" height="569" alt="element-format_totals" src="https://github.com/user-attachments/assets/056ef154-775b-4687-8bf3-6b42b39585e7" />
+
+4.  `Subtotals`および`Grand totals`ツールを使用して、フォントの太さ、フォントの色、背景色をカスタマイズし、`Position`ドロップダウンでオプションを選択して総計の行と列の位置を制御します。<img width="1037" height="569" alt="element-format_totals_customize" src="https://github.com/user-attachments/assets/dc0ffed7-9d87-4d52-8a81-77649192a8e0" />
+
 
 #### 4-4-5-4. 階層 (ベータ版) (Hierarchies (Beta))
 
@@ -6464,34 +6590,45 @@ Sigmaでは、ピボットテーブルを作成して、特定のやり方でデ
 
 1.  ワークブックを`Edit`モードで開きます。
 2.  階層を作成したい要素を選択します。階層はテーブルまたはピボットテーブルで作成できますが、使用できるのはピボットテーブルのみであることに注意してください。
-3.  `Columns`メニューで、`+`アイコンをクリックし、`Manage hierarchies`を選択します。
+3.  `Columns`メニューで、`+`アイコンをクリックし、`Manage hierarchies`を選択します。<img width="415" height="323" alt="5b313e0-2" src="https://github.com/user-attachments/assets/1d9b9410-959e-4346-8255-b4306a20da80" />
+
 4.  `Manage hierarchies`モーダルで、`+ New hierarchy`をクリックし、階層のプロパティを定義します。
     * `Hierarchy name`フィールドに、階層を識別するための名前を入力します。
-    * `Columns in hierarchy`セクションで、`Add column`をクリックして階層に列を追加します。
-5.  階層に列を追加すると、この列はワークブックの`Columns`メニューで階層アイコンでラベル付けされます。アイコンにカーソルを合わせると、階層の詳細が表示されます。
-6.  追加の階層を作成するには、`Manage hierarchies`モーダルで`+ New hierarchy`をクリックし、ステップ4を繰り返します。
+    * `Columns in hierarchy`セクションで、`Add column`をクリックして階層に列を追加します。<img width="602" height="396" alt="80bc313-4" src="https://github.com/user-attachments/assets/8de49853-60d9-4a64-9bf7-fb7e4d2dcacb" />
+
+  階層に列を追加すると、この列はワークブックの`Columns`メニューで階層アイコンでラベル付けされます。アイコンにカーソルを合わせると、階層の詳細が表示されます。<img width="311" height="218" alt="ddee60f-5" src="https://github.com/user-attachments/assets/863a8711-e9c8-4c1a-b53d-08853d1a4821" />
+
+5.  追加の階層を作成するには、`Manage hierarchies`モーダルで`+ New hierarchy`をクリックし、ステップ4を繰り返します。
+<img width="602" height="396" alt="2fb3281-6" src="https://github.com/user-attachments/assets/7ce693e6-49b7-4a08-aac8-d717b37a621b" />
 
 ##### **階層を管理する (Manage a hierarchy)**
 階層の名前の変更、列の並べ替え、新しい列の追加、既存の列の削除、または階層全体の削除ができます。
 
 1.  `Manage hierarchies`モーダルで、更新したい階層を選択します。
 2.  階層の名前を変更するには、`Hierarchy name`フィールドを編集します。
-3.  列を並べ替えるには、`Columns in hierarchy`セクションに移動し、必要に応じて列名をドラッグ＆ドロップします。
+3.  列を並べ替えるには、`Columns in hierarchy`セクションに移動し、必要に応じて列名をドラッグ＆ドロップします。<img width="785" height="604" alt="e0b38f8-7" src="https://github.com/user-attachments/assets/574eb186-8c17-4886-a368-a79b40c3bd94" />
+
 4.  新しい列を追加するには、`Columns in hierarchy`セクションに移動し、`Add column`をクリックします。
-5.  階層から列を削除するには、`Columns in hierarchy`セクションで列名を探し、`Remove column`をクリックします。
-6.  階層を削除するには、左パネルで階層名を探し、`Delete hierarchy`をクリックします。
+5.  階層から列を削除するには、`Columns in hierarchy`セクションで列名を探し、`Remove column`をクリックします。<img width="602" height="396" alt="8f144c9-8" src="https://github.com/user-attachments/assets/a78f17ba-7fe6-4e80-92ad-5da9df624279" />
+
+6.  階層を削除するには、左パネルで階層名を探し、`Delete hierarchy`をクリックします。<img width="602" height="396" alt="90fdbbd-9" src="https://github.com/user-attachments/assets/a60cf592-9c0e-47ae-b6c0-235f8843ee9e" />
+
 
 ##### **階層の継承 (Hierarchy inheritance)**
 子要素は、親要素で定義されたすべての階層を継承します。継承された階層は子要素から削除または変更することはできませんが、完全な編集権限を持つ新しい階層を追加することはできます。
 `Manage hierarchies`モーダルで階層が選択されると、Sigmaはそれが親要素から継承されたものであるかどうかを示します。
+<img width="600" height="398" alt="746220c-10" src="https://github.com/user-attachments/assets/2c26a3e9-c421-46fa-8095-c94554666936" />
 
 ##### **階層を使用する (Using hierarchies)**
 以下のステップは、定義された階層をピボットテーブルで使用する方法を説明します。
 1.  階層を持つピボット行を作成するには、`Pivot Rows`プロパティに移動し、`Add new column`をクリックします。
-2.  `Add new column`メニューで、定義された階層を選択します。
+2.  `Add new column`メニューで、定義された階層を選択します。<img width="481" height="580" alt="ac7bab6-12" src="https://github.com/user-attachments/assets/a893b167-d033-46c9-b603-e907f2afc484" />
+
 3.  階層をピボット値に適用するには、`Values`プロパティに移動し、`Add new column`をクリックします。
-4.  `Add new column`メニューで、定義された階層を選択します。
-5.  結果のピボットテーブルは、構成された階層を示します。
+4.  `Add new column`メニューで、定義された階層を選択します。<img width="547" height="754" alt="d6a3910-13" src="https://github.com/user-attachments/assets/cc8aad02-eaf7-4eff-92da-0cd38bf0c3b7" />
+
+結果のピボットテーブルは、構成された階層を示します。
+<img width="799" height="392" alt="7bc59d0-14" src="https://github.com/user-attachments/assets/b243d0c5-f809-468f-9951-f17da219ff15" />
 
 ##### **制限事項 (Limitations)**
 * 階層はピボットテーブルでのみ使用できます。
@@ -6508,8 +6645,10 @@ Sigmaは、テーブルを行から列へ、または列から行へ転置する
 
 例えば、下のテーブルは駐車場の入出庫の記録を示しており、各行が各車の入庫日と出庫日を示しています。
 すべての日付値が単一の行になるようにデータを整形するには、行から列への転置を実行でき、その結果、テーブルは次のように変換されます。
+<img width="444" height="104" alt="5a2bfacbe27d0f3c2068919eac137242c52fdb6552bfa07cb4cb2f2f80bfe317-carexample" src="https://github.com/user-attachments/assets/02784fce-de92-48bd-98fd-a09bddac3e71" />
 
 これは、特定のチャートタイプに合わせてデータを再形成したい場合（例えば、折れ線グラフには単一の列に方向付けられた日付値が必要な場合など）に特に役立ちます。
+<img width="450" height="166" alt="d7193a2cc515a058a135b032b07360038eb6f1c9330ebf2642682cb43c9fc576-cartransposed" src="https://github.com/user-attachments/assets/a5b3e82f-6282-4131-872a-b7d729b1c31f" />
 
 このドキュメントでは、データを[行から列へ](https://help.sigmacomputing.com/docs/transpose-a-table#transpose-row-to-columns)、または[列から行へ](https://help.sigmacomputing.com/docs/transpose-a-table#transpose-columns-to-rows)転置する方法を説明し、それぞれの例を含んでいます。
 
@@ -6535,21 +6674,29 @@ Sigmaは、テーブルを行から列へ、または列から行へ転置する
 6.  希望する`Aggregate`メソッドを選択します。表示される集計メソッドは、選択された`Value column`のデータ型によって異なります。
 7.  目的の`Output columns`の隣にあるチェックボックスを選択します。これらは転置された出力に含めたい列であり、転置における他の計算には影響しません。転置されたテーブルのプレビューは`Output preview`で利用できます。
     * 列を選択した順序が、テーブルに左から右へと表示される順序になります。
-8.  元のソーステーブルの残りのソース列は、転置をグループ化するために使用されます。
-9.  `Submit`を選択します。
+　  元のソーステーブルの残りのソース列は、転置をグループ化するために使用されます。
+8.  `Submit`を選択します。
 
 ##### **例：勝敗数のカウント (Example: Counting games won and lost)**
 例えば、チームがホームでプレイした野球の試合のテーブルがあり、各試合ごとに1行のデータと、対戦相手、結果、試合後のディビジョンランクの列があるとします。
 チームが各ディビジョンランクで勝ったまたは負けた総試合数を計算したい場合、ディビジョンランクでテーブルを転置できます。
+<img width="1476" height="798" alt="54ace8ffa9210d93d5ee36eb0e499a42879d3a6d8eaaa17eec7c20f481f91883-transpose1" src="https://github.com/user-attachments/assets/c51eaabc-b407-4fbe-aa81-ac12aefa0d0b" />
 
 このカウントを取得するには：
 1.  `Row to column`転置を選択します。
 2.  `L`（敗戦）と`W`（勝利）を転置されたテーブルの列ヘッダーとして設定するには、`Win Loss`を`Column to transpose`として選択します。
 3.  特定の対戦相手に対する勝利数または敗戦数を計算するには、`Opponent`を`Value Column`として選択します。
 4.  nullでなく空でもない値の数を計算するには、`Aggregate`に`Count`を選択します。
-5.  `Division Rank`, `L`, `W`を`Output columns`として選択します。テーブルの出力は、残りの唯一のソース列であるため、自動的に`Division Rank`でグループ化されます。
-6.  [任意] `Start Time`のような別の列で追加的にグループ化したい場合：`Output columns`で`Start Time`を選択します。
-7.  [任意] 出力を理解しやすくするために、`Start Time`列を昇順でソートすることもできます。
+5. `Division Rank`、`L`、`W`を`Output columns`として選択します。テーブルの出力は、残りの唯一のソース列であるため、自動的に`Division Rank`でグループ化されます。これにより、各ディビジョンランクでの勝敗の合計`Count`が集計されます。
+
+1. 出力を`Start Time`のような別の列で追加的にグループ化したい場合があるかもしれません。これを行うには：
+`Output columns`で、`Start Time`を選択します（既存の`Division Rank`、`L`、`W`の選択は維持します）。各試合の開始時刻について、転置は各ディビジョンランクでの勝敗数を表示します。すべての開始時刻が4つすべてのディビジョンランクを表示するわけではないことに注意してください。それらの時刻には勝敗が記録されていないためです。
+
+2. [任意] 出力を理解しやすくするために、`Start Time`列を昇順でソートすることもできます。これにより、データはその日の最も早い試合から最も遅い試合へとソートされます。`Start Time`列で、右クリックまたは下矢印()をクリックして列メニューを開き、`Sort ascending`を選択します。ソートされると、出力は次のようになります。
+<img width="629" height="509" alt="950116fb0cf84de188cdff2f32b9ebff80e898b3cde615dee8148973423a4def-sortedtranspose" src="https://github.com/user-attachments/assets/6f5aef6f-60d4-488b-b4b3-16271c754de0" />
+
+各ディビジョンランクで、あなたのチームが勝利または敗北したユニークな対戦相手の数を知りたい場合もあるでしょう。これを取得するには：
+`Aggregate`メソッドを`CountDistinct`に変更します。`CountDistinct`は、`Opponent`列内のユニークな値の数を提供します。この値は、チームが各ディビジョンランクで打ち負かした異なる対戦相手の数を表します。あなたの出力は次のようになります。<img width="480" height="192" alt="ac42dd3dc777fadc51f90e37a2622a8f1a5a9510d17c2ca5f3d5f3baaa076395-countdistinct" src="https://github.com/user-attachments/assets/f027f736-c131-4672-be56-5095aaaabed7" />
 
 ##### **列を行に転置する (Transpose columns to rows)**
 1.  目的のテーブルから、`More`を選択します。
@@ -6560,6 +6707,22 @@ Sigmaは、テーブルを行から列へ、または列から行へ転置する
 6.  値の`Column label for values`を入力します。これは、マージされた列の値を含む新しい列の列ヘッダーです。
 7.  目的の`Output columns`の隣にあるチェックボックスを選択します。
 8.  `Submit`を選択します。
+
+##### **例：監査ログイベント時刻のマージ (Example: Merging audit log event times)**
+例えば、監査ログイベントのテーブルがあるとします。各行は、コネクタID、テーブル名、テーブルへの書き込み開始/終了、同期開始/終了、およびユニークなテーブル同期キーなどの情報を持つ、ユニークなテーブル同期の詳細を示します。
+
+すべてのテーブルイベントとそのタイムスタンプの行を持つテーブルが必要な場合、テーブルを転置してこれらの列をマージできます。この新しいテーブルを取得するには：
+<img width="1301" height="797" alt="6a2f4de6ceef391b5d07e2c72041deb8c0172cb1faafa97cd7dad302961a40eb-transpose2" src="https://github.com/user-attachments/assets/17746c02-a0b2-46a7-a63d-4503fe5f4fcb" />
+
+1.  `Column to row`転置を選択します。
+2.  `Columns to merge`には、`Write to Table Start`, `Write to Table End`, `Sync Start`, `Sync End`を選択します。これらはすべて1つの列にマージされます。
+3.  `Column label for merged columns`には、マージされた列の名前として`Event Type`を入力します。
+4.  `Column label for values`には、`Timestamp`を入力します。
+5.  テーブルに表示したい行を選択します：`Unique Table Sync Key`（どのテーブルにイベントがリンクされているかが明確になるように）、および新しい列である`Event type`と`Timestamp`。
+6.  [任意] 出力を理解しやすくするために、`Unique Table Sync Key`列を昇順でソートすることもできます。これにより、各テーブルのイベントが順序付けられた行になります。テーブルを1つの列で昇順にソートするには、右クリックまたは下矢印()をクリックして列メニューを開き、`Sort ascending`を選択します。
+
+#### **転置を元に戻す (Undo a transpose)**
+転置を元に戻す最も効果的な方法は、要素のソースを元のデータソースに変更することです。詳細は、「[ワークブックまたは要素のデータソースを変更する](https://help.sigmacomputing.com/docs/change-the-data-source-for-a-workbook-or-element)」を参照してください。
 
 ### 4-6-1. カスタムSQLを記述する (Write custom SQL)
 
@@ -6582,11 +6745,13 @@ SQLエディタを使用してデータプラットフォームを探索する�
 #### **SQLからワークブックを作成する (Create a workbook from SQL)**
 SQLクエリからワークブックを作成するには、以下を実行します。
 1.  **Sigmaホーム**を開きます。
-2.  ナビゲーションパネルで`+ Create New`をクリックし、`Write SQL`を選択してSQLエディタを開きます。
+2.  ナビゲーションパネルで`+ Create New`をクリックし、`Write SQL`を選択してSQLエディタを開きます。<img width="350" height="424" alt="012c84e6e4c0d1dc1ea78ae375c0eb9f3019feddc58c57d4e6de7a49dd835548-sql-create-new" src="https://github.com/user-attachments/assets/f0445fbf-166f-466f-a5d3-a810aa4d0662" />
+
 3.  サイドパネルで`Select a Connection`をクリックし、クエリを実行したい接続を選択します。
 4.  クエリエディタに、SQLクエリを入力します。Sigmaはガイドするためのオートコンプリート候補を提供します。
     > 💡
-    > SQL内でワークブックのコントロールを参照するには、コントロールIDを中括弧で囲みます。「[Reference workbook controls](https://help.sigmacomputing.com/docs/reference-workbook-control-values-in-sql-statements)」を参照してください。
+    > SQL内でワークブックのコントロールを参照するには、コントロールIDを中括弧で囲みます。「[Reference workbook controls](https://help.sigmacomputing.com/docs/reference-workbook-control-values-in-sql-statements)」を参照してください。<img width="1129" height="571" alt="771da6b1a1c971c1a9a8e7934cdb2943f6ac7965c03df86096a6b03f26da7ece-sql-better-exploration" src="https://github.com/user-attachments/assets/cac663ca-6df7-43e2-aeb3-c7bad933d077" />
+
 5.  SQLクエリを実行するには、`Run`をクリックするか、キーボードショートカット `⌘` + `return` (Mac) または `ctrl` + `enter` (PC) を使用します。
 6.  未公開のワークブック（探索）をワークブックとして保存するには、`Save As`をクリックします。
     > 💡
@@ -6596,85 +6761,100 @@ SQLクエリからワークブックを作成するには、以下を実行し�
 既存のワークブックにSQL要素を追加して既存の分析を補完するには、以下を実行します。
 1.  編集用にワークブックを開きます。
 2.  要素追加バーで、追加したい要素のタイプを選択し、次に特定の要素タイプを選択します：`Data` > `Table`, `Data` > `Pivot Table`または`Chart`およびサポートされている任意のチャートタイプ。
-3.  `Select source`モーダルで、下部にある`SQL`オプションを選択します。
-4.  クエリを実行したい接続を選択します。
-5.  ワークブックに要素が表示され、接続にクエリを実行するためのSELECTステートメントを入力するよう促されます。
-6.  クエリエディタに、カスタムSQLを入力します。Sigmaはガイドするためのオートコンプリート候補を提供します。
+3.  `Select source`モーダルで、下部にある`SQL`オプションを選択します。<img width="484" height="790" alt="eaa2b6d9b9907a45801a87a2faeece3e576f135fdea3cb9814076115a9eda805-sql-source-pick" src="https://github.com/user-attachments/assets/a1a7e8d3-ef1b-46f3-af5f-8a3947f16b4e" />
+
+4.  クエリを実行したい接続を選択します。 ワークブックに要素が表示され、接続にクエリを実行するためのSELECTステートメントを入力するよう促されます。<img width="859" height="502" alt="8042db867cdd5489a2b8a5d29ce7cc49a37dc71b82018f4698b3cab45659080a-sql-autocomplete" src="https://github.com/user-attachments/assets/e44b8521-2536-4477-b010-92692d03da13" />
+
+5.  クエリエディタに、カスタムSQLを入力します。Sigmaはガイドするためのオートコンプリート候補を提供します。<img width="859" height="502" alt="8042db867cdd5489a2b8a5d29ce7cc49a37dc71b82018f4698b3cab45659080a-sql-autocomplete" src="https://github.com/user-attachments/assets/85817eb0-033e-4e59-be72-b3bd833f3574" />
+
     > 💡
     > SQL内でワークブックのコントロールを参照するには、コントロールIDを中括弧で囲みます。「[Reference workbook controls](https://help.sigmacomputing.com/docs/reference-workbook-control-values-in-sql-statements)」を参照してください。
 
-#### **既存のSigmaワークブック要素を参照する (Reference existing Sigma workbook elements)**
-> 🚩
-> このドキュメントはパブリックベータ機能について説明しており、現在作成中です。この通知およびSigmaサービス内の機能に対応するベータフラグが削除されるまで、このページは公開されたドキュメントの一部とは見なされません。他のベータ機能と同様、以下で説明する機能は、迅速で反復的な変更の対象となります。Sigmaサービスでの最新の体験は、このドキュメントの内容と異なる場合があります。
-> ベータ機能は、[ベータ機能](https://help.sigmacomputing.com/docs/beta-features)の免責事項の対象となります。
+#### **システム関数でユーザー属性を参照する (Reference user attributes with system functions)**
 
-SQLクエリで他のカスタムSQL要素を含む、ワークブック内の他のデータ要素を参照するには、`sigma_element()`構文を使用します。
-例えば、ワークブック内の`Fiscal Year Forecast`というタイトルのデータ要素にクエリを実行し、その要素の`Revenue`列の値に基づいてフィルタリングするには、以下のようなSQLステートメントを記述します。
+現在のユーザーの属性を参照するには、SQLステートメントで`{{system::SystemFunction}}`構文を使用します。使用できるシステム関数のリストについては、「[システム関数](https://help.sigmacomputing.com/docs/system-functions)」を参照してください。
 
-# 修正必要あり
-
-##### **構文と使用上の注意 (Syntax and usage notes)**
-同じワークブック内のデータ要素を参照するには、以下の構文を使用します。
-`sigma_element('Element title')`
-
-この構文を使用する際は、以下の使用上の注意を考慮してください。
-* SQLステートメントで正確な要素タイトルを使用する必要があります。
-* 参照する要素タイトルは文字列でなければなりません。
-* 列名は識別子でなければなりません。例えば、列名にスペースが含まれており、SnowflakeでSQLを実行する場合、SQLステートメントで参照する際に列名を二重引用符で囲みます。BigQueryでSQLを実行する場合は、列名をバッククォート(`)で囲みます。
-
-##### **制限事項 (Limitations)**
-* この構文はデータモデルでは使用できません。
-* AzureSQL接続でこの構文を使用することはまだサポートされていません。
-
+例えば、ワークブック内の`PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA`というタイトルのデータ要素で、`Customer Name`列が現在の（サインインしている）ユーザーの名前と一致するレコードをクエリするには、以下のようなSQLステートメントを記述します。
+```sql
+SELECT *
+FROM sigma_element('PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA')
+WHERE "Customer Name" = {{system::CurrentUserFullName}}
+```
 #### **ショートカット (Shortcuts)**
 SigmaでSQLを扱いやすくするためのいくつかのショートカットが存在します。
 
-* **要素メニューでSQLエディタを切り替える**
-    ワークブックが公開されると、SQL要素は結果のみを表示します。ワークブックを編集または探索する際、SQLエディタを切り替えて、結果を生成するSQLクエリを表示できます。`Toggle SQL Editor`をクリックして、データ要素とSQLクエリエディタを切り替えます。
-* **SQL要素を最大化する**
-    ワークブックキャンバスでSQL要素を最大化し、長く複雑なSQLクエリを書きやすくするには、スペースバーを押すか、`Maximize element`をクリックして要素をフルスクリーンモードに展開します。
-* **SQLをフォーマットする**
-    長いSQLテキストブロックを素早くフォーマットするには、`Format SQL`をクリックします。
-* **検索と置換**
-    SQLクエリ内で検索し、任意で検索語のインスタンスを置換するには、`Search SQL`をクリックするか、キーボードショートカット `⌘ + F` を使用します。
-* **リネージビューからカスタムSQLにアクセスする**
-    ワークブックまたはデータモデルのリネージビューからカスタムSQLを表示および編集します。クエリ全体をクリップボードにコピーするか、`Edit SQL`をクリックして要素のインラインSQLエディタに移動します。
-    リネージの操作に関する詳細は、「View workbook and data model data lineage」を参照してください。
-* **クエリ履歴を表示する**
-    SQLエディタを使用する際、現在の接続に対して最近実行されたクエリの履歴にアクセスできます。
-    この履歴にアクセスするには、サイドパネルの`DB`タブをクリックし、`History`タブを選択します。
-    特定のワークブックまたはデータモデルのすべての要素のクエリ履歴を表示するには、「Examine workbook queries」を参照してください。
-* **テーブルプレビューを表示する**
-    クエリを記述する際、サイドパネルを使用してデータプラットフォーム内のテーブルを探索できます。特定のテーブルに移動し、`Preview`を選択してテーブルの列と行のプレビューを開き、そのテーブルを既存のSQLクエリに追加するかどうかを決定するのに役立てることができます。
-    特定のテーブルについて、`More`を選択し、`Place name in SQL`または`Place select statement in SQL`を選択して、SQLクエリで新しいテーブルを簡単に参照します。
+##### **要素メニューでSQLエディタを切り替える (Toggle SQL editor in the element menu)**
+ワークブックが公開されると、SQL要素は結果のみを表示します。ワークブックを編集または探索する際、SQLエディタを切り替えて、結果を生成するSQLクエリを表示できます。
+`Toggle SQL Editor`をクリックして、データ要素とSQLクエリエディタを切り替えます。
+
+##### **SQL要素を最大化する (Maximize the SQL element)**
+ワークブックキャンバスでSQL要素を最大化し、長く複雑なSQLクエリを書きやすくするには、スペースバーを押すか、`Maximize element`をクリックして要素をフルスクリーンモードに展開します。
+
+##### **SQLをフォーマットする (Format SQL)**
+長いSQLテキストブロックを素早くフォーマットするには、`Format SQL`をクリックします。
+![77596fe-formatsql](https://github.com/user-attachments/assets/4cdc2a54-e93e-4e14-8d2c-bab795dcb2e7)
+
+##### **検索と置換 (Find and replace)**
+SQLクエリ内で検索し、任意で検索語のインスタンスを置換するには、`Search SQL`をクリックするか、キーボードショートカット `⌘ + F` を使用します。
+<img width="978" height="539" alt="020b488-Screenshot_2024-05-15_at_3 35 57_PM" src="https://github.com/user-attachments/assets/a475cda9-168b-4175-b85b-dab54589bbe8" />
+
+##### **リネージビューからカスタムSQLにアクセスする (Access custom SQL from the lineage view)**
+ワークブックまたはデータモデルのリネージビューからカスタムSQLを表示および編集します。クエリ全体をクリップボードにコピーするか、`Edit SQL`をクリックして要素のインラインSQLエディタに移動します。
+リネージの操作に関する詳細は、「[View workbook and data model data lineage](https://help.sigmacomputing.com/docs/view-workbook-data-lineage)」を参照してください。
+<img width="1133" height="710" alt="c5ab9c054a92da392aaa2554814f02e4b971ea3b16ef77665031ed5f2565c281-sql-lineage" src="https://github.com/user-attachments/assets/b4a80369-62df-4597-acc9-2e23c62eda64" />
+
+##### **クエリ履歴を表示する (View the query history)**
+SQLエディタを使用する際、現在の接続に対して最近実行されたクエリの履歴にアクセスできます。
+この履歴にアクセスするには、サイドパネルの`DB`タブをクリックし、`History`タブを選択します。
+特定のワークブックまたはデータモデルのすべての要素のクエリ履歴を表示するには、「[Examine workbook queries](https://help.sigmacomputing.com/docs/examine-workbook-queries)」を参照してください。<img width="263" height="222" alt="fe62cf3964dcfcaf8dea2f3a7fc27ff8aedb4e553c59df3647a35be57860ebd3-sql-qh" src="https://github.com/user-attachments/assets/279ab8c4-edd9-40a3-a37c-82816d02fe96" />
+
+
+##### **テーブルプレビューを表示する (View table previews)**
+クエリを記述する際、サイドパネルを使用してデータプラットフォーム内のテーブルを探索できます。特定のテーブルに移動し、`Preview`を選択してテーブルの列と行のプレビューを開き、そのテーブルを既存のSQLクエリに追加するかどうかを決定するのに役立てることができます。
+特定のテーブルについて、`More`を選択し、`Place name in SQL`または`Place select statement in SQL`を選択して、SQLクエリで新しいテーブルを簡単に参照します。
 
 #### **例 (Examples)**
 より高度なカスタムSQLのケースについては、これらの例を参照してください。
 
-##### **ユーザー属性に基づいて出力を変更する**
+##### **ユーザー属性に基づいて出力を変更する (Change output based on a user attribute)**
 組織でユーザー属性が定義されている場合、属性を参照して、現在のユーザーのユーザー属性の値に基づいてSQLクエリから返される結果を制限できます。
 例えば、Plugs Electronicsのサンプルデータについて、`store_region`ユーザー属性に基づいて現在のユーザーがアクセスできる店舗地域の結果のみを返します。
-# 変更の必要あり
+```sql
+SELECT
+  *
+FROM
+  EXAMPLES.PLUGS_ELECTRONICS.PLUGS_ELECTRONICS_HANDS_ON_LAB_DATA
+WHERE 
+  {{system::CurrentUserAttributeText::store_region}} = STORE_REGION
+```
+別の例として、割り当てられたorganization_nameユーザー属性の値に基づいて、現在のユーザーが表示を許可されているcustomer_nameでフィルタリングされた結果を返します。
 
+```sql
+SELECT 
+  * FROM 
+  test.orders 
+WHERE 
+  customer_name = {{system::CurrentUserAttributeText::organization_name}}
+```
 関数構文の詳細については、「CurrentUserAttributeText」を参照してください。ユーザー属性と割り当ての詳細については、「User Attributes」を参照してください。
 
-##### **特定の日付範囲コントロールの出力を返す**
+##### **特定の日付範囲コントロールの出力を返す (Return output for a specific date range control)**
 日付列が日付範囲コントロールで指定された値と一致する場合にのみ行を返す例については、「Reference workbook control values in SQL statements」のサンプルSQLを参照してください。
 
-##### **複数選択コントロールの値に応じて行を返す**
+##### **複数選択コントロールの値に応じて行を返す (Return rows depending on the value of a multi-select control)**
 複数選択リストコントロールの値に応じて行を返す例については、「Reference workbook control values in SQL statements」のサンプルSQLを参照してください。
 
-##### **スキーマテキストセレクタに基づいて行を返す**
+##### **スキーマテキストセレクタに基づいて行を返す (Return rows based on a schema text selector)**
 有効な選択（接続されたCDW内のスキーマ）を持つ`schema-param`という単一選択またはテキストコントロールがあり、指定されたスキーマに`STATIONS`テーブルが存在する場合、以下のサンプルSQLは指定されたスキーマの`STATIONS`列からすべての列を返します。
 
 ```sql
 SELECT *
 FROM {{#raw schema-param}}.STATIONS
-
+```
 > 🚩
 > `#raw`構成値を使用すると、行レベルのセキュリティがバイパスされ、セキュリティの脆弱性が生じる可能性があります。
 > このパラメータを使用してテーブル、スキーマ、またはデータベース名を交換する場合、SQLで参照される列名は同一でなければなりません。
-
+> 
 ### 4-7-2. SQLステートメントでワークブックのコントロール値を参照する (Reference workbook control values in SQL statements)
 
 Sigmaで[SQLステートメントを記述する](https://help.sigmacomputing.com/docs/write-custom-sql)際、コントロールIDを中括弧で囲むことで、SQLステートメント内でコントロールの値を参照できます。
@@ -6818,6 +6998,7 @@ Sigmaは[dbt Semantic Layer](https://docs.getdbt.com/docs/use-dbt-semantic-layer
     * dbtでセマンティックモデルとメトリクスが作成されている必要があります。dbtドキュメントの「[dbt Semantic Layer](https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-semantic-layer)」を参照してください。
 
 #### **Sigmaとdbt Semantic Layer間のクエリフロー (Query flow between Sigma and dbt Semantic Layer)**
+<img width="452" height="313" alt="a27389833b9750670592f46eac51e63765d927b79320c47a63199a2ce52d61c2-dbt_query_flow_diagram" src="https://github.com/user-attachments/assets/c3eb4970-7437-425a-94be-9600c803830d" />
 SigmaでSemantic Layerクエリを入力すると、Sigmaはクエリを中間表現にコンパイルし、クエリパラメータをdbt Semantic Layer [JDBC API](https://docs.getdbt.com/docs/use-dbt-semantic-layer/jdbc)に送信します。dbtは適切な方言でSQLステートメントをSigmaに返します。次に、Sigmaは接続されたデータベースに対してそのSQLを実行し、他のデータプラットフォームからのテーブルと同様のテーブルを出力します。これらのテーブルは、Sigmaの他のデータテーブルと同様に使用できます。ワークブックやデータモデルで再利用したり、データセットを作成して結合したり、ビジュアライゼーションを構築したりすることができます。
 
 Semantic Layerクエリが実行されるたびに、Sigmaは最新の定義を要求するため、Semantic Layerに加えられた変更はSigmaに反映されます。
@@ -6842,6 +7023,27 @@ SELECT * FROM
     metrics = ['new_customers', 'transactions', 'revenue_usd'],
     group_by = [Dimension('metric_time').grain('month'), 'customer__customer_country']
 )}}
+```
+このクエリは、サンプルのdbtデータ内の3つの既存メトリクス（'new_customers', 'transactions', 'revenue_usd'）を表示し、国と時間（月の間隔で分割）の両方でグループ化します。このクエリはSigmaで以下の結果を生成します。
+<img width="562" height="297" alt="a8345e9fb7b7134ee95f66525a54da606d1707b1c9e7d061700e82d32de380b8-surface_dbt_metrics" src="https://github.com/user-attachments/assets/1cc8d339-65ec-4f3e-9032-46a682daf5f8" />
+
+##### **例2：Semantic Layerメトリクスを閲覧する (Example 2: Browse Semantic Layer metrics)**
+以下のカスタムSQLを実行することで、SigmaのSemantic Layerで利用可能なすべてのメトリクスのリストを取得できます。
+```sql
+select * from {{semantic_layer.metrics()}}
+```
+これにより、メトリクス名と追加詳細のテーブルが生成されます。例：
+<img width="778" height="211" alt="320cc755f31e9a207047214bdcfe9ebcf26819ccb5ef45792cf9c13201a808b3-browse_metrics" src="https://github.com/user-attachments/assets/1d9a650d-add0-4d02-8adf-a88941b2110f" />
+
+##### **例3：メトリックのすべてのディメンションと時間粒度をリストする (Example 3: List all dimensions and time grains for a metric)**
+既存のdbtメトリックで利用可能なすべてのディメンションと時間粒度のリストを取得したい場合があります。例えば、'transactions'という名前の既存のdbtメトリックがある場合、クエリは次のようになります。
+```sql
+select * from {{semantic_layer.dimensions(metrics=['transactions'])}}
+```
+このSQLをSigmaで実行すると、以下の結果が生成されます。<img width="1174" height="451" alt="feb028759048b649aa18d4ec990c4560057eba158b90cb02f19d9c418872a476-list_dimensions" src="https://github.com/user-attachments/assets/9ed1b1c2-49a2-4b4b-94db-4d88a77aeaec" />
+
+#### **制限事項 (Limitations)**
+[ワークブックコントロール](https://help.sigmacomputing.com/docs/intro-to-control-elements)は、Semantic Layerクエリで参照できません。ワークブックコントロールを参照するクエリは、エラーメッセージを結果として返します。
 
 ### 4-7-4. Ask Sigmaで自然言語クエリを実行する (Ask natural language queries with Ask Sigma)
 
@@ -6868,10 +7070,12 @@ Ask Sigmaは、管理者がAsk Sigmaで利用可能にすることを選択し�
 利用可能なデータソースを検索するには：
 1.  Sigmaホームから、左のナビゲーションで`Ask Sigma`をクリックします。このオプションが表示されない場合は、上記の「[System and user requirements](#system-and-user-requirements)」を参照してください。
 2.  `All data sources`をクリックし、テーブル、データモデル要素、またはデータセットの名前の全部または一部を入力して、それがAsk Sigmaで利用可能かどうかを確認します。
-3.  Sigmaは、あなたが使用する権限を持つすべての一致するテーブル、データモデル要素、およびデータセットを返します。それぞれに、Ask Sigmaで利用可能かどうかのインジケータが表示されます。
+    Sigmaは、あなたが使用する権限を持つすべての一致するテーブル、データモデル要素、およびデータセットを返します。それぞれに、Ask Sigmaで利用可能かどうかのインジケータが表示されます。
     > 📘
     > あなたの管理者は、Ask Sigmaによってクエリされるソースを構成します。
-    > Sigmaの他の場所で適用されるすべてのデータ権限は、Ask Sigmaでも適用されます。例えば、管理者がデータソースに行レベルのセキュリティまたは列レベルのセキュリティを構成している場合、Ask Sigmaはそれらの制限を尊重します。データモデルの場合、その要素が利用可能なソースとして表示されるためには、公開バージョンへのアクセス権が必要です。
+    > Sigmaの他の場所で適用されるすべてのデータ権限は、Ask Sigmaでも適用されます。例えば、管理者がデータソースに行レベルのセキュリティまたは列レベルのセキュリティを構
+    成している場合、Ask Sigmaはそれらの制限を尊重します。データモデルの場合、その要素が利用可能なソースとして表示されるためには、公開バージョンへのアクセス権が必要です。<img width="448" height="594" alt="04ef9e20359ae68209f680bfcf0d129fa92a47d7dbb7bea2c7224d16a3b28fa9-ask_sigma_highlighted_datasource" src="https://github.com/user-attachments/assets/63af48cc-8837-428a-b31f-49dd22b053c4" />
+
     Ask Sigmaで利用可能にしたいソースが現在利用できない場合は、Sigmaの管理者に通知してください。Sigmaの管理者は、Ask Sigmaで利用可能にするデータソースを選択します。「[Select data sources to make available to ask Sigma (Beta)](https://help.sigmacomputing.com/docs/select-data-sources-to-make-available-to-ask-sigma-beta)」を参照してください。
 
 #### **Ask Sigmaで自然言語クエリを実行する (Ask natural language queries with Ask Sigma)**
@@ -6879,8 +7083,10 @@ Ask Sigmaを使用してデータに関する質問をするには：
 1.  Sigmaホームから、左のナビゲーションで`Ask Sigma`をクリックします。
 2.  画面の左上にあるボックスに質問を入力します。
 3.  Ask Sigmaはあなたの質問を解釈し、あなたがアクセスできるデータソースを検索し、質問に答えるのに最適だと判断したソースを選択します。Ask Sigmaは、意味的関連性、データ有効性メタデータ、およびデータソースの使用状況を使用して、あなたが閲覧権限を持つデータソースの中から最適なデータソースを選択します。
-4.  Ask Sigmaは回答を提供し、回答を決定するために使用したステップバイステップの決定ロジックを表示します。
-5.  [任意] ステップをスクロールするか、サイドパネルで特定のステップを選択して決定ロジックを調査し、必要であればAsk Sigmaが行った選択を修正します。
+4.  Ask Sigmaは回答を提供し、回答を決定するために使用したステップバイステップの決定ロジックを表示します。<img width="1704" height="881" alt="bb9a8365374dd9439e3a18d44020c4a1bccfd010cb45cc3a65f64440d3d0e2aa-answer-view" src="https://github.com/user-attachments/assets/1717442e-6823-4768-af88-69a877c18f62" />
+
+5.  [任意] ステップをスクロールするか、サイドパネルで特定のステップを選択して決定ロジックを調査し、必要であればAsk Sigmaが行った選択を修正します。![15cc5b9bbf09d013dea95e85eee6d2fa751c2619a3dfc90330f5780d021cab61-scroll-back-through-steps](https://github.com/user-attachments/assets/25c8af66-7b20-4152-b37f-560854af40b5)
+
 6.  [任意] 任意のステップで、`Open in workbook`をクリックして、分析のその時点から[探索（exploration）](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)を開始します。
 
 #### **関連チャートで探索を続ける (ベータ版) (Continue exploring with related charts (Beta))**
@@ -6893,7 +7099,7 @@ Ask Sigmaを使用してデータに関する質問をするには：
 あなたは以下のことができます。
 * 回答チャートまたは任意の関連チャートの`View underlying data`をクリックする。
 * 関連チャートをクリックして詳細ビューを表示し、さらに関連チャートを取得する。
-* 任意のステップ、回答、または関連チャートのチェックボックスをオンにし、`Open in workbook`をクリックして、[探索](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)でデータをさらに分析する。
+* 任意のステップ、回答、または関連チャートのチェックボックスをオンにし、`Open in workbook`をクリックして、[探索](https://help.sigmacomputing.com/docs/ad-hoc-data-explorations)でデータをさらに分析する。![5fe428f47a8e2725047e543272cd175e2684c893e7ce7fd6c26efe29ccd64aa7-keep-exploring](https://github.com/user-attachments/assets/68553c22-2bf7-43b5-a13b-9c59c713fd50)
 
 #### **Ask Sigmaのトラブルシューティング (Troubleshoot Ask Sigma)**
 失敗したAsk Sigmaクエリについて技術サポートに相談する必要がある場合は、Ask Sigmaの左下隅にある`Download debug`をクリックして、サポートチームに提供できるようにしてください。デバッグファイルには、あなたの質問のテキストとデータソースに関するメタデータが含まれており、Ask Sigmaがクエリを解決するために取ったステップのトラブルシューティングに役立ちます。
