@@ -1,4 +1,4 @@
-<img width="975" height="456" alt="image" src="https://github.com/user-attachments/assets/97bff070-a96e-4cfa-a030-c39c2082dae4" /><img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/01b7533d-bf74-4579-9586-404fc1e47587" /><img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/c912256d-9406-4d4b-9185-8b46011bd802" /># Sigma日本語ドキュメント 構成案
+<img width="3584" height="1968" alt="ebb9e06-2" src="https://github.com/user-attachments/assets/3bbaba61-ff81-4b5a-8b51-6ae50362c780" /><img width="975" height="456" alt="image" src="https://github.com/user-attachments/assets/97bff070-a96e-4cfa-a030-c39c2082dae4" /><img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/01b7533d-bf74-4579-9586-404fc1e47587" /><img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/c912256d-9406-4d4b-9185-8b46011bd802" /># Sigma日本語ドキュメント 構成案
 
 #### 1-1-1. Sigmaについて (About Sigma)
 
@@ -3747,11 +3747,15 @@ CSVファイルがSigmaにアップロードされると、そのデータは新
 
 以下の手順は、CSVファイルをアップロードして新しいデータセットを作成する方法をガイドします。
 1.  左側のナビゲーションパネルで `+ Create New` をクリックします。
-2.  ドロップダウンメニューで `Dataset` を選択します。
-3.  データソース選択ページが開きます。
-4.  データソースとして `CSV` を選択し、アップロードページに移動します。
+2.  ドロップダウンメニューで `Dataset` を選択します。<img width="789" height="774" alt="3a17db6-1" src="https://github.com/user-attachments/assets/dee5e23e-ccff-480e-aa08-71ae20447061" />
+
+3.  データソース選択ページが開きます。<img width="3584" height="1968" alt="ebb9e06-2" src="https://github.com/user-attachments/assets/65b130a3-fbe7-4740-8c80-18cb7ce4e5d0" />
+
+4.  データソースとして `CSV` を選択し、アップロードページに移動します。<img width="3584" height="1968" alt="a3c07db-3" src="https://github.com/user-attachments/assets/38f5d11a-68b4-4c1d-95bf-6c1d9153a25e" />
+
 5.  提供されたリストから `Connection` を選択します。選択した接続が、あなたのファイルがアップロードされるウェアハウスです。書き込みアクセスが有効なデータウェアハウスが一つしかない場合、それはデフォルトで選択されます。
-6.  `File Upload` セクションで、ページにドラッグ＆ドロップするか、`Browse` をクリックしてCSVファイルをアップロードします。
+6.  `File Upload` セクションで、ページにドラッグ＆ドロップするか、`Browse` をクリックしてCSVファイルをアップロードします。<img width="3584" height="1968" alt="2261f3c-4" src="https://github.com/user-attachments/assets/b459fa53-6327-44a7-af69-837b1ef173b0" />
+
 7.  CSVを追加すると、データのプレビューが表示されます。プレビューから、列を含めるか除外するかを選択したり、解析オプションを調整したり、必要に応じてエラーに対処したりできます。
 8.  `Explore` をクリックしてアップロードを完了します。
 
@@ -3766,7 +3770,7 @@ CSVファイルがSigmaにアップロードされると、そのデータは新
 6.  新しいCSVを選択すると、`Edit Source` ページが開きます。データをプレビューし、ファイルの解析オプションを指定します。
 7.  新しいCSVデータソースに満足したら、`Done` をクリックします。
 
-#### 3-19. データセットのリネージ (Dataset Lineage)
+#### 3-5-6. データセットのリネージ (Dataset Lineage)
 
 ウェアハウステーブルとデータセットの「Lineage」タブでは、あなたのデータセットやウェアハウステーブルがSigma内のどこで使用されているか、そしてあなたのデータセットが依存している全てのソースを確認できます。これにより、特定のデータセットやウェアハウステーブルに変更を加えた場合に何が影響を受けるかを確認できます。
 
@@ -3782,6 +3786,14 @@ CSVファイルがSigmaにアップロードされると、そのデータは新
 * この列はどこから来たのか？
 * このデータはどのように計算されたのか？
 * このデータセットを変更した場合、どのワークブックが影響を受けるか？
+<img width="1791" height="381" alt="88f8d37-Screen_Shot_2021-10-19_at_2 14 00_PM" src="https://github.com/user-attachments/assets/596548a8-9eef-439e-819f-760559bfe52a" />
+
+
+
+
+
+
+
 
 * #### 3-20. データセットの共有 (Share datasets)
 
