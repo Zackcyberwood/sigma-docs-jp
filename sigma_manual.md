@@ -1,4 +1,4 @@
-<img width="1796" height="1191" alt="69f0d6c4cf15664222a65d94c437198d2d8bece72a5a43430ab6c1e22b851de4-image" src="https://github.com/user-attachments/assets/cdb7fffa-b24a-485a-a6d7-c8f6b0702e1a" /># Sigma日本語ドキュメント 構成案
+# Sigma日本語ドキュメント 構成案
 
 #### 1-1-1. Sigmaについて (About Sigma)
 
