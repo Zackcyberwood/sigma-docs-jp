@@ -1,4 +1,4 @@
-<img width="3584" height="1968" alt="ebb9e06-2" src="https://github.com/user-attachments/assets/3bbaba61-ff81-4b5a-8b51-6ae50362c780" /><img width="975" height="456" alt="image" src="https://github.com/user-attachments/assets/97bff070-a96e-4cfa-a030-c39c2082dae4" /><img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/01b7533d-bf74-4579-9586-404fc1e47587" /><img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/c912256d-9406-4d4b-9185-8b46011bd802" /># Sigma日本語ドキュメント 構成案
+<img width="1035" height="530" alt="226323e2b44bb82c5ceb714d467e6f4936828e7cf44fc1a445ae103b2f9cc970-rls-formula" src="https://github.com/user-attachments/assets/f5213bbc-8222-4fdc-a258-0d5c2cf01e80" /><img width="1152" height="699" alt="5420bd8-image" src="https://github.com/user-attachments/assets/87b986c1-ac05-4992-9e77-aa3d2171f8bd" /><img width="1152" height="699" alt="5420bd8-image" src="https://github.com/user-attachments/assets/18cb0e16-8398-484b-bafa-16a0e3894691" /><img width="3584" height="1968" alt="ebb9e06-2" src="https://github.com/user-attachments/assets/3bbaba61-ff81-4b5a-8b51-6ae50362c780" /><img width="975" height="456" alt="image" src="https://github.com/user-attachments/assets/97bff070-a96e-4cfa-a030-c39c2082dae4" /><img width="1280" height="720" alt="4216dec-1" src="https://github.com/user-attachments/assets/01b7533d-bf74-4579-9586-404fc1e47587" /><img width="1719" height="925" alt="563a7477ed80e266ea5e279dd44c75a7901a1106c90c80eb74734bdeb270f6bf-view-data-catalog" src="https://github.com/user-attachments/assets/c912256d-9406-4d4b-9185-8b46011bd802" /># Sigma日本語ドキュメント 構成案
 
 #### 1-1-1. Sigmaについて (About Sigma)
 
@@ -3722,7 +3722,7 @@ SQLでデータセットパラメータを参照するには：
 4.  `Parameters` リストで、削除したいパラメータにカーソルを合わせ、キャレットをクリックしてドロップダウンメニューを開きます。
 5.  `Delete` をクリックします。
 
-#### 3-18. データセットでCSVを使用する (Using CSVs in Datasets)
+#### 3-5-5-1. データセットでCSVを使用する (Using CSVs in Datasets)
 
 SigmaのデータセットにCSVデータをアップロードすることができます。CSVをアップロードすると、SigmaはそのCSVのコピーを直接あなたのデータウェアハウスに保存します。そのため、この機能は組織管理者によって、あなたの組織と個々のウェアハウス接続の両方で有効にされている必要があります。
 
@@ -3788,15 +3788,7 @@ CSVファイルがSigmaにアップロードされると、そのデータは新
 * このデータセットを変更した場合、どのワークブックが影響を受けるか？
 <img width="1791" height="381" alt="88f8d37-Screen_Shot_2021-10-19_at_2 14 00_PM" src="https://github.com/user-attachments/assets/596548a8-9eef-439e-819f-760559bfe52a" />
 
-
-
-
-
-
-
-
-* #### 3-20. データセットの共有 (Share datasets)
-
+* #### 3-5-7. データセットの共有 (Share datasets)
 Sigmaデータセットを組織内の他の人々と共有することができます。
 ドキュメントの所有者または組織の管理者は、Sigmaドキュメントのアクセス権限を[共有、修正、または取り消す](https://help.sigmacomputing.com/docs/share-content#share-a-document)ことができます。
 
@@ -3841,13 +3833,17 @@ Sigmaデータセットを組織内の他の人々と共有することができ
 アクセスのリクエストに応答するには、以下を実行します。
 
 1.  メール通知内の `Respond to the Request` ボタンをクリックします。
-2.  Sigmaが `Share Dataset` モーダルと共に開かれ、現在のアクセスリクエストを表示できます。任意で、権限ドロップダウンメニューをクリックして、ユーザーが持つべきアクセスレベルを選択します。
-    * *注：ユーザーには、そのアカウントタイプが許可するよりも高いアクセス権を付与することはできません。*
-3.  必要に応じて `Approve` をクリックします。`Approve` が選択されると、リクエストは `Share Dataset` モーダルから削除され、ユーザーは `Who Has Access` タブにリストされます。
-4.  または、`Deny` をクリックします。`Deny` が選択されると、リクエストは `Share dataset` モーダルから削除されます。
-5.  `Save` をクリックするか、`Share Dataset` モーダルを閉じます。コンテンツへのアクセスリクエストに関するあなたの決定は、どちらの方法でも保存されます。
+2.  Sigmaが `Share Dataset` モーダルと共に開かれ、現在のアクセスリクエストを表示できます。任意で、権限ドロップダウンメニューをクリックして、ユーザーが持つべきアクセスレベルを選択します。<img width="797" height="550" alt="29cd3be-1" src="https://github.com/user-attachments/assets/3846581d-c51d-44d0-84b7-f9de124e6265" />
 
-6.  #### 3-21. データセットの列を構成する (Configure Dataset Columns)
+    * *注：ユーザーには、そのアカウントタイプが許可するよりも高いアクセス権を付与することはできません。*
+3.  必要に応じて `Approve` をクリックします。`Approve` が選択されると、リクエストは `Share Dataset` モーダルから削除され、ユーザーは `Who Has Access` タブにリストされます。<img width="797" height="550" alt="29cd3be-1" src="https://github.com/user-attachments/assets/5b407c05-fc1e-4c12-ac1b-30c36bc9bb82" />
+
+   または、`Deny` をクリックします。`Deny` が選択されると、リクエストは `Share dataset` モーダルから削除されます。<img width="797" height="550" alt="e5ef7ea-3" src="https://github.com/user-attachments/assets/7aaf4e6f-0c88-4ad9-9f5f-d34ccc417fec" />
+
+4.  `Save` をクリックするか、`Share Dataset` モーダルを閉じます。コンテンツへのアクセスリクエストに関するあなたの決定は、どちらの方法でも保存されます。
+<img width="797" height="550" alt="a77a964-4" src="https://github.com/user-attachments/assets/cb6e2222-a7d8-45ec-acc0-90ccee9bf441" />
+
+  #### 3-5-8. データセットの列を構成する (Configure Dataset Columns)
 
 まず、データセットヘッダーの `Edit` ボタンをクリックします。次に、`Columns` タブをクリックします。
 
@@ -3872,7 +3868,7 @@ Sigmaデータセットを組織内の他の人々と共有することができ
 3.  列の説明入力フィールドに新しい説明を入力します。
 4.  変更を保存するには、`Publish` をクリックします。
 
-5.  #### 3-22. データセットのリンク (Dataset Links)
+5.  #### 3-5-8. データセットのリンク (Dataset Links)
 
 リンクは、2つのデータソース間に事前定義された結合経路を作成します。リンクを定義すると、ユーザーはデータセットに基づいて、リンクされたデータソースからワークブックに列を簡単に追加できます。Sigmaは、あなたのデータベースに既に存在するデータリレーションシップを自動的に取り込みます。もしウェアハウスに外部キーが設定されていれば、それらのリレーションシップは自動的に「Links」タブに表示されるはずです。
 
@@ -3900,7 +3896,7 @@ Sigmaのリンクの強力な点は、テーブル間のリンクを作成する
 
 リンクの使用に関する詳細は、「[Use linked columns in workbooks](https://help.sigmacomputing.com/docs/use-linked-columns-in-workbooks)」を参照してください。
 
-#### 3-23. SQLからデータセットを作成する (Create a dataset from SQL)
+#### 3-5-9. SQLからデータセットを作成する (Create a dataset from SQL)
 
 データセットを作成する方法の一つは、ウェアハウス内のデータに対してSQLを記述することです。SQLベースのデータセットは、SQLクエリを受け取り、他の人が追加分析の基盤として使用できる再利用可能なデータソースに変換します。データセットはデータベースに[マテリアライズする](https://help.sigmacomputing.com/docs/dataset-materialization-api)こともでき、クエリの高速化に役立ちます。データセットに加えられた変更は、下流の依存関係に伝播します。
 
@@ -3931,7 +3927,8 @@ Sigmaのリンクの強力な点は、テーブル間のリンクを作成する
 1.  修正したいデータセットを開きます。
 2.  `Edit` をクリックし、`Worksheet` タブを選択します。
 3.  サイドパネルで、データソースパネルを開きます。
-4.  `Custom SQL` について、`More` > `Edit Source` を選択します。
+4.  `Custom SQL` について、`More` > `Edit Source` を選択します。<img width="237" height="314" alt="c7f2e313d5fa0904b4898e4eef2e9b9896bb168a71b8074b3a1b1cc504b8fa8a-dataset-sql-edit" src="https://github.com/user-attachments/assets/429203f6-be29-44b2-9d8a-941673769749" />
+
 5.  開いたクエリエディタで、カスタムSQLを修正します。`Run` をクリックして、クエリが期待通りの結果を返すことを検証します。
 6.  `Done` をクリックしてクエリを保存します。
 7.  `Publish` をクリックしてデータセットを更新します。
@@ -3944,6 +3941,7 @@ Sigmaのリンクの強力な点は、テーブル間のリンクを作成する
 `SELECT * FROM <location>.<dataset_warehouse_view_name>`
 
 データセットの完全修飾名を特定するには、データセットを表示しているときに `More info` を選択します。
+<img width="1194" height="522" alt="52cf6e5-Screenshot_2024-05-20_at_11 58 22_AM" src="https://github.com/user-attachments/assets/916f3743-d03c-48ed-961c-58a01bdce361" />
 
 `Location` フィールドは、データセットを含むデータプラットフォーム内のデータベースまたはカタログとスキーマを提供し、`Dataset` フィールドは参照できるビュー名を提供します。
 
@@ -3954,7 +3952,7 @@ SQLステートメントでSigmaデータセットから個々の列を参照す
 ```sql SELECT "Customer Id" FROM DATABASE.SCHEMA.DATASET_WAREHOUSE_VIEW_NAME```
 
 
-#### 3-24. データセットのウェアハウスビューの作成と管理 (Create and manage dataset warehouse views)
+#### 3-5-10. データセットのウェアハウスビューの作成と管理 (Create and manage dataset warehouse views)
 
 ウェアハウスビューは、あなたのデータプラットフォーム内の仮想テーブルであり、Sigmaやあなたのデータエコシステム内の他の任意のアプリケーションを使用してクエリを実行することができます。Sigmaでモデリングしたデータに基づいてウェアハウスビューを作成することで、クエリを簡素化し、関連性のある最新のデータセットをデータベースから直接取得できます。
 
@@ -3999,7 +3997,7 @@ SQLクエリでデータセットのウェアハウスビューを参照する�
 
 例えば、Snowflakeでは、デスティネーションデータベースに対する `USAGE` 権限が必要ですが、Sigmaが使用する書き戻しスキーマに対しては、`USAGE`, `CREATE TABLE`, `CREATE VIEW`, `CREATE STAGE` という権限も付与されている必要があります。
 
-#### 3-25. サポートされるデータ型とフォーマット (Supported data types and formats)
+#### 3-6-1. サポートされるデータ型とフォーマット (Supported data types and formats)
 
 Sigmaは、効果的な分析とレポーティングを促進するために、様々なデータ型とフォーマットをサポートしています。データ型は、取得データ¹および直接入力データ²に適用され、Sigmaがあなたのデータをどのように構造化し、解釈し、操作するかを決定します。データフォーマットは、データを明確で意味のある方法で表示することを可能にします。
 
@@ -4198,7 +4196,7 @@ Sigmaは、組織のデフォルトタイムゾーンに対して相対的な日
 | Well-known text<br>(WKT) | POINT (10 20)<br><br>LINESTRING (30 40, 50 60, 70 80)<br><br>POLYGON ((0 0, 10 0, 10 10, 0 10, 0 0))<br><br>MULTIPOINT (10 20, 30 40, 50 60)<br><br>MULTILINESTRING ((0 0, 10 10, 20 20), (30 30, 40 40, 50 50))<br><br>MULTIPOLYGON (((0 0, 10 0, 10 10, 0 10, 0 0)), ((20 20, 30 20, 30 30, 20 30, 20 20))) |
 
 
-#### 3-26. CSVデータのアップロード (Upload CSV data)
+#### 3-6-2. CSVデータのアップロード (Upload CSV data)
 
 接続されたデータプラットフォームに保存されていないデータを分析するために、CSVデータをアップロードします。
 
@@ -4225,10 +4223,12 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 **CSVファイルからワークブックを作成する (Create a workbook from a CSV file)**
 
 1.  左のナビゲーションパネルで `+ Create New` をクリックし、`Upload CSV` を選択します。
-2.  `Upload CSV` ページが開きます。
+2.  `Upload CSV` ページが開きます。<img width="329" height="447" alt="3a33d42-upload-csv" src="https://github.com/user-attachments/assets/4890dfbe-958c-4fc3-aa5d-e6ef26f347db" />
+
 3.  ドロップダウンメニューから `Connection` を選択し、ファイルをアップロードするクラウドデータウェアハウスを指定します。
     * 書き込みアクセスが有効なデータウェアハウスが一つしかない場合、それはデフォルトで選択されます。
-4.  `Upload CSV` セクションにファイルをドラッグ＆ドロップするか、`Browse` をクリックしてCSVファイルをアップロードします。
+4.  `Upload CSV` セクションにファイルをドラッグ＆ドロップするか、`Browse` をクリックしてCSVファイルをアップロードします。<img width="1793" height="400" alt="cd185e9-3" src="https://github.com/user-attachments/assets/fa8118a0-556e-4c51-ab2a-f03df2373077" />
+
 5.  データのプレビューが表示されます。
 6.  データをプレビュー中に、警告やエラーに対処したり、その他の調整を行ったりできます。
     * [任意] ページの左側で、アップロードから除外したい列のチェックボックスをオフにします。
@@ -4245,14 +4245,16 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 2.  `Data elements` の下で、追加したい要素のタイプ（`Table`, `Visualization`, `Pivot table`）を選択します。
 3.  要素のデータソースとして、`CSV` を選択してCSV形式のファイルをアップロードします。
 4.  ドロップダウンメニューから `Connection` を選択し、ファイルをアップロードするクラウドデータウェアハウスを指定します。
-    * 書き込みアクセスが有効なデータウェアハウスが一つしかない場合、それはデフォルトで選択されます。
+    * 書き込みアクセスが有効なデータウェアハウスが一つしかない場合、それはデフォルトで選択されます。<img width="329" height="447" alt="3a33d42-upload-csv" src="https://github.com/user-attachments/assets/5b193a5d-ae15-4ce4-80b1-828fa56c7233" />
+
 5.  `File Upload` セクションにファイルをドラッグ＆ドロップするか、`Browse` をクリックしてCSVファイルをアップロードします。
-6.  データのプレビューが表示されます。
+6.  データのプレビューが表示されます。<img width="1793" height="400" alt="cd185e9-3" src="https://github.com/user-attachments/assets/7d31a4ae-bae0-41ab-9d49-44610adc78d0" />
+
 7.  データをプレビュー中に、警告やエラーに対処したり、任意で `Parsing Options` セクションで解析オプションをカスタマイズしたりできます。
 8.  `Done` をクリックします。
     * 新しい要素がページに表示され、エディタパネルが特定の要素の構成ビューで開きます。
 
-  #### 3-27. Joinタイプ (Join types)
+  #### 3-7-1. Joinタイプ (Join types)
 
 **システム要件 (System requirements)**
 
@@ -4263,33 +4265,41 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 * **ルックアップ (Lookup)**
     ルックアップは、現在のデータのすべての行と、結合されたデータの一致する行からのすべてのデータを返します。現在のデータの一つの行に対して複数の一致が存在する場合、ルックアップはアスタリスク（*）を返し、現在のデータの行数を維持します。
     ルックアップは、ExcelのVLOOKUP関数のように機能します。詳細は、「[Lookup join](https://help.sigmacomputing.com/docs/join-data#lookup-join)」を参照してください。
+<img width="477" height="362" alt="e738471-Lookup" src="https://github.com/user-attachments/assets/964f5e4e-5d04-472b-a48d-724bea0b0f70" />
 
 * **内部結合 (Inner join)**
     内部結合は、現在のデータと結合されたデータの両方に一致するデータを含む行を返します。一致するデータを含まない行は省略します。
     詳細は、「[Inner join](https://help.sigmacomputing.com/docs/join-data#inner-join)」を参照してください。
+<img width="477" height="362" alt="024edc4-Inner_Join" src="https://github.com/user-attachments/assets/c47c5773-d7f6-4757-a3be-5699232ee282" />
 
 * **左外部結合 (Left outer join)**
     左外部結合は、現在のデータのすべての行と、結合されたデータの一致する行からのすべてのデータを返します。現在のデータの一つの行に対して複数の一致が存在する場合、結合は結合されたデータの各一致ごとに行を追加するため、行数が増加する可能性があります。
     詳細は、「[Left outer join](https://help.sigmacomputing.com/docs/join-data#left-outer-join)」を参照してください。
+<img width="477" height="362" alt="4b3adca-Left_Outer_Join" src="https://github.com/user-attachments/assets/ffe13776-746f-4406-b349-063ea41d4ab8" />
 
 * **右外部結合 (Right outer join)**
     右外部結合は、結合されたデータのすべての行と、現在のデータの一致する行からのすべてのデータを返します。結合されたデータの一つの行に対して複数の一致が存在する場合、結合は現在のデータ内のすべての一致する行を保持します。
     詳細は、「[Right outer join](https://help.sigmacomputing.com/docs/join-data#right-outer-join)」を参照してください。
+<img width="477" height="362" alt="b835b2b-Right_Outer_Join" src="https://github.com/user-attachments/assets/89d3e86d-cb6b-4da2-a51d-fe3a480acb4f" />
 
 * **完全外部結合 (Full outer join)**
     完全外部結合は、現在のデータのすべての行と、結合されたデータのすべての行を返し、該当する場合には一致する行を統合します。
     詳細は、「[Full outer join](https://help.sigmacomputing.com/docs/join-data#full-outer-join)」を参照してください。
-#### 3-28. ルックアップ結合 (Lookup join)
+<img width="477" height="362" alt="b355faf-Full_Outer_Join" src="https://github.com/user-attachments/assets/ca4e2687-1e18-47d4-a308-8d792ae4bc6e" />
+
+#### 3-7-1-1. ルックアップ結合 (Lookup join)
 
 このドキュメントはSigmaデータセットに関するものです。Sigmaワークブックについては、[`Lookup`関数](https://help.sigmacomputing.com/docs/lookup)および「[Add Columns through Lookup](https://help.sigmacomputing.com/docs/add-columns-through-lookup)」を参照してください。
 
 > **重要:** すべての要素は、同じデータ接続上にある必要があります。
+<img width="477" height="317" alt="945826b-Lookup" src="https://github.com/user-attachments/assets/b983e510-89b5-498d-bfc8-800504494895" />
 
 ルックアップは、現在のデータのすべての行と、結合されたデータの一致する行からのすべてのデータを、現在のデータに行を追加することなく返します。複数の一致が存在する場合、Sigmaはアスタリスク（*）を表示して、結合されたデータに一致するデータを持つ行が複数あることを示します。ルックアップ結合は、ExcelのVLOOKUP数式と同様に機能します。
 
 以下の例では、ルックアップを使用して顧客情報テーブルと注文情報テーブルを結合しています。結合キーとして、列CUST IDに示されている顧客IDを使用しています。注文テーブルには顧客ID 1からの注文が複数あるため、Sigmaは何らかの情報を引き出す代わりにアスタリスク（*）を表示します。これにより、顧客情報テーブルの行数が維持されます。
 
 ![Lookup Joinの例を示す図](https://help.sigmacomputing.com/hc/article_attachments/11266025219731)
+<img width="707" height="439" alt="f0a7425-Lookup_table" src="https://github.com/user-attachments/assets/c397957b-98f3-4481-a5bd-b6337fdb216a" />
 
 異なるJoinは、複数の一致する値を異なる方法で処理します。
 
@@ -4300,7 +4310,8 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 | 2+ | * | 行を追加 | 行を追加 |
 
 
-#### 3-29. 内部結合 (Inner Join)
+#### 3-7-1-2. 内部結合 (Inner Join)
+<img width="719" height="323" alt="image" src="https://github.com/user-attachments/assets/9ab8a6dd-bf8e-483f-8de8-6d820ed00166" />
 
 内部結合（Inner Join）は、現在のデータと結合されるデータの両方に存在する行を返します。現在のデータと結合されるデータの両方にデータがないすべての行を削除します。
 
@@ -4316,7 +4327,8 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 | 1 | (値) | (値) | (値) |
 | 2+ | * | 行を追加 | 行を追加 |
 
-#### 3-30. 左外部結合 (Left Outer Join)
+#### 3-7-1-3. 左外部結合 (Left Outer Join)
+<img width="477" height="362" alt="c89c21a-Left_Outer_Join" src="https://github.com/user-attachments/assets/d821ffbb-2252-49da-bcf7-3c3edf0572d6" />
 
 左外部結合（Left Outer Join）は、現在のデータのすべての行と、結合されるデータの一致する行からのすべてのデータを返し、複数の一致がある場合には行を追加します。これにより、行数が増加する可能性があります。
 
@@ -4325,6 +4337,7 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 ![Left Outer Joinの例を示す図](https://help.sigmacomputing.com/hc/article_attachments/11266025430803)
 
 異なるJoinは、複数の一致する値を異なる方法で処理します。
+<img width="691" height="394" alt="8c7d132-LOJ_table" src="https://github.com/user-attachments/assets/88989d33-fc6e-4eba-a8fd-b236cbc3b52f" />
 
 | 一致数 | ルックアップ (Lookup) | 内部結合 (Inner join) | 左外部結合 (Left outer join) |
 | :--- | :--- | :--- | :--- |
@@ -4332,8 +4345,8 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 | 1 | (値) | (値) | (値) |
 | 2+ | * | 行を追加 | 行を追加 |
 
-#### 3-31. 右外部結合 (Right Outer Join)
-
+#### 3-7-1-4. 右外部結合 (Right Outer Join)
+<img width="477" height="311" alt="ec2f9e1-Right_Outer_Join" src="https://github.com/user-attachments/assets/f72ed949-1a13-4817-bc25-0740626d862c" />
 右外部結合（Right Outer Join）は、結合されるデータのすべての行と、現在のデータの一致する行からのデータを返し、複数の一致がある場合には行を追加します。現在のデータに、結合されるデータに一致する行が複数ある場合、一致するすべての行が保持されます。
 
 以下の例では、右結合を使用して顧客情報テーブルと注文情報テーブルを結合しています。結合キーとして、列CUST IDに示されている顧客IDを使用しています。結合される注文テーブルのすべてのデータが保持されます。注文テーブルに結合できない顧客情報テーブルのすべてのデータは削除されます。
@@ -4342,7 +4355,8 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 
 ![Right Outer Joinの例を示す図](https://help.sigmacomputing.com/hc/article_attachments/11266025514643)
 
-#### 3-32. 完全外部結合 (Full Outer Join)
+#### 3-7-1-5. 完全外部結合 (Full Outer Join)
+<img width="477" height="311" alt="ec2f9e1-Right_Outer_Join" src="https://github.com/user-attachments/assets/f80c78bb-3f81-45b6-9e1a-cb47fb8c87dc" />
 
 完全外部結合（Full Outer Join）は、現在のデータのすべての行と、結合されるデータのすべての行を返し、可能な場合には一致させます。
 
@@ -4351,12 +4365,14 @@ CSVファイルがSigmaにアップロードされると、ファイル内のデ
 結合された注文テーブルの複数の注文に対応するために、顧客1のデータの行が追加されます。顧客2と顧客4は、注文テーブルに彼らのデータがなかったため、注文データの値がNULLになります。顧客6は、元のデータに顧客6の情報がなかったため、First（名）とLast（姓）の値がNULLになります。
 
 ![Full Outer Joinの例を示す図](https://help.sigmacomputing.com/hc/article_attachments/11266050516115)
+<img width="645" height="376" alt="0bcef43-ROJ_table" src="https://github.com/user-attachments/assets/8284ed2f-3ae1-4faf-a76d-dfeca5cdd6a8" />
 
-#### 3-33. データセットでデータを結合する (Join data in datasets)
+#### 3-7-2-1. データセットでデータを結合する (Join data in datasets)
 
 ウェアハウステーブルやデータセット間でJoin（結合）を作成する際、Joinを機能させるために入力列のデータを変更する必要がある場合があります。そのような場合、Joinを作成しながら入力列に数式を追加することができます。
 
 Sigmaで利用可能な任意の関数を使用して、スカラー数式で結合キーを定義できます。数式は、単純な[型変更](https://help.sigmacomputing.com/docs/type-functions)関数から、複雑な[If](https://help.sigmacomputing.com/docs/if)ステートメントまで様々です。
+<img width="445" height="430" alt="f61d09a-join_calc_col" src="https://github.com/user-attachments/assets/f43204f8-8087-4d02-9f0b-3821e37e8700" />
 
 **Joinの入力列に数式を追加する (Add a formula to a join input column)**
 
@@ -4369,7 +4385,7 @@ Sigmaで利用可能な任意の関数を使用して、スカラー数式で結
 7.  プレビューがロードされるのを待って、選択した結合キーが期待通りにデータを結合していることを確認します。
 8.  `Done` をクリックして、Joinの作成を完了します。
 
-#### 3-34. ワークブックでデータを結合する (Join data in workbooks)
+#### 3-7-2-2. ワークブックでデータを結合する (Join data in workbooks)
 
 Join（結合）は、一致する列に基づいて複数のソースからのデータを組み合わせます。
 
@@ -4385,22 +4401,27 @@ Joinの詳細と、データを組み合わせるために使用したいJoinタ
 2.  `DATA ELEMENTS` の下で、追加したい要素のタイプ（`TABLE`, `VIZ`, `PIVOT TABLE`）を選択します。
 3.  `Join` または `Union` を選択して、データソースを組み合わせます。
 4.  表示された `Select source` ダイアログで、データソースまたは現在のワークブック要素を検索するか、ワークブック要素、テーブル、またはデータセットを参照します。
-5.  データソースを選択してプレビューし、選択する列を選んでから `Select` をクリックします。
-6.  `Create Join` ページが開きます。
+    データソースを選択してプレビューし、選択する列を選んでから `Select` をクリックします。
+5.  `Create Join` ページが開きます。
     * Joinには2つ以上のソースが必要です。
-7.  2番目のソースを追加するには、`SOURCES` の隣にある `+` をクリックします。
-8.  ステップ4と5を繰り返します。
-9.  `Join type` を選択します。
-10. 使用する `Join keys` を選択します。ページの右側には、選択した結合キーの一致率が表示されます。
+<img width="1536" height="825" alt="c0a772e-5" src="https://github.com/user-attachments/assets/0be8f885-31f0-4ec1-87a4-0761cd3491ab" />
+6.  2番目のソースを追加するには、`SOURCES` の隣にある `+` をクリックします。<img width="1536" height="825" alt="c0a772e-5" src="https://github.com/user-attachments/assets/97422541-ffd0-44a3-adb4-6e4c550d866c" />
+
+7.  ステップ4と5を繰り返します。<img width="1536" height="827" alt="8b2acdd-6" src="https://github.com/user-attachments/assets/cd25f975-5fee-423e-8254-ebc6fa75bfca" />
+
+8.  `Join type` を選択します。<img width="1536" height="827" alt="8b2acdd-6" src="https://github.com/user-attachments/assets/9bf18a48-304e-4371-97ff-82178da2da48" />
+
+9. 使用する `Join keys` を選択します。ページの右側には、選択した結合キーの一致率が表示されます。<img width="1536" height="824" alt="2b9c70e-7" src="https://github.com/user-attachments/assets/58d24fdd-7026-45ea-9b5a-687a4de66648" />
     > 📘
     > 場合によっては、[完全外部結合](https://help.sigmacomputing.com/docs/full-outer-join)のように、複数の結合キーのペアを定義したいことがあります。
-11. [任意] 別のソースを結合するには、ステップ6〜9を繰り返します。
-12. `Preview output` を選択します。
-13. 結合されたデータソースのプレビューを確認し、含まれる列に必要な変更を加えます。
-14. `Done` を選択します。
+10. [任意] 別のソースを結合するには、ステップ6〜9を繰り返します。
+11. `Preview output` を選択します。
+12. 結合されたデータソースのプレビューを確認し、含まれる列に必要な変更を加えます。
+    <img width="1536" height="824" alt="b7462c7-9" src="https://github.com/user-attachments/assets/80b9afba-7f6f-4452-80cd-21ecdb3fd0b4" />
+13. `Done` を選択します。
     * 新しい要素がワークブックに表示されます。
    
-#### 3-35. カスタム日時フォーマットを定義する (Define custom datetime formats)
+#### 3-8-1. カスタム日時フォーマットを定義する (Define custom datetime formats)
 
 Sigmaでは、カスタム日時フォーマットを定義して、ワークブック内で[日付データ](https://help.sigmacomputing.com/docs/supported-data-types-and-formats#date)がどのように表示されるかを制御できます。
 
@@ -4452,15 +4473,17 @@ Sigmaでは、カスタム日時フォーマットを定義して、ワークブ
 
 **カスタム日時フォーマットを定義する (Define a custom datetime format)**
 
-以下のいずれかの方法を使用して、`Custom Format` モーダルにアクセスします。
-* **列メニュー:** フォーマットしたい列のヘッダーで、キャレット()をクリックして列メニューを開き、`Format` > `Custom` を選択します。
-* **ツールバー:** フォーマットしたい列を選択し、ワークブックツールバーの `Format` オプションをクリックして `Custom date` を選択します。
+1. 以下のいずれかの方法を使用して、`Custom Format` モーダルにアクセスします。
+* **列メニュー:** フォーマットしたい列のヘッダーで、キャレット()をクリックして列メニューを開き、`Format` > `Custom` を選択します。<img width="1152" height="823" alt="aad14f9-image" src="https://github.com/user-attachments/assets/fc1f7d69-2819-4529-a6d8-9d0d32d054b6" />
 
-`Custom Format` モーダルで、フォーマット文字列を入力し、`Example` フィールドが表示したい日時フォーマットを反映していることを確認します。
+* **ツールバー:** フォーマットしたい列を選択し、ワークブックツールバーの `Format` オプションをクリックして `Custom date` を選択します。
+<img width="1152" height="699" alt="5420bd8-image" src="https://github.com/user-attachments/assets/4159eea2-1318-4899-80da-02bf2a864d0b" />
+
+2. `Custom Format` モーダルで、フォーマット文字列を入力し、`Example` フィールドが表示したい日時フォーマットを反映していることを確認します。
 
 必要に応じてフォーマット文字列を調整し、`Apply` をクリックします。列は即座にカスタム日時フォーマットを反映します。
 
-#### 3-36. 構造化オブジェクトの生成とアクセス (Generate and access structured objects)
+#### 3-8-2. 構造化オブジェクトの生成とアクセス (Generate and access structured objects)
 
 レコード数式は、ワークブックやデータモデルで直接、構造化オブジェクト（JSONなど）を生成することを可能にし、データ処理とインタラクションを改善します。
 
@@ -4514,6 +4537,8 @@ Sigmaが構造化オブジェクトを処理する際、個々のフィールド
 Sigmaは構造化オブジェクト内のデータ型を保持するため、データにアクセスしたり、関数に値を渡したりする際に型変換を行う必要はありません。これは、[バリアントデータ](https://help.sigmacomputing.com/docs/supported-data-types-and-formats#variant)として処理され、同じ出力を得るために型変換が必要になる場合がある半構造化オブジェクトとは対照的です。
 
 * **例：構造化 vs. 半構造化のパスアクセス**
+* <img width="668" height="123" alt="ccdfc62-image" src="https://github.com/user-attachments/assets/a60a9aef-22cf-4bea-8e5f-66d9ab299d92" />
+
     * **シナリオ1：列Aに構造化オブジェクトが含まれる場合**
         例のテーブルでは、列Aに**テキストデータ**を格納する構造化オブジェクトが含まれています。列Bで "street"、"city"、"state" の値を単一のテキスト文字列に結合するには、型変換なしで以下の数式を使用できます。
         `Concat([Column A].street, ", ", [Column A].city, ", ", [Column A].state)`
@@ -4522,7 +4547,7 @@ Sigmaは構造化オブジェクト内のデータ型を保持するため、デ
         もし列Aが代わりに半構造化オブジェクトを含んでいる場合、Sigmaはオブジェクトの値をバリアントデータとして処理します。値を列Bで単一のテキスト文字列に結合するには、値をテキストデータに変換してから `Concat` 関数に渡すために `Text` 関数を必要とする、以下の数式を使用する必要があります。
         `Concat(Text([Column A].street), ", ", Text([Column A].city), ", ", Text([Column A].state))`
 
-#### 3-37. 行レベルのセキュリティを設定する (Set up row-level security)
+#### 3-9-1. 行レベルのセキュリティを設定する (Set up row-level security)
 
 行レベルのセキュリティ（RLS）は、データを閲覧している人の特性に基づいてデータへのアクセスを制限します。
 
@@ -4573,8 +4598,10 @@ RLSを設定したいドキュメントに対して、`Can Edit` または `Can 
     2.  データモデルで、`plugs_electronics` テーブルを追加し、次に `Region RLS` という新しい列を追加します。
     3.  `Region RLS` 列の数式を以下のように設定します。
         `CurrentUserAttributeText("Region") = [Store Region]`
-        あなたはSales US-Westチームのメンバーであるため、`Region RLS` 列は `Store Region` が `West` である行に対して `True` 値を表示します。
-    4.  `Region RLS` 列にフィルターを追加し、`True` の値のみを表示します。
+        あなたはSales US-Westチームのメンバーであるため、`Region RLS` 列は `Store Region` が `West` である行に対して `True` 値を表示します。<img width="1035" height="530" alt="226323e2b44bb82c5ceb714d467e6f4936828e7cf44fc1a445ae103b2f9cc970-rls-formula" src="https://github.com/user-attachments/assets/4e4a385a-3329-4a5c-8aaf-4820d26c1b63" />
+
+    4.  `Region RLS` 列にフィルターを追加し、`True` の値のみを表示します。<img width="355" height="266" alt="0d66893348deae35468f8ed4aded7c90770b7e0ed01a5b613032983605e171a6-rls-filter" src="https://github.com/user-attachments/assets/7017c83b-c680-4a6f-a489-c9aa1db220bf" />
+
     5.  [任意] 下流のユーザーにデフォルトで表示されないように、`Region RLS` 列を非表示にします。
 
 * **埋め込み分析でのRLS (RLS with embedded analytics)**
@@ -4641,7 +4668,7 @@ RLSを設定したいドキュメントに対して、`Can Edit` または `Can 
     `( [Salesperson Email] = CurrentUserEmail() ) or ( CurrentUserInTeam(“Sales Manager”) )`
     この数式は、閲覧者が "Sales Manager" チームにいる場合はすべての行に対して `True` を返し、他のすべての閲覧者に対しては、閲覧者のメールが営業担当者のメールと一致する行に対してのみ `True` を返します。
 
-  #### 3-38. 列レベルのセキュリティを構成する (Configure column-level security)
+  #### 3-9-2. 列レベルのセキュリティを構成する (Configure column-level security)
 
 データモデルまたはデータセット内の列レベルのデータへのアクセスを制限またはマスキングするために、列レベルのセキュリティを構成します。CLSを使用することで、あなたの組織はデータへのアクセスを管理し、機密情報が安全で、承認されたユーザーのみがアクセスできるように保証できます。
 
@@ -4675,13 +4702,15 @@ Sigmaでは、列レベルのセキュリティはチームの割り当て、ユ
     > 💡
     > `Modeling` タブから、またはテーブルの列メニューから列レベルのセキュリティルールを追加できます。列メニューから追加するには、テーブルまたは`Properties`タブで列を探し、キャレット()を選択して `Column security...` を選択します。
 2.  列レベルのセキュリティルールを適用したいテーブルを選択します。
-3.  エディタパネルで、`Modeling` タブを選択します。
+3.  エディタパネルで、`Modeling` タブを選択します。<img width="262" height="295" alt="fb00b50ef05201d905b7fcc5fff3221f32abab3aca016be6ef7a864e77a7e85d-dm-cls-modeling" src="https://github.com/user-attachments/assets/f5bf09c2-1474-4364-99ea-51243fb8e325" />
+
 4.  `Column security` セクションで、`+` (Add column level security...) を選択して、列レベルのセキュリティルールを追加します。
 5.  新しいルールが表示され、`Add new column security` のポップオーバーが開きます。
 6.  `Restricted columns` で、アクセスを制限する一つ以上の列を選択します。
     > 📘
     > グループ化された列には列レベルのセキュリティルールを設定できません。
-7.  `Criteria` で、`No one can view`（全員のアクセスを制限）と `Specific users and teams`（許可リストを作成し、指定したユーザーとチームにのみアクセスを許可）のいずれかを選択します。
+7.  `Criteria` で、`No one can view`（全員のアクセスを制限）と `Specific users and teams`（許可リストを作成し、指定したユーザーとチームにのみアクセスを許可）のいずれかを選択します。<img width="384" height="331" alt="1e647b6f4835c9e8422b379715dbf7d6cbd1e3c3cf4ed5f880a66b01623f349a-dm-cls-add" src="https://github.com/user-attachments/assets/26b71b5e-6ae5-40cb-9fbd-e80e4d358e9d" />
+
 8.  `Specific users and teams` を選択した場合、列へのアクセスを許可したいユーザーとチームを検索します。デフォルトでは5つのユーザーとチームしかドロップダウンに表示されません。ユーザーまたはチームを選択すると、リストに表示されます。
 9.  ルールが作成されます。`X` をクリックしてポップオーバーを閉じます。
 10. `Publish` をクリックしてデータモデルを更新し、列のセキュリティルールを即座に強制します。
@@ -4694,10 +4723,13 @@ Sigmaでは、列レベルのセキュリティはチームの割り当て、ユ
     2.  `Business Forecast` データモデルを編集用に開きます。
     3.  `Modeling` タブの `Column security` セクションで、`+` を選択して `Revenue` 列のルールを追加します。
     4.  `Restricted columns` で、`Revenue` を選択します。
-    5.  `Criteria` で、`Specific users and teams` を選択し、`Financial leadership` チームを選択します。
+    5.  `Criteria` で、`Specific users and teams` を選択し、`Financial leadership` チームを選択します。<img width="1359" height="569" alt="832873cf43f7469437262c3fb94c1e84dab36d34fc9c2164d6cee381f608b235-Screenshot_2025-03-26_at_11 09 58_AM" src="https://github.com/user-attachments/assets/46cd3a89-52fc-488f-b81c-f5b1274923c1" />
+
     6.  `Publish` をクリックしてデータモデルを更新します。
-    金融リーダーシップチームの誰かは、データモデルをデータソースとして使用し、`Revenue` 列のデータを使ってワークブックを構築できます。もしあなたが金融リーダーシップチームの一員でない場合、`Revenue` 列のデータにアクセスできないため、彼らのためにワークブックを作成することはできません。
+    金融リーダーシップチームの誰かは、データモデルをデータソースとして使用し、`Revenue` 列のデータを使ってワークブックを構築できます。<img width="1331" height="639" alt="fcba970d107814c6244f4bdcfefb224f41d56413ac59e6ca27bcfb8791869e08-Screenshot_2025-03-26_at_11 11 21_AM" src="https://github.com/user-attachments/assets/caba33b5-19c3-418c-9e8f-75dd87366d84" />
+もしあなたが金融リーダーシップチームの一員でない場合、`Revenue` 列のデータにアクセスできないため、彼らのためにワークブックを作成することはできません。
     `Revenue` 列へのアクセス権がないあなたや他の誰かがそのデータを含むワークブックを閲覧しようとすると、列名が `Restricted` と表示され、その列の値は `No access` となります。
+<img width="1187" height="536" alt="2ebe03e5ae6776f5f925fd78a7c0d747cf0d124744f7defce58c5e1f50c533dc-Screenshot_2025-03-26_at_11 12 16_AM" src="https://github.com/user-attachments/assets/6b0c358b-8d98-4689-959a-6a775a3dad6a" />
 
 * **子要素は列レベルのセキュリティルールを継承する (Child elements inherit column-level security rules)**
     子要素は親要素から列レベルのセキュリティルールを継承します。フィルターのように、列レベルのセキュリティルールは列に適用されますが、子要素上で表示、修正、または管理することはできません。
@@ -4726,7 +4758,8 @@ Sigmaでは、列レベルのセキュリティはチームの割り当て、ユ
     > 🚧
     > 意図しない結果やエラーを防ぐため、マテリアライズされたデータセットでユーザー属性を使用することは避けてください。
 4.  `Columns` タブを選択し、データセットヘッダーの `Edit` をクリックします。
-5.  列レベルのセキュリティを構成したい列を探し、`Visibility` ドロップダウンをクリックして、該当するユーザー属性を選択します。
+5.  列レベルのセキュリティを構成したい列を探し、`Visibility` ドロップダウンをクリックして、該当するユーザー属性を選択します。<img width="1149" height="520" alt="5b88446-image" src="https://github.com/user-attachments/assets/73fbb32b-9608-449d-863e-baa19aabcbad" />
+
 6.  列レベルのセキュリティが必要なすべての列に対してステップ5を繰り返し、データセットヘッダーの `Publish` をクリックして編集を保存します。
 
 これで、列レベルのセキュリティを持つデータセットをデータソースとして使用する[ワークブックを作成](https://help.sigmacomputing.com/docs/workbook-fundamentals)できます。該当するチームとワークブックを共有すると、各ユーザーのチーム割り当て、ユーザー属性、および対応するデータセットの可視性構成に基づいて、データが含まれたり制限されたりします。
@@ -4735,14 +4768,18 @@ Sigmaでは、列レベルのセキュリティはチームの割り当て、ユ
     この例は、ユーザー属性とチームを使用して、データセットで列レベルのセキュリティを実装する方法を示します。
     あるSigma組織にはTeam AとTeam Bの2つのチームがあります。Team Aのメンバーは `Customer` という既存のデータセットの `Domain` 列へのアクセスが必要ですが、Team Bのメンバーはその同じデータの閲覧を制限される必要があります。
     1.  まず、データセキュリティを管理するためのユーザー属性を作成します。この例では、`Domain CLS` ユーザー属性を作成します。
-    2.  Team Aに属性値 `0`（データにアクセスするため）を、Team Bに属性値 `2`（データを制限するため）を割り当てます。
+    2.  Team Aに属性値 `0`（データにアクセスするため）を、Team Bに属性値 `2`（データを制限するため）を割り当てます。<img width="1149" height="575" alt="40c6111-image" src="https://github.com/user-attachments/assets/ca5842fd-1390-481b-9ade-b4c769cf0bb3" />
+
     3.  次に、Team AとTeam Bの両方のメンバーがデータセットにアクセスできることを確認します。`Customer` データセットを開き、`Permissions` タブを選択します。
     4.  次に、データセットの列の可視性を更新します。データセットの編集を開始するには、`Columns` タブを選択し、`Edit` をクリックします。
-    5.  `Columns` タブで `Domain` 列を探し、対応する `Visibility` ドロップダウンフィールドをクリックして、`Domain CLS` ユーザー属性を選択します。
-        Team AとTeam Bに割り当てられた `Domain CLS` ユーザー属性の値が `Domain` 列に適用されます。
+    5.  `Columns` タブで `Domain` 列を探し、対応する `Visibility` ドロップダウンフィールドをクリックして、`Domain CLS` ユーザー属性を選択します。<img width="1149" height="473" alt="8794788-image" src="https://github.com/user-attachments/assets/6c373d68-0ec7-42c9-a5b6-5bd7924fa4b9" />
+
+        Team AとTeam Bに割り当てられた `Domain CLS` ユーザー属性の値が `Domain` 列に適用されます。<img width="1149" 
+
     6.  データセットへの変更を `Publish` して保存します。
     7.  データセットからワークブックを作成し、全てのデータセット列を持つテーブルを追加し、そのワークブックをTeam AとTeam Bの両方と共有します。
-    Team Aのメンバーがワークブックを開くと、Sigmaは `Domain` 列の全てのデータを表示します。
+    Team Aのメンバーがワークブックを開くと、Sigmaは `Domain` 列の全てのデータを表示します。<img width="1198" height="210" alt="0497622-image" src="https://github.com/user-attachments/assets/c830a60b-3efa-4f8d-a1fd-86b0e0cd7b1e" />
+
     Team Bのメンバーがワークブックを開くと、Sigmaは `Domain` 列の名前を難読化し、代わりに `Restricted` と表示します。列の各行について、データが制限されているため、ユーザーは「No access」と表示されます。
 
 
@@ -4751,7 +4788,8 @@ Sigmaでは、列レベルのセキュリティはチームの割り当て、ユ
 #### 4-1-1. ワークブックの概要 (Workbooks overview)
 
 あなたがスプレッドシートに精通したアナリストであれ、ビジネスインテリジェンス（BI）ツールに慣れている方であれ、SigmaはスプレッドシートとBIツールの長所を一つの場所、つまり**ワークブック**に統合します。
-* スプレッドシートのように、ワークブックはページを持ち、テーブルやピボットテーブルでデータを表示できます。
+* スプレッドシートのように、ワークブックはページを持ち、テーブルやピボットテーブルでデータを表示できます。![Uploading 0497622-image.png…]()
+
 * BIツールのように、ワークブックはチャート、グラフ、インタラクティブなフィルターやコントロール、テーブル、テキスト、画像を含むダッシュボードのようなレイアウトを提供します。
 
 ワークブックでは、データ探索や分析、複雑なビジュアライゼーションの構築、エクスポート用の詳細なレポートの準備などが可能です。ワークブックはまた、あなたの製品や組織のために[データアプリを構築](https://help.sigmacomputing.com/docs/intro-to-app-like-functionality)したり、[埋め込み分析を設計](https://help.sigmacomputing.com/docs/intro-to-embedded-analytics)したりするためのインターフェースも提供します。
