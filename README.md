@@ -196,9 +196,12 @@ Sigmaの導入は、まず分析準備のワークフローを抜本的に変革
 ## **手順**
 
 ### **Step1: ワークブックの新規作成とデータソースの選択**
-1.  Sigmaにログインし、左上に位置する「**Create a new**」ボタンから「**Workbook**」を新規作成します。<img width="989" height="527" alt="image" src="https://github.com/user-attachments/assets/d5761611-2577-4766-8467-012908e31556" />
+1.  Sigmaにログインし、左上に位置する「**Create a new**」ボタンから「**Workbook**」を新規作成します。
+
 <img width="684" height="772" alt="image" src="https://github.com/user-attachments/assets/db35f59a-f5ad-4598-99b6-63029ef844bb" />
+
 2.  データソース選択画面が表示されます。
+   
 <img width="737" height="438" alt="image" src="https://github.com/user-attachments/assets/50d8e1a7-225b-4c83-8a5f-305b21b176b5" />
 
 ### **Step2: テーブルの複数選択**
