@@ -16546,7 +16546,7 @@ Sigmaで検索を実行して、組織内のファイルを見つけることが
 > 🚩
 > ドキュメントを誰かと共有すると、その人には接続データソース内のデータに対する`View`アクセス権も付与されます。
 
-特定のバージョンのみにユーザーアクセスを許可してドキュメントを共有したい場合は、「[ワークブックまたはデータモデルのタグ付きバージョンを共有する](#share-tagged-versions-of-a-document)」を参照してください。
+特定のバージョンのみにユーザーアクセスを許可してドキュメントを共有したい場合は、「[ワークブックまたはデータモデルのタグ付きバージョンを共有する](https://help.sigmacomputing.com/docs/add-version-tags#share-tagged-versions-of-a-document)」を参照してください。
 
 #### **要件 (Requirements)**
 ドキュメントを共有する機能には、以下が必要です。
@@ -16564,55 +16564,139 @@ Sigmaで検索を実行して、組織内のファイルを見つけることが
 
 ドキュメントを組織のすべてのメンバーまたは特定のチームと共有する場合、個々のユーザーアクセスは、ドキュメントアクセスとアカウントタイプ権限の間で最も制限の厳しい許可（最も権限の少ないもの）に基づきます。
 
+例えば、組織のすべてのメンバーに`Can edit`アクセス権を付与したが、あるユーザーが`View workbooks`権限のみが有効なアカウントタイプを割り当てられている場合、その特定のユーザーは`Can view`のワークブックアクセスに制限されます。
+
+ドキュメントのアクセスとモードに関する詳細は、「[Folder and document permissions](https://help.sigmacomputing.com/docs/folder-and-document-permissions)」および「[Workbook modes overview](https://help.sigmacomputing.com/docs/workbook-modes-overview)」を参照してください。
+
 #### **ドキュメントを組織のメンバーまたはチームと共有する (Share a document with an organization member or team)**
 ドラフトまたは公開済みのドキュメントを共有できます。
 1.  ドキュメントヘッダーで、`Share`()をクリックして`Share Workbook`または`Share Data model`モーダルを開きます。ドキュメントメニューからドキュメントを共有することもできます。
 2.  検索バーに、ワークブックまたはデータモデルを共有したいチームまたは組織のメンバーを入力します。
-3.  各チームまたはユーザーについて、ドロップダウンから`Permission`を選択します。ドキュメントにタグ付きバージョンがある場合、特定のバージョンタグに権限を制限することもできます。
+3.  各チームまたはユーザーについて、ドロップダウンから`Permission`を選択します。ドキュメントにタグ付きバージョンがある場合、特定のバージョンタグに権限を制限することもできます。「[ドキュメントのタグ付きバージョンを共有する](https://help.sigmacomputing.com/docs/add-version-tags#share-tagged-versions-of-a-document)」を参照してください。
 4.  必要に応じて、追加のチームまたはメンバーに対して繰り返します。
 5.  (任意) ドキュメントへのアクセス権を得るユーザーへのメールメッセージに含めるメッセージを追加します。
+    * デフォルトでは、Sigmaサービスはメールメッセージを送信します。メールを送信したくない場合は、チェックボックスの選択を解除します。
 6.  `Share`をクリックします。
 
 #### **ドキュメントのタグ付きバージョンを共有する (Share tagged versions of a document)**
 特定のワークブックでユーザーやチームが見ることができる内容、またはユーザーがアクセスできるデータモデルのバージョンを制御するには、タグ付きバージョンをユーザーまたはチームと共有します。
-特定のバージョンタグへのアクセスのみでドキュメントを共有すると、ドキュメントの公開バージョンへのアクセスを事実上取り消し、共有されたタグ付きバージョンへのアクセスのみに制限します。
+
+特定のバージョンタグへのアクセスのみでドキュメントを共有すると、ドキュメントの公開バージョンへのアクセスを事実上取り消し、共有されたタグ付きバージョンへのアクセスのみに制限します。特定のユーザーまたはチームに対して、ドキュメントの公開バージョンのようにタグ付きバージョンを使用できます。
+
+例えば、East地域に完全にフィルタリングされたSalesワークブックのバージョンを作成し、そのバージョンにEastというタグを付け、そのタグ付きバージョンをSales - Eastチームと共有することができます。Sales - Eastチームのメンバーは、そのバージョンのワークブックに対する表示（および探索）アクセス権を持ちますが、ソースワークブックにはいかなる変更も加えることはできません。
+> 📘
+> タグ付きバージョンのワークブックがユーザーにデータソースへのアクセスを許可している場合、タグ付きバージョンのワークブックに対する`Can explore`権限を持つユーザーは`Save As`を選択し、編集用にバージョンタグ付きワークブックのコピーを保存できます。
+
+ワークブックまたはデータモデルのタグ付きバージョンを共有するには、以下を実行します。
+1.  ドキュメントヘッダーで、`Share`()をクリックして`Share Workbook`または`Share Data model`モーダルを開きます。ドキュメントメニューからドキュメントを共有することもできます。
+2.  検索バーに、ワークブックまたはデータモデルのタグ付きバージョンを共有したいチームまたは組織のメンバーを入力します。
+3.  各チームまたはユーザーについて、ドロップダウンから`Permission`を選択し、次に権限にカーソルを合わせて、アクセスを許可するドキュメントのタグを選択します。ユーザーまたはチームとワークブックのすべてのバージョンを共有するには、`All`（デフォルト）を選択します。
+4.  `Share`をクリックします。
+
+ドキュメントバージョンから[タグを削除](https://help.sigmacomputing.com/docs/add-version-tags#remove-a-tag-from-a-document-version)すると、そのタグ付きバージョンのドキュメントへのアクセス権しか持たないユーザーとチームは、ドキュメントへのアクセスを失います。
 
 #### **ワークブックを組織と共有する (Share a workbook with your organization)**
 ワークブックへのリンクをコピーし、組織内のユーザーと共有できます。ゲストユーザーと外部ユーザーは、組織と共有されたワークブックにアクセスできません。
-1.  ワークブックヘッダーで、`Share`()をクリックして`Share Workbook`モーダルを開きます。
+1.  ワークブックヘッダーで、`Share`()をクリックして`Share Workbook`モーダルを開きます。ドキュメントメニューからワークブックを共有することもできます。
 2.  モーダルの下部にある`General access link`セクションで、`Allow sharing by link`を切り替えます。
-3.  `All members of your organization`について、利用可能な権限から選択します。
-4.  権限を設定した後、`Copy Link`をクリックしてワークブックへのリンクをコピーし、他の人と共有します。
+3.  `All members of your organization`について、利用可能な権限から選択します。利用可能な権限は以下の通りです。
+    * Can view
+    * Can explore
+    * Can edit
+4.  権限を設定した後、`Copy Link`をクリックしてワークブックへのリンクをコピーし、他の人と共有してからモーダルを閉じます。
 
 #### **ドキュメントの所有権を移管する (Transfer ownership of a document)**
-ワークブックまたはデータモデルの所有権をあるユーザーから別のユーザーに移管できます。
+ワークブックまたはデータモデルの所有権をあるユーザーから別のユーザーに移管できます。ドキュメントの所有権を移管する前に、将来の所有者がドキュメントを含むフォルダにアクセスできることを確認するか、ドキュメントを移動してください。
 > 📘
-> 所有権を移管するには、`Admin`アカウントタイプを割り当てられている必要があります。
+> 所有権を移管するには、`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+
+ワークブックまたはデータモデルの所有権を移管するには、ドキュメントを将来の所有者と共有し、次に彼らを所有者として割り当てます。
 1.  ドキュメントヘッダーで`Share`()をクリックします。
 2.  検索バーに、所有権を移管したいユーザーを入力します。
 3.  ユーザーに任意の権限レベルを付与し、`Share`をクリックします。
 4.  再度`Share`()をクリックし、所有権を移管したいユーザーを探します。
 5.  ユーザーの権限ドロップダウンメニューで、`Owner`を選択します。
+6.  変更は自動的に保存されます。
+> 📘
+> ユーザーを非アクティブ化する際、彼らのすべてのドキュメントの所有権を別のユーザーに移管できます。「[ユーザーを非アクティブ化する](https://help.sigmacomputing.com/docs/manage-members-and-teams#deactivate-a-user)」を参照してください。
 
 #### **ワークブックのカスタムビューを共有する (Share a custom view of a workbook)**
 ワークブックをカスタマイズしてカスタムビューを作成した場合、リンクを使用して他の人とカスタムビューを共有できます。
 1.  ドキュメントヘッダーで、`Share and export` > `Share`をクリックします。
 2.  `Share Workbook`モーダルで、`Link to current custom view`のチェックボックスが選択されていることを確認します。
-3.  リンクをコピーして共有します。
+3.  カスタムビューへのリンクを誰とでも共有するには、`Allow general sharing by link`を切り替え、権限を選択し、リンクをコピーします。
+4.  既にワークブックへのアクセス権を持つ他のユーザーとカスタムビューへのリンクを共有するには、`Copy link`を選択します。
+> 💡
+> カスタムビューに変更を加えた場合、変更を共有するためには新しいリンクを作成する必要があります。
 
-#### **探しているものを共有する (Share an exploration)**
+#### **探索を共有する (Share an exploration)**
 まだワークブックを保存していない場合でも、探索を共有できます。ヘッダーで`Share`()をクリックし、`Allow access by link`をオンにします。
 
 #### **ページを非表示にしてワークブックのコンテンツへのアクセスを制限する (Limit access to workbook contents by hiding pages)**
-ワークブックの`Can Explore`および`Can View`権限のみを持つユーザーから、ワークブックのページを非表示にすることができます。
+ワークブックの`Can Explore`および`Can View`権限のみを持つユーザーから、ワークブックのページを非表示にすることができます。ページを非表示にするには、「[ワークブックのページの可視性を管理する](https://help.sigmacomputing.com/docs/manage-workbook-page-visibility)」を参照してください。
 
 #### **コンテンツへのアクセスリクエストに応答する (Respond to requests for access to content)**
 ワークブックの所有者として、ユーザーがあなたのコンテンツにアクセスしようとして権限がない場合、彼らはアクセスをリクエストできます。アクセスリクエストはドキュメント所有者にメールで送信されます。
+リクエストに応答するには、以下を実行します。
 1.  メール通知を開き、`Respond to the Request`ボタンをクリックします。
-2.  Sigmaが`Share Workbook`モーダルと共に開きます。
-3.  リクエストしているユーザーについて、適切なアクセスレベルを選択します。
-4.  リクエストを承認するには`Approve`を、拒否するには`Deny`をクリックします。
-5.  `Save`をクリックします。
+2.  Sigmaサービスへのウェブブラウザウィンドウが開きます。ログイン後、`Share Workbook`モーダルが開きます。アクセスリクエストを表示および応答できます。
+3.  (任意) リクエストしているユーザーについて、権限ドロップダウンメニューをクリックして適切なアクセスレベルを選択します。
+    > 📘
+    > ユーザーには、そのアカウントタイプが許可するよりも高いアクセス権を付与することはできません。
+4.  リクエストを承認するには、`Approve`をクリックします。
+5.  リクエストを拒否するには、`Deny`をクリックします。
+6.  `Save`をクリックします。
+
+#### **ドキュメントの所有権を移管する (Transfer ownership of a document)**
+ワークブックまたはデータモデルの所有権をあるユーザーから別のユーザーに移管できます。ドキュメントの所有権を移管する前に、将来の所有者がドキュメントを含むフォルダにアクセスできることを確認するか、ドキュメントを移動してください。
+> 📘
+> 所有権を移管するには、`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+
+ワークブックまたはデータモデルの所有権を移管するには、ドキュメントを将来の所有者と共有し、次に彼らを所有者として割り当てます。
+1.  ドキュメントヘッダーで`Share`()をクリックして`Share workbook`または`Share data model`モーダルを開きます。ドキュメントメニューからドキュメントを共有することもできます。
+2.  検索バーに、所有権を移管したいユーザーを入力します。
+3.  ユーザーに任意の権限レベルを付与します。
+4.  `Share`をクリックします。
+5.  ドキュメントヘッダーで再度`Share`()をクリックして`Share workbook`または`Share data model`モーダルを開きます。
+6.  所有権を移管したいユーザーを探します。
+7.  ユーザーの権限ドロップダウンメニューで、`Owner`を選択します。
+8.  変更は自動的に保存されます。
+> 📘
+> ユーザーを非アクティブ化する際、彼らのすべてのドキュメントの所有権を別のユーザーに移管できます。「[ユーザーを非アクティブ化する](https://help.sigmacomputing.com/docs/manage-members-and-teams#deactivate-a-user)」を参照してください。
+
+#### **ワークブックのカスタムビューを共有する (Share a custom view of a workbook)**
+ワークブックをカスタマイズしてカスタムビューを作成した場合、リンクを使用して他の人とカスタムビューを共有できます。
+1.  ドキュメントヘッダーで、`Share and export` > `Share`をクリックします。
+2.  `Share Workbook`モーダルで、`Link to current custom view`のチェックボックスが選択されていることを確認します。
+3.  カスタムビューへのリンクを誰とでも共有するには、`Allow general sharing by link`を切り替え、権限を選択し、リンクをコピーします。
+4.  既にワークブックへのアクセス権を持つ他のユーザーとカスタムビューへのリンクを共有するには、`Copy link`を選択します。
+> 💡
+> カスタムビューに変更を加えた場合、変更を共有するためには新しいリンクを作成する必要があります。
+
+#### **探索を共有する (Share an exploration)**
+まだワークブックを保存していない場合でも、探索を共有できます。ヘッダーで`Share`()をクリックし、`Allow access by link`をオンにします。
+
+#### **ページを非表示にしてワークブックのコンテンツへのアクセスを制限する (Limit access to workbook contents by hiding pages)**
+ワークブックの`Can Explore`および`Can View`権限のみを持つユーザーから、ワークブックのページを非表示にすることができます。ページを非表示にするには、「[ワークブックのページの可視性を管理する](https://help.sigmacomputing.com/docs/manage-workbook-page-visibility)」を参照してください。
+
+#### **コンテンツへのアクセスリクエストに応答する (Respond to requests for access to content)**
+ワークブックの所有者として、ユーザーがあなたのコンテンツにアクセスしようとして権限がない場合、彼らはアクセスをリクエストできます。アクセスリクエストはドキュメント所有者にメールで送信されます。
+リクエストに応答するには、以下を実行します。
+1.  メール通知を開き、`Respond to the Request`ボタンをクリックします。
+2.  Sigmaサービスへのウェブブラウザウィンドウが開きます。ログイン後、`Share Workbook`モーダルが開きます。アクセスリクエストを表示および応答できます。
+3.  (任意) リクエストしているユーザーについて、権限ドロップダウンメニューをクリックして適切なアクセスレベルを選択します。
+    > 📘
+    > ユーザーには、そのアカウントタイプが許可するよりも高いアクセス権を付与することはできません。
+4.  リクエストを承認するには、`Approve`をクリックします。
+5.  リクエストを拒否するには、`Deny`をクリックします。
+6.  `Save`をクリックします。
+
+#### **共有コンテンツにアクセスする (Access shared content)**
+別のユーザーがあなたと直接ドキュメントを共有すると、それはSigmaホームページの`Shared with Me`セクションに表示されます。
+Sigma組織のすべてのユーザーと共有されたドキュメントは、`Shared with Me`には表示されません。
+* Sigma組織のすべてのユーザーと共有されたデータモデルにアクセスするには、名前で検索します。
+* リンクを介してSigma組織のすべてのユーザーと共有されたワークブックにアクセスするには、Sigmaホームページの`Recents`セクションを検索するか、リンクを介してアクセスします。
+
 
 ### 11-2-1. フォルダを共有する (Share a folder)
 
@@ -16707,11 +16791,49 @@ Sigmaで検索を実行して、組織内のファイルを見つけることが
 9.  (任意) 招待状に含めるメッセージを記入します。
 10. `Save`をクリックします。
 
+### 11-3-2. 組織間でワークブックテンプレートを共有および承認する (Share and accept cross-org workbook templates)
+
+組織間共有を使用すると、異なるSigma組織間でワークブックテンプレートを共有および承認できます。**受信側組織**が共有テンプレートを承認する際、テンプレートにデータを設定するために独自のデータソースを選択する必要があり、**共有元組織**からのデータが開示されないように保証されます。
+
+このドキュメントでは、組織間でワークブックテンプレートを共有および承認する方法について説明します。
+
+#### **ユーザー要件 (User requirements)**
+組織間共有を通じてワークブックテンプレートを共有または承認するには、`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+
+#### **別の組織とテンプレートを共有する (Share a template with another organization)**
+1.  **ホーム**ページに移動します。
+2.  ナビゲーションメニューで、`Templates`を選択します。
+3.  `Templates`ページで、共有したいテンプレートを探し、`More`をクリックしてメニューから`Share`を選択します。
+    > 📘
+    > 新しいテンプレートを追加するには、まず`Create Template`をクリックし、保存済みのワークブックからテンプレートを作成します。
+4.  `Share Template`モーダルで、`Share across Sigma Orgs`をクリックします。
+5.  `Cross Org Share Template`モーダルで、必要な情報を提供します。
+    * `Company Login URL Slug`フィールドに、受信側組織に関連付けられたスラッグを入力します。これは通常、Sigma URLの`app.sigmacomputing.com/`に続く一意の識別子です。
+    * [任意] `Add a message`フィールドに、Sigmaが受信側組織の管理者に送信する招待メールに含めるメッセージを入力します。
+6.  `Share Template`をクリックします。
+
+#### **あなたの組織と共有されたテンプレートを承認する (Accept a template shared with your organization)**
+あなたの組織が共有テンプレートを使用するための招待を受け取った場合、あなたまたは別の管理者は、それを受け入れる前にデータソースを交換（組織のデータでテンプレートを設定するため）する必要があります。これが完了するまで、テンプレートは組織のメンバーには利用できません。
+
+1.  招待メールで、`Open in Sigma`をクリックします。
+2.  `Swap Data Sources Overview`モーダルで、Sigmaは元のテンプレートで使用されているデータと密接に一致する接続とデータソースを識別します。これらの候補から選択してデータを自動的に交換するか、個々のデータソースの列を手動で選択して照合します。
+    * **一致する接続とデータソースを使用する:**
+        1.  `Matching Connection`および`Matching Data Sources`フィールドで、関連するオプションを選択します。
+        2.  `Choose`をクリックして、交換されたデータでテンプレートをプレビューします。
+    * **データを手動で選択してマッピングする:**
+        1.  `Match Manually`をクリックします。
+        2.  `Swap Data Sources`画面で、テンプレートの元のデータソースからの列名をプレビューし、`Select Source`をクリックします。
+        3.  `Select source to replace`モーダルで、テンプレートを設定するために希望のデータソースを選択します。
+        4.  選択したデータを確認し、`Select`をクリックして続行します。
+        5.  `Swap Data Sources`画面で、テンプレートの元のデータソース列を、交換したデータソース列にマッピングします。
+        6.  `Choose`をクリックして、交換されたデータでテンプレートをプレビューします。
+3.  交換されたデータでテンプレートを保存するには、ワークブックヘッダーの`Accept`をクリックします。それ以外の場合は、`Swap sources`をクリックし、ステップ2を繰り返して異なるデータを選択します。
+
 ### 11-5-1. 条件付きエクスポートまたはアラートをスケジュールする (Schedule a conditional export or alert)
 
 特定の条件が満たされた場合にのみ送信されるエクスポートをスケジュールし、条件付きアラートとして機能させることができます。データが利用可能かどうかに基づいて、またはコントロールや列の特定の値に基づいてエクスポートをトリガーします。この柔軟性により、定期的なエクスポートを微調整し、エクスポートされるレポートの効率性と関連性を確保できます。
 
-例えば、特定の列のデータが特定の値を超えた場合や、特定の異常な条件に一致した場合にSlack通知を送信するなど、外れ値や異常検出のワークフローをサポートするために条件付きアラートを構成します。「[検出された外れ値と異常に対するアラート](#alert-on-detected-outliers-and-anomalies)」を参照してください。
+例えば、特定の列のデータが特定の値を超えた場合や、特定の異常な条件に一致した場合にSlack通知を送信するなど、外れ値や異常検出のワークフローをサポートするために条件付きアラートを構成します。「[検出された外れ値と異常に対するアラート](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert#alert-on-detected-outliers-and-anomalies)」を参照してください。
 
 このドキュメントでは、事前定義された条件で定期的なエクスポートをスケジュールする方法について説明します。
 
@@ -16744,23 +16866,50 @@ Sigmaで検索を実行して、組織内のファイルを見つけることが
     > 条件は単一の対象要素に適用されますが、ワークブック全体、特定のページ、および個々の要素をエクスポートするようにスケジュールを構成できます。
 6.  `Test condition`をクリックして、対象要素が現在条件を満たしているかを確認します。
 7.  `Schedule exports`モーダルの残りのセクションを完了します。
+> 📘
+> 宛先の利用可能性はアカウントタイプの権限に依存します。
+* [メールへのエクスポート](https://help.sigmacomputing.com/docs/export-to-email)
+* [Slackへのエクスポート](https://help.sigmacomputing.com/docs/export-to-slack)
+* [Google Sheetsへのエクスポート](https://help.sigmacomputing.com/docs/export-to-google-sheets)
+* [Google Driveへのエクスポート](https://help.sigmacomputing.com/docs/export-to-google-drive)
+* [Webhookへのエクスポート](https://help.sigmacomputing.com/docs/export-to-webhook)
+* [クラウドストレージへのエクスポート](https://help.sigmacomputing.com/docs/export-to-cloud-storage)
+* [メールバーストとしてエクスポート](https://help.sigmacomputing.com/docs/export-as-email-burst)
+8.  `Create`をクリックして構成されたスケジュールを保存します。
 
 #### **条件文に基づいてエクスポートをスケジュールする (Schedule an export based on a conditional statement)**
 特定のデータ要素または入力テーブルが事前定義された条件文を満たす場合にのみ開始される定期的なエクスポートをスケジュールします。
-1.  ワークブックヘッダーで、`Share and export > Schedule exports...`を選択します。
-2.  `Add schedule`または`+ New schedule`をクリックします。
+
+1.  ワークブックヘッダーで、ワークブックの名前に関連付けられた下矢印()をクリックし、`Share and export > Schedule exports...`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add schedule`を、そうでない場合は`+ New schedule`をクリックします。
 3.  `Frequency`セクションの`Send`で、`If a condition is met`を選択します。
-4.  `Condition`セクションで、条件設定を指定します。
-    * `Send`で、`If a condition is met`を選択します。
+4.  (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、1日、1週間、または合計で設定された回数発生した後に通知を停止するスイッチをオンにできます。（この機能はベータ版であり、ベータ機能の通知の対象となります）。
+5.  `Condition`セクションで、条件設定を指定します。
+    * `Send`で、`If a condition is met`を選択して、対象要素の特定のデータ条件が満たされた場合にスケジュール通りエクスポートします。
     * `In data element`で、条件が適用される対象要素を選択します。
-    * 条件文を定義します。`Check if`で、条件を適用する要素の値を選択します。
-        * **Any value:** 列内の一つ以上の値が条件に一致する必要があります。
-        * **All values:** 列内のすべての値が条件に一致する必要があります。
-    * `In column`で、使用する列を指定します。
-    * `Is`で、比較演算子を選択します。
-    * `Value`で、比較値を選択します。
-5.  `Test condition`をクリックして、対象要素が現在条件を満たしているかを確認します。
-6.  残りのセクションを完了し、`Create`をクリックしてスケジュールを保存します。
+    > 📘
+    > 条件は単一の対象要素に適用されますが、ワークブック全体、特定のページ、および個々の要素をエクスポートするようにスケジュールを構成できます。
+6.  条件文を定義します。`Check if`で、条件を適用する要素の値を選択します。
+    * **Any value:** 列内の一つ以上の値が条件に一致する必要があります。
+    * **All values:** 列内のすべての値が条件に一致する必要があります。
+    * 選択した要素がKPIの場合、追加の条件を確認できます。
+        * **{Element title}:** 要素の`Value`プロパティ列の一つ以上の値が基準を満たす必要があります。
+        * **Comparison value (%):** 要素の`Comparison`プロパティ列の一つ以上の値が基準を満たす必要があります。
+7.  `Any value`または`All values`を選択した場合、`In column`で使用する列を指定します。
+8.  `Is`で、比較演算子を選択します。
+9.  `Value`で、比較値を選択します。
+10. `Test condition`をクリックして、対象要素が現在条件を満たしているかを確認します。結果が期待と合わない場合は、正しい条件と対象要素を選択したことを確認してください。
+11. `Schedule exports`モーダルの残りのセクションを完了します。詳細については、希望するエクスポート先に基づいた以下のドキュメントを参照してください。
+    > 📘
+    > 宛先の利用可能性はアカウントタイプの権限に依存します。
+    * [メールへのエクスポート](https://help.sigmacomputing.com/docs/export-to-email)
+    * [Slackへのエクスポート](https://help.sigmacomputing.com/docs/export-to-slack)
+    * [Google Sheetsへのエクスポート](https://help.sigmacomputing.com/docs/export-to-google-sheets)
+    * [Google Driveへのエクスポート](https://help.sigmacomputing.com/docs/export-to-google-drive)
+    * [Webhookへのエクスポート](https://help.sigmacomputing.com/docs/export-to-webhook)
+    * [クラウドストレージへのエクスポート](https://help.sigmacomputing.com/docs/export-to-cloud-storage)
+    * [メールバーストとしてエクスポート](https://help.sigmacomputing.com/docs/export-as-email-burst)
+12. `Create`をクリックして構成されたスケジュールを保存します。
 
 #### **要素の条件付きアラートをスケジュールする (Schedule a conditional alert for an element)**
 特定のデータ要素または入力テーブルを監視するために、メールやSlackメッセージなどの条件付きアラートとして定期的なエクスポートをスケジュールします。
@@ -16769,16 +16918,678 @@ Sigmaで検索を実行して、組織内のファイルを見つけることが
 
 1.  要素ツールバーで、`More`をクリックして要素メニューを開き、`Alert when`を選択します。
     > 📘
-    > アラートは公開されたコンテンツに対してのみ作成できます。
-2.  `Schedule exports`モーダルで、アラートを構成します。Sigmaは`Condition`セクションにデフォルトの条件文を構成し、対象要素のタイトルをメールの`Subject`またはSlackの`Message`として自動入力し、`Attachments`フィールドで対象要素を選択します。
-3.  必要に応じてフィールドをカスタマイズし、残りのセクションを完了します。
+    > アラートは公開されたコンテンツに対してのみ作成できます。対象要素が公開されていないか、未公開の変更が含まれている場合、Sigmaはワークブックを公開するように促します。
+2.  `Schedule exports`モーダルで、アラートを構成します。Sigmaは`Condition`セクションにデフォルトの条件文を構成し（対象要素のタイプに基づく）、対象要素のタイトルをメールの`Subject`またはSlackの`Message`として自動入力し、`Attachments`フィールドで対象要素を選択します。
+3.  必要に応じてフィールドをカスタマイズし、残りのセクションを完了します。詳細については、このドキュメントの「[データの可用性に基づいてエクスポートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert#schedule-an-export-based-on-data-availability)」および「[条件文に基づいてエクスポートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert#schedule-an-export-based-on-a-conditional-statement)」を参照してください。
 4.  `Create`をクリックしてスケジュール構成を保存します。
 
 #### **検出された外れ値と異常に対するアラート (Alert on detected outliers and anomalies)**
 データ内の検出された外れ値や異常に基づいてアラートを設定できます。しきい値で定義された異常か、数式を記述して外れ値や異常を検出し、その数式の出力に基づいてアラートを発します。
+
 例えば、以下のいずれかを実行できます。
 * 静的なしきい値アラートを構成する
 * 数式ベースのしきい値アラートを構成する
+
+##### **静的なしきい値アラートを構成する (Configure a static threshold alert)**
+例えば、ウェブサイトへの異常なページ訪問を監視したい場合、特定の日付のページビューが25,000ビューなどの既知のしきい値を超えたときにSlackメッセージを送信するアラートを構成することがあります。この例は、SigmaサンプルデータベースのGoogle Analytics Eventsデータで再現できます。
+
+1.  ウェブサイト分析データソースについて、[テーブルグルーピング](https://help.sigmacomputing.com/docs/create-and-manage-tables#group-columns-in-a-table)を使用して、日ごとの総ページビューを計算します。
+2.  [日付コントロール要素](https://help.sigmacomputing.com/docs/intro-to-control-elements#date)を使用して、テーブルを現在から1日前までにフィルタリングし、前日のデータを表示します。
+3.  テーブルで、ページビューが特定のしきい値を超えたときにアラートを構成します。
+    * `More`をクリックして要素メニューを開き、`Alert when`を選択します。
+4.  必要に応じてメールまたはSlackの受信者とメッセージを設定します。
+5.  `Condition`セクションで、`Check if`を`Any value`に設定します。
+6.  `In column`で、`Total Page Views`列を選択します。
+7.  `Is`で、しきい値を評価する演算子を選択します。この場合は`Greater Than`です。
+8.  `Value`で、しきい値を設定します。この場合は、`25000`のしきい値を設定します。
+9.  `More options`セクションで、`Customize control values`のチェックボックスを選択します。
+10. `Controls`で、日付コントロールを選択し、選択が正しいことを確認します。
+11. `Create`をクリックしてアラートを保存します。
+
+##### **数式ベースのしきい値アラートを構成する (Configure a formula-based threshold alert)**
+例えば、ウェブサイトへの異常なページ訪問を監視したい場合、異常なトラフィックを識別する数式を記述し、その数式の出力が異常なトラフィックを示したときにSlackメッセージを送信するアラートを構成することがあります。
+Sigmaコミュニティの「[How to Detect Outliers in Sigma](https://community.sigmacomputing.com/dashboards-and-workbooks/how-to-detect-outliers-in-sigma-294)」のガイダンスに従い、データテーブルとアラートを次のように設定します。この例は、SigmaサンプルデータベースのGoogle Analytics Eventsデータで再現できます。
+
+1.  ウェブサイト分析データソースについて、テーブルグルーピングを使用して、日ごとの総ページビューを計算します。
+2.  `Total Page Views`列の標準偏差を計算するためにサマリー列を追加します：`Stddev([Total Page Views])`。サマリー列の名前を`Standard Deviation`に変更します。
+3.  `Total Page Views`列の平均値を計算するためにサマリー列を追加します：`Avg([Total Page Views])`。サマリー列の名前を`Average`に変更します。
+4.  データに基づいて、上限と下限が何と見なされるかを決定します。2つの新しいサマリー列を追加します。
+    * `Upper Bound`という名前のサマリー列：`[Average] + (1.5 * [Standard Deviation])`
+    * `Lower Bound`という名前のサマリー列：`[Average] - (1.5 * [Standard Deviation])`
+5.  テーブルグルーピングに`isOutlier`という新しい計算列を追加して、各`Total Page Views`の値が許容範囲内にあるか、外れ値であるかを評価します：`If(Between([Total Page Views], [Lower Bound], [Upper Bound]), False, True)`
+6.  `isOutlier`列の値が`True`である各列は、定義した数式によれば外れ値と見なされます。
+7.  テーブルで、ページビューが異常で`isOutlier`列がtrueの場合にアラートを構成します。
+    * `More`をクリックして要素メニューを開き、`Alert when`を選択します。
+8.  必要に応じてメールまたはSlackの受信者とメッセージを設定します。
+9.  `Condition`セクションで、`Check if`を`Any value`に設定します。
+10. `In column`で、`isOutlier`列を選択します。
+11. `Is`で、デフォルトの演算子である`Equal to`のままにします。
+12. `Value`で、`isOutlier`列が`True`の場合にアラートを送信するために`True`を選択します。
+13. `Create`をクリックしてアラートを保存します。
+
+### 11-5-2. ワークブックのデータをダウンロードする (Download workbook data)
+
+いつでもSigmaからワークブック全体、特定のワークブックページ、または特定のワークブック要素をダウンロードできます。また、エクスポートをスケジュールしたり、スケジュールされたエクスポートをオンデマンドで送信したりすることもできます。「[ワークブックのエクスポートについて](https://help.sigmacomputing.com/docs/send-and-schedule-exports)」を参照してください。
+
+ワークブックを編集中にエクスポートしようとすると、ドラフトバージョンをダウンロードするオプションしかありません。公開バージョンをダウンロードしたり、他の宛先にエクスポートしたりしたい場合は、ワークブックの公開バージョンを開いてください。
+
+> 🚧
+> PDFまたはPNG形式へのスケジュールされたエクスポートまたは直接ダウンロードを実行する際、Sigmaはデバッグおよびトラブルシューティング目的で使用されるトレースログに、該当するコントロール値をURLパラメータとして保存することがあります。コントロールを使用して機密データをフィルタリングするワークブックコンテンツをエクスポートまたはダウンロードする際は注意してください。
+
+#### **エクスポートの種類と制限 (Export types and limitations)**
+ファイルタイプとエクスポート場所に基づいて、エクスポートにはサイズ制限があります。詳細は、「[ダウンロード、エクスポート、およびアップロードの制限](https://help.sigmacomputing.com/docs/download-and-export-limitations)」を参照してください。
+
+#### **ユーザー要件 (User requirements)**
+ワークブックからデータをダウンロードするには、`Download`権限が有効になっているアカウントタイプを割り当てられている必要があります。「[ライセンスとアカウントタイプの概要](https://help.sigmacomputing.com/docs/account-type-and-license-overview)」を参照してください。
+
+#### **ワークブック全体をダウンロードする (Download an entire workbook)**
+ワークブック全体をダウンロードするには：
+1.  ワークブックメニュー()から、`Share and export > Export...`を選択します。
+2.  `Export`ダイアログで、デフォルトの`Direct download`の選択を維持します。
+3.  `Attachments`で、デフォルトの`Entire workbook`の選択を維持し、ダウンロードするファイルの形式を選択します。
+4.  `Export`をクリックします。
+Sigmaはデバイスにファイルをダウンロードします。
+
+#### **ワークブックページをダウンロードする (Download a workbook page)**
+ワークブックページメニューまたはワークブックメニューからワークブックページをダウンロードできます。
+1.  ダウンロードしたいワークブックページを探し、ページメニュー()を開いて`Export...`を選択します。
+2.  `Export`ダイアログで、デフォルトの`Direct download`の選択を維持します。
+3.  `Attachments`で、デフォルトのページを選択したままにするか、別のワークブックページを選択します。
+4.  ダウンロードするファイルの形式を選択します。
+5.  `Export`をクリックします。
+Sigmaはデバイスにファイルをダウンロードします。
+
+#### **データ要素をダウンロードする (Download a data element)**
+1.  公開済みまたはドラフトのワークブックで、要素を選択します。
+2.  要素のメニューから、`More`を選択します。
+3.  `Export`を選択し、ダウンロードしたいファイル形式を選択します。
+    * 利用可能なオプションは要素のタイプによって異なります。
+Sigmaはデバイスにファイルをダウンロードします。
+
+### 11-4-3. メールへのエクスポート (Export to email)
+
+ワークブック、そのページ、および個々の要素を、設定されたスケジュールまたは必要に応じてメール受信者に送信できます。例えば、役員チームのメンバーに、チームのKPIのPDFファイルを定期的にメールで送信することができます。
+
+ワークブックには複数のエクスポートスケジュールを設定できます。送信する各メールには、合計の添付ファイルサイズが[エクスポート制限](https://help.sigmacomputing.com/docs/download-and-export-limitations)未満である限り、複数の添付ファイルを含めることができます。
+
+Sigmaは、ワークブックの最新の公開バージョンからエクスポートを生成します。ワークブックのタグ付きバージョンをエクスポートすることも選択できます。選択したファイル形式によっては、ブックマークをエクスポートすることもできます。ワークブックのドラフトまたは探索に加えた変更は、変更を公開しない限りエクスポートできません。
+
+#### **ユーザー要件 (User requirements)**
+* メールにデータをエクスポートするには、`Export to email`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+* 受信者としてクエリを実行するメールエクスポートを設定するには、アカウントタイプに`Run exports as recipient`権限も有効になっている必要があります。
+* バージョンタグ付きのワークブックを送信するには、バージョンタグが存在し、ワークブックに適用されている必要があります。管理者はバージョンタグを作成でき、ワークブック作成者はワークブックのバージョンにタグを付けることができます。詳細は、「[バージョンタグ付け](https://help.sigmacomputing.com/docs/add-version-tags)」を参照してください。
+> 📘
+> 組織が特定のIPアドレスからのメールトラフィックを制限している場合は、`198.37.153.185`を許可リストに追加してください。あるいは、代わりに使用するカスタムSMTPサーバーを構成することもできます。「[カスタムSMTPサーバー](https://help.sigmacomputing.com/docs/custom-smtp-server)」を参照してください。
+
+#### **エクスポート制限 (Export limit)**
+メールでのエクスポートのサイズ制限は30MBです。これは、すべての添付ファイルを合わせた合計の制限です。
+エクスポートがこの制限を超えると、エクスポート全体が失敗し、スケジュールされたエクスポートの所有者に通知されます。この制限を繰り返し超えるスケジュールされたエクスポートは、自動的に一時停止され、その所有者に通知されます。
+「[ダウンロード、エクスポート、およびアップロードの制限](https://help.sigmacomputing.com/docs/download-and-export-limitations)」を参照してください。
+
+#### **必要に応じてメールにエクスポートする (Export to email as needed)**
+アドホックなメールエクスポートを送信するには：
+1.  ワークブックメニュー()から、`Share and export > Export...`を選択します。
+    > 📘
+    > メールへのエクスポートオプションが利用できない場合、ワークブックは`Edit`モードです。メールへのエクスポートを試みる前に、ドラフトを公開するか、ワークブックの最新の公開またはタグ付きバージョンに戻ってください。
+2.  `Email`を選択します。
+3.  `Recipient`フィールドに、一つ以上のカンマ区切りのSigmaチーム、Sigmaユーザー、またはメールアドレスを入力します。`Run queries as recipient`設定を使用しない限り、最大1,000人の受信者にメールを送信できます。
+    > 📘
+    > 組織でエクスポート認証が構成されている場合、承認されたドメインに関連付けられたメールアドレスにのみエクスポートを送信できます。
+4.  (任意) `Subject`フィールドに、件名を入力します。
+5.  (任意) `Message`フィールドに、メッセージを入力します。
+6.  ワークブックにバージョンタグまたはブックマークがある場合は、送信したいものを選択します。
+7.  `Attachment`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+8.  各添付ファイルについて、サポートされているファイル形式を選択します。
+9.  (任意) デフォルトでは、Sigmaはメール本文にワークブックへのリンクを含めます。リンクを含めたくない場合は、`Include link to workbook`チェックボックスの選択を解除します。
+10. (任意) デフォルトでは、エクスポートはエクスポート作成者がアクセスできるデータをキャプチャします。エクスポートを受信者がアクセスできるものだけに制限するには、`Run queries as recipient`のチェックボックスを選択します。
+    > 🚩
+    > `Run queries as recipient`は、300人以下の受信者にメールを送信し、すべての受信者がSigmaユーザーである場合にのみ成功します。
+11. (任意) 選択した添付ファイルの形式に応じて、添付ファイルの結合やzipファイルでの送信など、その他のオプションを構成できます。
+12. `Export`をクリックします。
+
+#### **スケジュールされたメールエクスポート (Schedule an emailed export)**
+スケジュールされたメールは、タグ付きバージョンを選択しない限り、ワークブックの最新の公開バージョンを送信します。
+
+スケジュールされたメールレポートを設定するには：
+1.  ワークブックメニュー()から、`Share and export > Schedule exports…`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Recipient`フィールドに、一つ以上のカンマ区切りのSigmaチーム、Sigmaユーザー、またはメールアドレスを入力します。`Run queries as recipient`オプションを使用しない限り、最大1,000人の受信者にメールを送信できます。
+    > 📘
+    > 組織でエクスポート認証が構成されている場合、承認されたドメインに関連付けられたメールアドレスにのみエクスポートを送信できます。
+4.  (任意) `Subject`フィールドに、件名を入力します。
+5.  (任意) `Message`フィールドに、メッセージを入力します。
+6.  ワークブックにタグ付きバージョンまたはブックマークがある場合は、送信したいものを選択します。
+7.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+8.  各添付ファイルについて、サポートされているファイル形式を選択します。
+    > 🚧
+    > PDFまたはPNG形式へのスケジュールされたエクスポートまたは直接ダウンロードを実行する際、Sigmaはデバッグおよびトラブルシューティング目的で使用されるトレースログに、該当するコントロール値をURLパラメータとして保存することがあります。
+9.  `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * `Daily`の場合、`Once a day`または`Multiple times`を選択します。
+    * `Weekly`の場合、メールを送信する曜日を選択し、`Once a day`または`Multiple times`を選択します。
+    * `Monthly`の場合、メールを送信する月の日と時刻を選択します。
+    * `Custom`の場合、cron構文を使用してスケジュールを指定します。
+    * `Multiple times`を選択した場合は、頻度を指定します。
+    > 📘
+    > 特定の頻度を設定するオプションがない場合、組織でエクスポート頻度が制限されている可能性があります。
+10. (任意) ドロップダウンメニューを使用して、デフォルトのスケジュールタイムゾーンを調整します。
+11. (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+12. (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。
+13. (任意) デフォルトでは、Sigmaはメール本文にワークブックへのリンクを含めます。リンクを含めたくない場合は、`Include link to workbook`チェックボックスの選択を解除します。
+14. (任意) デフォルトでは、エクスポートはエクスポート作成者がアクセスできるデータをキャプチャします。エクスポートを受信者がアクセスできるものだけに制限するには、`Run queries as recipient`のチェックボックスを選択します。
+    > 🚩
+    > `Run queries as recipient`は、300人以下の受信者にメールを送信し、すべての受信者がSigmaユーザーである場合にのみ成功します。
+    > 💡
+    > エクスポートが受信者として実行される場合、各クエリは受信者ごとに個別に実行されます。受信者リストが大きいほど、データベースに送信されるクエリが増え、処理時間が長くなります。
+15. (任意) 選択した添付ファイルの形式に応じて、添付ファイルの結合やzipファイルでの送信など、その他のオプションを構成できます。
+16. (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+17. `Create`をクリックします。
+
+### 11-5-4. Slackへのエクスポート (Export to Slack)
+
+組織でSlack通知が有効になっている場合、ワークブック、そのページ、および個々の要素を、設定されたスケジュールまたは必要に応じてSlackアカウントの任意のチャネルに送信できます。
+
+例えば、経営チームに週次の稼働時間レポートを提供したいが、チームは主にSlackでコミュニケーションを取っている場合、Slackチャネルまたは特定のユーザーにエクスポートを設定して、経営陣がレポートを確実に閲覧できるようにすることができます。
+
+ワークブックには複数のエクスポートスケジュールを設定できます。Slackエクスポートは、エクスポートを開始したユーザーがアクセスできるデータをキャプチャします。
+
+Sigmaは、ワークブックの最新の公開バージョンからエクスポートを生成します。ワークブックのタグ付きバージョンをエクスポートすることも選択できます。選択したファイル形式によっては、ブックマークをエクスポートすることもできます。ワークブックのドラフトまたは探索に加えた変更は、変更を公開しない限りエクスポートできません。サポートされているファイル形式のマトリックスについては、「[利用可能なエクスポート先とフォーマット](https://help.sigmacomputing.com/docs/send-and-schedule-exports#available-export-destinations-and-formats)」を参照してください。
+
+このドキュメントでは、Slackへのエクスポートを送信およびスケジュールする方法について説明します。
+
+#### **ユーザー要件 (User requirements)**
+Slackへのエクスポート機能には、以下が必要です。
+* 組織で[Slackインテグレーション](https://help.sigmacomputing.com/docs/export-to-slack#configure-the-slack-integration)が有効になっている必要があります。プライベートチャネルに通知を送信したい場合は、プライベートチャネルにSigmaを追加する必要もあります。「[プライベートSlackチャネルにSigmaを追加する](https://help.sigmacomputing.com/docs/export-to-slack#add-sigma-to-a-private-slack-channel)」を参照してください。一つのSigma組織は、一つのSlackワークスペースにしか接続できません。
+* `Export to Slack`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+
+#### **エクスポートサイズの制限 (Export size limit)**
+Slackへのエクスポートのサイズ制限は、ファイルあたり1GBです。「[ダウンロード、エクスポート、およびアップロードの制限](https://help.sigmacomputing.com/docs/download-and-export-limitations)」を参照してください。
+
+#### **Slackメッセージを書式設定する (Format a Slack message)**
+Slackは特定の書式設定マークアップをサポートしています。Slackヘルプセンターの「[メッセージを書式設定する](https://slack.com/help/articles/202288908-Format-your-messages)」を参照してください。
+また、他の書式設定を使用してハイパーリンクを作成したり、特定のユーザーやグループに通知したりすることもできます。
+
+| 書式設定 | 構文 | 詳細 |
+| :--- | :--- | :--- |
+| **個人に通知** | `<@user_id>` | ユーザーのSlackユーザープロファイルからSlackメンバーIDを取得します。 |
+| **チャネルに通知** | `@here` または `@channel` | Slackヘルプセンターの「[チャネルまたはワークスペースに通知する](https://slack.com/help/articles/202009646-Notify-a-channel-or-workspace)」を参照してください。 |
+| **テキストをハイパーリンク** | `<URL\|text>` | 例えば、Sigmaドキュメントをハイパーリンクするには、`<https://help.sigmacomputing.com\|Sigma Documentation>`と入力します。 |
+
+#### **アドホックな通知を送信する (Send an ad hoc notification)**
+ワークブックからSlackに情報をエクスポートするには：
+
+1.  ワークブックメニュー()から、`Share and export > Export...`を選択します。
+    > 📘
+    > Slackオプションが利用できない場合、ワークブックは`Edit`モードです。エクスポートを試みる前に、ドラフトを公開するか、ワークブックの最新の公開またはタグ付きバージョンに戻ってください。
+2.  `Slack`を選択します。
+3.  `To`フィールドに、Slackチャネルの名前（例：`#team-channel`）を入力します。あるいは、チャネルID（例：`A123BC4DE5F`）を入力します。
+    * プライベートチャネルに通知を送信したい場合は、まずSigma通知ボットをチャネルに追加する必要があります。プライベートチャネルで`@Sigma`と入力して有効にします。「[プライベートSlackチャネルにSigmaを追加する](https://help.sigmacomputing.com/docs/export-to-slack#add-sigma-to-a-private-slack-channel)」を参照してください。
+4.  (任意) `Message`フィールドにメッセージを入力します。オプションについては「[Slackメッセージを書式設定する](https://help.sigmacomputing.com/docs/export-to-slack#format-a-slack-message)」を参照してください。
+5.  ワークブックにバージョンまたはブックマークがある場合は、送信したいものを選択します。
+6.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+7.  各添付ファイルについて、サポートされているファイル形式を選択します。
+8.  (任意) メッセージ本文にワークブックへのリンクを含めるには、`Include link to workbook`のチェックボックスを選択します。
+9.  (任意) 選択した添付ファイルの形式に応じて、添付ファイルの結合やzipファイルでの送信など、その他のオプションを構成できます。
+10. `Export`をクリックします。
+
+#### **Slack通知をスケジュールする (Schedule a Slack notification)**
+Sigmaは、ワークブックの最新の公開バージョンからエクスポートを生成します。ドラフトの変更は、公開されない限り送信されません。
+
+Slack通知へのエクスポートをスケジュールするには：
+1.  ワークブックメニュー()から、`Share and export > Schedule exports…`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Slack`を選択します。
+4.  `To`フィールドに、Slackチャネルの名前を入力します。
+5.  (任意) `Message`フィールドにメッセージを入力します。
+6.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+7.  各添付ファイルについて、サポートされているファイル形式を選択します。
+    > 🚧
+    > PDFまたはPNG形式へのスケジュールされたエクスポートまたは直接ダウンロードを実行する際、Sigmaはデバッグおよびトラブルシューティング目的で使用されるトレースログに、該当するコントロール値をURLパラメータとして保存することがあります。
+8.  `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * `Daily`の場合、`Once a day`または`Multiple times`を選択します。
+    * `Weekly`の場合、メールを送信する曜日を選択し、`Once a day`または`Multiple times`を選択します。
+    * `Monthly`の場合、メールを送信する月の日と時刻を選択します。
+    * `Custom`の場合、cron構文を使用してスケジュールを指定します。
+    * `Multiple times`を選択した場合は、頻度を指定します。
+    > 📘
+    > 特定の頻度を設定するオプションがない場合、組織でエクスポート頻度が制限されている可能性があります。
+9.  (任意) ドロップダウンメニューを使用して、デフォルトのスケジュールタイムゾーンを調整します。
+10. (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+11. (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。
+12. (任意) メッセージ本文にワークブックへのリンクを含めるには、`Include link to workbook`のチェックボックスを選択します。
+13. (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+14. (任意) 選択した添付ファイルの形式に応じて、その他のオプションを構成できます。
+15. `Create`をクリックします。
+
+### 11-5-5. Google Sheetsへのエクスポート (Export to Google Sheets)
+
+一つ以上の個別のワークブック要素を、設定されたスケジュールまたは必要に応じてGoogle Sheetsに送信できます。スケジュールに従ってGoogle Sheetsにエクスポートする場合、スケジュールが実行されるたびに同じGoogle Sheetが置き換え（上書き）されます。「[Google Sheetsへのエクスポートをスケジュールする](#schedule-exports-to-google-sheets)」を参照してください。
+
+Sigmaは、ワークブックの最新の公開バージョンからエクスポートを生成します。ドラフトの変更はエクスポートされません。
+
+#### **ユーザー要件 (User requirements)**
+Google Sheetsへのエクスポート機能には、以下が必要です。
+* `Export to Google Sheet`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* 指定されたGoogle Sheetの編集者である必要があります。
+
+#### **Googleアカウントの承認 (Google account authorization)**
+初めてGoogle SheetsまたはGoogle Driveにエクスポートまたはスケジュールエクスポートする際、SigmaはあなたのGoogleアカウントへのエクスポートを承認するよう促します。
+`Authorize`をクリックし、画面の指示に従ってください。承認を完了すると、`Export`または`Schedule Exports`ダイアログに戻ります。
+
+#### **必要に応じてGoogle Sheetsにエクスポートする (Export to Google Sheets as needed)**
+Google Sheetsにエクスポートするには：
+1.  ワークブックメニュー()から、`Share and export > Export...`を選択します。
+2.  `Google Sheets`を選択します。
+3.  これがGoogle製品への初めてのエクスポートである場合、Sigmaはインテグレーションを有効にするよう促します。「[Googleアカウントの承認](#google-account-authorization)」を参照してください。
+4.  `Sheets URL`に、エクスポートしたいGoogle SheetのURLを入力します。Google Sheetを共有するためにコピーするURLではなく、ウェブブラウザでGoogle Sheetを表示しているときに見えるURLを使用してください。
+5.  エクスポートするデータを選択します。ワークブック要素のみがサポートされています。
+6.  `Export`をクリックします。
+
+#### **Google Sheetsへのエクスポートをスケジュールする (Schedule exports to Google Sheets)**
+> 🚩
+> Google Sheetsへのエクスポートは、スケジュールが実行されるたびに同じシートを上書きします。
+
+Google Sheetsへのエクスポートをスケジュールするには：
+1.  ワークブックメニュー()から、`Share and export > Schedule exports…`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Google Sheets`を選択します。
+4.  これがGoogleへのスケジュールされたエクスポートを初めて作成する場合、Sigmaはインテグレーションを有効にするよう促します。
+5.  `Sheets URL`に、エクスポートしたいGoogle SheetのURLを入力します。
+6.  エクスポートするデータを選択します。ワークブック要素のみがサポートされています。
+7.  `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * `Daily`の場合、`Once a day`または`Multiple times`を選択します。
+    * `Weekly`の場合、メールを送信する曜日を選択し、`Once a day`または`Multiple times`を選択します。
+    * `Monthly`の場合、メールを送信する月の日と時刻を選択します。
+    * `Custom`の場合、cron構文を使用してスケジュールを指定します。
+    * `Multiple times`を選択した場合は、頻度を指定します。
+    > 📘
+    > 特定の頻度を設定するオプションがない場合、組織でエクスポート頻度が制限されている可能性があります。
+8.  (任意) ドロップダウンメニューを使用して、デフォルトのスケジュールタイムゾーンを調整します。
+9.  (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+10. (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。
+11. (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+12. `Create`をクリックします。
+
+### 11-5-6. Google Driveへのエクスポート (Export to Google Drive)
+
+個々のワークブック要素、ワークブックページ、またはワークブック全体を、設定されたスケジュールまたは必要に応じてGoogle Driveに送信できます。Google Driveに送信するものに応じて、異なるファイル形式でデータをエクスポートできます。サポートされているファイル形式の詳細については、「[ワークブックのエクスポートを送信またはスケジュールする](https://help.sigmacomputing.com/docs/send-and-schedule-exports)」を参照してください。
+
+Google Sheetsに直接エクスポートするには、「[Google Sheetsへのエクスポート](https://help.sigmacomputing.com/docs/export-to-google-sheets)」を参照してください。
+
+Sigmaは、ワークブックの最新の公開バージョンからエクスポートを生成します。ドラフトの変更はエクスポートされません。
+
+#### **ユーザー要件 (User requirements)**
+Google Driveへのエクスポート機能には、以下が必要です。
+* `Export to Google Drive`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* 指定されたGoogle DriveフォルダのManager, Content manager, またはContributorである必要があります。
+
+#### **Googleアカウントの承認 (Google account authorization)**
+初めてGoogle SheetsまたはGoogle Driveにエクスポートまたはスケジュールエクスポートする際、SigmaはあなたのGoogleアカウントへのエクスポートを承認するよう促します。
+`Authorize`をクリックし、画面の指示に従ってください。承認を完了すると、`Export`または`Schedule Exports`ダイアログに戻ります。
+
+#### **必要に応じてGoogle Driveにエクスポートする (Export to Google Drive as needed)**
+Google Driveにエクスポートするには：
+1.  ワークブックメニュー()から、`Share and export > Export...`を選択します。
+2.  `Google Drive`を選択します。
+3.  これがGoogle製品への初めてのエクスポートである場合、Sigmaはインテグレーションを有効にするよう促します。「[Googleアカウントの承認](#google-account-authorization)」を参照してください。
+4.  `Drive folder`に、エクスポートを含む新しいフォルダの名前を入力します。既存のフォルダは使用できません。エクスポートは、以下の構造に一致する名前で宛先フォルダにファイルを作成します。
+    `<Workbook Name>_<Element Name>_<Timestamp>`
+5.  `Create folder`をクリックします。
+6.  Sigmaはフォルダを作成し、フォルダへのURLを表示します。
+7.  `Attachments`で、エクスポートしたいデータとファイル形式を選択します。
+8.  `Export`をクリックします。
+
+#### **Google Driveへのエクスポートをスケジュールする (Schedule an export to Google Drive)**
+Google Driveへのエクスポートをスケジュールするには：
+1.  ワークブックメニュー()から、`Share and export > Schedule exports...`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Google Drive`を選択します。
+4.  `Drive folder`に、エクスポートを含む新しいフォルダの名前を入力します。
+5.  `Create folder`をクリックします。
+6.  `Attachments`で、エクスポートしたいデータとファイル形式を選択します。
+7.  `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * `Daily`の場合、`Once a day`または`Multiple times`を選択します。
+    * `Weekly`の場合、メールを送信する曜日を選択し、`Once a day`または`Multiple times`を選択します。
+    * `Monthly`の場合、メールを送信する月の日と時刻を選択します。
+    * `Custom`の場合、cron構文を使用してスケジュールを指定します。
+    * `Multiple times`を選択した場合は、頻度を指定します。
+    > 📘
+    > 特定の頻度を設定するオプションがない場合、組織でエクスポート頻度が制限されている可能性があります。
+8.  (任意) ドロップダウンメニューを使用して、デフォルトのスケジュールタイムゾーンを調整します。
+9.  (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+10. (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。
+11. (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+12. `Create`をクリックします。
+
+### 11-4-7. クラウドストレージへのエクスポート (Export to cloud storage)
+
+ワークブックにSnowflakeまたはRedshift接続からの要素がある場合、それらの要素のデータをそれらの接続に関連付けられたクラウドストレージにエクスポートできます。クラウドストレージは、大規模な、数GBにわたるデータのエクスポートに特に便利です。
+
+* Snowflake接続では、Amazon Simple Storage Service (Amazon S3)、Google Cloud Storage (GCS)、またはMicrosoft Azure Blob Storage (Azure)にエクスポートできます。
+* Redshift接続では、Amazon S3にエクスポートできます。
+
+Sigmaは、ワークブックの最新の公開バージョンからエクスポートを生成します。ドラフトの変更はエクスポートされません。
+
+#### **ユーザー要件 (User requirements)**
+ワークブックをクラウドストレージにエクスポートするための要件は、接続によって異なります。
+
+* **Snowflake接続**
+    * ワークブックのデータソースは、Snowflake接続から取得されている必要があります。
+    * `Export to cloud`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+* **Redshift接続**
+    * 組織でRedshiftが構成されている必要があります。「[Connect to Redshift](https://help.sigmacomputing.com/docs/connect-to-redshift)」を参照してください。
+    * ワークブックのデータソースは、Redshift接続から取得されている必要があります。
+    * `Export to cloud`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+    * アンロードしたいデータを持つRedshiftクラスターが必要です。
+
+#### **サポートされているファイルタイプとエクスポート制限 (Supported file types and export limits)**
+* CSV形式のファイル (.csv)
+* GZIP圧縮がサポートされています (.csv.gz)
+* ファイルサイズの制限は5GBです。「[Download and export limitations](https://help.sigmacomputing.com/docs/download-and-export-limitations)」を参照してください。
+> 🚩
+> Sigmaからエクスポートされたデータは、SnowflakeまたはRedshiftからクラウドストレージの宛先に単一のファイルとして直接アンロードされます。その結果、データはSigmaで見えるのと同じ書式設定にはなりません。
+
+#### **クラウドストレージへのエクスポートを構成する (Configure exports to cloud storage)**
+これは複数ステップのプロセスです。必要なステップは接続によって異なります。
+
+* **Snowflake接続**
+    1.  [Snowflake用にクラウドストレージを構成する](https://help.sigmacomputing.com/docs/export-to-cloud-storage-snowflake)
+    2.  [宛先URIを書式設定する](https://help.sigmacomputing.com/docs/export-to-cloud-storage-snowflake#format-a-destination-uri)
+    3.  希望通りにデータをエクスポートする：
+        * [アドホックなエクスポートをクラウドストレージに送信する](https://help.sigmacomputing.com/docs/export-to-cloud-storage-snowflake#send-an-ad-hoc-export-to-cloud-storage)
+        * [クラウドストレージのエクスポートをスケジュールする](https://help.sigmacomputing.com/docs/export-to-cloud-storage-snowflake#schedule-a-cloud-storage-export)
+
+* **Redshift接続**
+    1.  [Redshift用にクラウドストレージを構成する](https://help.sigmacomputing.com/docs/export-to-cloud-storage-redshift)
+    2.  [宛先URIを書式設定する](https://help.sigmacomputing.com/docs/export-to-cloud-storage-redshift#format-a-destination-uri)
+    3.  希望通りにデータをエクスポートする：
+        * [アドホックなエクスポートをクラウドストレージに送信する](https://help.sigmacomputing.com/docs/export-to-cloud-storage-redshift#send-an-ad-hoc-export-to-cloud-storage)
+        * [クラウドストレージのエクスポートをスケジュールする](https://help.sigmacomputing.com/docs/export-to-cloud-storage-redshift#schedule-a-cloud-storage-export)
+      
+#### **クラウドストレージを構成する (Configure cloud storage)**
+
+##### **Snowflake用にクラウドストレージを構成する (Configure cloud storage for Snowflake)**
+Sigmaからクラウドストレージにエクスポートする前に、Snowflakeのストレージインテグレーションを設定する必要があります。
+Snowflakeの指示に従ってストレージインテグレーションを作成してください。Snowflakeドキュメントの「[CREATE STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration)」を参照するか、お使いのクラウドストレージプロバイダーのガイドに従ってください。
+* **Amazon S3:** Snowflakeドキュメントの「[Option 1: Configuring a Snowflake storage integration to access Amazon S3](https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration)」を参照してください。
+* **Google Cloud Storage:** Snowflakeドキュメントの「[Configuring an integration for Google Cloud Storage](https://docs.snowflake.com/en/user-guide/data-load-gcs-integration)」を参照してください。
+* **Azure:** Snowflakeドキュメントの「[Configuring an Azure container for loading data](https://docs.snowflake.com/en/user-guide/data-load-azure-config)」を参照してください。Option 1の手順に従ってください。
+
+ストレージインテグレーションを設定した後、SigmaのSnowflake接続で使用されるSnowflakeロールに、ストレージインテグレーションに対する`USAGE`権限を付与します。Sigmaの管理者は、接続設定で接続によって使用されるロールを確認できます。「[Connect to Snowflake](https://help.sigmacomputing.com/docs/connect-to-snowflake)」を参照してください。
+> 📘
+> SigmaのSnowflake接続でロールが指定されていない場合、Snowflakeはデフォルトのロールを使用します。
+
+##### **Redshift用にクラウドストレージを構成する (Configure cloud storage for Redshift)**
+Sigmaからクラウドストレージにエクスポートする前に、エクスポート先となるAmazon S3バケットを設定する必要があります。AWSドキュメントの「[バケットの作成](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)」を参照してください。
+AWS Identity and Access Management (IAM)ロールに適切な書き込みアクセス権限を付与します。`s3:PutObject`権限を付与する必要があります。詳細は、AWSドキュメントの「[PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)」および「[Amazon S3コンソールを使用してバケットポリシーを追加する](https://docs.aws.amazon.com/AmazonS3/latest/userguide/add-bucket-policy.html)」を参照してください。
+Redshiftからテストエクスポートを設定して、RedshiftからS3へのデータアンロードが可能であることを確認します。エクスポートは次のようになります。
+`unload ('select * from venue') to 's3://amzn-s3-demo-bucket/tickit/unload/venue_' iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';`
+このコマンドに関する詳細は、AWSドキュメントの「[Amazon S3からのデータのアンロード](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html)」を参照してください。
+
+#### **宛先URIを書式設定する (Format a destination URI)**
+SnowflakeとRedshiftの両方の接続で、宛先URIはクラウドストレージサービス内のエクスポートのターゲットファイルパスを表します。
+以下のテンプレートを使用してURIを書式設定します。
+`<schema>://<bucket>/<filepath>/<filename><filetype><compression>`
+ここで：
+* **Schema:** エクスポート先。「s3」（AWS S3へエクスポートする場合）、「gcs」（GCSへエクスポートする場合）、「azure」（Azureへエクスポートする場合）を指定します。
+* **Bucket:** クラウドストレージプロバイダーがサポートする最上位のストレージオブジェクト。
+* **File path** (任意): バケットまたはコンテナ内のターゲットサブディレクトリ。
+* **File name:** エクスポートされるファイルに使用するファイル名。
+* **File type:** エクスポートされるファイルのファイル形式。`.csv`でなければなりません。
+* **Compression** (任意): エクスポートされるファイルの圧縮オプション。`.gz`のみ可能です。
+
+**URIの例**
+`s3://my-sigma-bucket/cloud-exports/sales.csv.gz`
+
+URIがバケット内の既存のファイルと同一の場合、既存のファイルは上書きされます。
+
+#### **アドホックなエクスポートをクラウドストレージに送信する (Send an ad hoc export to cloud storage)**
+1.  ワークブックメニュー()から、`Share and export > Export...`を選択します。
+    > 📘
+    > `Cloud Storage`オプションが利用できない場合、ワークブックは`Edit`モードです。エクスポートを試みる前に、ドラフトを公開するか、ワークブックの最新の公開またはタグ付きバージョンに戻ってください。
+2.  `Cloud storage`を選択します。
+3.  `Element`メニューから、エクスポートするワークブック要素を選択します。
+4.  クラウドストレージ情報を入力します。
+    * **Snowflakeの場合:** `Storage integration`にSnowflakeストレージインテグレーションの名前を入力し、`Cloud storage URI`に宛先URIを入力します。
+    * **Redshiftの場合:** `IAM role`にAWS IAMロールを入力し、`Cloud storage URI`に宛先URIを入力します。
+5.  指定された要素について、ファイル形式を選択します。CSVまたはCSV, gzippedから選択できます。
+6.  `Export`をクリックします。
+
+#### **クラウドストレージのエクスポートをスケジュールする (Schedule a cloud storage export)**
+1.  ワークブックメニュー()から、`Share and export > Schedule exports...`を選択します。
+2.  `Cloud storage`を選択します。
+3.  `Element`メニューから、エクスポートするワークブック要素を選択します。
+4.  クラウドストレージ情報を入力します。
+5.  指定された要素について、ファイル形式を選択します。
+6.  (任意) `Prefix file name with the current date and time`のチェックボックスを選択します。
+    > 🚩
+    > このオプションを選択しない場合、スケジュールされた各エクスポートで同じファイル名が使用され、エクスポートが実行されるたびにファイルが上書きされます。
+7.  `Frequency`セクションで、配信スケジュールを設定します。
+8.  (任意) デフォルトのスケジュールタイムゾーンを調整します。
+9.  (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。
+10. (任意) `Customize control values`のチェックボックスを選択して、エクスポートされたデータをフィルタリングします。
+11. `Create`をクリックします。
+
+### 11-5-8. Webhookへのエクスポート (Export to webhook)
+
+> 📘
+> この機能は現在、認証済みエンドポイントへのエクスポートをサポートしていません。
+
+SigmaのWebhookエクスポートを使用すると、独自のWebhookエンドポイント、またはMarketo、Segment、Airtableなどの他のアプリケーションに、Webhookを使用してデータを送信できます。ワークブックデータを必要に応じてエクスポートしたり、定期的なエクスポートのために一つ以上のスケジュールを作成したりできます。各スケジュールは、複数のエンドポイントと送信条件をサポートできます。
+
+Sigmaは、ワークブックの最新の公開バージョンからエクスポートを生成します。ワークブックのタグ付きバージョンをエクスポートすることも選択できます。ドラフトの変更はエクスポートされません。
+
+#### **ユーザー要件 (User requirements)**
+Webhookへのエクスポート機能には、以下が必要です。
+* `Export to webhook`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+> 📘
+> 組織が特定のIPアドレスからのトラフィックを制限している場合は、SigmaのIPアドレスを許可リストに追加してください。詳細は、「[SigmaのIPを許可リストに追加する](https://help.sigmacomputing.com/docs/connect-to-data-sources#add-sigma-ips-to-the-allowlist)」を参照してください。
+
+#### **サポートされているフォーマット (Supported formats)**
+すべてのWebhookエクスポートで、以下のファイルタイプが利用可能です。
+* CSV
+* JSON
+* PDF
+
+#### **エクスポート制限 (Export limit)**
+Webhookには100万行のエクスポート制限があります。「[ダウンロード、エクスポート、およびアップロードの制限](https://help.sigmacomputing.com/docs/download-and-export-limitations)」を参照してください。
+
+#### **アドホックなWebhookエクスポートを送信する (Send an ad hoc webhook export)**
+1.  ワークブックメニュー()から、`Share and export > Export`を選択します。
+2.  `Export`モーダルが開きます。
+3.  `Webhook`を選択します。
+4.  `Endpoint`に、一つ以上のターゲットWebhookエンドポイントを入力します。
+    * 複数のエンドポイントはカンマで区切ります。
+    * エンドポイントURLは`https://`で始まる必要があります。
+5.  ワークブックにタグ付きバージョンがある場合は、どのバージョンから要素をエクスポートするかを選択します。
+6.  `Attachments`セクションで、エクスポートするワークブック要素を選択します。
+7.  添付ファイルについて、サポートされているファイル形式を選択します。
+8.  `Export`をクリックします。
+> 📘
+> エクスポートには、公開されたワークブックのコンテンツのみが含まれます。ドラフトの変更は反映されません。
+
+#### **定期的なエクスポートをスケジュールする (Schedule a recurring export)**
+1.  ワークブックメニュー()から、`Share and export > Schedule exports...`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Webhook`を選択します。
+4.  `Endpoint`に、一つ以上のターゲットWebhookエンドポイントを入力します。
+5.  ワークブックにタグ付きバージョンがある場合は、どのバージョンから要素をエクスポートするかを選択します。
+6.  `Attachments`セクションで、エクスポートするワークブック要素を選択します。
+7.  添付ファイルについて、サポートされているファイル形式を選択します。
+8.  `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * (任意) デフォルトのスケジュールタイムゾーンを調整します。
+    * (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+    * (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。
+    * (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+9.  `Create`をクリックします。
+
+### 11-5-9. メールバーストとしてエクスポート (Export as email burst)
+
+スケジュールされたメールバーストとして、動的な受信者リストにカスタムフィルタリングされたレポートを送信できます。例えば、個々の営業担当者に、彼らが販売するすべての製品カテゴリの四半期ごとの個人業績数値を送信することができます。各営業担当者は1つの地域のみを担当しているため、レポートをカスタマイズして関連する地域固有のデータを提供し、店舗地域のページコントロールでページ上の要素をフィルタリングします。
+
+この例では、West Store Regionに割り当てられた営業担当者は、このレポートをメールの添付ファイルとして受信箱で受け取ります。
+
+#### **制限事項 (Limitations)**
+メールバーストとしてエクスポートする場合、特定の制限が適用されます。
+* 分割に使用するコントロールは、列から値をソースとするリストコントロールでなければなりません。最大500個の値で分割できます。
+* 分割に使用する列は、数値またはテキストのデータ型でなければなりません。
+* 動的受信者のソースは、リストコントロールが値のソースとして使用するのと同じデータソースの列でなければなりません。最大500人の動的受信者に送信できます。
+* メールでのエクスポートのサイズ制限は30MBです。これは、すべての添付ファイルを合わせた合計の制限です。エクスポートがこの制限を超えると、エクスポート全体が失敗し、スケジュールされたエクスポートの所有者に通知されます。スケジュールされたエクスポートが繰り返しこの制限を超えると、自動的に一時停止され、その所有者に通知されます。「[ダウンロード、エクスポート、およびアップロードの制限](https://help.sigmacomputing.com/docs/download-and-export-limitations)」を参照してください。
+
+> 🚧
+> PDFまたはPNG形式へのスケジュールされたエクスポートまたは直接ダウンロードを実行する際、Sigmaはデバッグおよびトラブルシューティング目的で使用されるトレースログに、該当するコントロール値をURLパラメータとして保存することがあります。コントロールを使用して機密データをフィルタリングするワークブックコンテンツをエクスポートまたはダウンロードする際は注意してください。
+
+#### **ユーザー要件 (User requirements)**
+* `Export as email burst`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+> 📘
+> 組織が特定のIPアドレスからのメールトラフィックを制限している場合は、`198.37.153.185`を許可リストに追加してください。あるいは、代わりに使用するカスタムSMTPサーバーを構成することもできます。「[カスタムSMTPサーバー](https://help.sigmacomputing.com/docs/custom-smtp-server)」を参照してください。
+
+#### **メールバーストをスケジュールする (Schedule an email burst)**
+1.  ワークブックメニュー()から、`Share and export > Schedule export...`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Export as email burst`を選択します。
+4.  `Split by...`で、分割基準として使用するコントロールを選択します。
+5.  メールバーストの受信者を選択します。動的受信者と標準受信者の両方を含めることができます。
+    * **Dynamic recipients (動的受信者):** 分割基準値として使用されるリストコントロールを設定するために使用されるデータソースから列を選択します。動的受信者は、関連する分割基準コントロール値に関連する添付ファイルのみを受け取ります。すべての添付ファイルを静的な受信者リストに送信するには、空のままにします。
+    * **Standard recipients (標準受信者):** 一つ以上のカンマ区切りのSigmaチーム、Sigmaユーザー、またはメールアドレスを入力します。`Dynamic recipients`と合わせて、合計で最大1,000人の受信者にメールを送信できます。標準受信者はすべての添付ファイルを受け取ります。
+    > 📘
+    > 管理者によって組織でエクスポート認証が構成されている場合、承認されたドメインに関連付けられたメールアドレスにのみエクスポートを送信できます。`Standard recipients`の場合、スケジュールを作成しようとすると、許可されていないドメインを含むメールアドレスがあるとSigmaが通知します。`Dynamic recipients`の場合、制限されたアドレスへのメールは送信されません。「[エクスポート受信者を制限する](https://help.sigmacomputing.com/docs/manage-features#restrict-export-recipients-and-frequency)」を参照してください。
+6.  (任意) `Subject`フィールドに、件名を入力します。
+7.  (任意) `Message`フィールドに、メッセージを入力します。
+8.  ワークブックにタグ付きバージョンがある場合は、送信するバージョンを選択します。デフォルトでは、公開バージョンが送信されます。
+9.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+10. `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * (任意) デフォルトのスケジュールタイムゾーンを調整します。
+    * (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+    * (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。（この機能はベータ版です）。
+    > 📘
+    > 条件は分割基準コントロール値ごとに個別に評価されますが、発生回数は条件全体で評価されます。
+11. (任意) デフォルトでは、Sigmaはメール本文にワークブックへのリンクを含めます。リンクを含めたくない場合は、`Include link to workbook`チェックボックスの選択を解除します。
+12. (任意) 選択した添付ファイルの形式に応じて、添付ファイルの結合やzipファイルでの送信など、その他のオプションを構成できます。
+13. (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+14. `Create`をクリックします。
+
+### 11-5-10. Microsoft Teamsへのエクスポート (Export to Microsoft Teams)
+
+ドキュメント、レポート、およびデータをMicrosoft Teamsに送信するには、SigmaからMicrosoft Teamsへのエクスポートをスケジュールまたは設定します。チーム内の任意のパブリックチャネルにエクスポートできます。
+
+要素、ワークブックページ、またはワークブック全体をMicrosoft Teamsにエクスポートします。エクスポートは、ワークブックの最新の公開バージョンから送信されるか、代わりに送信するワークブックの保存済みビューまたはタグ付きバージョンを選択することもできます。ワークブックのドラフトまたはカスタムビューに加えた変更は、変更を公開または保存しない限りエクスポートできません。
+
+サポートされているファイル形式のマトリックスについては、「[利用可能なエクスポート先とフォーマット](https://help.sigmacomputing.com/docs/send-and-schedule-exports#available-export-destinations-and-formats)」を参照してください。
+
+このドキュメントでは、Microsoft Teamsへのエクスポートを送信およびスケジュールする方法について説明します。
+
+#### **ユーザー要件 (User requirements)**
+Microsoft Teamsへのエクスポート機能には、以下が必要です。
+* 組織で[Microsoftインテグレーション](https://help.sigmacomputing.com/docs/microsoft-integration)が設定されている必要があります。
+* Sigma Notificationsアプリが、あなたのチームの最初に名前が付けられたチャネルに追加されている必要があります。
+    > 📘
+    > 最初に名前が付けられたチャネルは、チーム作成時に最初に命名されたチャネルです。それは「General」チャネルまたはホームチャネルとも呼ばれ、名前を変更することができます。「[Microsoft Teamsでチャネルを編集する](https://support.microsoft.com/en-us/office/edit-a-channel-in-microsoft-teams-b23f3e72-c0e8-4318-b51f-3a213e0259b1)」を参照してください。
+* `Export to Microsoft Teams and SharePoint`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+
+#### **エクスポートサイズの制限 (Export size limit)**
+Microsoft Teamsへのエクスポートのサイズ制限は、ファイルあたり1GBです。「[ダウンロード、エクスポート、およびアップロードの制限](https://help.sigmacomputing.com/docs/download-and-export-limitations)」を参照してください。
+
+#### **前提条件 (Prerequisites)**
+エクスポートを送信したいMicrosoft TeamsチャネルのチャネルURLを知っている必要があります。Microsoft Teamsで、チャネルメニューを開き、`Get link to channel`を選択します。
+
+#### **アドホックな通知をMicrosoft Teamsチャネルに送信する (Send an ad hoc notification to a Microsoft Teams channel)**
+アドホックな通知をMicrosoft Teamsチャネルに送信するには、Sigma Notificationsアプリがチームの最初に名前が付けられたチャネルに追加されている必要があります。共有するチャネルは、標準または共有である必要があります。
+
+通知は、共有されたファイルをMicrosoft Teamおよびチャネルに対応するSharePointフォルダに保存された添付ファイルとして送信します。複数の添付ファイルは、複数のメッセージとして共有されます。各メッセージはSigma Notificationsボットから送信され、`New Export`と共有されているワークブックおよび要素のタイトルが含まれます。
+
+1.  ワークブックメニューから、`Share and export > Export...`を選択します。
+2.  `Microsoft Teams`を選択します。
+3.  `Channel URL`フィールドに、Microsoft TeamsチャネルのURLを入力します。
+    > 📘
+    > プライベートチャネルに通知を送信することはできません。
+4.  (任意) `Message`フィールドにメッセージを入力します。
+5.  ワークブックにバージョンまたは保存済みビューがある場合は、送信したいものを選択します。
+6.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+7.  各添付ファイルについて、サポートされているファイル形式を選択します。
+8.  (任意) メッセージ本文にワークブックへのリンクを含めるには、`Include link to workbook`のチェックボックスを選択します。
+9.  (任意) 選択した添付ファイルの形式に応じて、その他のオプションを構成できます。
+10. `Export`をクリックします。
+
+#### **Microsoft Teamsチャネルへの通知をスケジュールする (Schedule a notification to a Microsoft Teams channel)**
+スケジュールされた通知をMicrosoft Teamsチャネルに送信するには、Sigma Notificationsアプリがチームの最初に名前が付けられたチャネルに追加されている必要があります。共有するチャネルは、標準または共有である必要があります。
+
+通知は、共有されたファイルをMicrosoft Teamに対応するSharePointサイトに保存された添付ファイルとして送信します。複数の添付ファイルは、複数のメッセージとして共有されます。各メッセージはSigma Notificationsボットから送信され、`New Export`と共有されているワークブックおよび要素のタイトルが含まれます。
+
+1.  ワークブックメニューから、`Share and export > Schedule exports…`を選択します。
+    > 📘
+    > Microsoft Teamsオプションが利用できない場合、ワークブックは`Edit`モードです。エクスポートを試みる前に、ドラフトを公開するか、ワークブックの最新の公開またはタグ付きバージョンに戻ってください。
+2.  これがワークブックの最初のスケジュールの場合は`Add Schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Microsoft Teams`を選択します。
+4.  `Channel URL`フィールドに、Microsoft TeamsチャネルのURLを入力します。
+    > 📘
+    > プライベートチャネルに通知を送信することはできません。
+5.  (任意) `Message`フィールドにメッセージを入力します。
+6.  ワークブックにバージョンまたは保存済みビューがある場合は、メッセージを送信するために使用したいものを選択します。
+7.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+8.  各添付ファイルについて、サポートされているファイル形式を選択します。
+9.  `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * (任意) デフォルトのスケジュールタイムゾーンを調整します。
+    * (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+    * (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。
+10. (任意) メッセージ本文にワークブックへのリンクを含めるには、`Include link to workbook`のチェックボックスを選択します。
+11. (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+12. (任意) 選択した添付ファイルの形式に応じて、その他のオプションを構成できます。
+13. `Create`をクリックします。
+
+### 11-5-11. Microsoft SharePointへのエクスポート (Export to Microsoft SharePoint)
+
+ドキュメント、レポート、およびデータをMicrosoft SharePointサイトに送信するには、エクスポートをスケジュールまたは設定します。[Microsoft Teamsにエクスポートする](https://help.sigmacomputing.com/docs/export-to-microsoft-teams)際、エクスポートされたファイルはTeamに関連付けられたSharePointサイトにも保存されます。SharePointフォルダに直接ファイルを送信することもできます。
+
+要素、ワークブックページ、またはワークブック全体をMicrosoft SharePointにエクスポートします。エクスポートは、ワークブックの最新の公開バージョンから送信されるか、代わりに送信するワークブックの保存済みビューまたはタグ付きバージョンを選択することもできます。ワークブックのドラフトまたはカスタムビューに加えた変更は、変更を公開または保存しない限りエクスポートできません。
+
+サポートされているファイル形式のマトリックスについては、「[利用可能なエクスポート先とフォーマット](https://help.sigmacomputing.com/docs/send-and-schedule-exports#available-export-destinations-and-formats)」を参照してください。
+
+このドキュメントでは、Microsoft SharePointへのエクスポートを送信およびスケジュールする方法について説明します。
+
+#### **ユーザー要件 (User requirements)**
+Microsoft SharePointへのエクスポート機能には、以下が必要です。
+* 組織で[Microsoftインテグレーション](https://help.sigmacomputing.com/docs/microsoft-integration)が追加されている必要があります。
+    * 一つのSigma組織は、一つのMicrosoft組織にしか接続できませんが、Microsoft組織内の任意のSharePointサイトに共有できます。
+* `Export to Microsoft Teams and SharePoint`権限が有効になっている[アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)を割り当てられている必要があります。
+
+Sigmaから追加されたファイルはすべて、SharePointアプリによって変更されたものとして表示されます。
+
+#### **前提条件 (Prerequisites)**
+エクスポートしたいSharePointフォルダのURLを知っている必要があります。SharePointフォルダへのリンクをコピーするには、`Copy Link`をクリックするか、`Share > Copy Link`に移動します。
+サイトのドキュメントまたはページライブラリに直接エクスポートすることはできませんが、ドキュメントライブラリ内のフォルダにはエクスポートできます。
+> 🚩
+> 個人のSharePointフォルダにはエクスポートできません。個人のSharePointフォルダのURLは、`-my.sharepoint.com`のようにフォーマットされています。
+
+#### **Microsoft SharePointに送信する (Send to Microsoft SharePoint)**
+アドホックなエクスポートをMicrosoft SharePointに送信するには：
+1.  ワークブックメニューから、`Share and export > Export...`を選択します。
+2.  `Microsoft SharePoint`を選択します。
+3.  `Folder URL`に、エクスポートしたファイルを送信するSharePointフォルダへのURLを入力します。
+4.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+5.  各添付ファイルについて、サポートされているファイル形式を選択します。
+6.  `Create`をクリックします。
+
+#### **Microsoft SharePointへのエクスポートをスケジュールする (Schedule an export to Microsoft SharePoint)**
+Microsoft SharePointフォルダへのエクスポートをスケジュールするには：
+1.  ワークブックメニューから、`Share and export > Schedule exports…`を選択します。
+2.  これがワークブックの最初のスケジュールの場合は`Add Schedule`を、そうでない場合は`+ New schedule`をクリックします。
+3.  `Microsoft SharePoint`を選択します。
+4.  `Folder URL`に、エクスポートしたファイルを送信するSharePointフォルダへのURLを入力します。
+5.  `Attachments`セクションで、添付ファイルとしてエクスポートしたいものを選択します。
+6.  `Frequency`セクションで、配信スケジュールを設定します。
+    * (任意) `Daily`のドロップダウンを選択し、`Weekly`, `Monthly`, または`Custom`を選択します。
+    * (任意) デフォルトのスケジュールタイムゾーンを調整します。
+    * (任意) エクスポートを送信する頻度を選択します：`Always`または`If a condition is met`のみ。「[条件付きエクスポートまたはアラートをスケジュールする](https://help.sigmacomputing.com/docs/schedule-a-conditional-export-or-alert)」を参照してください。
+    * (任意) `If a condition is met`の場合にのみエクスポートを送信することを選択した場合、通知を停止するスイッチをオンにできます。
+7.  (任意) `Customize control values`のチェックボックスを選択して、一つ以上のワークブックコントロールの値に従ってエクスポートされたデータをフィルタリングします。
+8.  `Create`をクリックします。
 
 ### 11-6-1. エクスポートの追加オプションを構成する (Configure additional options for exports)
 
@@ -16824,39 +17635,130 @@ Sigmaからワークブックデータをエクスポートする際、追加の
 1.  `Export`または`Schedule Exports`ダイアログの`More Options`セクションで、`Send as .zip file`のチェックボックスを選択します。
 2.  添付ファイルは`merged-report.zip`という名前の一つのzipファイルに表示されます。
 
-#### **ヘッダーラベルを繰り返す (Repeat header labels)**
+##### **ヘッダーラベルを繰り返す (Repeat header labels)**
 ピボットテーブルをExcelまたはCSVにエクスポートする場合、ヘッダーラベルを繰り返して、各ピボットテーブルの行と列のヘッダーがそれぞれのセルに表示されるようにすることができます。
 1.  `Export`または`Schedule Exports`ダイアログの`More Options`セクションで、`Repeat header labels`のチェックボックスを選択します。
 2.  チェックボックスが表示されない場合は、ファイル形式がExcelまたはCSVであり、ピボットテーブル要素またはピボットテーブル要素を持つページやワークブックをエクスポートしていることを確認してください。
 
-#### **メタデータ付きでExcelファイルをダウンロードする (Download Excel files with metadata)**
+##### **メタデータ付きでExcelファイルをダウンロードする (Download Excel files with metadata)**
 エクスポートの日時やExcelファイルをダウンロードしたユーザーの名前など、追加のメタデータをExcelファイルに含めたい場合は、以下を実行します。
-1.  `Export`ダイアログで、デフォルトの`Direct Download`オプションを選択したままにします。
-2.  ファイルタイプとして`Excel`を選択します。
-3.  `More Options`セクションで、`Include metadata`のチェックボックスを選択します。
-4.  `Export`を選択します。
+1.  ワークブックまたはワークブックページの場合、()を選択してメニューを開き、`Export...`を選択します。ワークブック要素の場合、`More` > `Export`を選択し、`Send`の下で`Export`を選択します。
+2.  `Export`ダイアログで、デフォルトの`Direct Download`オプションを選択したままにします。
+3.  ファイルタイプとして`Excel`を選択します。
+4.  `More Options`セクションで、`Include metadata`のチェックボックスを選択します。
+5.  `Export`を選択します。
 
-#### **PDFエクスポートのページレイアウトを書式設定する (Format PDF export page layout)**
+##### **PDFエクスポートのページレイアウトを書式設定する (Format PDF export page layout)**
 SigmaからPDFファイルをエクスポートする際、エクスポートされるレポートの書式を改善するために、いくつかの異なるオプションを構成できます。
-* 希望のPDFページ幅に合わせてカスタムページ幅を設定します。
-* PDFで最大1000行のデータをテーブルに表示します。
-* ページブレーク要素を追加して、PDFエクスポートのどこで要素が次のページに送られるかを制御します。
+* 希望のPDFページ幅に合わせてカスタムページ幅を設定します。レターサイズの縦向きPDFエクスポートには1050ピクセル、レターサイズの横向きPDFエクスポートには1380ピクセルを使用します。「[Layout style settings](https://help.sigmacomputing.com/docs/workbook-settings-overview#layout-style-settings)」を参照してください。
+* PDFのテーブルに最大1000行のデータを表示します。「[追加の行を表示する](#show-additional-rows)」を参照してください。
+* ページブレーク要素を追加して、PDFエクスポートのどこで要素が次のページに送られるかを制御します。「[改ページを追加する](https://help.sigmacomputing.com/docs/configure-additional-options-for-exports#add-a-page-break)」を参照してください。
+
+ワークブックがレガシーレイアウトを使用している場合は、「[Format PDF exports (legacy layouts)](https://help.sigmacomputing.com/docs/format-pdf-exports-legacy-layouts)」を参照してください。
 
 ##### **追加の行を表示する (Show additional rows)**
 テーブルまたはピボットテーブルの最大1,000行をエクスポートしたい場合は、以下を実行します。
 > 📘
 > ワークブック全体またはワークブックのページをエクスポートしたい場合、テーブルは隣に要素がなく、コンテナに入っていない状態で、独自の行にある必要があります。
+
 1.  ワークブックを`Edit`モードで開きます。
 2.  ワークブックで、最大1,000行のデータを表示したい要素を探します。
-3.  `More` > `Export formatting`を選択し、`Expand table to first 1k rows`をクリックします。
+3.  `More` > `Export formatting`を選択し、`Expand table to first 1k rows`をクリックします。このオプションが既に設定されている場合、チェックマークが表示されます。
 4.  ワークブックを公開します。
+5.  ワークブックをPDFにエクスポートして、出力が期待通りに見えることを確認します。
+6.  必要な変更を加え、希望の宛先にスケジュールされたエクスポートを設定します。
 
 ##### **改ページを追加する (Add a page break)**
 ワークブックのPDFエクスポートをどこで別々のページに分割するかを指定したい場合、またはワークブック要素がPDFエクスポートで切れたり期待通りに表示されなかったりする場合は、ワークブックページに一つ以上の改ページ要素を追加します。
+
 1.  ワークブックを`Edit`モードで開きます。
 2.  ワークブックの`Add New Element`パネルを開きます。
 3.  `PDF export elements`セクションで、`Page break`要素を選択し、ワークブックキャンバスにドラッグします。
 4.  ワークブックを公開します。
+5.  ワークブックをPDFにエクスポートして、出力が期待通りに見えることを確認します。
+6.  必要な変更を加え、希望の宛先にスケジュールされたエクスポートを設定します。
+
+##### **PDFレイアウト構成の例 (Example PDF layout configurations)**
+この例では、構成の変更は行われておらず、縦向きのPDFエクスポートは、ワークブックに表示されているのと同じ行数のテーブルをエクスポートします。
+
+この例では、テーブルに最大1,000行のデータを表示するオプションが選択されていますが、ワークブックページに改ページ要素は使用されていません。縦向きのPDFエクスポートを選択すると、最大1000行のテーブルがエクスポートされ、1000行のテーブルの末尾に、同じページにテキスト要素が表示されます。次のページには、別のデータ要素が表示されます。
+
+この例では、テーブルに最大1,000行のデータを表示するオプションが選択されており、テキスト要素と2番目のデータ要素の前にワークブックページで改ページ要素が使用されています。縦向きのPDFエクスポートを選択すると、最大1000行のテーブルがエクスポートされ、1000行のテーブルの末尾に改ページがあります。次のページには、テキスト要素が表示され、その後に別のデータ要素が続きます。
+
+### 11-6-2. スケジュールされたエクスポートを管理する (Manage scheduled exports)
+
+エクスポートのスケジュールをずらしたり、不要になったスケジュールされたエクスポートを削除したり、スケジュールされたエクスポートの構成を更新するなど、スケジュールされたエクスポートを表示および管理できます。
+
+* [ワークブックのスケジュールを管理する](#manage-schedules-for-a-workbook)。
+* [自分が所有する、または購読しているスケジュールされたエクスポートを管理する](#manage-your-scheduled-exports-and-subscriptions)。
+* 管理者として、[組織のすべてのスケジュールされたエクスポートを管理する](https://help.sigmacomputing.com/docs/manage-organization-schedules)。
+
+> 💡
+> 複数のスケジュールされたエクスポートがある場合は、スケジュールをずらすことがベストプラクティスです。スケジュールをずらすことで、Sigmaとデータウェアハウスへの負荷を軽減できます。
+
+#### **ユーザー要件 (User requirements)**
+ワークブックのエクスポートを送信およびスケジュールする機能には、以下が必要です。
+* 特定の宛先にエクスポートするには、その宛先のエクスポート権限が有効になっているアカウントタイプを割り当てられている必要があります。
+* ワークブックのエクスポートをスケジュールするには、`Schedule export`権限が有効になっているアカウントタイプを割り当てられている必要があります。
+* あなたがワークブックの所有者であるか、`Can explore`または`Can edit`のワークブック権限を付与されている必要があります。
+
+#### **ワークブックのスケジュールを管理する (Manage schedules for a workbook)**
+1.  ワークブックメニュー()から、`Schedule exports`を選択します。
+2.  `Schedule Exports`ダイアログが開きます。
+3.  ワークブックのスケジュールされたエクスポートのリストを確認し、エクスポートの時間とタイプを確認して、重複するスケジュールや受信者を特定できます。
+4.  特定のスケジュールされたエクスポートについては、`More`メニューをクリックして、スケジュールの名前の変更、スケジュールの編集、構成済みのスケジュールされたエクスポートの即時送信、スケジュールされたエクスポートの一時停止、または削除ができます。
+
+##### **スケジュールを編集または削除する (Edit or delete a schedule)**
+1.  ワークブックメニュー()から、`Schedule exports`を選択します。
+2.  `Schedule Exports`ダイアログが開きます。
+3.  送信したいスケジュールを探し、`More`メニューをクリックします。
+4.  スケジュールを削除するには`Delete`を、スケジュールに変更を加えるには`Edit`をクリックします。
+
+##### **スケジュールされたエクスポートをオンデマンドで送信する (Send a scheduled export on demand)**
+次回のスケジュールされたエクスポートの実行を待たずにスケジュールされたエクスポートを送信したい場合は、オンデマンドで送信できます。
+1.  ワークブックメニュー()から、`Schedule exports`を選択します。
+2.  送信したいスケジュールを探し、`More`メニュー()をクリックして、`Send now`を選択します。
+
+##### **スケジュールされたエクスポートを一時停止または再開する (Pause or resume a scheduled export)**
+スケジュールされたエクスポートを手動で一時停止および再開できます。
+1.  ワークブックメニュー()から、`Schedule exports`を選択します。
+2.  `Schedule Exports`ダイアログが開きます。
+3.  `Actions`列の`More`メニューをクリックし、`Pause`を選択します。
+4.  `Status`列で、ステータスが`Paused`に変わります。
+5.  エクスポートを再開するには、上記の手順を繰り返しますが、`More`メニューから`Resume`を選択します。
+
+##### **自動的に一時停止されたスケジュールされたエクスポート (Auto-paused scheduled exports)**
+スケジュールされたエクスポートが100回以上連続して失敗した場合、または7日以上で5回以上失敗した場合、Sigmaはそのエクスポートスケジュールを一時停止し、スケジュールの所有者にメール通知が届きます。
+メール通知には、「ドキュメントのエクスポートに失敗しました。Sigmaはあなたのスケジュールされたエクスポートの一つを一時停止しました。詳細を確認するには、以下のワークブックへのリンクを使用してください。」というメッセージが含まれています。
+エクスポートを手動で再開できます。`Status`列には、感嘆符付きで`Paused`と表示されます。一時停止されたエクスポートを再開するには、`Actions`列の`More`メニューから`Resume`を選択します。
+
+#### **あなたのスケジュールされたエクスポートと購読を管理する (Manage your scheduled exports and subscriptions)**
+あなたのユーザープロファイルから、あなたが所有または受信するスケジュールされたエクスポートを表示および管理できます。
+Sigmaの管理者である場合は、組織のすべてのスケジュールされたエクスポートを表示または管理できます。「[組織のスケジュールを管理する](https://help.sigmacomputing.com/docs/manage-organization-schedules)」を参照してください。
+
+##### **あなたのプロファイルでスケジュールを表示および管理する (View and manage schedules in your profile)**
+プロファイルからスケジュールされたエクスポートを表示および管理するには、以下を実行します。
+1.  トップメニューバーのユーザーメニューをクリックします。
+2.  ドロップダウンメニューから`Profile`を選択します。
+3.  ユーザープロファイルから、`Scheduled Exports`を選択します。
+4.  表示および管理したいスケジュールされたエクスポートを選択します。
+    * `Owned by you`を選択して、あなたが作成したスケジュールされたエクスポートを表示および管理します。
+    * `Your subscriptions`を選択して、あなたのメールアドレスに送信されるエクスポートを表示および管理します。
+5.  リストされたスケジュールを検索、フィルタリング、ソートして、見つけたいスケジュールをより簡単に見つけることができます。
+6.  特定のスケジュールに変更を加えるには、ワークブックの名前を選択してワークブックを開き、スケジュールを管理します。
+
+##### **スケジュールを削除する (Delete a schedule)**
+あなたが所有するスケジュールを削除するには：
+1.  ユーザーメニューをクリックし、ドロップダウンメニューから`Profile`を選択します。
+2.  `Scheduled Exports`を選択します。
+3.  削除したいスケジュールされたエクスポートを探し、`More > Delete`をクリックします。
+
+##### **購読を解除する (Unsubscribe from a subscription)**
+スケジュールされたエクスポートの購読を解除するには：
+1.  ユーザーメニューをクリックし、ドロップダウンメニューから`Profile`を選択します。
+2.  `Scheduled Exports`を選択します。
+3.  `Your subscriptions`を選択し、購読を解除したい購読を探します。
+4.  `More > Unsubscribe`をクリックします。
 
 ### 11-7-1. PDFエクスポートの書式設定（レガシーレイアウト） (Format PDF exports (legacy layouts))
 
@@ -16967,47 +17869,169 @@ Sigmaは、データから最大限の価値を引き出すための単純な計
 
 #### **日付関数 (Date functions)**
 日付関数は、日時値を評価、変換、操作します。
-*(...日付関数のリスト...)*
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **ConvertTimezone** | 日時値を指定されたタイムゾーンに変換します。 |
+| **DateAdd** | 日付に指定された量の時間を加算します。 |
+| **DateDiff** | 2つの日付の時間差を計算します。 |
+| **DateFormat** | 提供されたフォーマットに基づいて日付値をテキストにフォーマットします。 |
+| **DateFromUnix** | Unixタイムスタンプを日付値に変換します。 |
+| **DateLookback** | 指定された日付とオフセットによって決定される過去の時点（ルックバック期間）での変数の値を返します。 |
+| **DatePart** | 日付値から指定された日付部分を抽出します。 |
+| **DateParse** | 指定されたフォーマットのテキスト値を解析し、ISOフォーマットの日時値（日付データ型）を返します。 |
+| **DateTrunc** | 日付を指定された日付部分に切り捨てます。 |
+| **Day** | 日付値から月の日を数値として返します。 |
+| **DayOfYear** | 日付値から年の日を数値として返します。 |
+| **EndOfMonth** | 日付値から月の最終日を返します。 |
+| **Hour** | 日付値から時間コンポーネントを数値として返します。 |
+| **InDateRange** | 日付が指定された日付範囲内にあるかどうかを判断し、`True`または`False`を返します。 |
+| **InPriorDateRange**| 日付が前の期間の日付範囲内にあるかどうかを判断し、`True`または`False`を返します。 |
+| **LastDay** | 日付値の指定されたコンポーネントを評価し、そのコンポーネントの最後の日時値をISOフォーマットで返します。 |
+| **MakeDate** | 年、月、日の単位を表す指定された値を評価し、ISOフォーマットの日時値を返します。 |
+| **Minute** | 指定された日時値の分コンポーネントを表す整数を返します。 |
+| **Month** | 指定された日時値の月コンポーネントを表す整数を返します。 |
+| **MonthName** | 指定された日時値から月コンポーネントの名前を返します。 |
+| **Now** | 組織のアカウントタイムゾーンを使用して現在の日時を返します。 |
+| **Quarter** | 指定された日時値の四半期コンポーネントを表す整数を返します。 |
+| **Second** | 指定された日時値の秒コンポーネントを表す整数を返します。 |
+| **Today** | 組織のアカウントタイムゾーンを使用して現在の日付を返します。 |
+| **Weekday** | 指定された日時値の曜日を表す整数を返します。 |
+| **WeekdayName** | 指定された日時値から曜日の名前を返します。 |
+| **Year** | 指定された日時値の年コンポーネントを表す整数を返します。 |
 
 #### **財務関数 (Financial functions)**
 財務関数は、お金、投資、利率、その他の財務側面に関連するデータを評価・計算します。
-*(...財務関数のリスト...)*
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **CAGR** | 投資の複利年間成長率を返します。 |
+| **Effect** | 実効年利率を返します。 |
+| **FV** | 投資の将来価値を返します。 |
+| **IPmt** | 金額、期間数、および一定の利率に基づいて、ローンの定期的な支払いの利息部分を返します。 |
+| **Nominal** | 名目年利率を返します。 |
+| **NPer** | 既知の金額、利率、および定期的な支払額に基づいて、ローンまたは投資の期間数を返します。 |
+| **Pmt** | 金額、期間数、および一定の利率に基づいて、ローンの定期的な支払いを返します。 |
+| **PPmt** | 金額、期間数、および一定の利率に基づいて、ローンの定期的な支払いの元本部分を返します。 |
+| **PV** | 一定かつ定期的な支払いを使用する場合の、ローンまたは投資の現在価値を返します。 |
+| **XNPV** | 不規則な間隔での支払いや収入に対する投資の正味現在価値を返します。 |
 
 #### **地理関数 (Geography functions)**
 地理関数は、[地理データ型](https://help.sigmacomputing.com/docs/supported-data-types-and-formats#geography)を操作して、場所、ルート、その他の地理空間データを分析できます。
-*(...地理関数のリスト...)*
+> 📘
+> 地理関数は、すべてのデータプラットフォーム接続と互換性があるわけではありません。
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **Area** | 指定された単位で、地理の面積を計算します。 |
+| **Centroid** | 地理の地理的中心を計算します。 |
+| **Distance** | 指定された単位で、2つの地理間の最小距離を計算します。 |
+| **Geography** | GeoJSONまたはWKT形式を地理データ型に変換します。 |
+| **Intersects** | ある地理が別の地理と交差するかどうかを判断します。 |
+| **Json** | 地理データをGeoJSONに変換します。 |
+| **Latitude** | ポイントの緯度コンポーネントを返します。 |
+| **Longitude** | ポイントの経度コンポーネントを返します。 |
+| **MakeLine** | 一連のポイントと線分から線を構築します。 |
+| **MakePoint** | 緯度と経度のデータからポイントを構築します。 |
+| **Perimeter** | 指定された単位で、地理の周囲長を計算します。 |
+| **Text** | 地理データをWKT形式に変換します。 |
+| **Within** | ある地理が別の地理の完全に内側にあるかどうかを判断します。 |
 
 #### **結合関数 (Join functions)**
 結合関数は、ローカル要素とターゲット要素の関連する列に基づいて、ターゲット要素からデータを取得します。
-*(...結合関数のリスト...)*
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **Lookup** | 指定されたターゲット要素の列で値を見つけ、その要素の別の列から対応する行の値を返します。 |
+| **Rollup** | 指定されたターゲット要素の列で値を見つけ、その要素の別の列から対応するすべての行の値を集計します。 |
 
 #### **論理関数 (Logical functions)**
 論理関数は、論理演算を実行するか、条件文を評価し、通常はブール値（`true`または`false`）の出力を返します。
-*(...論理関数のリスト...)*
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **Between** | 値が指定された範囲内にあるかどうかを判断します。`True`または`False`。 |
+| **Choose** | 指定されたインデックス番号に基づいて、リストから一致する値を返します。 |
+| **Coalesce** | リストから最初のNullでない値を返します。 |
+| **If** | 一つ以上の条件が`true`か`false`かを評価し、対応する値を返します。 |
+| **In** | 指定された値が候補値のいずれかと一致するかどうかを判断します。`True`または`False`。 |
+| **IsNotNull** | セルに値があるかどうかを判断します。`True`または`False`。 |
+| **IsNull** | セルがNullであるかどうかを判断します。`True`または`False`。 |
+| **Switch** | SWITCHパラダイムを使用して、指定された値を条件のリストと照合し、一致する応答を返します。 |
+| **Zn** | Nullでない値を返すか、Null値の代わりに0（ゼロ）を返します。 |
 
 #### **数学関数 (Math functions)**
 数学関数は、算術、三角法、丸め、統計、対数計算などの数学的操作を実行します。
-*(...数学関数のリスト...)*
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **Abs** | 数値の絶対値を返します。 |
+| **Acos** | 角度のアークコサインを返します。 |
+| **Asin** | 角度のアークサインを返します。 |
+| **Atan** | 角度のアークタンジェントを返します。 |
+| **Atan2** | 座標ペアのアークタンジェントを返します。 |
+| **BinFixed** | 指定された数の同じサイズのビンの中で、値のビンを計算します。 |
+| **BinRange** | 指定された下限を使用して、値のビンを計算します。 |
+| **BitAnd** | 2つの数値のビット単位の`AND`を計算します。 |
+| **BitOr** | 2つの数値のビット単位の`OR`を計算します。 |
+| **Ceiling** | 数値を、等しいかより大きい値の最も近い倍数に切り上げます。 |
+| **Cos** | 角度のコサインを返します。 |
+| **Cot** | 角度のコタンジェントを返します。 |
+| **Degrees** | 角度の測定値をラジアンから度に変換します。 |
+| **DistanceGlobe** | 地球上の2点間の距離をキロメートルで計算します。 |
+| **DistancePlane** | 平面上の2点間の距離を計算します。 |
+| **Div** | 除算の整数部分を返します。 |
+| **Exp** | 数学定数`e`、つまり`2.71828`を返します。 |
+| **Floor** | 数値を、等しいかより小さい値の最も近い倍数に切り下げます。 |
+| **Greatest** | リストから最大値を返します。 |
+| **Int** | 整数を、それ以下の最大の整数に切り下げます。 |
+| **Least** | リストから最小値を返します。 |
+| **Ln** | 数値の自然対数、`log_e(n)`を計算します。 |
+| **Log** | 数値の対数を計算します。デフォルトは`log_10(n)`です。 |
+| **Mod** | 除算の余りの部分を返します。 |
+| **MRound** | 数値を、指定された数値の最も近い倍数に切り下げます。 |
+| **Pi** | 数学定数`π`、つまり`3.14159...`を返します。 |
+| **Power** | ある数値を指定されたべき乗に累乗した結果を計算します。 |
+| **Radians** | 角度の測定値を度からラジアンに変換します。 |
+| **Round** | 数値を指定された桁数に丸めます。 |
+| **RoundDown** | 数値を指定された桁数または小数点以下の桁数に切り下げます。 |
+| **RoundUp** | 数値を指定された桁数または小数点以下の桁数に切り上げます。 |
+| **RowAvg** | 数値のリストの平均値を計算します。 |
+| **Sign** | 数値の符号を計算します。負の場合は`-1`、正の場合は`1`、ゼロの場合は`0`を返します。 |
+| **Sin** | 角度のサインを計算します。 |
+| **Sqrt** | 数値の平方根を計算します。 |
+| **Tan** | 角度のタンジェントを計算します。 |
+| **Trunc** | 数値を指定された桁数または小数点以下の桁数に切り捨てます。 |
 
 #### **パススルー関数 (Passthrough functions)**
 パススルー関数は、接続されたデータプラットフォーム内で操作を実行するリクエストを送信し、データプラットフォームのネイティブ関数によって生成された応答を返します。
-*(...パススルー関数のリスト...)*
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **AggDatetime** | `date`データ型を返すデータプラットフォームの集計関数を呼び出します。`CallDatetime`の集計版。 |
+| **AggGeography**| `geography`データ型を返すデータプラットフォームの集計関数を呼び出します。`CallGeography`の集計版。 |
+| **AggLogical** | `logical`データ型を返すデータプラットフォームの集計関数を呼び出します。`CallLogical`の集計版。 |
+| **AggNumber** | `number`データ型を返すデータプラットフォームの集計関数を呼び出します。`CallNumber`の集計版。 |
+| **AggText** | `text`データ型を返すデータプラットフォームの集計関数を呼び出します。`CallText`の集計版。 |
+| **AggVariant** | `variant`データ型を返すデータプラットフォームの集計関数を呼び出します。`CallVariant`の集計版。 |
+| **CallDatetime** | `date`データ型を返すデータプラットフォームの関数を呼び出します。 |
+| **CallGeography**| `geography`データ型を返すデータプラットフォームの関数を呼び出します。 |
+| **CallLogical** | `logical`データ型を返すデータプラットフォームの関数を呼び出します。 |
+| **CallNumber** | `number`データ型を返すデータプラットフォームの関数を呼び出します。 |
+| **CallText** | `text`データ型を返すデータプラットフォームの関数を呼び出します。 |
+| **CallVariant** | `variant`データ型を返すデータプラットフォームの関数を呼び出します。 |
 
 #### **システム関数 (System functions)**
 システム関数は、ユーザーやシステム構成の詳細を含む、Sigma組織に関する情報を返します。
-*(...システム関数のリスト...)*
 
-#### **テキスト関数 (Text functions)**
-テキスト関数は、文字列データを評価または操作して、テキストの変更、書式設定、抽出などの操作を実行します。
-*(...テキスト関数のリスト...)*
-
-#### **型関数 (Type functions)**
-型関数は、値をある[データ型](https://help.sigmacomputing.com/docs/supported-data-types-and-formats)から別のデータ型に変換する型キャストまたは型変換操作を実行します。
-*(...型関数のリスト...)*
-
-#### **ウィンドウ関数 (Window functions)**
-ウィンドウ関数は、テーブル全体、テーブルのグルーピング（グループ化された行）、または定義された行のウィンドウにわたって操作を実行します。Sigmaは、累積、移動、シフト、およびランキングのウィンドウ関数をサポートしています。
-*(...ウィンドウ関数のリスト...)*
+| 関数 | 説明 |
+| :--- | :--- |
+| **CurrentTimezone** | 管理ポータルで構成された、組織の`IANA time zone`を返します。 |
+| **CurrentUserAttributeText** | 現在の（サインインしている）ユーザーの特定の属性の値を返します。 |
+| **CurrentUserEmail** | 現在の（サインインしている）ユーザーのアカウントに関連付けられたメールアドレスを返します。 |
+| **CurrentUserFirstName** | ユーザーのプロファイルで構成された、現在の（サインインしている）ユーザーの名を返します。 |
+| **CurrentUserFullName** | ユーザーのプロファイルで構成された、現在の（サインインしている）ユーザーのフルネームを返します。 |
+| **CurrentUserInTeam** | 現在のユーザーが特定のチームのメンバーである場合に`true`を返します。 |
 
 ### 12-1-2. 演算子の概要 (Operators overview)
 
@@ -17046,6 +18070,116 @@ Sigmaは多くの演算子をサポートしています。
 | **TRUE** | ブールリテラルのTRUEとして解釈されます。 |
 | **FALSE**| ブールリテラルのFALSEとして解釈されます。 |
 | **NULL** | nullリテラルとして解釈されます。 |
+
+#### **テキスト関数 (Text functions)**
+テキスト関数は、文字列データを評価または操作して、テキストの変更、書式設定、抽出などの操作を実行します。
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **Concat** | 複数の文字列を単一のテキスト値に結合します。 |
+| **Contains** | テキスト値内で指定された部分文字列を検索します。部分文字列が見つかった場合は`True`、それ以外は`False`を返します。 |
+| **EndsWith** | テキスト値が指定された部分文字列で終わるかどうかを判断します。テキスト値の末尾で部分文字列が見つかった場合は`True`、それ以外は`False`を返します。 |
+| **Find** | 文字列内で指定された部分文字列を最初に発見したインデックスを返します。見つからない場合は`0`を返します。 |
+| **ILike** | 文字列がパターンに一致する場合に`True`を返します。大文字と小文字を区別しません。 |
+| **Left** | 文字列の左側部分（先頭）を、指定された文字数まで返します。 |
+| **Len** | スペースを含む、文字列の文字数を返します。 |
+| **Like** | 文字列値がパターンに一致する場合に`True`を返します。大文字と小文字を区別します。 |
+| **LPad** | 文字列の先頭に文字を追加または削除して、希望の長さに設定します。任意のフィル文字を使用するか、デフォルトで余分なスペースを使用します。 |
+| **Lower** | 文字列をすべて小文字に変換します。 |
+| **LTrim** | 文字列の先頭のスペースを削除します。 |
+| **MD5** | MD5メッセージダイジェストアルゴリズム（ハッシュ関数）のために、文字列のハッシュ値を計算します。 |
+| **Mid** | オフセットと長さで定義された、文字列からの部分文字列を返します。`Substring`と同じです。 |
+| **Proper** | テキストを適切な大文字小文字（各単語の最初の文字を大文字）に変換します。 |
+| **RegexpExtract** | 文字列内で正規表現に一致する部分文字列を返します。 |
+| **RegexpMatch** | 文字列が正規表現に一致する場合に`True`を返します。 |
+| **RegexpReplace** | パターンに一致する文字列を返し、それを指定された文字列で置き換えます。 |
+| **Repeat** | 文字列を指定された回数繰り返した結果を返します。 |
+| **Replace** | 指定された文字列のすべてのインスタンスを置換文字列で置き換えます。 |
+| **Reverse** | 文字列の文字の順序を逆にします。 |
+| **Right** | 文字列の右側部分（末尾）を、指定された文字数まで返します。 |
+| **RPad** | 文字列の末尾に文字を追加または削除して、希望の長さに設定します。任意のフィル文字を使用するか、デフォルトで余分なスペースを使用します。 |
+| **RTrim** | 文字列の末尾のスペースを削除します。 |
+| **SHA256** | テキスト入力を256ビットのハッシュ値に変換します。 |
+| **SplitPart** | 区切り文字の各出現位置で文字列を複数の部分に分割し、指定された位置のn番目の部分を返します。 |
+| **StartsWith** | 文字列が指定された部分文字列で始まるかどうかを判断します。`True`または`False`を返します。 |
+| **Substring** | オフセットと長さで定義された、文字列からの部分文字列を返します。`Mid`と同じです。 |
+| **Trim** | 文字列の先頭と末尾の両方のスペースを削除します。 |
+| **Upper** | 文字列を大文字（すべて大文字）に変換します。 |
+
+#### **型関数 (Type functions)**
+型関数は、値をある[データ型](https://help.sigmacomputing.com/docs/supported-data-types-and-formats)から別のデータ型に変換する型キャストまたは型変換操作を実行します。
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **Date** | テキストまたは数値をISO日時形式の`date`データ型に変換します。 |
+| **JSON** | 値をJSON形式の`variant`データ型に変換します。 |
+| **Logical** | 値をブール形式（`true`または`false`）の`logical`データ型に変換します。 |
+| **Number** | 値を`number`データ型に変換します。 |
+| **Text** | 値を`text`データ型に変換します。 |
+| **Variant** | テキスト値を`variant`データ型に変換します。 |
+
+以下の**地理関数**も、値をあるデータ型から別のデータ型に変換します。
+| 関数 | 説明 |
+| :--- | :--- |
+| **Geography** | GeoJSONまたはWKT形式を`geography`データ型に変換します。 |
+
+#### **ウィンドウ関数 (Window functions)**
+ウィンドウ関数は、テーブル全体、テーブルのグルーピング（グループ化された行）、または定義された行のウィンドウにわたって操作を実行します。Sigmaは、**累積 (cumulative)**、**移動 (moving)**、**シフト (shifting)**、および**ランキング (ranking)** のウィンドウ関数をサポートしています。
+
+##### **累積ウィンドウ関数 (Cumulative window functions)**
+累積ウィンドウ関数は、テーブルまたはグルーピング内の指定された列を評価し、現在行までを含むすべての行の実行合計または累積値を返します。これは、テーブルまたはグルーピング全体のサマリー値を計算する集計値とは異なります。
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **CumulativeAvg** | 現在行までを含む実行平均を計算します。 |
+| **CumulativeCorr**| 従属データ列と独立データ列の間の相関係数を、現在行までを含めて計算します。 |
+| **CumulativeCount**| nullでない値の数を、現在行までを含めてカウントします。 |
+| **CumeDist** | 現在の行の値に対する値の累積分布を計算します。 |
+| **CumulativeMax** | 現在行までを含む最大値を返します。 |
+| **CumulativeMin** | 現在行までを含む最小値を返します。 |
+| **CumulativeStdDev**| 値の標準偏差を、現在行までを含めて計算します。 |
+| **CumulativeSum** | 値の合計を、現在行までを含めて計算します。 |
+| **CumulativeVariance**| 列の分散を、現在行までを含めて計算します。 |
+
+##### **移動ウィンドウ関数 (Moving window functions)**
+移動ウィンドウ関数は、指定された列を評価し、現在行に関連して移動する定義された行のウィンドウに基づいて値を返します。
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **MovingAvg** | 移動ウィンドウ内の列の数値平均を計算します。 |
+| **MovingCorr**| 移動ウィンドウ内の2つの数値列の相関係数を計算します。 |
+| **MovingCount**| 移動ウィンドウ内のnullでない値の数をカウントします。 |
+| **MovingMax** | 移動ウィンドウ内の列の最大値を見つけます。 |
+| **MovingMin** | 移動ウィンドウ内の列の最小値を見つけます。 |
+| **MovingStdDev**| 移動ウィンドウ内の列の標準偏差を計算します。 |
+| **MovingSum** | 移動ウィンドウ内の列の合計を計算します。 |
+| **MovingVariance**| 移動ウィンドウ内の列の統計的分散を計算します。 |
+
+##### **シフトウィンドウ関数 (Shifting window functions)**
+シフトウィンドウ関数は、テーブルまたはグルーピング内の指定された列を評価し、現在行に関連してシフトする行から値を返します。
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **FillDown** | 列またはグルーピング内のすべての`null`値を、直前のnullでない値で置き換えます。 |
+| **First** | 列またはグルーピングの最初の行の値を返します。 |
+| **FirstNonNull**| 列またはグルーピングから最初のnullでない値を返します。 |
+| **Lag** | 列またはグルーピング内の先行するオフセット行から値を返します。 |
+| **Last** | 列またはグルーピングの最後の行の値を返します。 |
+| **LastNonNull** | 列またはグルーピングから最後のnullでない値を返します。 |
+| **Lead** | 列またはグルーピング内の後続のオフセット行から値を返します。 |
+| **Nth** | 列またはグルーピングのn番目の行から値を返します。 |
+
+##### **ランキングウィンドウ関数 (Ranking window functions)**
+ランキングウィンドウ関数は、テーブルまたはグルーピング内の指定された列を評価し、各行にランクを割り当てます。
+
+| 関数 | 説明 |
+| :--- | :--- |
+| **Ntile** | 列の行に、指定されたランクを順に割り当てます。各ランクにほぼ等しい数の行が割り当てられます。 |
+| **Rank** | 列内のユニークな値に、ランク1から順にランクを割り当てます。重複する値はスキップします。 |
+| **RankDense**| 列内のすべての値に、ランク1から順にランクを割り当てます。重複する値には同じランクを割り当てます。 |
+| **RankPercentile**| テーブルの行をパーセンタイルでランク付けします。 |
+| **RowNumber** | テーブルの行に、1から始まる番号を付けます。 |
+| **VisibilityLimit**| 別のランキング関数によって計算された順序に従って、列に表示される値を指定された値の数に制限します。 |
 
 ### 12-2-1. 数式でAIを使用する (Use AI with formulas)
 
@@ -17091,7 +18225,7 @@ Sigmaが数式エラーを検出すると、数式アシスタントは元の数
 2.  数式バーで、`Formula assistant`をクリックしてメニューを開き、`Explain this formula`を選択します。
 3.  `AI explain formula`モーダルで、数式アシスタントはAIが生成した説明を表示します。別の説明を表示するには、前のステップを繰り返します。
 
-### 11-4-1. AIクエリを実行する (Perform AI queries)
+### 11-3-1. AIクエリを実行する (Perform AI queries)
 
 データウェアハウスに、ジェネレーティブAIモデルを扱うために使用できる一つ以上のSQL関数が含まれている場合、それらのSQL関数をSigmaから実行し、AIクエリを実行できます。
 
@@ -17144,7 +18278,7 @@ Amazon RedshiftでAI関数を使用するには、Amazon SagemakerとRedshiftの
 モデルを設定した後、Sigmaでそのモデルを呼び出すことができます。例えば、`LLM_extract`というジェネレーティブAIモデルを設定した場合、次のように列から情報を抽出するようモデルにプロンプトを出すことができます。
 `CallVariant("your_redshift_db.sagemaker.LLM_extract", "extract logistical details related to in-person meetings" & [Call Transcript])`
 
-### 11-5-1. ワークブックでメトリクスを使用する (Use metrics in a workbook)
+### 11-4-1. ワークブックでメトリクスを使用する (Use metrics in a workbook)
 
 メトリクスは、データセットまたは接続テーブルという同じデータソースを共有するワークブックの[データ要素](https://help.sigmacomputing.com/docs/intro-to-element-types)間で再利用できる、カスタムの集計計算です。データソースのレベルでメトリクスを定義し、それらをワークブックに適用して、テーブル、ビジュアライゼーション、ピボットテーブル全体で一貫したメトリックロジックを保証します。
 
@@ -17212,7 +18346,7 @@ Amazon RedshiftでAI関数を使用するには、Amazon SagemakerとRedshiftの
 > 💡
 > [動的テキスト](https://help.sigmacomputing.com/docs/dynamic-text)で直接メトリクスを参照することはできませんが、計算列を使用してメトリックの出力を含めることができます。メトリクスを参照する計算列を作成し、その列を動的テキストの数式で参照してください。
 
-### 12-3-1. 再利用可能なカスタム関数を作成する (Create reusable custom functions)
+### 12-6-1. 再利用可能なカスタム関数を作成する (Create reusable custom functions)
 
 ロジック、集計、およびその他のタイプの操作を組み合わせた、頻繁に使用される複雑な計算を表すために、カスタム関数を定義できます。Sigmaの実践にカスタム関数を追加することには多くの利点があります。
 * ロジックを繰り返す代わりに、カスタム関数を使用してビジネスロジックをエンコードします。
@@ -17256,15 +18390,31 @@ Amazon RedshiftでAI関数を使用するには、Amazon SagemakerとRedshiftの
 2.  編集する予定の関数について、`More`をクリックします。
 3.  `Edit`を選択します。
 4.  `Update custom function`ダイアログで、必要な変更を加えてから`Save`をクリックします。
+    * 引数を削除するには、その説明の隣にある`x`（削除）をクリックします。
+    * 関数のシグネチャ（名前、引数の数と型、または数式など）を変更すると、その関数を使用している要素が壊れる可能性があります。
+5.  更新されたカスタム関数が、カスタム関数のリストに表示されます。
 
 #### **カスタム関数を非表示にする (Hide custom functions)**
 カスタム関数を非表示にして、数式インターフェースで提案として表示されないようにします。関数を非表示にしても、Sigmaインスタンスやアカウントから関数が削除されたり、この関数を使用する要素が壊れたりすることはありません。
 
+関数を非推奨にするための一歩として関数を非表示にすることで、新しい要素やユースケースでの関数の使用を効果的に制限および防止します。
+
+カスタム関数を非表示にするには、以下の手順に従います。
+1.  **Custom functions**ページに移動します：`User > Administration > Account > Custom functions`。
+2.  非表示にしたい関数について、`More`をクリックします。
+3.  `Hide function`を選択します。
+4.  カスタム関数のリストで、Sigmaは関数のステータスを`Hidden`に変更します。
+
+`Add custom function`および`Update custom function`インターフェースを使用しているときにも、関数を非表示にできます。
+
 #### **カスタム関数を削除する (Delete custom functions)**
 カスタム関数を削除すると、Sigmaインスタンスやアカウントから削除され、この関数を使用する要素が壊れます。
-1.  **Custom functions**ページに移動します。
+
+カスタム関数を削除するには、以下の手順に従います。
+1.  **Custom functions**ページに移動します：`User > Administration > Account > Custom functions`。
 2.  削除する予定の関数について、`More`をクリックします。
 3.  `Delete`を選択します。
+4.  関数はカスタム関数のリストに表示されなくなります。
 
 #### **カスタム関数の例 (Examples of custom functions)**
 
@@ -17276,28 +18426,42 @@ Amazon RedshiftでAI関数を使用するには、Amazon SagemakerとRedshiftの
 | **Slice** | 指定された開始点と終了点で、テキスト文字列のスライスを取得します。|
 
 * **関数の引数:**
-    * `text` (Text): スライスするテキスト。
-    * `start` (Number): スライスの開始インデックス。
-    * `end` (Number): スライスの終了インデックス。
+
+| 引数名 | データ型 | 説明 |
+| :--- | :--- | :--- |
+| text | Text | スライスするテキスト。 |
+| start | Number | スライスの開始インデックス。 |
+| end | Number | スライスの終了インデックス。 |
+
 * **数式と戻り値の型:**
-    * **Formula:** `Substring([text], [start], [end] - [start] + 1)`
-    * **Return type:** Text
+
+| 数式 | 戻り値の型 |
+| :--- | :--- |
+| `Substring([text], [start], [end] - [start] + 1)` | Text |
 
 ##### **SplineModel: カスタムウェアハウス関数の複雑な構文をラップする**
 データウェアハウスからUDFにアクセスしたい場合、呼び出し構文が正しく、必要なすべての定義がSigmaに移行されることを保証するために、ラッパーとしてカスタム関数を使用することがベストプラクティスです。
+
+そうする場合、特に複数のデータストアを使用している場合は、関数の説明でウェアハウスと関連するスキーマを特定します。これは、関数が名前付きUDFを参照する接続に固有であることを、関数のユーザーに思い出させる役割を果たします。
 
 この例では、組み込みのパススルーSigma関数`CallVariant`を使用して、元のウェアハウス関数から正しいデータ型が取得されることを保証します。
 
 | 名前 | 説明 |
 | :--- | :--- |
-| **SplineModel** | Snowflake: 入力にスプラインモデルを適用します。(説明はUDFが定義されているウェアハウスを識別します) |
+| **SplineModel** | Snowflake: 入力にスプラインモデルを適用します。<br>(説明はUDFが定義されているウェアハウスを識別します) |
 
 * **関数の引数:**
-    * `arg1` (Number): 最初の引数
-    * `arg2` (Number): 2番目の引数
+
+| 引数名 | データ型 | 説明 |
+| :--- | :--- | :--- |
+| arg1 | Number | 最初の引数 |
+| arg2 | Number | 2番目の引数 |
+
 * **数式と戻り値の型:**
-    * **Formula:** `CallVariant("PRODUCT.SIGMA.SPLINEMODEL", ArrayAgg([arg1]), ArrayAgg([arg2]))`
-    * **Return type:** Variant
+
+| 数式 | 戻り値の型 |
+| :--- | :--- |
+| `CallVariant("PRODUCT.SIGMA.SPLINEMODEL", ArrayAgg([arg1]), ArrayAgg([arg2]))` | Variant |
 
 ### 13-1-1. 埋め込み分析の概要 (Intro to embedded analytics)
 
@@ -17405,35 +18569,179 @@ HTMLドキュメントで埋め込みコードを使用して、選択したSigm
 5.  削除したい公開URLを探し、`Remove embed`をクリックします。Sigmaはすぐに公開URLを削除し、無効化します。
     > 💡
     > 以前に埋め込みコードを使用してSigmaコンテンツを別のアプリケーションに統合した場合は、該当するHTMLドキュメントからそれを削除してください
-### 13-4-1. 埋め込みで列レベルのセキュリティを実装する (Implement column-level security in embeds)
+### 13-4-1. 埋め込みコンテンツのデータへのアクセスを制限する (Restrict access to data in embedded content)
 
-列レベルのセキュリティは、管理者に列レベルのデータへのアクセスを制限または許可する柔軟性を提供します。このデータアクセスに対するきめ細かな制御により、あなたの組織は機密情報を保護し、承認されたユーザーのみがアクセスできるように保証できます。
+Sigmaは、埋め込みコンテンツで使用されるデータへのアクセスを保護および管理するための多くのオプションを提供しています。
 
+* OAuthまたはユーザー属性を使用して、接続されたデータプラットフォームで定義されたロールベースのアクセス制御（RBAC）を使用します。
+* Sigmaの[列レベルのセキュリティ（CLS）](https://help.sigmacomputing.com/docs/column-level-security)を使用して、特定のユーザーまたはチームからの列を制限します。
+* Sigmaの[行レベルのセキュリティ（RLS）](https://help.sigmacomputing.com/docs/set-up-row-level-security)を使用して、特定のユーザーまたはチームからの特定のデータ行を制限します。
+
+これらのメソッドはいずれも埋め込みコンテンツに固有のものではありませんが、セキュアな埋め込みでデータへのアクセスを制限するために使用できます。
+
+データアクセスを制限するために値を割り当てる方法は、[埋め込みへのアクセスを管理する方法](https://help.sigmacomputing.com/docs/manage-embed-users)によって異なります。
+* 埋め込みユーザーの自動作成に依存している場合、JWTクレームを使用して埋め込みユーザーのユーザー属性値とチームを設定するか、埋め込みユーザーのチームにユーザー属性値を事前に割り当てることができます。
+* 埋め込みにアクセスできるユーザーを手動で管理する場合、Sigmaでユーザー属性値をチームに割り当てます。
+
+> 🚧
+> JWTクレームはセッションではなく、ユーザーに固有のものです。特定のセッションでユーザーが埋め込みで何を表示できるかを管理するために、ユーザー固有のクレーム（チーム、アカウントタイプ、ユーザー属性値など）を使用しないでください。代わりに、ユーザーレベルでアクセスを管理してください。各ユーザーは、正しいアクセスレベルと権限で埋め込みにアクセスするために、独自のアカウントを持っている必要があります。異なるセキュアな埋め込み間で、同じ埋め込みユーザーに対して一貫したクレーム値を使用してください。
+
+#### **データプラットフォームでロールベースのアクセス制御を使用する (Use role-based access control in your data platform)**
+データプラットフォームで定義されたロールベースのアクセス制御（RBAC）を使用して、セキュアに埋め込まれたコンテンツのデータへのアクセスを管理できます。埋め込みでRBACを強制するには、以下の2つの方法のいずれかを使用します。
+* OAuth
+* ユーザー属性でロールを動的に割り当てる
+
+> 📘
+> [バージョンタグを使用して使用される接続を交換する](https://help.sigmacomputing.com/docs/add-version-tags#swap-the-source-of-a-tagged-workbook-version)（推奨）か、JWTクレームを使用して接続を交換するために「Embedding 14: Connection Swapping」の手順に従うことで、埋め込みコンテンツに使用するデータソースをある接続から別の接続に交換することもできます。
+
+##### **セキュアな埋め込みにOAuthを使用する (Use OAuth for your secure embed)**
+セキュアな埋め込みURLでOAuthトークンを渡して、埋め込みのユーザーを認証できます。
+* Sigmaへの認証とデータプラットフォームへの認証の両方にOAuthを使用する場合、`oauth_token`クレームを使用します。
+* Sigmaからデータプラットフォームへの認証にのみOAuthを使用する場合、`connection_oauth_tokens`を使用します。
 > 🚩
-> データモデルにおける列レベルのセキュリティは、ユーザーとチームのメンバーシップで実装されます。このドキュメントは、データセットにおけるCLS構成にのみ適用されます。
+> `oauth_token`または`connection_oauth_tokens`クレームは暗号化する必要があります。「[JSON web token claims reference](https://help.sigmacomputing.com/docs/json-web-token-claims-reference)」を参照してください。
 
-セキュアな埋め込みで列レベルのセキュリティを実装するには、実行時に該当するユーザー属性を渡すように埋め込みAPIを構成する必要があります。
+##### **ユーザー属性でデータプラットフォームのロールを動的に割り当てる (Dynamically assign data platform roles with a user attribute)**
+> 📘
+> この機能は、すべてのデータプラットフォーム接続でサポートされているわけではありません。
 
-このドキュメントでは、セキュアな埋め込みで列レベルのセキュリティを実装する方法について説明します。列レベルのセキュリティに関する詳細は、「[列レベルのセキュリティを構成する](https://help.sigmacomputing.com/docs/column-level-security)」を参照してください。
+キーペア認証とサポートされている接続を使用する場合、ユーザー属性を使用して、セキュアな埋め込みにアクセスするユーザーが使用するロールを指定できます。「[接続で使用されるロールを動的に割り当てる](https://help.sigmacomputing.com/docs/dynamically-assign-roles-used-by-a-connection)」を参照してください。
+> 📘
+> OAuthを使用して接続する場合、Snowflakeでこの機能を使用することはできません。
 
-#### **ユーザー要件 (User requirements)**
-セキュアな埋め込みで列レベルのセキュリティを実装するには、ホストアプリケーションへのアクセス権と、サーバーサイドAPIを作成または編集する能力が必要です。
-前提条件を完了する必要があるユーザーである場合、Sigma内で特定の権限が必要になる場合があります。システムとユーザーの要件は、参照されるドキュメントで詳述されています。
+このアプローチは、例えば、各顧客のデータが同じデータベース内の別のスキーマに保存されており、データプラットフォームで行アクセスまたはセキュリティポリシーを使用して、各顧客が自分のデータにのみアクセスできるようにする場合に使用します。
 
-#### **前提条件 (Prerequisites)**
-セキュアな埋め込みで列レベルのセキュリティを実装する前に、あなたまたは組織内の別のユーザーがSigma内で以下のタスクを完了する必要があります。
-* [セキュアな埋込みを準備する](https://help.sigmacomputing.com/docs/create-a-secure-embed)
-* [ユーザー属性を作成する](https://help.sigmacomputing.com/docs/user-attributes)
-    * 埋め込みAPIコードを簡素化するために、ユーザー属性名にスペースや特殊文字を使用しないでください。埋め込みAPIがユーザー属性値を渡す際に使用されるため、ユーザー属性名の前に`ua_`を付けないでください。
-    * Sigmaではチームやメンバーをユーザー属性に割り当てることができますが、埋め込みAPIでユーザーの割り当てを管理することもできます。
-* [列レベルのセキュリティを構成する](https://help.sigmacomputing.com/docs/column-level-security)
+ユーザー属性値に基づいてデータプラットフォームのロールを動的に割り当てるには、以下を実行します。
+1.  [ユーザー属性を構成する](https://help.sigmacomputing.com/docs/user-attributes)手順に従います。データプラットフォームの各ロールに相当する値を持つ`Role`ユーザー属性を作成します。
+2.  「[接続で使用されるロールを動的に割り当てる](https://help.sigmacomputing.com/docs/dynamically-assign-roles-used-by-a-connection)」の手順に従います。ステップ1で構成したユーザー属性を選択します。
+3.  [埋め込みへのアクセスを管理する方法](https://help.sigmacomputing.com/docs/manage-embed-users)に応じて、ユーザーまたはチームにユーザー属性を割り当てます。
+    * 埋め込みユーザーの自動作成に依存している場合、サーバーサイドの埋め込みAPIコードに`user_attributes` JWTクレームを追加し、`Role`ユーザー属性を参照するか、埋め込みユーザーを管理するために使用するチームに`Role`ユーザー属性を割り当てます。
+    * 埋め込みにアクセスできるユーザーを手動で管理する場合、Sigmaでプロビジョニングされたユーザーを含む関連チームに関連するユーザー属性値を割り当てます。
+  
+##### **例 (Example)**
+この例では、顧客データがSnowflakeアカウントの一つのデータベース`CUSTOMER_DATA`に保存されており、各顧客のデータごとに`CUSTOMER_DATA.ABC`のようなスキーマがあると仮定します。
 
-#### **列レベルセキュリティでAPIを構成する (Configure the API with column-level-security)**
-実行時に該当するユーザー属性を渡すように埋め込みAPIを構成します。
+1.  データベースと関連するスキーマに対する`USAGE`権限が付与された、関連するSnowflakeロールを作成します。
+    ```sql
+    GRANT USAGE ON CUSTOMER_DATA.ABC TO ROLE ABC
+    ```
+2.  Sigmaで、`Role`という名前のユーザー属性を作成します。デフォルト値は設定しないでください。
+3.  キーペア認証を使用して、Snowflakeアカウントへの接続を作成します。
+4.  Snowflake接続の`Role`フィールドで、`Role`ユーザー属性を選択します。
+5.  ユーザー属性値を割り当てます。
+    * 内部ユーザーの各チームについて、関連するSnowflakeデータにアクセスするための権限を持つロールに相当するユーザー属性値をチームに割り当てます。例：`ABC`。
+    * 埋め込みユーザーの自動作成に依存している場合は、サーバーサイドの埋め込みAPIコードに`user_attributes`のJWTクレームを追加し、ホストアプリケーションから渡される変数に基づいて実行時に適切な値を割り当てます。
+    ```javascript
+    // .env file
+    UA_ROLE = $role_var_from_host_app$
+    SIGMA_WH_EMBED = $wh_var_from_host_app$
+    ```
+    次に、実行時にホストアプリケーションによって設定された環境変数の値に`user_attributes`クレームを設定します。
+    ```javascript
+    {
+       "user_attributes": {
+          "SnowflakeRole": UA_ROLE
+          "Warehouse": SIGMA_WH_EMBED
+       }
+    }
+    ```
 
-ユーザー属性パラメータのJavaScriptの例：
+#### **セキュアな埋め込みに行レベルのセキュリティを適用する (Apply row-level security to your secure embed)**
+行レベルのセキュリティ（RLS）は、データアクセスを制限する方法です。Sigmaでは、ユーザーID、チームメンバーシップ、または割り当てられたユーザー属性値に基づいてRLSを実装できます。データモデル、データセット、またはカスタムSQLでRLSを設定します。「[行レベルのセキュリティを設定する](https://help.sigmacomputing.com/docs/set-up-row-level-security)」を参照してください。
+
+割り当てられたユーザー属性、チーム、またはユーザーを使用してデータソースにRLSを設定した後、埋め込みコンテンツでそれを強制します。
+* 埋め込みユーザーの自動作成に依存している場合は、関連するJWTクレーム`user_attributes`、`teams`、または`users`を使用します。「[JSON web token claims reference](https://help.sigmacomputing.com/docs/json-web-token-claims-reference)」を参照してください。
+    > 📘
+    > 埋め込みにアクセスする内部ユーザーは、ユーザー属性値またはチームメンバーシップを直接割り当てられている必要があります。
+* 埋め込みにアクセスできるユーザーを手動で管理する場合、Sigmaでチームまたはユーザーにユーザー属性を割り当てます。UIを使用するには「[ユーザー属性を割り当てる](https://help.sigmacomputing.com/docs/user-attributes)」を、APIを使用するには`Set a user attribute for teams`APIエンドポイントを参照してください。
+
+#### **埋め込みコンテンツに列レベルのセキュリティを適用する (Apply column-level security to embedded content)**
+列レベルのセキュリティ（CLS）を使用すると、列レベルのデータへのアクセスを制限または許可できます。セキュアな埋め込みでCLSを適用するには、CLSが構成されたデータソースを使用する必要があります。「[列レベルのセキュリティを構成する](https://help.sigmacomputing.com/docs/column-level-security)」を参照してください。
+
+埋め込みのCLSルールを強制するには：
+* 埋め込みユーザーの自動作成に依存している場合は、`user_attributes`、`teams`、または`users`のいずれかのJWTクレームを使用します。
+* 埋め込みにアクセスできるユーザーを手動で管理し、CLSルールがユーザー属性に依存している場合は、「[ユーザー属性を割り当てる](https://help.sigmacomputing.com/docs/user-attributes)」を参照してください。
+* 埋め込みにアクセスできるユーザーを手動で管理し、CLSルールがチームに依存している場合は、「[チームメンバーを管理する](https://help.sigmacomputing.com/docs/manage-members-and-teams)」を参照してください。
+
+#### **JWTクレームで値を割り当てる高度な例 (Advanced examples for assigning values in JWT claims)**
+埋め込みコンテンツのデータへのアクセスを制限するために複数のアプローチを組み合わせる場合、埋め込みAPIの出力がどのようになるかについて、これらの例を参照してください。
+> 💡
+> 本番のユースケースでは、ホストアプリケーションを構成して、環境変数を使用して実行時にこれらの値を動的に設定します。
+
+##### **ユーザー属性でCLSとRLSを適用する**
+関連する各ユーザー属性に`user_attributes`クレームで値を割り当てます。
 ```javascript
-searchParams += '&:ua_{ua name}={ua value}';
+{
+  "user_attributes": {
+     "CustomerName": "2",
+     "Region": "West"
+  }
+}
+```
+##### **チームでCLSを、ユーザー属性でRLSを適用する**
+RLSを強制するために`user_attributes`クレームに一つの値を指定し、次にデータモデル上の既存のCLSルールを強制するために使用するチームを指定します。
+
+```javascript
+{
+  "user_attributes": {
+     "Region": "West"
+  },
+  "teams": ["Customer ABC"]
+}
+```
+はい、承知いたしました。
+それでは、「Restrict access to data in embedded content」の最後の部分を、ご指示通りにソースコードとして整形します。
+
+Markdown
+
+##### **チームでCLSを、ユーザー属性でRLSを適用する**
+RLSを強制するために`user_attributes`クレームに一つの値を指定し、次にデータモデル上の既存のCLSルールを強制するために使用するチームを指定します。
+
+```javascript
+{
+  "user_attributes": {
+     "Region": "West"
+  },
+  "teams": ["Customer ABC"]
+}
+```
+
+#####**接続とロールを動的に切り替える**
+動的なウェアハウスとロールの切り替えを使用する場合：
+```
+JavaScript
+
+{
+    "eval_connection_id": {
+        "1a2b3456-c7d8-91ef-23g4-h56i7jkl8912"
+    },
+    "user_attributes": {
+        "Warehouse": "SIGMA_EMBED_WH",
+        "Role": "PUBLIC"
+    }
+}
+```
+
+### 13-5-2. Ask Sigmaを埋め込む (Embed Ask Sigma)
+
+Ask Sigmaインターフェースをあなた自身のアプリケーションやウェブサイトに埋め込んで、ユーザーがデータに対して自然言語でクエリを実行できるようにすることができます。Ask Sigmaに関する詳細は、「[Ask natural language queries with Ask Sigma](https://help.sigmacomputing.com/docs/ask-natural-language-queries-with-ask-sigma)」を参照してください。
+
+#### **要件 (Requirements)**
+* [JSON Web Tokensを使用して埋め込みAPIを作成する](https://help.sigmacomputing.com/docs/example-embed-api-and-url#create-an-embed-api-with-json-web-tokens)のすべてのステップを完了して、JWT署名付きのセキュアなURLを準備します。
+* 埋め込みユーザーのアカウントタイプを、`Use Ask Sigma`権限を含むアカウントタイプに設定します。
+* 埋め込みユーザーのチームが、Ask Sigmaを使用して質問する際に使用する予定のデータソースにアクセスできる権限を持っていることを確認します。
+
+#### **アプリケーションでのAsk Sigmaの表示をカスタマイズする (Customize the display of Ask Sigma in your application)**
+JWTトークンで署名された埋め込みURLは、`https://app.sigmacomputing.com/{org-slug}/ask?:jwt=<jwt>`という構造になります。
+
+Ask Sigmaの外観をカスタマイズするために、2つのオプションのURLパラメータを追加できます。
+
+| URLパラメータ | 効果 |
+| :--- | :--- |
+| **&:embed=true** | trueに設定すると、このパラメータはAsk SigmaインターフェースからSigmaのブランディングを削除します。この設定を適用すると、Sigmaのロゴが削除され、ステップと回答のテキストはSigmaへの言及を行いません。 |
+| **&:theme={theme-name}** | テーマは、デフォルトの[ワークブックテーマ](https://help.sigmacomputing.com/docs/workbook-themes)（Light, Dark, または Surface）または組織で定義された任意のカスタムテーマを適用します。値はテーマの名前でなければならず、大文字と小文字を区別します。 |
+
+これらのパラメータの両方を使用することで、Ask Sigmaの体験をあなた自身のアプリケーションやウェブサイトにシームレスに統合できます。例えば、カスタムテーマを適用してAsk Sigmaがあなたのポータルの色を採用するようにし、`embed=true`を設定して体験からSigmaのブランディングを削除することができます。
 
 ### 13-6-1. 埋め込みでインバウンドおよびアウトバウンドイベントを実装する (Implement inbound and outbound events in embeds)
 
@@ -17466,6 +18774,7 @@ Sigmaは、インバウンドイベントを通信する2つの方法をサポ�
 ##### **例：インバウンドイベント - Sigmaのコントロールを更新する**
 以下のサンプルスクリプトは、ホストアプリケーションから埋め込まれたSigmaコンテンツのiframeに情報を通信する方法を示しています。`postMessage`メソッドを利用して通信を可能にし、ホストアプリケーションがiframeの`contentWindow`に直接メッセージを送信して、イベントタイプと更新するコントロールを指定できるようにします。
 ターゲットオリジン`https://app.sigmacomputing.com`は、メッセージが意図した受信者に届くことを保証することで、セキュリティを強化します。
+
 ```javascript
 // ドキュメントからSigma iframe要素を取得
 const sigma_iframe = document.getElementById('sigma-iframe');
@@ -17483,13 +18792,15 @@ sigma_iframe.contentWindow.postMessage(
   // メッセージが受け入れられるべきターゲットオリジンを提供
   '[https://app.sigmacomputing.com](https://app.sigmacomputing.com)',  
 );
+```
+
 🚧
 このイベント例は、埋め込みコンテンツに現在表示されているコントロール値を更新します。非表示のコントロールには適用されません。
 
 例：インバウンドイベント - 選択された要素またはページを変更する
 以下のスニペット例は、埋め込み内で選択された要素またはページをプログラムで変更する方法を示しています。
 
-JavaScript
+```JavaScript
 
 const sigma_iframe = document.getElementById('sigma-iframe');
 
@@ -17499,13 +18810,13 @@ sigma_iframe.contentWindow.postMessage(
     selectedNodeId: string | null,
   },  
   '[https://app.sigmacomputing.com](https://app.sigmacomputing.com)',  
-);
+);```
 アウトバウンドイベントとリスナー (Outbound events and listeners)
 アウトバウンドイベントは、埋め込まれたSigmaコンテンツがホストアプリケーションに通信するメッセージで、Sigma内のコンテンツに加えられたインタラクションや変更に関する更新を提供します。ホストアプリケーションがアウトバウンドイベントを検出して応答するためには、JavaScriptイベントリスナーを実装する必要があります。これにより、ホストアプリケーションとSigma埋め込みとの間のインタラクティビティが促進されます。
 
 例：アウトバウンドイベント - 基本的なイベントリスナー
 この最初の例は、イベントリスナーをwindowオブジェクトに追加する方法を示しています。リスナーは、Sigma埋め込みによって送信されたイベントメッセージをチェックし、イベントデータをログに記録します。
-
+```
 JavaScript
 
 window.addEventListener('message', function (event) {
@@ -17514,11 +18825,11 @@ window.addEventListener('message', function (event) {
     // 受信したイベントデータを処理する
     console.log(event.data);
   }
-});
+});```
 例：アウトバウンドイベント - 特定のイベントメッセージをフィルタリングする
 この2番目の例は、例えばReact DevToolsからのような、関連のないイベントメッセージをフィルタリングする方法を示しています。
 
-JavaScript
+```JavaScript
 
 window.addEventListener('message', (message) => {
   // Sigmaに関連しないメッセージをフィルタリングする
@@ -17526,6 +18837,8 @@ window.addEventListener('message', (message) => {
     console.log(message.data);
   }
 });
+```
+
 
 ### 14-1-1. Sigma REST APIについて (About the Sigma REST API)
 
@@ -17570,39 +18883,6 @@ Sigmaカスタムプラグインの出発点は、あなたの役割、経験、
 * **シナリオ#4：チームにプラグインを利用可能にしたい組織の管理者です。**
     開発チームのプラグインの一つを立ち上げて実行する準備はできましたか？「[あなたの組織にプラグインを登録する](https://help.sigmacomputing.com/docs/register-a-plugin-with-your-organization)」を参照してください。
     また、同じ登録プロセスを通じて、Sigmaの[サンプルプラグイン](https://help.sigmacomputing.com/docs/example-plugins)のいずれかをあなたのチームで利用可能にすることもできます。
-
-### 15-1-1. Sigmaの管理 (Administer Sigma)
-
-もしあなたがSigmaの管理者であれば、管理ポータルでSigma組織を構成およびカスタマイズできます。
-
-管理ポータルにアクセスするには：
-1.  **ホーム**に移動し、あなたのイニシャルが表示されたユーザーアイコンを選択します。
-2.  **Administration**を選択します。
-
-#### **管理者の能力 (Admin abilities)**
-`Admin`[アカウントタイプ](https://help.sigmacomputing.com/docs/user-account-types)を割り当てられたユーザーは、以下のことができます。
-* 管理ポータル内のすべての構成にアクセスし、編集する
-* Sigma組織内のすべてのドキュメントにアクセスし、編集する
-* ユーザー、チーム、権限を管理する
-* 監査ログやAI機能などのオプション機能を有効にする
-* 組織または個々のユーザーに対してプライベートベータ機能を有効にするかどうかを決定する
-
-他のユーザーは、割り当てられたアカウントタイプで有効になっている権限に応じて、管理ポータルの特定のセクションにアクセスできる場合があります。
-* `Usage dashboard`セクションの権限は、`Usage`ページの利用状況ダッシュボードへのアクセスを許可します。
-* `Manage all branding settings`は、カスタムSMTPサーバーの設定を含む、すべてのブランディング設定を管理するアクセスを許可します。
-* `Manage all workbook themes and fonts`は、ワークブックテーマの設定など、特定のブランディング機能へのアクセスを許可します。
-* `Manage plugins`は、プラグインを管理するアクセスを許可します。
-
-#### **一般的な管理タスク (Common administration tasks)**
-
-* **ユーザーのオンボーディングと、ロールベースのアクセス管理および認証方法の構成:**
-    * **ユーザーとチームの管理:** [新しいユーザーを招待](https://help.sigmacomputing.com/docs/manage-members-and-teams#invite-new-users)し、[チームを作成](https://help.sigmacomputing.com/docs/manage-members-and-teams#create-a-team)して、新しいユーザーをオンボーディングします。[チーム管理者](https://help.sigmacomputing.com/docs/manage-members-and-teams#promote-a-team-admin)を設定して管理を簡素化します。
-    * **権限とアクセスの構成:** [アカウントタイプ](https://help.sigmacomputing.com/docs/account-type-and-license-overview)をカスタマイズし、ユーザーに割り当てます。各アカウントタイプで有効になっている[権限を構成](https://help.sigmacomputing.com/docs/account-type-and-license-overview#customize-an-account-type)し、アカウントタイプの権限が[ドキュメントアクセス](https://help.sigmacomputing.com/docs/folder-and-document-permissions)や[データ権限](https://help.sigmacomputing.com/docs/data-permissions)とどのように相互作用するかを理解します。
-    * **認証方法の設定:** [SAML](https://help.sigmacomputing.com/docs/configure-saml)または[OAuth](https://help.sigmacomputing.com/docs/configure-okta-oauth-for-sigma)認証方法を設定するか、[SCIM](https://help.sigmacomputing.com/docs/configure-scim)を構成してチームとユーザー管理を一元化します。
-
-* **Sigmaとサードパーティのインテグレーションを設定し、追加の組織設定を管理する:**
-    * **Sigmaとサードパーティツールを統合する:** AI機能を使用するための[OpenAI](https://help.sigmacomputing.com/docs/configure-an-ai-provider)、[Slack](https://help.sigmacomputing.com/docs/export-to-slack)を使用したエクスポート、dbtジョブ、メタデータ、およびSemantic Layerを使用するための[dbt](https://help.sigmacomputing.com/docs/configure-a-dbt-integration)とのインテグレーションを設定・管理します。
-    * **Sigmaの機能を構成する:**
 
 ### 15-1-1. Sigmaの管理 (Administer Sigma)
 
@@ -18090,6 +19370,78 @@ Sigmaチームは、あらゆる段階であなたをサポートするために
 * 感謝祭の翌日
 * クリスマス（12月25日）
 
+### 16-1-2. サポートリクエストを送信する (Submit a support request)
+
+[ライブチャット](https://help.sigmacomputing.com/docs/sigma-support#live-chat)が利用できない場合、またはメールでのサポートコミュニケーションを希望する場合は、Sigmaのサポートポータルでサポートリクエストを送信できます。
+
+1.  `support.sigmacomputing.com`にアクセスし、`Submit a request`をクリックするか、[ここをクリック](https://help.sigmacomputing.com/hc/en-us/requests/new)して直接フォームを開きます。
+2.  現在Sigmaサポートアカウントにログインしていない場合は、フォームにアクセスするために資格情報を送信してください。
+    > 📘
+    > Sigmaサポートアカウントは、Sigmaアプリのアカウントとは別のものであり、顧客のオンボーディング中に作成された可能性があります。サインインできず、`Forgot password`リクエストを送信した後にパスワードリセットメールが届かない場合は、既存のSigmaサポートアカウントがない可能性があります。リクエストするには、Sigmaのアカウントマネージャーにお問い合わせください。
+3.  `Submit a request`フォームを完了します。
+    * [任意] `CC`フィールドに、リクエストとすべての応答のコピーを受け取るべき追加のメールアドレスを入力します。Sigmaサポートアカウントに関連付けられたメールアドレスは、自動的に受信者として保存されます。
+    * `Subject`フィールドに、リクエストの簡単な要約を入力します。
+    * `Description`フィールドに、問題を説明し、サポートチームが迅速かつ簡単に支援できるように関連情報（エラーメッセージやIDなど）を含めます。
+    * `Severity`フィールドをクリックし、ドロップダウンからオプションを選択します。
+
+| | |
+| :--- | :--- |
+| **S3 (低)** | 一般的な製品に関する質問や機能リクエスト。 |
+| **S2 (中)** | 特定の製品機能が低下し、少数のユーザーに影響を与えている。 |
+| **S1 (高)** | 一つ以上の製品コンポーネントでSigmaのサービスまたはパフォーマンスが著しく低下し、ビジネスプロセスに影響を与えている。 |
+| **S0 (緊急)** | 一つ以上の主要な製品コンポーネントでSigmaサービスにアクセスできず、重要なビジネスプロセスに影響を与えている。 |
+
+    > 🚧
+    > `S0`（緊急）の重要度レベルで送信されたリクエストは、曜日や時間に関係なく、オンコールのサポートエンジニアに直ちに警告します。問題が基準を満たす場合にのみ、この重要度レベルを選択してください。
+    * [任意] `Attachments`セクションに、サポートチームが問題をよりよく理解するのに役立つ関連ファイルを追加します。
+4.  `Submit`をクリックします。
+
+Sigmaは、確認メールとすべてのサポート応答を、ヘルプデスクアカウントに関連付けられたメールアドレスに送信します。
+
+### 16-1-3. 重要な問題のエスカレーション (Escalate critical issues)
+
+月曜日から金曜日の太平洋時間（PT）午前2時から午後6時まで、Sigmaのアプリ内ライブチャットプラットフォームがサポートエンジニアに連絡する最良の方法です。サポート時間外では、ライブチャットプラットフォームを使用してサポートチケットをエスカレーションできます。サポート時間後、またはメールでのコミュニケーションを希望する場合は、[サポートリクエストを送信する](https://help.sigmacomputing.com/docs/submit-a-support-request)こともできます。
+
+このドキュメントでは、エスカレーションフローとベストプラクティス、問題のエスカレーション方法、および一般的なエスカレーション基準カテゴリについて説明します。
+
+#### **エスカレーションフローとベストプラクティス (Escalation flow and best practices)**
+
+##### **どのような種類の問題をエスカレーションできますか？ (What types of issues can be escalated?)**
+重要な問題には、Sigmaのコア機能が機能しない、データやビジュアライゼーション関連の問題、または内部および外部のセキュリティ関連の問題など、Sigmaへのアクセスや使用を妨げるものが含まれます。
+
+##### **問題をエスカレーションするとどうなりますか？ (What happens when I escalate an issue?)**
+ライブチャット時間外に問題をエスカレーションすると、Sigmaのサポートシステムはオンコールのサポートエンジニアに電話で直ちに通知します。このオプションに進む前に、問題が重要であり、実行可能な回避策がないことを確認してください。
+
+##### **エスカレーションのベストプラクティスは何ですか？ (What are some best practices for escalation?)**
+問題をエスカレーションする際のベストプラクティスには、以下が含まれます。
+* **問題の影響と深刻度を確認する：**
+    * 回避策があるかどうかを特定する。
+    * 他のチームメンバーが同じ問題を経験しているかどうかを確認する。
+    * 問題が他のブラウザやシークレットモードでも持続するかどうかを確認する。
+    * 組織の管理者に相談して、問題の深刻度を確認する。
+* **説明的かつ詳細であること：** スクリーンショット、録画、エラーログ、該当するエラーIDなど、経験している問題に関する情報をできるだけ多く提供してください。提供する情報が多いほど、サポートエンジニアはより迅速に支援できます。
+
+##### **ライブチャットやサポートポータルがダウンしている場合、どのように問題をエスカレーションすればよいですか？ (How do I escalate an issue if live chat and/or the support portal is down?)**
+ライブチャットが利用できない場合は、サポートポータルで[サポートリクエストを送信](https://help.sigmacomputing.com/docs/submit-a-support-request)してください。サポートポータルもダウンしている場合は、`support@sigmacomputing.com`までSigma Computingにご連絡ください。
+
+#### **ライブチャット経由でエスカレーションする (Escalate via live chat)**
+1.  `Help`メニューを選択し、`Live chat`を選択します。
+2.  `Send us a message`を選択します。
+3.  月曜日から金曜日の太平洋時間午前2時から午後6時の間にライブチャットを使用している場合は、問題の詳細を含むメッセージを送信し、サポートエンジニアの応答を待ちます。サポート時間外にライブチャットを使用している場合は、`Escalate via support ticket`を選択し、自動化されたチャットプロンプトに応答します。
+    * 実行可能なロールバックバージョンまたは回避策がある場合は、問題を説明し、営業時間が再開されたときにサポートエンジニアが応答できるように求められます。
+    * 実行可能なロールバックバージョンまたは回避策がない場合は、影響を受ける製品エリアを選択し、チケットの件名を入力し、問題を説明するように求められます。Sigmaはその後、サポートチケットを作成し、チャットでそのリンクを共有します。オンコールのサポートエンジニアにインシデントが通知され、通常30分以内に応答します。
+    > 📘
+    > リンクされたチケットにアクセスできない場合は、既存のSigmaサポートアカウントがないことを示している可能性があります。この場合、Sigmaはアカウントを作成し、Sigmaユーザーアカウントに関連付けられたメールにパスワード設定手順を送信します。
+
+#### **エスカレーションカテゴリ (Escalation categories)**
+サポート時間外にライブチャットを使用して問題をエスカレーションする場合、エスカレーション基準を選択するように促されます。以下は、提供されるカテゴリといくつかの問題例の非網羅的なリストです。
+
+| エスカレーション基準カテゴリ | 問題例 |
+| :--- | :--- |
+| **コア機能が機能しない** | ログインまたは認証のエラー<br>ワークブックの分析および編集に関する問題（クエリがロードされないなど）<br>埋め込みが重大なエラーを表示するか、レンダリングされない |
+| **データとビジュアライゼーション関連の問題** | 不正確なデータ出力<br>カスタムプラグインでビジュアライゼーションが表示されない<br>チャートのレンダリング問題により読みやすさが妨げられる |
+| **セキュリティ関連の問題（内部または外部）** | 行レベルのセキュリティの漏洩<br>アクセス制御または資格情報の漏洩<br>マルウェア活動<br>認証バイパス |
+
 ### 16-2-1. Sigma製品のリリース (Sigma product releases)
 
 この記事では、Sigma Computingが製品への変更をどのようにリリースするか、それらの変更が「[What’s new in Sigma](https://help.sigmacomputing.com/docs/whats-new)」でどのように告知されるか、そして異なるリリースフェーズで何を期待すべきかについて説明します。
@@ -18130,7 +19482,7 @@ Sigma Computingは、製品から機能と能力を非推奨にすることが�
 Sigma Computingは、非推奨期間の後に製品から機能と能力を削除することがあります。
 削除された機能はもはやサポートされておらず、使用できません。お客様は、削除された機能や能力を使用する代わりの方法を見つける必要があります。削除された機能のドキュメントは、すべてのお客様に利用できなくなります。
 
-### 16-3-1. サポートされているリージョン、データプラットフォーム、および機能 (Supported regions, data platforms, and features)
+### 16-2-2. サポートされているリージョン、データプラットフォーム、および機能 (Supported regions, data platforms, and features)
 
 Sigmaは様々なクラウドプラットフォームとリージョン、多くのデータプラットフォームへの接続をサポートしており、一部の機能は特定のデータプラットフォームでのみサポートされています。
 
@@ -18178,95 +19530,22 @@ Sigmaは以下のデータプラットフォームに接続します。
 
 接続はほとんどのSigma機能をサポートしていますが、技術的な差異（SQLの方言、アーキテクチャ、セキュリティなど）により、一部の機能は現在すべてのデータプラットフォームと互換性があるわけではありません。以下の表は、各接続タイプの現在の機能制限をリストしています。
 
-* **AlloyDB connections** は以下の機能をサポートしていません：
-    * Sigmaで作成されたデータセットウェアハウスビュー
-    * 入力テーブル
-    * プライベートリンク
-    * クラウドストレージへのエクスポート
-    * OAuth接続
-    * Sigma結果IDキャッシュ
-    * 地理データ型
-    * 特定の配列関数、集計関数、すべての地理関数、一部のパススルー関数
-
-* **Amazon Redshift connections** は以下の機能をサポートしていません：
-    * Sigmaで作成されたデータセットウェアハウスビュー
-    * GCPプラットフォーム上のプライベートリンク
-    * OAuth接続
-    * Sigma結果IDキャッシュ
-    * 地理データ型
-    * 特定の配列関数、集計関数、すべての地理関数、一部のパススルー関数、一部のウィンドウ関数
-
-* **Azure SQL connections** は以下の機能をサポートしていません：
-    * データセットウェアハウスビュー、ワークブックウェアハウスビュー
-    * クラウドストレージへのエクスポート
-    * OAuth接続
-    * Sigma結果IDキャッシュ
-    * ロールとウェアハウス切り替えのためのユーザー属性
-    * 書き戻し機能：CSVアップロード、入力テーブル
-    * 地理データ型
-    * すべての地理関数、一部の集計関数、一部のパススルー関数、一部のウィンドウ関数
-    * CTEを含むカスタムSQL
-
-* **Databricks connections** は以下の機能をサポートしていません：
-    * GCPプラットフォーム上のプライベートリンク
-    * クラウドストレージへのエクスポート
-    * Sigma結果IDキャッシュ
-    * 地理データ型
-    * 特定の配列関数、すべての地理関数、ML予測、SSH、一部のパススルー関数
-    * ストアドプロシージャアクション
-    * 入力テーブルの複数選択列
-
-* **Google BigQuery connections** は以下の機能をサポートしていません：
-    * 入力テーブル
-    * プライベートリンク
-    * クラウドストレージへのエクスポート
-    * OAuth接続
-    * 特定の配列関数、一部の集計関数
-
-* **MySQL connections** は以下の機能をサポートしていません：
-    * Sigmaで作成されたデータセットウェアハウスビュー
-    * 入力テーブル
-    * GCPプラットフォーム上のプライベートリンク
-    * クラウドストレージへのエクスポート
-    * OAuth接続
-    * Sigma結果IDキャッシュ
-    * 地理データ型
-    * 特定の配列関数、一部の集計関数、すべての地理関数、一部のパススルー関数、一部のウィンドウ関数
-
-* **PostgreSQL connections** は以下の機能をサポートしていません：
-    * Sigmaで作成されたデータセットウェアハウスビュー
-    * 入力テーブル
-    * GCPプラットフォーム上のプライベートリンク
-    * クラウドストレージへのエクスポート
-    * OAuth接続
-    * Sigma結果IDキャッシュ
-    * ロールとウェアハウス切り替えのためのユーザー属性
-    * 地理データ型
-    * 特定の配列関数、テキスト関数、すべての地理関数、一部のパススルー関数
-
-* **Snowflake connections** は以下の機能をサポートしていません：
-    * GCPプラットフォーム上のプライベートリンク
-    * 特定のウィンドウ関数
-
-* **Starburst Galaxy connections** は以下の機能をサポートしていません：
-    * データセット/ワークブックウェアハウスビュー
-    * 書き戻し機能：入力テーブル、CSVアップロード、マテリアライゼーション
-    * プライベートリンク
-    * クラウドストレージへのエクスポート
-    * OAuth接続
-    * Sigma結果IDキャッシュ
-    * 特定の配列関数、集計関数、地理関数、パススルー関数
-
-* **SQL Server 2022 and Azure SQL Managed Instance connections** は以下の機能をサポートしていません：
-    * データセット/ワークブックウェアハウスビュー
-    * クラウドストレージへのエクスポート
-    * OAuth接続
-    * Sigma結果IDキャッシュ
-    * ロールとウェアハウス切り替えのためのユーザー属性
-    * 書き戻し機能：CSVアップロード、入力テーブル
-    * 地理データ型
-    * すべての地理関数、すべてのパススルー関数、一部の集計関数、一部のウィンドウ関数
-    * CTEを含むカスタムSQL
+| CDW/DBMS | 機能の制限 |
+| :--- | :--- |
+| **AlloyDB connections** | 以下の機能をサポートしていません：<br>- Sigmaで作成されたデータセットウェアハウスビュー<br>- 入力テーブル<br>- プライベートリンク<br>- クラウドストレージへのエクスポート<br>- OAuth接続<br>- Sigma結果IDキャッシュ<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 地理データ型<br>- 以下の配列関数: Array, ArrayDistinct, ArrayExcept, ArrayIntersection, ArrayJoin, ArraySlice<br>- 以下の集計関数: RegressionIntercept, RegressionR2, RegressionSlope<br>- すべての地理関数: Area, Centroid, Distance, Geography, Intersects, Json, Latitude, Longitude, MakeLine, MakePoint, Perimeter, Text, Within<br>- 以下のパススルー関数: AggGeography, CallGeography |
+| **Amazon Redshift connections** | 以下の機能をサポートしていません：<br>- Sigmaで作成されたデータセットウェアハウスビュー<br>- GCPプラットフォーム上のプライベートリンク<br>- OAuth接続<br>- Sigma結果IDキャッシュ<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 地理データ型<br>- 以下の配列関数: ArrayContains, ArrayDistinct, ArrayExcept, ArrayJoin, ArraySlice, Sequence<br>- 以下の集計関数: ArrayAgg, ArrayDistinct, ArrayIntersection, Corr, RegressionIntercept, RegressionR2, RegressionSlope<br>- すべての地理関数: Area, Centroid, Distance, Geography, Intersects, Json, Latitude, Longitude, MakeLine, MakePoint, Perimeter, Text, Within<br>- 以下のパススルー関数: AggGeography, CallGeography<br>- 以下のウィンドウ関数: CumulativeCorr, MovingCorr |
+| **Azure SQL Database connections** | 以下の機能をサポートしていません：<br>- Sigmaで作成されたデータセットウェアハウスビュー<br>- クラウドストレージへのエクスポート<br>- OAuth接続<br>- Sigma結果IDキャッシュ<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 書き戻し機能：CSVアップロード、入力テーブル<br>- 地理データ型<br>- すべての地理関数<br>- 以下の集計関数: RegressionIntercept, RegressionR2, RegressionSlope<br>- 以下のパススルー関数 (CallおよびAggバリエーションを含む): Geography, Variant, Logical<br>- 以下のウィンドウ関数: CumulativeCorr, MovingCorr, Corr<br>- CTEを含むカスタムSQL<br>- サンプル接続 |
+| CDW/DBMS | 機能の制限 |
+| :--- | :--- |
+| **Databricks connections** | 以下の機能をサポートしていません：<br>- GCPプラットフォーム上のプライベートリンク<br>- クラウドストレージへのエクスポート<br>- Sigma結果IDキャッシュ<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 地理データ型<br>- 以下の配列関数: Array, ArrayAgg, ArrayDistinct, ArrayExcept, ArrayIntersection, ArraySlice<br>- すべての地理関数: Area, Centroid, Distance, Geography, Intersects, Json, Latitude, Longitude, MakeLine, MakePoint, Perimeter, Text, Within<br>- ML予測<br>- SSH<br>- 以下のパススルー関数: AggGeography, CallGeography<br>- ストアドプロシージャアクション<br>- 入力テーブルの複数選択列 |
+| **Google BigQuery connections** | 以下の機能をサポートしていません：<br>- 入力テーブル<br>- プライベートリンク<br>- クラウドストレージへのエクスポート<br>- OAuth接続<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 以下の配列関数: Sequence<br>- 以下の集計関数: RegressionIntercept, RegressionR2, RegressionSlope |
+| **MySQL connections** | 以下の機能をサポートしていません：<br>- Sigmaで作成されたデータセットウェアハウスビュー<br>- 入力テーブル<br>- GCPプラットフォーム上のプライベートリンク<br>- クラウドストレージへのエクスポート<br>- OAuth接続<br>- Sigma結果IDキャッシュ<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 地理データ型<br>- 以下の配列関数: ArrayAgg, ArrayAggDistinct, ArrayDistinct, ArrayExcept, ArrayIntersection, ArrayJoin<br>- 以下の集計関数: Corr, RegressionIntercept, RegressionR2, RegressionSlope<br>- すべての地理関数: Area, Centroid, Distance, Geography, Intersects, Json, Latitude, Longitude, MakeLine, MakePoint, Perimeter, Text, Within<br>- 以下のパススルー関数: AggGeography, CallGeography<br>- 以下のウィンドウ関数: CumulativeCorr, MovingCorr |
+| CDW/DBMS | 機能の制限 |
+| :--- | :--- |
+| **PostgreSQL connections** | 以下の機能をサポートしていません：<br>- Sigmaで作成されたデータセットウェアハウスビュー<br>- 入力テーブル<br>- GCPプラットフォーム上のプライベートリンク<br>- クラウドストレージへのエクスポート<br>- OAuth接続<br>- Sigma結果IDキャッシュ<br>- 地理データ型<br>- 以下の配列関数: Sequence<br>- 以下のテキスト関数: SHA256<br>- すべての地理関数: Area, Centroid, Distance, Geography, Intersects, Json, Latitude, Longitude, MakeLine, MakePoint, Perimeter, Text, Within<br>- 以下のパススルー関数: AggGeography, CallGeography |
+| **Snowflake connections** | 以下の機能をサポートしていません：<br>- GCPプラットフォーム上のプライベートリンク<br>- 以下のウィンドウ関数: CumulativeCorr, MovingCorr |
+| **Starburst Galaxy connections** | 以下の機能をサポートしていません：<br>- データセットウェアハウスビュー<br>- ワークブックウェアハウスビュー<br>- 書き戻し機能：入力テーブル、CSVアップロード、およびマテリアライゼーション<br>- プライベートリンク<br>- クラウドストレージへのエクスポート<br>- OAuth接続<br>- Sigma結果IDキャッシュ<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 以下の配列関数: Array, ArrayDistinct, ArrayExcept, ArrayIntersection, ArraySlice<br>- 以下の集計関数: RegressionIntercept, RegressionR2, RegressionSlope<br>- 以下の地理関数: Centroid, Within, Intersects, Perimeter<br>- 以下のパススルー関数: AggGeography, CallGeography |
+| **SQL Server 2022 and Azure SQL Managed Instance connections** | 以下の機能をサポートしていません：<br>- Sigmaで作成されたデータセットウェアハウスビュー<br>- クラウドストレージへのエクスポート<br>- OAuth接続<br>- Sigma結果IDキャッシュ<br>- ロールとウェアハウス切り替えのためのユーザー属性<br>- 書き戻し機能：CSVアップロードと入力テーブル<br>- 地理データ型<br>- すべての地理関数<br>- すべてのパススルー関数<br>- 以下の集計関数: RegressionIntercept, RegressionR2, RegressionSlope<br>- 以下のウィンドウ関数: CumulativeCorr, MovingCorr, Median<br>- CTEを含むカスタムSQL<br>- サンプル接続 |
 
 #### **サポートされているウェブブラウザ (Supported web browsers)**
 Sigmaは以下のウェブブラウザをサポートしています。
