@@ -343,3 +343,162 @@ SELECT
     d.CAMPAIGN_COST
 FROM
     CAMPAIGN_DEFINITIONS d;
+
+-設問表-
+-- ステップ1：設問マスターテーブルを一度まっさらにして作り直す
+CREATE OR REPLACE TABLE TBL_QUESTIONS (
+    QUESTION_ID       VARCHAR(10),
+    QUESTION_TEXT     VARCHAR(200),
+    QUESTION_TYPE     VARCHAR(30)
+);
+
+-- ステップ2：作成したテーブルに、6つの設問データを挿入する
+INSERT INTO TBL_QUESTIONS (QUESTION_ID, QUESTION_TEXT, QUESTION_TYPE)
+VALUES
+    ('Q1', 'このキャンペーンに参加した主な理由は何ですか？', '単一選択'),
+    ('Q2', '商品購入時に最も重視する点は何ですか？', '単一選択'),
+    ('Q3', 'このキャンペーンをどこで知りましたか？', '単一選択'),
+    ('Q4', 'キャンペーンの総合満足度を5段階で評価してください。', '5段階評価'),
+    ('Q5', '商品の味や品質の満足度を5段階で評価してください。', '5段階評価'),
+    ('Q6', 'ご意見・ご要望があればご自由にお書きください。', '自由回答');
+
+ーアンケート結果ー
+-- ステップ1：テーブル（空の箱）を、ANSWER_ID列を「削除」して作り直す
+CREATE OR REPLACE TABLE TBL_ANSWERS (
+    CUSTOMER_ID       VARCHAR(10),
+    CAMPAIGN_ID       VARCHAR(10),
+    QUESTION_ID       VARCHAR(10),
+    ANSWER_TEXT       VARCHAR(500),
+    ANSWERED_AT       TIMESTAMP_NTZ
+);
+-- ステップ2：単一のINSERT文で、「Q1」の回答データだけを100件挿入する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- WITH句を使い、まず「誰が、どのキャンペーンに参加したか」の対応表を作成
+WITH RESPONDENTS AS (
+    SELECT 
+        c.CUSTOMER_ID,
+        -- 参加キャンペーンに意図的な「偏り」を持たせる
+        CASE 
+            WHEN MOD(ABS(HASH(c.CUSTOMER_ID)), 100) < 30 THEN 'CAMP00003'
+            WHEN MOD(ABS(HASH(c.CUSTOMER_ID)), 100) < 60 THEN 'CAMP00008'
+            WHEN MOD(ABS(HASH(c.CUSTOMER_ID)), 100) < 65 THEN 'CAMP00001'
+            ELSE (SELECT CAMPAIGN_ID FROM TBL_CAMPAIGNS ORDER BY RANDOM() LIMIT 1)
+        END AS CAMPAIGN_ID
+    FROM 
+        (SELECT CUSTOMER_ID FROM TBL_CUSTOMERS ORDER BY RANDOM() LIMIT 100) c
+)
+-- 次に、その対応表と、キャンペーンマスターを「JOIN」で結合する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q1',
+    -- JOINした結果から、キャンペーン名を安全に取得
+    c.CAMPAIGN_NAME,
+    -- JOINした結果から、開始日を安全に取得
+    c.START_DATE
+FROM 
+    RESPONDENTS r
+JOIN 
+    TBL_CAMPAIGNS c ON r.CAMPAIGN_ID = c.CAMPAIGN_ID;
+
+-- Q2の回答を100人分、生成して追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q2の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q2',
+    -- 回答の出現確率に、意図的な「偏り」を持たせる
+    CASE 
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 35 THEN '新しさ・話題性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 70 THEN '味の信頼性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 90 THEN 'パッケージのデザイン'
+        ELSE '価格の手頃さ'
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+-- Q3の回答を100人分、生成して追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q3の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q3',
+    -- ▼▼▼ 回答の出現確率に、意図的な「偏り」を持たせる ▼▼▼
+    CASE 
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 45 THEN 'Instagram'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 65 THEN 'X (旧Twitter)'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 85 THEN 'Web検索'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 95 THEN 'メールマガジン'
+        ELSE '店頭ポスター'
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+SELECT QUESTION_ID, COUNT(*) FROM TBL_ANSWERS GROUP BY 1; 
+
+-- Q4の回答を100人分、生成して追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q4の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q4',
+    -- ▼▼▼ 顧客IDのハッシュ値を使い、意図した確率で、コメントの種類を決定 ▼▼▼
+    CASE 
+        -- 15%は「改善提案」
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 15 THEN 
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 4),
+                0, 'オンラインストアの決済方法を増やしてほしいです。後払い決済があると嬉しいです。',
+                1, 'パッケージが少し開けにくいと感じました。ジッパー付きにするなど、改善していただけると嬉しいです。',
+                2, 'Webサイトの応募方法が少し分かりにくかったです。もう少しシンプルな手順だと助かります。',
+                '人気商品はすぐに売り切れてしまうので、もう少し在庫を増やしてほしいです。')
+        -- 15%は「単なる批判・感想」
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 30 THEN
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 4),
+                0, '期待して購入しましたが、私には少し甘すぎると感じました。',
+                1, '広告で見たイメージと、実物の色が少し違ったのが残念です。',
+                2, '価格がもう少し安いと嬉しいです。',
+                '届くまでに少し時間がかかったように思います。')
+        -- 残りの70%は「ポジティブな感想」
+        ELSE
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 5),
+                0, 'コラボデザインが想像以上に可愛く、つい全種類集めてしまいました。',
+                1, '新商品、とても美味しかったです。また購入します。',
+                2, 'キャンペーンありがとうございました。',
+                3, '友人にもプレゼントしたら、とても喜ばれました。',
+                '今後の企画も楽しみにしています！')
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+SELECT 
+    ANSWER_TEXT,
+    COUNT(*) AS comment_count
+FROM 
+    TBL_ANSWERS
+WHERE 
+    QUESTION_ID = 'Q4'
+GROUP BY 
+    ANSWER_TEXT
+ORDER BY
+    comment_count DESC;
