@@ -253,3 +253,93 @@ SELECT
         ELSE DATEADD('day', UNIFORM(0, 180, RANDOM()), '2025-01-01') -- その他は上半期に分散
     END
 FROM BASE b;
+
+ー会員情報ー
+
+CREATE OR REPLACE TABLE TBL_CUSTOMERS (
+    CUSTOMER_ID       VARCHAR(10),
+    GENDER            VARCHAR(10),
+    AGE_GROUP         VARCHAR(20),
+    PREFECTURE        VARCHAR(50),
+    CUSTOMER_RANK     VARCHAR(20),
+    REGISTRATION_DATE DATE
+);
+
+INSERT INTO TBL_CUSTOMERS (
+    CUSTOMER_ID, GENDER, AGE_GROUP, PREFECTURE, CUSTOMER_RANK, REGISTRATION_DATE
+)
+-- まず、700人の「既存顧客」を生成
+SELECT
+    'CUST' || LPAD(SEQ8(), 5, '0'),
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.48 THEN '男性' ELSE '女性' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.25 THEN '20代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.55 THEN '30代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.80 THEN '40代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.95 THEN '50代' ELSE '60代以上' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.15 THEN '東京都' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.25 THEN '神奈川県' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.33 THEN '大阪府' ELSE 'その他の都道府県' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.10 THEN 'プラチナ' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.35 THEN 'ゴールド' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.70 THEN 'シルバー' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.85 THEN 'ブロンズ' ELSE 'レギュラー' END,
+    -- 登録日を2024年12月31日以前に設定
+    DATEADD(day, UNIFORM(0, 1095, RANDOM()), '2022-01-01')
+FROM
+    TABLE(GENERATOR(ROWCOUNT => 700))
+
+UNION ALL
+
+-- 次に、300人の「新規顧客」を生成
+SELECT
+    'CUST' || LPAD(SEQ8() + 700, 5, '0'), -- IDが重複しないように調整
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.48 THEN '男性' ELSE '女性' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.40 THEN '20代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.70 THEN '30代' ELSE '40代' END, -- 新規顧客は若年層が多いと仮定
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.30 THEN '東京都' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.50 THEN '神奈川県' ELSE 'その他の都道府県' END,
+    'ブロンズ', -- 新規顧客は、最初は全員「ブロンズ」ランクから始まると仮定
+    -- 登録日を「2025年上半期」の範囲に限定
+    DATEADD(day, UNIFORM(0, 179, RANDOM()), '2025-01-01')
+FROM
+    TABLE(GENERATOR(ROWCOUNT => 300));
+
+SELECT * FROM TBL_CUSTOMERS LIMIT 1000;
+
+ーキャンペーンデーター
+-- ステップ1：テーブルを一度まっさらに作り直す
+CREATE OR REPLACE TABLE TBL_CAMPAIGNS (
+    CAMPAIGN_ID       VARCHAR(10),
+    CAMPAIGN_NAME     VARCHAR(100),
+    START_DATE        DATE,
+    END_DATE          DATE,
+    CAMPAIGN_TYPE     VARCHAR(30),
+    CAMPAIGN_COST     NUMBER(10, 0)
+    );
+    INSERT INTO TBL_CAMPAIGNS (
+    CAMPAIGN_ID, CAMPAIGN_NAME, START_DATE, END_DATE, CAMPAIGN_TYPE, CAMPAIGN_COST
+)
+-- まず、10件のユニークなキャンペーンの「設計図」をWITH句で定義する
+WITH CAMPAIGN_DEFINITIONS AS (
+    SELECT ROW_NUMBER() OVER (ORDER BY 1) as id, T.*
+    FROM (
+        VALUES
+            -- タイアップ・コラボ型 (3件)
+            ('2025上半期 人気アニメ「グルログ」コラボ', 'タイアップ・コラボ型', 180000),
+            ('2025上半期 有名パティシエ「辻口氏」コラボ', 'タイアップ・コラボ型', 220000),
+            ('2025上半期 ライフスタイル誌「Cafe Life」コラボ', 'タイアップ・コラボ型', 160000),
+
+            -- 新商品ローンチ型 (3件)
+            ('2025上半期 新発売「焦がしバターのフィナンシェ」', '新商品ローンチ型', 120000),
+            ('2025上半期 新発売「石臼挽き抹茶のテリーヌ」', '新商品ローンチ型', 150000),
+            ('2025上半期 新発売「瀬戸内レモンのクラフトソーダ」', '新商品ローンチ型', 110000),
+
+            -- 購入者限定応募型 (2件)
+            ('2025上半期 オリジナルペアマグカップ プレゼント', '購入者限定応募型', 70000),
+            ('2025上半期 工場見学ツアーご招待', '購入者限定応募型', 90000),
+
+            -- 季節イベント型 (2件)
+            ('2025上半期 桜と抹茶のスイーツフェア', '季節イベント型', 100000),
+            ('2025上半期 初夏のフルーツドリンクフェア', '季節イベント型', 110000)
+    ) AS T(CAMPAIGN_NAME, CAMPAIGN_TYPE, CAMPAIGN_COST)
+)
+-- 次に、設計図を基に、日付などのランダムな要素を加えて、最終的なデータを生成する
+SELECT
+    'CAMP' || LPAD(d.id, 5, '0'),
+    d.CAMPAIGN_NAME,
+    DATEADD(day, UNIFORM(0, 150, RANDOM()), '2025-01-01') AS START_DATE,
+    LEAST(DATEADD(day, UNIFORM(14, 28, RANDOM()), START_DATE), '2025-06-30') AS END_DATE,
+    d.CAMPAIGN_TYPE,
+    d.CAMPAIGN_COST
+FROM
+    CAMPAIGN_DEFINITIONS d;
