@@ -502,3 +502,71 @@ GROUP BY
     ANSWER_TEXT
 ORDER BY
     comment_count DESC;
+
+ー購入履歴ー
+
+-- ステップ1：購入履歴テーブルを一度まっさらにする
+CREATE OR REPLACE TABLE TBL_PURCHASES (
+    PURCHASE_ID       VARCHAR(10),
+    CUSTOMER_ID       VARCHAR(10),
+    PURCHASE_DATE     TIMESTAMP_NTZ,
+    PRODUCT_CATEGORY  VARCHAR(50),
+    PURCHASE_AMOUNT   NUMBER(10, 0)
+);
+
+-- ステップ2：物語を反映した購入データを挿入する
+INSERT INTO TBL_PURCHASES (
+    PURCHASE_ID, CUSTOMER_ID, PURCHASE_DATE, PRODUCT_CATEGORY, PURCHASE_AMOUNT
+)
+WITH
+-- まず、アンケート回答者の中から、重複しない「応募者」のリストを作成する
+UNIQUE_APPLICANTS AS (
+    SELECT DISTINCT
+        a.CUSTOMER_ID,
+        c.CAMPAIGN_TYPE,
+        cust.CUSTOMER_RANK, -- ★顧客ランクを追加
+        a.ANSWERED_AT
+    FROM TBL_ANSWERS a
+    JOIN TBL_CAMPAIGNS c ON a.CAMPAIGN_ID = c.CAMPAIGN_ID
+    JOIN TBL_CUSTOMERS cust ON a.CUSTOMER_ID = cust.CUSTOMER_ID -- ★顧客情報を結合
+    WHERE a.QUESTION_ID = 'Q1'
+),
+-- 次に、各キャンペーンタイプの購入者を抽選する
+PURCHASING_CUSTOMERS AS (
+    SELECT
+        *
+    FROM (
+        SELECT
+            *,
+            UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) as lottery_ticket,
+            CASE
+                WHEN CAMPAIGN_TYPE = '新商品ローンチ型' THEN 0.70
+                WHEN CAMPAIGN_TYPE = '購入者限定応募型' THEN 0.45
+                WHEN CAMPAIGN_TYPE = '季節イベント型'   THEN 0.25
+                WHEN CAMPAIGN_TYPE = 'タイアップ・コラボ型' THEN 0.15
+                ELSE 0.20
+            END as winning_line
+        FROM UNIQUE_APPLICANTS
+    )
+    WHERE lottery_ticket < winning_line
+)
+-- 最後に、抽選で選ばれた購入者たちの購買データを生成する
+SELECT
+    'PURC' || LPAD(ROW_NUMBER() OVER (ORDER BY CUSTOMER_ID), 5, '0'),
+    CUSTOMER_ID,
+    DATEADD(day, UNIFORM(1, 7, RANDOM()), ANSWERED_AT),
+    -- ▼▼▼ 商品カテゴリを、キャンペーンタイプに応じて変動させる ▼▼▼
+    CASE
+        WHEN CAMPAIGN_TYPE = '新商品ローンチ型' THEN '限定コラボ商品'
+        WHEN CAMPAIGN_TYPE = '季節イベント型' THEN DECODE(MOD(ABS(HASH(CUSTOMER_ID)), 2), 0, 'チョコレート', '焼き菓子')
+        ELSE DECODE(MOD(ABS(HASH(CUSTOMER_ID)), 2), 0, 'スナック菓子', 'ドリンク')
+    END,
+    -- ▼▼▼ 購入金額を、顧客ランクに応じて変動させる ▼▼▼
+    CASE
+        WHEN CUSTOMER_RANK = 'プラチナ' THEN UNIFORM(8000, 15000, RANDOM())
+        WHEN CUSTOMER_RANK = 'ゴールド' THEN UNIFORM(5000, 9000, RANDOM())
+        WHEN CUSTOMER_RANK = 'シルバー' THEN UNIFORM(2000, 6000, RANDOM())
+        ELSE UNIFORM(500, 3000, RANDOM())
+    END
+FROM
+    PURCHASING_CUSTOMERS;
