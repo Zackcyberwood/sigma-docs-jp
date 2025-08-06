@@ -570,3 +570,228 @@ SELECT
     END
 FROM
     PURCHASING_CUSTOMERS;
+
+ーアンケート結果ー
+-- ステップ1：テーブル（空の箱）を、ANSWER_ID列を「削除」して作り直す
+CREATE OR REPLACE TABLE TBL_ANSWERS (
+    CUSTOMER_ID       VARCHAR(10),
+    CAMPAIGN_ID       VARCHAR(10),
+    QUESTION_ID       VARCHAR(10),
+    ANSWER_TEXT       VARCHAR(500),
+    ANSWERED_AT       TIMESTAMP_NTZ
+);
+
+-- ステップ2：「Q1（参加キャンペーン）」の回答データだけを100件挿入する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- WITH句を使い、まず「誰が、どのキャンペーンに参加したか」の対応表を作成
+WITH 
+-- 部品1: CUST00001からCUST00100までの、100人の回答者を生成
+BASE_CUSTOMERS AS (
+    SELECT
+        'CUST' || LPAD(SEQ8(), 5, '0') as CUSTOMER_ID
+    FROM TABLE(GENERATOR(ROWCOUNT => 100))
+),
+-- 部品2: 回答者と参加キャンペーンを紐付ける
+RESPONDENTS AS (
+    SELECT
+        bc.CUSTOMER_ID,
+        -- 顧客IDのハッシュ値を使い、参加キャンペーンに意図的な「偏り」を持たせる
+        CASE 
+            WHEN MOD(ABS(HASH(bc.CUSTOMER_ID)), 100) < 30 THEN 'CAMP00003' -- 30%はCAMP3に参加
+            WHEN MOD(ABS(HASH(bc.CUSTOMER_ID)), 100) < 60 THEN 'CAMP00005' -- 30%はCAMP5に参加
+            WHEN MOD(ABS(HASH(bc.CUSTOMER_ID)), 100) < 65 THEN 'CAMP00001' -- 5%はCAMP1に参加
+            -- 残りの35%は、10件のキャンペーンの中からランダムに選ばれる
+            ELSE 'CAMP' || LPAD(UNIFORM(1, 10, RANDOM()), 5, '0') 
+        END AS CAMPAIGN_ID
+    FROM BASE_CUSTOMERS bc
+)
+-- 最後に、その対応表と、キャンペーンマスターを「JOIN」で結合する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q1',
+    -- JOINした結果から、キャンペーン名を安全に取得
+    c.CAMPAIGN_NAME,
+    -- JOINした結果から、開始日を安全に取得
+    c.START_DATE
+FROM 
+    RESPONDENTS r
+JOIN 
+    TBL_CAMPAIGNS c ON r.CAMPAIGN_ID = c.CAMPAIGN_ID;
+-- ステップ3：「Q2（重視点）」の回答データを100件追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q2の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q2',
+    -- 回答の出現確率に、意図的な「偏り」を持たせる
+    CASE 
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 35 THEN '新しさ・話題性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 70 THEN '味の信頼性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 90 THEN 'パッケージのデザイン'
+        ELSE '価格の手頃さ'
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+-- Q3の回答を100人分、生成して追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q3の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q3',
+    -- ▼▼▼ 回答の出現確率に、意図的な「偏り」を持たせる ▼▼▼
+    CASE 
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 45 THEN 'Instagram'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 65 THEN 'X (旧Twitter)'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 85 THEN 'Web検索'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 95 THEN 'メールマガジン'
+        ELSE '店頭ポスター'
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+-- Q4の回答を100人分、生成して追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q4の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q4',
+    -- ▼▼▼ 顧客IDのハッシュ値を使い、意図した確率で、コメントの種類を決定 ▼▼▼
+    CASE 
+        -- 15%は「改善提案」
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 15 THEN 
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 4),
+                0, 'オンラインストアの決済方法を増やしてほしいです。後払い決済があると嬉しいです。',
+                1, 'パッケージが少し開けにくいと感じました。ジッパー付きにするなど、改善していただけると嬉しいです。',
+                2, 'Webサイトの応募方法が少し分かりにくかったです。もう少しシンプルな手順だと助かります。',
+                '人気商品はすぐに売り切れてしまうので、もう少し在庫を増やしてほしいです。')
+        -- 15%は「単なる批判・感想」
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 30 THEN
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 4),
+                0, '期待して購入しましたが、私には少し甘すぎると感じました。',
+                1, '広告で見たイメージと、実物の色が少し違ったのが残念です。',
+                2, '価格がもう少し安いと嬉しいです。',
+                '届くまでに少し時間がかかったように思います。')
+        -- 残りの70%は「ポジティブな感想」
+        ELSE
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 5),
+                0, 'コラボデザインが想像以上に可愛く、つい全種類集めてしまいました。',
+                1, '新商品、とても美味しかったです。また購入します。',
+                2, 'キャンペーンありがとうございました。',
+                3, '友人にもプレゼントしたら、とても喜ばれました。',
+                '今後の企画も楽しみにしています！')
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+ー会員情報ー
+-- ステップ1：テーブルを一度まっさらに作り直す
+CREATE OR REPLACE TABLE TBL_CUSTOMERS (
+    CUSTOMER_ID       VARCHAR(10),
+    GENDER            VARCHAR(10),
+    AGE_GROUP         VARCHAR(20),
+    PREFECTURE        VARCHAR(50),
+    CUSTOMER_RANK     VARCHAR(20),
+    REGISTRATION_DATE DATE
+);
+
+-- ステップ2：作り直したテーブルに、「既存顧客」と「新規顧客」を合わせて100件生成・挿入する
+INSERT INTO TBL_CUSTOMERS (
+    CUSTOMER_ID, GENDER, AGE_GROUP, PREFECTURE, CUSTOMER_RANK, REGISTRATION_DATE
+)
+-- まず、70人の「既存顧客」を生成
+SELECT
+    'CUST' || LPAD(SEQ8(), 5, '0'),
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.48 THEN '男性' ELSE '女性' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.25 THEN '20代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.55 THEN '30代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.80 THEN '40代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.95 THEN '50代' ELSE '60代以上' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.15 THEN '東京都' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.25 THEN '神奈川県' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.33 THEN '大阪府' ELSE 'その他の都道府県' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.10 THEN 'プラチナ' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.35 THEN 'ゴールド' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.70 THEN 'シルバー' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.85 THEN 'ブロンズ' ELSE 'レギュラー' END,
+    -- 登録日を2024年12月31日以前に設定
+    DATEADD(day, UNIFORM(0, 1095, RANDOM()), '2022-01-01')
+FROM
+    TABLE(GENERATOR(ROWCOUNT => 70))
+
+UNION ALL
+
+-- 次に、30人の「新規顧客」を生成
+SELECT
+    'CUST' || LPAD(SEQ8() + 70, 5, '0'), -- IDが重複しないように調整
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.48 THEN '男性' ELSE '女性' END,
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.40 THEN '20代' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.70 THEN '30代' ELSE '40代' END, -- 新規顧客は若年層が多いと仮定
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.30 THEN '東京都' WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.50 THEN '神奈川県' ELSE 'その他の都道府県' END,
+    'ブロンズ', -- 新規顧客は、最初は全員「ブロンズ」ランクから始まると仮定
+    -- 登録日を「2025年上半期」の範囲に限定
+    DATEADD(day, UNIFORM(0, 179, RANDOM()), '2025-01-01')
+FROM
+    TABLE(GENERATOR(ROWCOUNT => 30));
+
+ー顧客情報ー
+-- ステップ1：購入履歴テーブルを一度まっさらにして作り直す
+CREATE OR REPLACE TABLE TBL_PURCHASES (
+    PURCHASE_ID       VARCHAR(10),
+    CUSTOMER_ID       VARCHAR(10),
+    PURCHASE_DATE     TIMESTAMP_NTZ,
+    PRODUCT_CATEGORY  VARCHAR(50),
+    PURCHASE_AMOUNT   NUMBER(10, 0),
+    STORE_TYPE        VARCHAR(10)
+);
+
+-- ステップ2：作り直したテーブルに、40件の購入データを挿入する
+INSERT INTO TBL_PURCHASES (
+    PURCHASE_ID, CUSTOMER_ID, PURCHASE_DATE, PRODUCT_CATEGORY, PURCHASE_AMOUNT, STORE_TYPE
+)
+-- WITH句を使い、まず「購入者」を100人の会員の中からランダムに40人選出する
+WITH PURCHASING_CUSTOMERS AS (
+    SELECT 
+        CUSTOMER_ID,
+        CUSTOMER_RANK,
+        AGE_GROUP
+    FROM TBL_CUSTOMERS -- 既存の会員情報テーブルを参照
+    ORDER BY RANDOM()
+    LIMIT 40 -- 100人のうち、40人が購入したと仮定
+)
+-- 次に、選出された40人の購入データを生成する
+SELECT
+    'PURC' || LPAD(ROW_NUMBER() OVER (ORDER BY pc.CUSTOMER_ID), 5, '0'),
+    pc.CUSTOMER_ID,
+    -- 購入日は、2025年上半期のランダムな日時
+    DATEADD(second, UNIFORM(0, 15552000, RANDOM()), '2025-01-01 00:00:00'),
+    -- 商品カテゴリをランダムに割り振り
+    DECODE(MOD(ABS(HASH(pc.CUSTOMER_ID)), 4),
+        0, 'スナック菓子',
+        1, 'チョコレート',
+        2, '焼き菓子',
+        'ドリンク'),
+    -- 購入金額を、顧客ランクに応じて変動させる
+    CASE
+        WHEN pc.CUSTOMER_RANK = 'プラチナ' THEN UNIFORM(8000, 15000, RANDOM())
+        WHEN pc.CUSTOMER_RANK = 'ゴールド' THEN UNIFORM(5000, 9000, RANDOM())
+        WHEN pc.CUSTOMER_RANK = 'シルバー' THEN UNIFORM(2000, 6000, RANDOM())
+        ELSE UNIFORM(500, 3000, RANDOM())
+    END,
+    -- 店舗種別をランダムに割り振り
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.7 THEN 'EC' ELSE '実店舗' END
+FROM
+    PURCHASING_CUSTOMERS pc;
