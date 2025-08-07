@@ -1,4 +1,4 @@
-# Sigmaキャンペーン分析ユースケース
+<img width="990" height="613" alt="image" src="https://github.com/user-attachments/assets/fe094363-4a23-4d77-a981-69dc0c6e93aa" /># Sigmaキャンペーン分析ユースケース
 
 # 1. 背景と目的
 
@@ -631,10 +631,12 @@ AI分析モジュール（ドーナツグラフとテーブル）を配置しま
 
 <img width="1313" height="853" alt="3-2 キャンペーンサマリー" src="https://github.com/user-attachments/assets/f6e92b60-1352-4b93-8810-b8ec77dd3dc4" />
 
+**Step 10：公開（Publish）**
 
+全ての調整が完了したら、画面右上の青い**Publish**ボタンをクリックします。
+これで、あなたの行った変更が保存され、ダッシュボードが他のチームメンバーと共有できる状態になります。
 
-
-
+<img width="990" height="613" alt="3-3 Publish" src="https://github.com/user-attachments/assets/d3239b56-dbe9-4331-993b-2c8c4c8085e3" />
 
 # 5.他のアカウントタイプでのユースケース事例
 
