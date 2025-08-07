@@ -71,7 +71,29 @@ SELECT
     r.ANSWERED_AT
 FROM RESPONDENTS r;
 
--- Q3の回答を100人分、生成して追記する
+-- ステップ3：Q1に答えた全回答者のリストをから、改めてQ2の回答結果を100件生成する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q2の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q2',
+    -- 回答の出現確率に、意図的な「偏り」を持たせる
+    CASE 
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 35 THEN '新しさ・話題性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 70 THEN '味の信頼性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 90 THEN 'パッケージのデザイン'
+        ELSE '価格の手頃さ'
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+--ステップ4: Q3の回答を100人分、生成して追記する
 INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
 -- まず、Q1に答えた全回答者のリストを取得
 WITH RESPONDENTS AS (
