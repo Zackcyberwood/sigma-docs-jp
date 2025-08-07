@@ -1,0 +1,138 @@
+-アンケート結果-
+-- ステップ1：テーブル（空の箱）を作成
+CREATE OR REPLACE TABLE TBL_ANSWERS (
+    CUSTOMER_ID       VARCHAR(10),
+    CAMPAIGN_ID       VARCHAR(10),
+    QUESTION_ID       VARCHAR(10),
+    ANSWER_TEXT       VARCHAR(500),
+    ANSWERED_AT       TIMESTAMP_NTZ
+);
+
+-- ステップ2：「Q1（参加キャンペーン）」の回答データだけを100件挿入する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- WITH句を使い、まず「誰が、どのキャンペーンに参加したか」の対応表を作成
+WITH 
+-- 部品1: CUST00001からCUST00100までの、100人の回答者を生成
+BASE_CUSTOMERS AS (
+    SELECT
+        'CUST' || LPAD(SEQ8(), 5, '0') as CUSTOMER_ID
+    FROM TABLE(GENERATOR(ROWCOUNT => 100))
+),
+-- 部品2: 回答者と参加キャンペーンを紐付ける
+RESPONDENTS AS (
+    SELECT
+        bc.CUSTOMER_ID,
+        -- 顧客IDのハッシュ値を使い、参加キャンペーンに意図的な「偏り」を持たせる
+        CASE 
+            WHEN MOD(ABS(HASH(bc.CUSTOMER_ID)), 100) < 30 THEN 'CAMP00003' -- 30%はCAMP3に参加
+            WHEN MOD(ABS(HASH(bc.CUSTOMER_ID)), 100) < 50 THEN 'CAMP00005' -- 20%はCAMP5に参加
+            WHEN MOD(ABS(HASH(bc.CUSTOMER_ID)), 100) < 60 THEN 'CAMP00001' -- 10%はCAMP1に参加
+            -- 残りの40%は、10件のキャンペーンの中からランダムに選ばれる
+            ELSE 'CAMP' || LPAD(UNIFORM(1, 10, RANDOM()), 5, '0') 
+        END AS CAMPAIGN_ID
+    FROM BASE_CUSTOMERS bc
+)
+-- 最後に、その対応表と、キャンペーンマスターを「JOIN」で結合する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q1',
+    -- JOINした結果から、キャンペーン名を安全に取得
+    c.CAMPAIGN_NAME,
+    -- ▼▼▼ 回答日時を、キャンペーン期間内のランダムな日時に修正 ▼▼▼
+    DATEADD(
+        second, 
+        (DATEDIFF(second, c.START_DATE, c.END_DATE) * UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()))::INT, 
+        c.START_DATE
+    )
+FROM 
+    RESPONDENTS r
+JOIN 
+    TBL_CAMPAIGNS c ON r.CAMPAIGN_ID = c.CAMPAIGN_ID;
+
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを、もう一度ここで定義する
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q2の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q2',
+    -- 回答の出現確率に、意図的な「偏り」を持たせる
+    CASE 
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 35 THEN '新しさ・話題性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 70 THEN '味の信頼性'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 90 THEN 'パッケージのデザイン'
+        ELSE '価格の手頃さ'
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+-- Q3の回答を100人分、生成して追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q3の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q3',
+    -- ▼▼▼ 回答の出現確率に、意図的な「偏り」を持たせる ▼▼▼
+    CASE 
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 45 THEN 'Instagram'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 65 THEN 'X (旧Twitter)'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 85 THEN 'Web検索'
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 95 THEN 'メールマガジン'
+        ELSE '店頭ポスター'
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
+
+-- Q4の回答を100人分、生成して追記する
+INSERT INTO TBL_ANSWERS (CUSTOMER_ID, CAMPAIGN_ID, QUESTION_ID, ANSWER_TEXT, ANSWERED_AT)
+-- まず、Q1に答えた全回答者のリストを取得
+WITH RESPONDENTS AS (
+    SELECT DISTINCT CUSTOMER_ID, CAMPAIGN_ID, ANSWERED_AT 
+    FROM TBL_ANSWERS 
+    WHERE QUESTION_ID = 'Q1'
+)
+-- 次に、その回答者リストを基に、Q4の回答を生成する
+SELECT
+    r.CUSTOMER_ID,
+    r.CAMPAIGN_ID,
+    'Q4',
+    -- ▼▼▼ 顧客IDのハッシュ値を使い、意図した確率で、コメントの種類を決定 ▼▼▼
+    CASE 
+        -- 15%は「改善提案」
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 15 THEN 
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 4),
+                0, 'オンラインストアの決済方法を増やしてほしいです。後払い決済があると嬉しいです。',
+                1, 'パッケージが少し開けにくいと感じました。ジッパー付きにするなど、改善していただけると嬉しいです。',
+                2, 'Webサイトの応募方法が少し分かりにくかったです。もう少しシンプルな手順だと助かります。',
+                '人気商品はすぐに売り切れてしまうので、もう少し在庫を増やしてほしいです。')
+        -- 15%は「単なる批判・感想」
+        WHEN MOD(ABS(HASH(r.CUSTOMER_ID)), 100) < 30 THEN
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 4),
+                0, '期待して購入しましたが、私には少し甘すぎると感じました。',
+                1, '広告で見たイメージと、実物の色が少し違ったのが残念です。',
+                2, '価格がもう少し安いと嬉しいです。',
+                '届くまでに少し時間がかかったように思います。')
+        -- 残りの70%は「ポジティブな感想」
+        ELSE
+            DECODE(MOD(ABS(HASH(r.CUSTOMER_ID)), 5),
+                0, 'コラボデザインが想像以上に可愛く、つい全種類集めてしまいました。',
+                1, '新商品、とても美味しかったです。また購入します。',
+                2, 'キャンペーンありがとうございました。',
+                3, '友人にもプレゼントしたら、とても喜ばれました。',
+                '今後の企画も楽しみにしています！')
+    END,
+    r.ANSWERED_AT
+FROM RESPONDENTS r;
