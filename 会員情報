@@ -1,4 +1,4 @@
--- ステップ1：テーブルを一度まっさらに作り直す
+-- ステップ1：空のテーブルを作成
 CREATE OR REPLACE TABLE TBL_CUSTOMERS (
     CUSTOMER_ID       VARCHAR(10),
     GENDER            VARCHAR(10),
@@ -8,7 +8,7 @@ CREATE OR REPLACE TABLE TBL_CUSTOMERS (
     REGISTRATION_DATE DATE
 );
 
--- ステップ2：作り直したテーブルに、「既存顧客」と「新規顧客」を合わせて100件生成・挿入する
+-- ステップ2：「既存顧客」と「新規顧客」を合わせて100件生成・挿入
 INSERT INTO TBL_CUSTOMERS (
     CUSTOMER_ID, GENDER, AGE_GROUP, PREFECTURE, CUSTOMER_RANK, REGISTRATION_DATE
 )
