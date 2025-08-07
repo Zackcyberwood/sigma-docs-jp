@@ -1,4 +1,4 @@
-# Sigmaキャンペーン分析ユースケース
+<img width="707" height="527" alt="11_テーブルの名前変更" src="https://github.com/user-attachments/assets/e227c94e-126d-494f-b78a-218ab69a6378" /># Sigmaキャンペーン分析ユースケース
 
 # 1. 背景と目的
 
@@ -228,17 +228,35 @@ TBL_ANSWERSテーブルに、他のテーブルを結合して、分析に必要
 
 4. 同様の手順を繰り返し、以下の結合を順番に追加していきます。
 
-**TBL_ANSWERS と TBL_CAMPAIGNS を CAMPAIGN_ID で結合**
+* **TBL_ANSWERS と TBL_CAMPAIGNS を CAMPAIGN_ID で結合**
 
-**TBL_ANSWERS と TBL_QUESTIONS を QUESTION_ID で結合**
+* **TBL_ANSWERS と TBL_QUESTIONS を QUESTION_ID で結合**
 
-**TBL_CUSTOMERS と TBL_PURCHASES を CUSTOMER_ID で結合**
+* **TBL_CUSTOMERS と TBL_PURCHASES を CUSTOMER_ID で結合**
 
 最後に、TBL_CUSTOMERSとTBL_PURCHASESを繋いでいる線の中央にある、円が2つ重なったアイコン（結合タイプ）をクリックし、「左外部結合（Left Join）」を選択します。
+
 <img width="1903" height="995" alt="10 ５つのデータのJoin画面" src="https://github.com/user-attachments/assets/da63f921-6aa1-4137-88e9-e01b49393dd0" />
 
 **✅ このステップのゴール**
 5つのテーブルが正しく結合され、多角的な分析を行うための準備が整った、一つの大きなデータセット（ワークシート）が完成します。
+
+#### Step 4：テーブル名の変更
+
+**目的：**
+5つのテーブルを結合して作成した、この分析の土台となるデータセットに、その役割が一目で分かる、適切な名前を付けます。
+
+手順：
+
+1. Sigmaのワークシート画面で、5つのテーブルを結合したテーブルの上部に表示されているタイトルを選択します。
+
+2. 名前が編集できる状態になるので、**キャンペーン統合データ**といった、このデータセットの役割を表す、分かりやすい名前に任意で変更してください。
+
+<img width="707" height="527" alt="11_テーブルの名前変更" src="https://github.com/user-attachments/assets/b8e43e1b-7609-4c64-9011-379b5c586ab4" />
+
+✅ このステップのゴール
+分析の土台となるデータセットに、その役割を示す適切な名前が付けられ、この後の分析作業で、誰もが迷うことなく、このデータを参照できるようになります。
+
 
 ## Phase1：データへの接続と分析基盤の構築（データ結合）
 
