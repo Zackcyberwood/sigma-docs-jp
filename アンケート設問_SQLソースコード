@@ -1,0 +1,14 @@
+-- ステップ1：設問マスターテーブルを一度まっさらにして作り直す
+CREATE OR REPLACE TABLE TBL_QUESTIONS (
+    QUESTION_ID       VARCHAR(10),
+    QUESTION_TEXT     VARCHAR(200),
+    QUESTION_TYPE     VARCHAR(30)
+);
+
+-- ステップ2：作成したテーブルに、4つの設問データを挿入する
+INSERT INTO TBL_QUESTIONS (QUESTION_ID, QUESTION_TEXT, QUESTION_TYPE)
+VALUES
+    ('Q1', 'どのキャンペーンに参加しましたか？', '単一選択'),
+    ('Q2', '商品購入時に最も重視する点は何ですか？', '単一選択'),
+    ('Q3', 'このキャンペーンをどこで知りましたか？', '単一選択'),
+    ('Q4', 'ご意見・ご要望があればご自由にお書きください。', '自由回答');
