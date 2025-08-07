@@ -1,0 +1,47 @@
+-- ステップ1：購入履歴テーブルを一度まっさらにして作り直す
+CREATE OR REPLACE TABLE TBL_PURCHASES (
+    PURCHASE_ID       VARCHAR(10),
+    CUSTOMER_ID       VARCHAR(10),
+    PURCHASE_DATE     TIMESTAMP_NTZ,
+    PRODUCT_CATEGORY  VARCHAR(50),
+    PURCHASE_AMOUNT   NUMBER(10, 0),
+    STORE_TYPE        VARCHAR(10)
+);
+
+-- ステップ2：作り直したテーブルに、40件の購入データを挿入する
+INSERT INTO TBL_PURCHASES (
+    PURCHASE_ID, CUSTOMER_ID, PURCHASE_DATE, PRODUCT_CATEGORY, PURCHASE_AMOUNT, STORE_TYPE
+)
+-- WITH句を使い、まず「購入者」を100人の会員の中からランダムに40人選出する
+WITH PURCHASING_CUSTOMERS AS (
+    SELECT 
+        CUSTOMER_ID,
+        CUSTOMER_RANK,
+        AGE_GROUP
+    FROM TBL_CUSTOMERS -- 既存の会員情報テーブルを参照
+    ORDER BY RANDOM()
+    LIMIT 40 -- 100人のうち、40人が購入したと仮定
+)
+-- 次に、選出された40人の購入データを生成する
+SELECT
+    'PURC' || LPAD(ROW_NUMBER() OVER (ORDER BY pc.CUSTOMER_ID), 5, '0'),
+    pc.CUSTOMER_ID,
+    -- 購入日は、2025年上半期のランダムな日時
+    DATEADD(second, UNIFORM(0, 15552000, RANDOM()), '2025-01-01 00:00:00'),
+    -- 商品カテゴリをランダムに割り振り
+    DECODE(MOD(ABS(HASH(pc.CUSTOMER_ID)), 4),
+        0, 'スナック菓子',
+        1, 'チョコレート',
+        2, '焼き菓子',
+        'ドリンク'),
+    -- 購入金額を、顧客ランクに応じて変動させる
+    CASE
+        WHEN pc.CUSTOMER_RANK = 'プラチナ' THEN UNIFORM(8000, 15000, RANDOM())
+        WHEN pc.CUSTOMER_RANK = 'ゴールド' THEN UNIFORM(5000, 9000, RANDOM())
+        WHEN pc.CUSTOMER_RANK = 'シルバー' THEN UNIFORM(2000, 6000, RANDOM())
+        ELSE UNIFORM(500, 3000, RANDOM())
+    END,
+    -- 店舗種別をランダムに割り振り
+    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) < 0.7 THEN 'EC' ELSE '実店舗' END
+FROM
+    PURCHASING_CUSTOMERS pc;
