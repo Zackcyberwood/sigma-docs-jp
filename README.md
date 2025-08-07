@@ -156,7 +156,90 @@ Sigmaの導入は、まず分析準備のワークフローを抜本的に変革
 * **アンケート自由回答分析（テーブル）:**
     * **役割：** AIが抽出した**「具体的な改善提案」**を、**顧客ランク**と共に一覧表示します。これにより、「我々が次に取り組むべき、最も価値のある声は何か」を、データに基づいて特定します。
 
-# 4. ハンズオンインタラクティブダッシュボード構築手順
+# 第4章：ハンズオン：インタラクティブ・ダッシュボード構築手順
+
+この章では、Snowflakeに準備した5つのテーブルを基に、Sigmaを使って、意思決定を支援するインタラクティブなダッシュボードをゼロから構築します。
+
+---
+
+### **フェーズ1：データ準備・結合フェーズ**
+
+**目的：**
+全ての分析の土台となる、Snowflake上の5つのテーブルをSigmaに接続し、それらを正しく結合して、分析の起点となる「分析用データセット（ワークシート）」を作成します。
+
+#### **Step 1：新しいワークブックの作成**
+
+まず、分析の作業スペースとなる、まっさらな「ワークブック」を作成します。
+
+**手順：**
+
+1.  Sigmaにログインし、画面左上にある青い**「作成（Create New）」**ボタンをクリックします。
+2.  表示されたメニューの中から、**「ワークブック（Workbook）」**を選択してください。
+
+[画像挿入]<img width="1269" height="403" alt="1_ワークブックを開く" src="https://github.com/user-attachments/assets/a65e88c6-48dd-41c1-bf9d-031b2d869847" />
+
+
+**✅ このステップのゴール**
+「データソースを選択」という新しい画面が表示されれば、最初のステップは成功です！
+
+
+
+#### **Step 2：分析の「軸」となるデータソースの選択**
+
+次に、分析の中心となるテーブルを、まず一つSigmaに呼び出します。
+
+**手順：**
+
+1.画面中央下の**Data**をクリックし、**Table**を選択します。
+
+<img width="302" height="133" alt="2_データのテーブルを開く" src="https://github.com/user-attachments/assets/42871efb-8692-49e3-a1de-a96413555243" />
+
+2.「データソースを選択」画面でを**「接続（Connections）」** タブを選び、あなたのSnowflake接続をクリックします。その後、接続先にあるデータベースの中から指定のデータベースをクリックし、次にスキーマをクリックします。
+
+<img width="304" height="524" alt="3_Connectionを選択" src="https://github.com/user-attachments/assets/09cabe97-5f3a-412d-8894-4976d9f19515" />
+
+3.テーブルの一覧から、分析の「ハブ（中心）」となる**TBL_ANSWERS（アンケート回答）テーブルを**選択します。
+
+<img width="311" height="520" alt="4 TBL_ANSWERのテーブル選択" src="https://github.com/user-attachments/assets/54a91836-4e89-4fd2-80ca-b2fd204b4533" />
+
+4. 選択が完了したら、右上の「開始」ボタンをクリックします。
+
+**✅ このステップのゴール**
+画面が切り替わり、TBL_ANSWERSテーブルだけが表示された、Sigmaのワークシート画面になれば成功です！
+
+#### **Step 3：テーブルの結合（Join）**
+**目的：**
+TBL_ANSWERSテーブルに、他のテーブルを結合して、分析に必要な情報を追加していきます。この操作で、バラバラだった5つのデータが、意味のある一つの大きなデータセットに生まれ変わります。
+
+**手順：**
+
+1. 画面上部に表示されているTBL_ANSWERSテーブル要素の、右上にある3点リーダー「…」をクリックします。
+   表示されたメニューの中から**Edit element source**を選択します。
+   ソースパネルが開いたら、**Join** ボタンをクリックします。
+   
+<img width="1895" height="608" alt="6 Joinの表示png" src="https://github.com/user-attachments/assets/d0362a6a-7df0-451a-84c1-4100b330a6eb" />
+
+2.「新しいソースを追加」画面で、MY_HANDSON_DB.PUBLICスキーマの中から、TBL_CUSTOMERS（会員情報） テーブルを選択し、「Join」をクリックします。
+<img width="1076" height="785" alt="7 CustomerIDとのJoin" src="https://github.com/user-attachments/assets/6daf2ba9-32b4-465c-bfeb-f52ec99319fe" />
+
+
+3. 結合キー設定画面で、両方のテーブルのCUSTOMER_IDが自動で選択されていることを確認し、結合を確定します。
+<img width="573" height="475" alt="8  Left Outerjoinで結合" src="https://github.com/user-attachments/assets/b30e79cd-f738-4a33-a8d7-7218d11b1012" />
+
+4. 同様の手順を繰り返し、以下の結合を順番に追加していきます。
+
+**TBL_ANSWERS と TBL_CAMPAIGNS を CAMPAIGN_ID で結合**
+
+**TBL_ANSWERS と TBL_QUESTIONS を QUESTION_ID で結合**
+
+**TBL_CUSTOMERS と TBL_PURCHASES を CUSTOMER_ID で結合**
+
+最後に、TBL_CUSTOMERSとTBL_PURCHASESを繋いでいる線の中央にある、円が2つ重なったアイコン（結合タイプ）をクリックし、「左外部結合（Left Join）」を選択します。
+<img width="1903" height="995" alt="10 ５つのデータのJoin画面" src="https://github.com/user-attachments/assets/da63f921-6aa1-4137-88e9-e01b49393dd0" />
+
+**✅ このステップのゴール**
+5つのテーブルが正しく結合され、多角的な分析を行うための準備が整った、一つの大きなデータセット（ワークシート）が完成します。
+
 ## Phase1：データへの接続と分析基盤の構築（データ結合）
 
 ## **目的**
