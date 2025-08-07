@@ -1,4 +1,3 @@
--アンケート結果-
 -- ステップ1：テーブル（空の箱）を作成
 CREATE OR REPLACE TABLE TBL_ANSWERS (
     CUSTOMER_ID       VARCHAR(10),
